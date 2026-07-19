@@ -1,0 +1,213 @@
+  {
+  "menu": {
+    "onboarding": "🏠 Inicio",
+    "finances": "💰 Patrimonio",
+    "zakat": "🏦 Zakat Live",
+    "arbre": "👥 Familia",
+    "heritage": "📜 Sucesión Live",
+    "testament": "📝 Testamento",
+    "mouhasabah": "📿 Mouhasabah",
+    "audit": "📖 Auditoría y Gráficos",
+    "profil": "👤 Perfil",
+    "reglages": "⚙️ Ajustes"
+  },
+  "barre_outils": {
+    "titre_app": "🕌 HAYAATI",
+    "mode_live": "🟢 Modo Persistente (Live)",
+    "mode_tiers": "🟡 Diagnóstico (Terceros)",
+    "label_devise": "Moneda:",
+    "label_langue": "Idioma:",
+    "label_fiqh": "Fiqh:",
+    "visiteur": "👤 Modo Visitante",
+    "btn_deconnexion": "🚪 Cerrar Sesión"
+  },
+  "auth": {
+    "titre_inscription": "📝 Creación de un Espacio Privado Seguro",
+    "titre_connexion": "🔐 Conexión a su Espacio Privado",
+    "username": "Nombre de usuario:",
+    "email": "Correo electrónico:",
+    "password": "Contraseña secreta:",
+    "btn_creer": "Crear mi Espacio Cifrado",
+    "btn_valider_connexion": "Abrir mi Caja Fuerte",
+    "deja_compte": "Ya tengo una cuenta",
+    "pas_compte": "Crear una nueva cuenta",
+    "err_champs": "❌ Por favor, complete todos los campos requeridos.",
+    "err_connexion": "❌ Credenciales incorrectas o cuenta inexistente."
+  },
+  "onboarding": {
+    "bienvenue": "Assalâmou Alaykoum, {} 🌟",
+    "sous_titre": "Informe de vigilancia patrimonial y espiritual — Escuela {}",
+    "titre_fortune": " 💰 Fortuna Neta ",
+    "titre_zakat": " 🏦 Estado del Zakat ",
+    "titre_mouhasabah": " 📿 Índice de Mouhasabah ",
+    "cadre_prieres": " 🕋 Oraciones Vencidas (Prioridad Absoluta) ",
+    "cadre_calendrier": " 🌙 Cronología Sagrada y Devociones Voluntarias ",
+    "prieres_manquees": "⚠️ VIGILANCIA ORACIÓN: La hora astronómica local ha superado las siguientes oraciones: {}.\n👉 Por favor, cumpla con sus obligaciones inmediatamente para purificar su registro espiritual.",
+    "prieres_ok": "✨ Excelente: Todas sus oraciones obligatorias vencidas están validadas a tiempo.",
+    "joumouah": "🌟 VIERNES (JOUMOU'AH): Recordatorio para leer la Sura Al-Kahf y multiplicar las bendiciones sobre el Profeta (ﷺ).\n\n",
+    "jours_blancs": "⚪ ALERTA DE AYUNO: Estamos en el período de los Días Blancos (13, 14 y 15 del mes hégira).\n\n",
+    "entete_devotion": "📿 EXAMEN DE VIGILANCIA ESPIRITUAL DIARIO:\n",
+    "nawafil_ok": "   • ✅ Oraciones voluntarias (Nawafil) validadas. Que Allah fortalezca su devoción.\n",
+    "nawafil_ko": "   • 🔴 RECORDATORIO NAWAFIL: No ha registrado oraciones voluntarias hoy.\n     👉 Considere realizar las Rawatib para compensar las faltas en las Farâ'idh.\n",
+    "sadaqah_ok": "   • ✅ Limosna discreta (Sadaqah) registrada hoy. Su pureza social está activa.\n\n",
+    "sadaqah_ko": "   • 🔴 RECORDATORIO SADAQAH: No se ha registrado limosna voluntaria hoy.\n     👉 'La limosna apaga los pecados como el agua apaga el fuego'. Haga un gesto.\n",
+    "hadj_ok": "🕋 HAJJ CUMPLIDO: ¡Felicitaciones! Ya ha honrado su obligación de por vida. Considere patrocinar a un familiar directo o un allegado necesitado.\n",
+    "hadj_ko": "🕋 APTITUD HAJJ ACTIVA: Sus ahorros disponibles ({:.0f} {}) validan la capacidad financiera requerida (Al-Istita'ah) para el Peregrinaje.\n",
+    "tabaski": "🐑 UDHIYAH: El sacrificio de la Tabaski constituye una Sunnah fuerte para su hogar en vista de sus activos netos.\n\n",
+    "anniversaire_alerte": "⚠️ RECORDATORIO DOCTRINAL IMPORTANTE: Hoy es el día de su cumpleaños.\n   👉 Sentencia Sharia: Celebrar el cumpleaños constituye una innovación religiosa (Bid'ah) ilícita (Haram) según el consenso de las 4 escuelas. Medite más bien sobre el tiempo que se escapa.\n\n",
+    "age_islamique": "🎂 TIEMPO Y EXISTENCIA: Según el calendario hégira lunar, su edad exacta es de: {:.1f} años.\n",
+    "fin_muharram": "📌 CRONOLOGÍA: Nos acercamos al final del mes sagrado de MUHARRAM.\n👉 Recomendación: Multiplique las súplicas y prepárese para la entrada inminente de Safar.\n\n",
+    "general_devotion": "📖 MEMORIA DEL COTIDIANO:\n   • Corán: Dedique un momento hoy a la lectura de al menos unos versículos.\n   • Adhkar: Recuerde formular sus evocaciones de protección de la mañana y de la tarde.\n   • Comportamiento: Cuide escrupulosamente la preservación de la lengua y la benevolencia."
+  },
+  "finances": {
+    "titre": "Matriz de Inventario de sus Bienes Reales",
+    "cadre_immo": " 🏢 Activos Inmobiliarios y Terrenos ",
+    "cadre_cash": " 💵 Liquidez y Ahorro ",
+    "cadre_obligations": " 👥 Compromisos Civiles (Créditos / Deudas) ",
+    "btn_sauver": "💾 Guardar mi Inventario Patrimonial",
+    "immo_lbl": "Valor inmobiliario estimado:",
+    "auto_lbl": "Vehículos y Materiales:",
+    "liq_lbl": "Liquidez / Ahorro bancario:",
+    "creances_lbl": "Créditos activos (Por cobrar):",
+    "dettes_lbl": "Deudas pasivas (Por pagar):"
+  },
+  "zakat": {
+    "cadre_bilan": " Balance de Exigibilidad y Purificación Financiera ",
+    "cadre_financier": " Flujo de Efectivo y Metales Preciosos ",
+    "btn_calculer": "⚡ Ejecutar Auditoría Financiera de Terceros",
+    "btn_pdf": "📄 Imprimir mi Certificado de Zakat (PDF)",
+    "cours_or": "Precio local del Oro (por gramo):",
+    "btn_recalculer": "🔄 Recalculer",
+    "titre_tiers": "👤 Parámetros del Diagnóstico de Terceros",
+    "nom_tiers": "Nombre del tercero:",
+    "recolte_lbl": "Cosecha agrícola (kg):",
+    "ovins_lbl": "Ovinos (Ovejas/Cabras):",
+    "bovins_lbl": "Bovinos (Vacas/Ganado):"
+  },
+  "arbre": {
+    "titre": "Libro de Configuración del Árbol Genealógico",
+    "btn_ajouter": "➕ Guardar o Actualizar este Miembro",
+    "lien_lbl": "Vínculo de Parentesco Directo:",
+    "statut_lbl": "Estado de Elegibilidad:",
+    "indigne": "Indigno / Asesino (Exclusión de la Sharia)",
+    "normal": "Heredero Estándar (Mente Sana)"
+  },
+  "heritage": {
+    "cadre_config": " Composición del Patrimonio Familiar ",
+    "cadre_rapport": " Desglose de Cuotas Legales (Fara'idh) ",
+    "btn_calculer": "⚡ Calcular Derechos de Herencia",
+    "titre_tiers": "👤 Parámetros del Diagnóstico de Herencia de Terceros",
+    "nom_defunt": "Nombre del difunto:",
+    "actif_brut": "Patrimonio Bruto:",
+    "creances": "Créditos:",
+    "dettes": "Deudas:",
+    "legs": "Legados (Wasiyya):",
+    "btn_pdf": "📄 Generar Certificado de Herencia en PDF",
+    "err_conjoint": "❌ Anomalía de la Sharia: Un difunto no puede dejar un esposo Y una esposa simultáneamente."
+  },
+  "testament": {
+    "titre": "Redacción del Testamento Escrito (Wasiyya)",
+    "cadre_legs": " Legados Voluntarios Opcionales (Límite estricto de 1/3) ",
+    "montant_lbl": "Cantidad o Valor Asignado:",
+    "benef_lbl": "Beneficiario Designado (No Heredero):",
+    "btn_sauver": "💾 Sellar mi Testamento Escrito"
+  },
+  "mouhasabah": {
+    "cadre_prieres": " Seguimiento Riguroso de Oraciones Obligatorias ",
+    "btn_enregistrer": "📿 Validar mi Registro de Mouhasabah",
+    "oblig_lbl": "Oraciones Obligatorias Realizadas:",
+    "merite_lbl": "Actos Voluntarios y Estado de los Pilares:",
+    "nawafil": "Oraciones Voluntarias (Nawafil)",
+    "sadaqah": "Limosna Registrada Hoy (Sadaqah)",
+    "hadj_checkbox": "🕋 Ya he realizado mi Hajj obligatorio en mi vida"
+  },
+  "audit": {
+    "titre": "📊 Análisis Central y Estadísticas Doctrinales",
+    "cadre_solvabilite": " 📊 Auditoría de Solvencia (Activos vs Deudas) ",
+    "cadre_tendance": " 📿 Línea de Tendencia Espiritual (Últimos 7 Días) ",
+    "lbl_encyclopedie": "Referencia de la Enciclopedia Doctrinal",
+    "immo": "Inmueble",
+    "cash": "Efectivo",
+    "creances": "Créditos",
+    "dettes": "Deudas",
+    "warning_visiteur": "🔒 Inicie sesión en su Espacio Privado para activar los gráficos estadísticos en tiempo real."
+  },
+  "profil": {
+    "cadre_titre": " 👤 Gestión Completa de la Identidad y Seguridad ",
+    "prenom": "Nombre:",
+    "nom": "Apellido:",
+    "username": "Nombre de usuario:",
+    "email": "Correo electrónico:",
+    "password": "Contraseña secreta:",
+    "confirm_password": "Confirmar contraseña:",
+    "naissance": "Fecha de nacimiento:",
+    "tel": "Teléfono móvil:",
+    "pays": "País de residencia:",
+    "ville": "Ciudad / Distrito:",
+    "profession": "Profesión / Ocupación:",
+    "btn_sauver": "💾 Guardar Actualizaciones de Identidad",
+    "err_match": " ❌ Fallo: La contraseña secreta y su confirmación no coinciden."
+  },
+  "reglages": {
+    "cadre_pref": " ⚙️ Sus Preferencias Doctrinales y de Sesión por Defecto ",
+    "btn_sauver_pref": "💾 Guardar Ajustes de Sesión por Defecto",
+    "cadre_feed": " 💬 Formulaire de Comentarios de Calidad y Experiencia ",
+    "lbl_commentaires": "Sugerencias y Comentarios:",
+    "btn_soumettre": "🚀 Enviar mis Sugerencias al Comité de Auditoría",
+    "note_lbl": "Su Calificación General:",
+    "status_ok_pref": "✓ Parámetros por defecto guardados y aplicados en vivo.",
+    "status_ok_feed": "✓ Sus comentarios de calidad han sido registrados con éxito.",
+    "err_feed_vide": "❌ Por favor, escriba un comentario o sugerencia antes de enviar."
+  },
+  "pdf": {
+    "titre_document": "INFORME DE AUDITORÍA TÉCNICA Y CUMPLIMIENTO DOCTRINAL",
+    "sceau_titre": "<b>SELLO DE CUMPLIMIENTO DIGITAL HAYAATI v1.2</b>",
+    "sceau_corps": "<i>Informe de Auditoría Oficial de {} - Certificado Conforme con las Fuentes Doctrinales</i>",
+    "id_certification": "<b>ID de Certificación:</b> <font color='#d97706'>{}</font>",
+    "beneficiaire": "<b>Beneficiario Auditado:</b> {}",
+    "environnement": "<b>Entorno de Análisis:</b> {}",
+    "type_session": "<b>Tipo de Sesión:</b> {}",
+    "coordonnees": "<b>Coordenadas:</b> {} ({}, {})",
+    "date_analyse": "<b>Fecha de Análisis:</b> {}",
+    "fiqh_applique": "<b>Fiqh:</b> Escuela {}",
+    "devise_rapport": "<b>Moneda:</b> {}",
+    "sec_1_titre_zakat": "<b>1. Datos de Activos de Zakat Declarados:</b>",
+    "sec_1_titre_heritage": "<b>1. Datos de Patrimonio de Herencia Declarados:</b>",
+    "col_parametre": "Parámetro de Categoría Financiera / Patrimonial",
+    "col_valeur": "Valor Registrado Declarado",
+    "sec_2_titre_zakat": "<b>2. Declaración de Auditoría de Elegibilidad y Purificación:</b>",
+    "sec_2_titre_heritage": "<b>2. Evaluación de Partición de Cuotas Legales (Fara'idh):</b>",
+    "sec_3_titre_exclus": "<b>3. Miembros Familiares Excluidos u Ocultos (Hajb / Impedimento):</b>",
+    "sec_3_corps_exclus": "• {} (Excluido de la partición en estricto cumplimiento con los parámetros del Fiqh)",
+    "env_live": "Caja Fuerte de Base de Datos SQLite Segura",
+    "env_tiers": "Evaluación de Diagnóstico Manual de Terceros",
+    "statut_live": "Registros de Datos Personales Certificados",
+    "statut_tiers": "Sesión de Evaluación en Blanco Aislada (Sin Huella)"
+  },
+  "encyclopedie": {
+    "titre": "📖 Enciclopedia de Auditoría y Validación Doctrinal Hayaati",
+    "consigne": "Seleccione un módulo funcional para auditar sus fundamentos (Corán, Hadiz, Fiqh):",
+    "categories": [
+      {
+        "titre": "💰 1. MÓDULO: Patrimonial y Deudas",
+        "texte": "✨ FUNDAMENTO CORÁNICO (Sura An-Nisa, v.11)\nLa Sharia impone la purga absoluta y prioritaria de los pasivos antes de cualquier otra distribución: '...después de pagar los legados que haya testado o las deudas.'\n\n✨ HADIZ AUTÉNTICO (Al-Bujari N° 2289)\nLlevaron un difunto al Profeta ﷺ para la oración fúnebre. Preguntó: '¿Dejó deudas?' Dijeron: 'Sí, tres dinares'. Dijo: 'Recen por su compañero (yo no rezaré por él)'. Hasta que un compañero se ofreció como garante para saldar la deuda.\n\n✨ FIQH DE LAS 4 ESCUELAS (SUNITA)\n• Deudas Pasivas: Prioridad absoluta sobre la herencia y los legados. En las escuelas Malikí y Hanbalí, reducen la base imponible del Zakat financiero.\n• Deudas Activas (Cuentas por cobrar): Si son recuperables (deudor solvente), la escuela Hanafí exige el Zakat anualmente. La escuela Malikí solo exige un pago único al momento de la recuperación efectiva."
+      },
+      {
+        "titre": "🏦 2. MÓDULO: Zakat en Vivo",
+        "texte": "✨ FUNDAMENTO CORÁNICO (Sura At-Tawbah, v.34 & Sura Al-An'am, v.141)\n• Finanzas: 'A quienes atesoran el oro y la plata... anúnciales un castigo doloroso.'\n• Agricultura: 'Y paguen lo debido el día de su cosecha.'\n\n✨ HADIZ AUTÉNTICO (Muslim N° 981 / Al-Bujari N° 1454)\n• Umbral Monetario: 20 dinares de oro o 200 dírhams de plata (tasa del 2.5%).\n• Umbral Agrícola: Nisab fijado en 5 Wasaqs (653 kg). Tasa del 10% si es de secano (agua de lluvia), 5% si el riego es artificial por motobomba.\n• Umbral de Ganado: Ovinos desde 40 cabezas (1 oveja debida). Bovinos desde 30 cabezas (1 bovino joven de un año - Taby debido).\n\n✨ FIQH DE LAS 4 ESCUELAS (SUNITA)\nConsenso unánime sobre los umbrales agrícolas y ganaderos. Respecto a las joyas de oro de la mujer, la escuela Hanafí las incluye obligatoriamente en el Zakat, mientras que las escuelas Malikí, Shafi'í y Hanbalí las eximen siempre que sean para uso personal lícito."
+      },
+      {
+        "titre": "📜 3. MÓDULO: Distribución de Herencia",
+        "texte": "✨ FUNDAMENTO CORÁNICO (Sura An-Nisa, v.11)\n'Dios os ordena lo siguiente respecto a vuestros hijos: al varón, una parte equivalente a la de dos mujeres.'\n\n✨ HADIZ AUTÉNTICO (Al-Bujari N° 6732 / Muslim N° 1615)\nEl Mensajero de Alá ﷺ dijo: 'Asignen las partes fijas (Fara'idh) a quienes tienen derecho a ellas. Lo que quede después de eso corresponde al pariente varón más cercano al difunto.'\n\n✨ FIQH DE LAS 4 ESCUELAS (SUNITA)\nConsenso absoluto de las cuatro escuelas jurídicas sobre la distribución del doble ratio para los varones. Esta estructura contable está equilibrada por la obligación legal de manutención (Nafaqah), que recae exclusivamente en el hombre. La mujer conserva la totalidad de su parte de la herencia como patrimonio privado neto, sin ninguna obligación de gastarlo en el hogar."
+      },
+      {
+        "titre": "📝 4. MÓDULO: Testamento  y Kalâlah",
+        "texte": "✨ FUNDAMENTO CORÁNICO (Sura Al-Baqarah, v.180 & Sura An-Nisa, v.12/176)\n• Testamento: 'Se os ha prescrito, cuando la muerte se presenta a uno de vosotros... hacer un testamento.'\n• Kalâlah: 'Y si un hombre o una mujer muere sin dejar herederos directos (Kalâlah)...'\n\n✨ HADIZ AUTÉNTICO (Al-Bujari N° 2744 / Consenso de los Compañeros)\n• Wasiyya: El Profeta ﷺ le dijo a Sa'd: 'Da un tercio. And un tercio ya es mucho.' Está estrictamente prohibido hacer un legado a un heredero legal.\n• Kalâlah: El Califa Abu Bakr As-Siddiq definió Kalâlah como el difunto que no tiene descendientes (hijos) ni ascendientes masculinos directos (padre).\n\n✨ FIQH DE LAS 4 ESCUELAS (SUNITA)\nConsenso unánime: La Wasiyya está topada a un máximo de 1/3 del patrimonio neto tras la liquidación de deudas. En caso de Kalâlah, los hermanos uterinos (por parte de madre) exceptúan el doble ratio e heredan partes estrictamente iguales entre hombres y mujeres."
+      },
+      {
+        "titre": "📿 5. MÓDULO: Libro de Cuentas Espiritual",
+        "texte": "✨ FUNDAMENTO CORÁNICO (Sura Al-Hashr, v.18)\n'¡Oh, creyentes! Temed a Dios. Y que cada alma observe bien lo que ha preparado para el mañana.'\n\n✨ HADIZ AUTÉNTICO (Al-Tirmidhi N° 761 / Muslim N° 728)\n• Días Blancos: El Profeta ﷺ dijo: 'Si vas a ayunar tres días del mes, ayuna el 13, 14 y 15.' Este ayuno equivale a ayunar toda la vida.\n• Nawafil: El Profeta ﷺ dijo: 'Quien rece doce Rak'ahs voluntarias cada día, Dios le construirá una casa en el Paraíso.'\n\n✨ FIQH DE LAS 4 ESCUELAS (SUNITA)\nConsenso de las cuatro escuelas sobre el carácter altamente meritorio (Sunnah Muakkadah) de las oraciones voluntarias vinculadas (Rawatib) y el ayuno de los días blancos, herramientas fundamentales para la purificación continua del alma y del tiempo."
+      }
+    ]
+  }
+}

@@ -1,43 +1,56 @@
 """
-MOTEUR DE CALCUL DE LA ZAKAT COMMERCIALE ET IMMOBILIÈRE (CORE/ZAKAT/COMMERCE.PY)
-Traduction des règles d'évaluation des actifs marchands et investissements modernes.
+LOGIQUE ATOMIQUE - ZAKAT DU COMMERCE ET COMPARAISON MULTI-MÉTAUX (CORE/ZAKAT/COMMERCE.PY)
+Version 5.3 - Évaluation des stocks marchands, intégration des Nissabs Or (85g) et Argent (595g).
+Fix : Unification stricte des cours et sécurité anti-crash (Valeurs de repli si à zéro).
 """
 
-def evaluer_zakat_commerciale(valeur_marchandises_gros, liquidites_entreprise, dettes_fournisseurs_court_terme, actions_speculation, actions_long_terme, immo_revente, loyers_accumules):
+def evaluer_biens_commerciaux(valeur_stock_marchand, liquidites_caisse, creances_recouvrables, or_cours, argent_cours):
     """
-    Calcule l'assiette imposable des investissements, commerces et biens immobiliers.
-    Les règles du Knowledge Book stipulent que seuls les actifs circulants/liquides sont taxés.
-    Les actifs immobilisés (murs du magasin, étagères, outils de production) sont exclus.
+    Calcule l'assiette commerciale soumise aux règles de la Zakat et détermine
+    les Nissabs de référence Or (85g) et Argent (595g).
+    Sécurité : Si l'utilisateur n'a encore rien saisi, des valeurs de repli
+    standards sont appliquées pour éviter un crash ou un Nisab nul.
     """
+    # 🛡️ SÉCURITÉ ANTI-CRASH : Conversion et valeurs de secours si la base est vide (0 ou None)
+    or_cours = float(or_cours or 45000.0)
+    argent_cours = float(argent_cours or 650.0)
     
-    assiette_commerce = 0.0
-    
-    # 1. ÉVALUATION DU FONDS DE COMMERCE
-    # Base imposable = (Marchandises estimées au prix de gros actuel + Cash en caisse/compte pro) - Dettes à court terme
-    actif_circulant_boutique = valeur_marchandises_gros + liquidites_entreprise
-    passif_deductible = dettes_fournisseurs_court_terme
-    
-    net_commercial = actif_circulant_boutique - passif_deductible
-    if net_commercial > 0:
-        assiette_commerce += net_commercial
+    if or_cours <= 0:
+        or_cours = 45000.0
+    if argent_cours <= 0:
+        argent_cours = 650.0
 
-    # 2. TRAITEMENT DES ACTIONS BOURSIÈRES (RÈGLE MODERNE DU KB)
-    # Court terme (Trading) : Taxé sur la valeur totale du marché (100%)
-    assiette_commerce += actions_speculation
+    # Cumul des actifs du commerce (Valeur marchande des biens + Caisse + Créances sûres)
+    total_actif_commercial = float(valeur_stock_marchand or 0.0) + float(liquidites_caisse or 0.0) + float(creances_recouvrables or 0.0)
     
-    # Long terme (Rendement) : Taxé uniquement sur la part liquide de l'entreprise (Forfait prudentiel à 25%)
-    assiette_commerce += (actions_long_terme * 0.25)
+    if total_actif_commercial < 0:
+        total_actif_commercial = 0.0
 
-    # 3. TRAITEMENT DE L'IMMOBILIER
-    # Biens destinés à la revente (Promotion/Achat-revente) : Estimés à la valeur marchande (100%)
-    assiette_commerce += immo_revente
-    
-    # Biens locatifs : La structure physique est exonérée, seuls les loyers perçus et épargnés sont inclus
-    assiette_commerce += loyers_accumules
+    # Calcul des deux seuils sacrés (Nissabs Nominaux) basés sur les cours validés
+    nissab_or_monnaie = 85.0 * or_cours
+    nissab_argent_monnaie = 595.0 * argent_cours
+
+    # Arbitrage Doctrinal : Choix du Nisab le plus bas (Inclusivité et protection des pauvres)
+    if nissab_argent_monnaie > 0 and nissab_or_monnaie > 0:
+        nissab_reference = min(nissab_or_monnaie, nissab_argent_monnaie)
+        metal_reference = "ARGENT (595g)" if nissab_reference == nissab_argent_monnaie else "OR (85g)"
+    else:
+        nissab_reference = nissab_or_monnaie if nissab_or_monnaie > 0 else nissab_argent_monnaie
+        metal_reference = "OR (85g)" if nissab_or_monnaie > 0 else "ARGENT (595g)"
+
+    # Évaluation de l'éligibilité commerciale face au Nisab de référence
+    eligibilite = total_actif_commercial >= nissab_reference if nissab_reference > 0 else False
+    zakat_due = (total_actif_commercial * 0.025) if eligibilite else 0.0
 
     return {
-        "assiette_commerciale_pure": max(0.0, net_commercial),
-        "assiette_investissements_modernes": actions_speculation + (actions_long_terme * 0.25),
-        "assiette_immobiliere": immo_revente + loyers_accumules,
-        "assiette_globale_commerce_contribuee": max(0.0, assiette_commerce)
+        "total_actif_commercial": total_actif_commercial,
+        "nissab_or_monnaie": nissab_or_monnaie,
+        "nissab_argent_monnaie": nissab_argent_monnaie,
+        "nissab_reference": nissab_reference,
+        "metal_reference": metal_reference,
+        "eligibilite_commerciale": eligibilite,
+        "zakat_commerciale_due": zakat_due
     }
+
+# Alias de compatibilité ascendant impératif pour votre interface graphique existante
+evaluer_zakat_commerciale = evaluer_biens_commerciaux

@@ -1,182 +1,209 @@
 """
-PANNEAU D'ACCUEIL GRAPHIQUE AVEC LOGO ARABE CORRIGÉ RTL (GUI/APP_VISUELLE.PY)
-Version 1.8 - Version finale stabilisée avec tracé textuel haute définition pour le blason.
+FENÊTRE PRINCIPALE GRAPHIQUE (GUI/APP_VISUELLE.PY) - COMPOSANT MAÎTRE
+Version 11.9 - Rectification complète des liaisons directes d'initialisation et alignement i18n total.
 """
 import tkinter as tk
-from tkinter import font, ttk
+from tkinter import ttk
+from gui.app_layout import OrganisateurLayout
 from gui.langues import DICTIONNAIRE_LANGUES
-from gui.interface_zakat import EcranZakat
-from gui.interface_heritage import EcranHeritage
-from gui.interface_audit import EcranAudit
 
-# IMPORTATION DES MOTEURS DE RENDU ARABE POUR L'ACCUEIL
-import arabic_reshaper
-from bidi.algorithm import get_display
+# 🎯 ENCAPSULATION STATIQUE DIRECTE DES APPELS DE COMPOSANTS EXTERNES
+from gui.app_visuelle_toolbar import configurer_bandeau_superieur, dessiner_boutons_navigation
 
-class HayaatiApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Hayaati (حياتي) — Plateforme Intégrale Éthique")
-        self.root.geometry("1100x680")
-        self.root.configure(bg="#f9fafb")
-
-        # États globaux de la session utilisateur
-        self.langue_active = "FR"
-        self.devise_active = "€"
-        self.madhhab_actif = "Maliki"
-
-        self.police_titre = font.Font(family="Helvetica", size=24, weight="bold")
-        self.police_salam = font.Font(family="Helvetica", size=15, weight="bold")
-        self.police_soustitre = font.Font(family="Helvetica", size=10, slant="italic")
-        self.police_bouton = font.Font(family="Helvetica", size=11, weight="bold")
-
-        # --- BARRE DE CONFIGURATION SUPERIEURE ---
-        self.cadre_config = tk.Frame(self.root, bg="#f9fafb")
-        self.cadre_config.pack(fill="x", side="top", padx=15, pady=8)
+class ApplicationHayaati(tk.Tk):
+    def __init__(self, controleur_authentification=None):
+        super().__init__()
         
-        self.lbl_select_langue = tk.Label(self.cadre_config, text="Langue :", bg="#f9fafb", fg="#4b5563")
-        self.lbl_select_langue.pack(side="left", padx=2)
-        self.combo_langue = ttk.Combobox(self.cadre_config, values=["FR", "EN", "AR", "HA", "ES", "ZH"], width=5, state="readonly")
-        self.combo_langue.set(self.langue_active)
-        self.combo_langue.pack(side="left", padx=5)
-        self.combo_langue.bind("<<ComboboxSelected>>", self.declencher_changement_global)
+        # --- ÉTATS GLOBAUX DIRECTS DYNAMIQUES ---
+        self.langue_actuelle = "FR"
+        self.devise_active = "XOF"
+        self.madhhab_actif = "Malikite"
+        self.est_mode_connecte = False
+        self.user_id_connecte = None
+        self.nom_utilisateur_connecte = "Visiteur"
+        self.email_utilisateur_connecte = ""
         
-        self.lbl_select_devise = tk.Label(self.cadre_config, text="Devise :", bg="#f9fafb", fg="#4b5563")
-        self.lbl_select_devise.pack(side="left", padx=(10, 2))
-        liste_devises = ["€", "$", "£", "CFA", "¥", "₦", "GH₵", "SAR", "AED", "KWD", "DZD", "MAD", "TND"]
-        self.combo_devise = ttk.Combobox(self.cadre_config, values=liste_devises, width=6, state="readonly")
-        self.combo_devise.set(self.devise_active)
-        self.combo_devise.pack(side="left", padx=5)
-        self.combo_devise.bind("<<ComboboxSelected>>", self.declencher_changement_global)
-
-        self.lbl_select_fiqh_txt = tk.Label(self.cadre_config, text="Fiqh :", bg="#f9fafb", fg="#4b5563")
-        self.lbl_select_fiqh_txt.pack(side="left", padx=(10, 2))
-        self.combo_fiqh = ttk.Combobox(self.cadre_config, values=["Maliki", "Hanafi", "Shafi'i", "Hanbali"], width=8, state="readonly")
-        self.combo_fiqh.set(self.madhhab_actif)
-        self.combo_fiqh.pack(side="left", padx=5)
-        self.combo_fiqh.bind("<<ComboboxSelected>>", self.declencher_changement_global)
-
-        # --- ZONE D'EN-TÊTE PREMIUM ---
-        self.cadre_entete = tk.Frame(self.root, bg="#064e3b", height=190)
-        self.cadre_entete.pack(fill="x", side="top")
-        self.cadre_entete.pack_propagate(False)
-
-        # CANVAS LOGO INTERFACE (70x70 Pixels)
-        self.canvas_logo = tk.Canvas(self.cadre_entete, width=70, height=70, bg="#064e3b", highlightthickness=0)
-        self.canvas_logo.pack(pady=(10, 0))
-        self.dessiner_logo_interface()
-
-        self.lbl_titre = tk.Label(self.cadre_entete, font=self.police_titre, fg="#f59e0b", bg="#064e3b")
-        self.lbl_titre.pack(pady=(2, 2))
-
-        self.lbl_salam = tk.Label(self.cadre_entete, text="السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ", font=self.police_salam, fg="#ffffff", bg="#064e3b")
-        self.lbl_salam.pack(pady=2)
-
-        self.lbl_soustitre = tk.Label(self.cadre_entete, font=self.police_soustitre, fg="#e5e7eb", bg="#064e3b")
-        self.lbl_soustitre.pack()
-
-        # --- CONTENEUR PRINCIPAL DE TRAVAIL (SPLIT 2 COLONNES) ---
-        self.cadre_principal = tk.Frame(self.root, bg="#f9fafb")
-        self.cadre_principal.pack(fill="both", expand=True, pady=10, padx=10)
-
-        # COLONNE GAUCHE (PERMANENTE) : IDENTIFICATION DE L'UTILISATEUR
-        self.cadre_identite = tk.LabelFrame(self.cadre_principal, text=" 👤 Profil du Bénéficiaire ", font=("Helvetica", 10, "bold"), fg="#064e3b", bg="#f9fafb", padx=15, pady=15)
-        self.cadre_identite.pack(side="left", fill="y", padx=(5, 10))
-
-        # Champs du formulaire d'identité
-        champs_id_config = [("prenom", "Prénom :"), ("nom", "Nom de famille :"), ("pays", "Pays :"), ("ville", "Ville :"), ("telephone", "Téléphone :")]
-        self.entrees_identite = {}
-        for i, (cle, libelle) in enumerate(champs_id_config):
-            tk.Label(self.cadre_identite, text=libelle, font=("Helvetica", 9), bg="#f9fafb", fg="#374151", anchor="w").pack(anchor="w", pady=(8, 2))
-            entree = tk.Entry(self.cadre_identite, font=("Arial", 10), bd=1, relief="solid", width=22)
-            entree.pack(pady=2)
-            self.entrees_identite[cle] = entree
-
-        # Boutons d'interrupteurs pour les modules (Placés sous le bloc d'identité)
-        tk.Label(self.cadre_identite, text="⚡ Modules de calcul :", font=("Helvetica", 9, "bold"), bg="#f9fafb", fg="#4b5563").pack(anchor="w", pady=(25, 5))
-        self.btn_nav_zk = tk.Button(self.cadre_identite, text="🏦 Zakat", font=self.police_bouton, bg="#064e3b", fg="white", width=18, command=self.basculer_vers_zakat)
-        self.btn_nav_zk.pack(pady=4)
-        self.btn_nav_her = tk.Button(self.cadre_identite, text="📜 Héritage", font=self.police_bouton, bg="#ffffff", fg="#b45309", bd=1, relief="solid", width=18, command=self.basculer_vers_heritage)
-        self.btn_nav_her.pack(pady=4)
-        self.btn_nav_aud = tk.Button(self.cadre_identite, text="📖 Audit & Textes", font=self.police_bouton, bg="#ffffff", fg="#d97706", bd=1, relief="solid", width=18, command=self.basculer_vers_audit)
-        self.btn_nav_aud.pack(pady=4)
-
-        # COLONNE DROITE (DYNAMIQUE) : ESPACE DE TRAVAIL DES MODULES
-        self.cadre_workspace = tk.Frame(self.cadre_principal, bg="#ffffff", bd=1, relief="solid")
-        self.cadre_workspace.pack(side="right", fill="both", expand=True, padx=(5, 5))
-
-        # Initialisation physique des écrans
-        self.page_zakat = EcranZakat(self.cadre_workspace, self)
-        self.page_heritage = EcranHeritage(self.cadre_workspace, self)
-        self.page_audit = EcranAudit(self.cadre_workspace, self)
-
-        # Affichage du premier module par défaut (Zakat)
-        self.basculer_vers_zakat()
-        self.rafraichir_textes_interface()
-
-    def dessiner_logo_interface(self):
-        """Trace le blason émeraude et or avec l'écriture arabe stabilisée."""
-        self.canvas_logo.delete("all")
+        self.telephone_utilisateur = "-"
+        self.pays_utilisateur = "Togo"
+        self.ville_utilisateur = "Dapaong"
+        self.profession_utilisateur = "-"
         
-        # 1. Double cercle de prestige émeraude et or
-        self.canvas_logo.create_oval(4, 4, 66, 66, outline="#d97706", width=2, fill="#064e3b")
-        self.canvas_logo.create_oval(8, 8, 62, 62, outline="#f59e0b", width=1)
+        self.mode_persistant_actif = False
+        self.ecran_courant = "ONBOARDING"
+        self.mode_smartphone_actif = None
+        self.controleur_auth = controleur_authentification
+        self.txt_global = DICTIONNAIRE_LANGUES[self.langue_actuelle]
+
+        # Application dynamique du titre depuis l'en-tête i18n
+        self.title(f"{self.txt_global['barre_outils']['titre_app']} - Audit Patrimonial & Doctrinal")
+        self.geometry("1050x740")
+        self.minsize(360, 550)
+        self.configure(bg="#ffffff")
+
+        from core.sync_engine import SyncEngine
+        self.sync_engine = SyncEngine()
+
+        # --- BLOCS STRUCTURELS FIXES ---
+        self.barre_outils = tk.Frame(self, bg="#064e3b", height=65)
+        self.barre_outils.pack(fill="x", side="top")
         
-        # 2. Rendu textuel de prestige de la lettre 'ح' (Hâ) parfaitement centrée
-        # Résout définitivement les plantages liés aux polygones vides
-        self.canvas_logo.create_text(35, 33, text="ح", fill="#f59e0b", font=("Arial", 26, "bold"))
+        self.barre_navigation = tk.Frame(self, bg="#f3f4f6")
+        self.layout_central = OrganisateurLayout(self, self)
+
+        # 🎯 EXÉCUTION SÉCURISÉE DES COMPOSANTS DIRECTS SANS INTERVENTION DE __GETATTR__
+        configurer_bandeau_superieur(self)
+        dessiner_boutons_navigation(self)
         
-        # 3. Application du filtre RTL bidi pour l'écriture cursive 'حياتي' au bas du blason
-        nom_reshaped = arabic_reshaper.reshape("حياتي")
-        nom_affichage_correct = get_display(nom_reshaped)
-        self.canvas_logo.create_text(35, 53, text=nom_affichage_correct, fill="#ffffff", font=("Arial", 9, "bold"))
+        self.basculer_ecran("ONBOARDING")
 
-    def obtenir_identite_saisie(self):
-        return {cle: entree.get().strip() for cle, entree in self.entrees_identite.items()}
+        # Appel automatique de la vérification linguistique obligatoire
+        self.verifier_langue_premier_lancement()
 
-    def basculer_vers_zakat(self):
-        self.page_heritage.pack_forget()
-        self.page_audit.pack_forget()
-        self.page_zakat.pack(fill="both", expand=True)
-        self.btn_nav_zk.config(bg="#064e3b", fg="white")
-        self.btn_nav_her.config(bg="#ffffff", fg="#b45309")
-        self.btn_nav_aud.config(bg="#ffffff", fg="#d97706")
+        # Écouteurs globaux d'événements
+        self.bind("<Unmap>", self.intercepter_mise_en_veille_furtive)
+        self.bind("<Configure>", self.evaluer_format_ecran_responsive)
 
-    def basculer_vers_heritage(self):
-        self.page_zakat.pack_forget()
-        self.page_audit.pack_forget()
-        self.page_heritage.pack(fill="both", expand=True)
-        self.btn_nav_her.config(bg="#b45309", fg="white")
-        self.btn_nav_zk.config(bg="#ffffff", fg="#064e3b")
-        self.btn_nav_aud.config(bg="#ffffff", fg="#d97706")
+    def verifier_langue_premier_lancement(self):
+        """Vérifie la présence d'une configuration de langue, sinon bloque l'IHM."""
+        c_p = self.sync_engine.charger_donnees_module("INVITE", "PREFERENCES")
+        if "langue_actuelle" not in c_p:
+            self.ouvrir_selecteur_langue_installation()
 
-    def basculer_vers_audit(self):
-        self.page_zakat.pack_forget()
-        self.page_heritage.pack_forget()
-        self.page_audit.pack(fill="both", expand=True)
-        self.btn_nav_aud.config(bg="#d97706", fg="white")
-        self.btn_nav_zk.config(bg="#ffffff", fg="#064e3b")
-        self.btn_nav_her.config(bg="#ffffff", fg="#b45309")
+    def abrir_selecteur_langue_installation(self):
+        """Alias de secours."""
+        self.ouvrir_selecteur_langue_installation()
 
-    def declencher_changement_global(self, event=None):
-        self.langue_active = self.combo_langue.get()
-        self.devise_active = self.combo_devise.get()
-        self.madhhab_actif = self.combo_fiqh.get()
+    def ouvrir_selecteur_langue_installation(self):
+        """Affiche un panneau d'installation automatique basé sur les fichiers JSON physiques trouvés."""
+        fen = tk.Toplevel(self)
+        fen.title(self.txt_global["menu"]["reglages"])
+        fen.geometry("420x240")
+        fen.configure(bg="#ffffff")
+        fen.transient(self)
+        fen.grab_set()
+        fen.resizable(False, False)
+
+        tk.Label(fen, text=self.txt_global["auth"]["titre_inscription"], font=("Helvetica", 10, "bold"), fg="#064e3b", bg="#ffffff").pack(pady=(15, 2))
+        tk.Label(fen, text=self.txt_global["reglages"]["lbl_guide_langue"], font=("Helvetica", 8, "italic"), fg="#4b5563", bg="#ffffff").pack(pady=(0, 15))
+
+        # Cartographie inversée dynamique directe
+        m_index = DICTIONNAIRE_LANGUES.moteur_i18n.langues_disponibles_index
+        langues_map_inverse = {nom: code for code, nom in m_index.items()}
         
-        self.rafraichir_textes_interface()
-        self.page_zakat.actualiser_contexte()
-        self.page_heritage.actualiser_contexte()
-        self.page_audit.actualiser_contexte()
+        cb = ttk.Combobox(fen, values=list(langues_map_inverse.keys()), state="readonly", width=18, font=("Arial", 10))
+        cb.set(m_index.get("FR", list(langues_map_inverse.keys())[0] if langues_map_inverse else "FR"))
+        cb.pack(pady=5)
 
-    def rafraichir_textes_interface(self):
-        lang = DICTIONNAIRE_LANGUES[self.langue_active]
-        self.lbl_select_langue.config(text=lang["selection_langue"])
-        self.lbl_select_devise.config(text=lang["selection_devise"])
-        self.lbl_select_fiqh_txt.config(text=lang.get("selection_fiqh", "Fiqh :"))
-        self.lbl_titre.config(text=lang["titre_app"])
-        self.lbl_soustitre.config(text=lang["sous_titre"])
+        def valider_installation():
+            label_selectionne = cb.get()
+            langue_code = langues_map_inverse.get(label_selectionne, "FR")
+            self.langue_actuelle = langue_code
+            
+            p_dict = self.sync_engine.charger_donnees_module("INVITE", "PREFERENCES")
+            if not isinstance(p_dict, dict): p_dict = {}
+            p_dict["langue_actuelle"] = langue_code
+            self.sync_engine.executer_sauvegarde_module("INVITE", "PREFERENCES", p_dict)
+            
+            DICTIONNAIRE_LANGUES.moteur_i18n.charger_dictionnaire_langue(langue_code)
+            self.changer_langue_globale(langue_code)
+            fen.destroy()
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = HayaatiApp(root)
-    root.mainloop()
+        tk.Button(fen, text=self.txt_global["auth"]["btn_soumettre"], font=("Helvetica", 9, "bold"), bg="#064e3b", fg="white", bd=0, padx=15, pady=6, command=valider_installation).pack(pady=20)
+
+    def intercepter_mise_en_veille_furtive(self, event):
+        """Déclenche le verrouillage automatique si la session active est réduite."""
+        if event.widget != self: return
+        if self.est_mode_connecte and (self.state() == "iconic" or self.winfo_viewable() == 0):
+            print("[SÉCURITÉ] Verrouillage automatique de session.")
+            self.executer_deconnexion_session()
+
+    def evaluer_format_ecran_responsive(self, event):
+        """Détecte les changements de dimensions pour basculer en mode responsive."""
+        if event.widget != self: return
+        nouveau_mode = self.winfo_width() < 650
+        if nouveau_mode != self.mode_smartphone_actif:
+            self.mode_smartphone_actif = nouveau_mode
+            self.appliquer_layout_responsive()
+
+    def appliquer_layout_responsive(self):
+        """Modifie dynamiquement la disposition de la barre de navigation selon le terminal."""
+        self.barre_navigation.pack_forget()
+        self.layout_central.pack_forget()
+
+        if self.mode_smartphone_actif:
+            self.barre_navigation.config(width=0, height=55)
+            self.barre_navigation.pack_propagate(True)
+            self.barre_navigation.pack(fill="x", side="bottom")
+            self.layout_central.pack(fill=tk.BOTH, expand=True, side="top")
+        else:
+            self.barre_navigation.config(width=220, height=0)
+            self.barre_navigation.pack_propagate(False)
+            self.barre_navigation.pack(fill="y", side="left")
+            self.layout_central.pack(fill=tk.BOTH, expand=True, side="right")
+
+        self.construire_menu_navigation()
+
+    def construire_barre_outils(self):
+        """Routeur interne vers le module de configuration de la barre supérieure."""
+        configurer_bandeau_superieur(self)
+
+    def construire_menu_navigation(self):
+        """Routeur interne vers le module d'affichage des boutons de menu."""
+        dessiner_boutons_navigation(self)
+
+    def basculer_ecran(self, cle):
+        """Gère le routage centralisé de l'affichage vers un module précis."""
+        self.ecran_courant = cle  
+        self.layout_central.basculer_vers_ecran(cle)
+        for enfant in self.layout_central.winfo_children():
+            if enfant.winfo_ismapped() and hasattr(enfant, "actualiser_donnees_affichage"):
+                enfant.actualiser_donnees_affichage()
+        if self.mode_smartphone_actif is not None: 
+            self.construire_menu_navigation()
+
+    def changer_langue_globale(self, code_langue):
+        """Met à jour l'état linguistique de l'application entière."""
+        self.langue_actuelle = code_langue
+        self.txt_global = DICTIONNAIRE_LANGUES[code_langue]
+        self.declencher_changement_global()
+
+    def declencher_changement_global(self):
+        """Force le rafraîchissement visuel de l'IHM et propage la nouvelle langue."""
+        self.txt_global = DICTIONNAIRE_LANGUES[self.langue_actuelle]
+        self.title(f"{self.txt_global['barre_outils']['titre_app']} - Audit Patrimonial & Doctrinal")
+        
+        self.construire_barre_outils()
+        self.construire_menu_navigation()
+        self.layout_central.propager_changement_langue(self.langue_actuelle)
+        self.layout_central.basculer_vers_ecran(self.ecran_courant)
+
+    def executer_connexion_session(self, user_id, username, email):
+        """Initialise la session de l'utilisateur connecté avec persistance."""
+        self.est_mode_connecte = True
+        self.mode_persistant_actif = True
+        self.user_id_connecte = user_id
+        self.nom_utilisateur_connecte = username
+        self.email_utilisateur_connecte = email
+        self.langue_actuelle = self.langue_actuelle or "FR"
+        self.changer_langue_globale(self.langue_actuelle)
+        self.basculer_ecran("ONBOARDING")
+
+    def executer_deconnexion_session(self):
+        """Purge la session et réinitialise l'application sur la page Connexion."""
+        self.est_mode_connecte = False
+        self.mode_persistant_actif = False
+        self.user_id_connecte = None
+        self.nom_utilisateur_connecte = "Visiteur"
+        self.email_utilisateur_connecte = ""
+        self.telephone_utilisateur = "-"
+        self.pays_utilisateur = "Togo"
+        self.ville_utilisateur = "Dapaong"
+        self.profession_utilisateur = "-"
+        
+        self.txt_global = DICTIONNAIRE_LANGUES[self.langue_actuelle]
+        self.title(f"{self.txt_global['barre_outils']['titre_app']} - Audit Patrimonial & Doctrinal")
+        
+        self.construire_barre_outils()
+        self.construire_menu_navigation()
+        self.layout_central.propager_changement_langue(self.langue_actuelle)
+        self.basculer_ecran("CONNEXION")
