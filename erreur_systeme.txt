@@ -1,0 +1,14 @@
+=== RAPPORT D'ERREUR EXHAUSTIF HAYAATI ===
+
+Traceback (most recent call last):
+  File "C:\Users\gebruiker\Desktop\Hayaati\app.py", line 79, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\gebruiker\Desktop\Hayaati\app.py", line 59, in main
+    app = ApplicationHayaati(controleur_authentification=controleur_auth)
+  File "C:\Users\gebruiker\Desktop\Hayaati\gui\app_visuelle.py", line 38, in __init__
+    self.construire_barre_outils()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gebruiker\AppData\Local\Python\pythoncore-3.14-64\Lib\tkinter\__init__.py", line 2571, in __getattr__
+    return getattr(self.tk, attr)
+AttributeError: '_tkinter.tkapp' object has no attribute 'construire_barre_outils'
