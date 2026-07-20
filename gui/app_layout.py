@@ -12,6 +12,7 @@ from gui.interface_heritage import EcranHeritage
 from gui.interface_testament import EcranTestament
 from gui.interface_mouhasabah import EcranMouhasabah
 from gui.interface_audit import InterfaceAudit
+from gui.interface_encyclopedie import EcranEncyclopedie
 
 from gui.interface_zakat_tiers import EcranZakatTiers
 from gui.interface_heritage_tiers import EcranHeritageTiers
@@ -51,6 +52,7 @@ class OrganisateurLayout(tk.Frame):
             "MOUHASABAH": (EcranMouhasabah, [self.app]),
             
             "AUDIT": (InterfaceAudit, [self.app]),
+            "ENCYCLOPEDIE": (EcranEncyclopedie, [self.app]),
             
             "ZAKAT_TIERS": (EcranZakatTiers, [self.app]),
             "HERITAGE_TIERS": (EcranHeritageTiers, [self.app])

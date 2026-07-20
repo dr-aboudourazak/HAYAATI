@@ -201,7 +201,8 @@
     "feminin": "Femme (Décoration Féminine)",
     "genre_lbl": "Sexe du défunt :",
     "candidats": {
-      "epoux_epouse": "Époux / Épouse",
+      "epoux": "Époux (Mari survivant)",
+      "epouse": "Épouse(s) survivante(s)",
       "fils": "Fils",
       "fille": "Fille",
       "pere": "Père",
@@ -258,10 +259,16 @@
       "dettes": "Dettes Déductibles"
     },
     "jours_semaine": {
-      "lun": "Lun", "mar": "Mar", "mer": "Mer", "jeu": "Jeu", "ven": "Ven", "sam": "Sam", "dim": "Dim"
+      "lun": "Lun",
+      "mar": "Mar",
+      "mer": "Mer",
+      "jeu": "Jeu",
+      "ven": "Ven",
+      "sam": "Sam",
+      "dim": "Dim"
     }
   },
-    "profil": {
+  "profil": {
     "titre_vue": "👤 Gestion de l'Espace Privé & Profil",
     "lbl_statut_compte": "Statut de Sécurité :",
     "lbl_derniere_synchro": "Dernière sauvegarde :",
@@ -298,7 +305,8 @@
     "lbl_guide_langue": "Langue :",
     "lbl_guide_fiqh": "École juridique (Fiqh) :",
     "lbl_guide_nisab": "Arbitrage Nisab :",
-    "lunaire_lbl": "Ajustement du calendrier :"
+    "lunaire_lbl": "Ajustement du calendrier :",
+    "lbl_marquer_lu": "Marquer comme parcouru"
   },
   "pdf": {
     "titre_document": "Rapport Officiel de Conformité Sharia et d'Audit Financier",
@@ -323,7 +331,6 @@
     "ligne_total_du": "Montant total de la Zakat à acquitter immédiatement :",
     "ligne_assiette": "Assiette financière globale du compte :",
     "signature_autorite": "Signature et sceau d'homologation et de conformité doctrinale",
-
     "id_certification": "<b>ID Certification :</b> {}",
     "beneficiaire": "<b>Bénéficiaire Audité :</b> {}",
     "compte_audite": "<b>Compte Utilisateur Connecté :</b> {}",
@@ -336,23 +343,20 @@
     "devise_rapport": "<b>Devise :</b> {}",
     "col_parametre": "Poste Budgétaire / Inventaire",
     "col_valeur": "Montant ou Quantité",
-
     "sec_1_titre_zakat": "<b>1. Données Zakat Déclarées :</b>",
     "sec_1_titre_heritage": "<b>1. Masse Patrimoniale Successorale :</b>",
     "sec_2_titre_zakat": "<b>2. Bilan d'Éligibilité et Purification :</b>",
     "sec_2_titre_heritage": "<b>2. Répartition Légale des Parts (Fara'idh) :</b>",
     "sec_3_titre_exclus": "<b>3. Candidats Bloqués ou Écartés de la Succession (Hajb) :</b>",
     "sec_3_corps_exclus": "• {} (Évincé de la ventilation conformément aux règles de priorité du Fiqh)",
-
     "sceau_titre": "<b>SCEAU DE CONFORMITÉ NUMÉRIQUE HAYAATI v1.2</b>",
     "sceau_corps": "<i>Rapport d'audit officiel {}- Certifié Conforme aux Sources Doctrinales</i>",
-
     "env_live": "Espace Privé SQLite Sécurisé",
     "env_tiers": "Diagnostic Manuel pour Tiers",
     "statut_live": "Données Certifiées Personnelles",
     "statut_tiers": "Évaluation Isolée à Blanc"
   },
-   "encyclopedie": {
+  "encyclopedie": {
     "titre": "📖 Encyclopédie d'Audit et Validation Doctrinale Hayaati",
     "consigne": "Sélectionnez une fonctionnalité de la plateforme pour auditer ses 3 piliers de preuves Sharia-Compliant :",
     "categories": [
@@ -384,6 +388,7 @@
         "titre": "📿 MODULE : Suivi Quotidien",
         "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate Al-Hachr, v.18 : 'Ô vous qui croyez ! Craignez Allah. Que chaque âme voit bien ce qu'elle a préparé pour demain.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\n• Sur les Jours Blancs (Al-Tirmidhi n°761, Authentique) : Le Prophète ﷺ a dit : 'Si tu jeûnes trois jours du mois, jeûne le 13, le 14 et le 15.' Le jeûne de ces jours équivaut au jeûne de toute une vie.\n• Sur les prières surérogatoires (Muslim n°728) : Le Prophète ﷺ a dit : 'Quiconque prie douze Rak'ahs surérogatoires chaque jour, Allah lui construira une maison au Paradis.'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus sur le caractère hautement méritoire (Sunnah Mouakkadah) des prières rattachées (Rawatib) et du jeûne des jours blancs, outils essentiels de la purification quotidienne de l'âme."
       }
-    ]
+    ],
+    "progres_lecture": "{} sur {} thèmes parcourus"
   }
 }
