@@ -1,11 +1,19 @@
 """
 MODULE LANGUE ARABE (GUI/INTERFACE_LANGUE_ARABE.PY)
-Version 2.0 - Navigation entre étapes repensée en "sentier" vertical (pastilles
-numérotées reliées par un trait) plutôt qu'en onglets horizontaux : illisible
-sur un écran de téléphone étroit, le sentier vertical se manipule au pouce
-aussi bien qu'à la souris, sans logique séparée par plateforme.
-Étape 2 (vocabulaire) ajoutée : listes thématiques, mêmes cartes retournables
-que l'alphabet, progression indépendante par étape.
+Version 3.0
+- Les cartes de la grille se redimensionnent réellement avec la fenêtre :
+  nombre de colonnes ET repli du texte (wraplength) recalculés à chaque
+  redimensionnement (avec anti-rebond), au lieu d'une valeur fixe qui
+  débordait sur petit écran.
+- Navigation par "page" plutôt que défilement long : l'alphabet se feuillette
+  par lots calés sur la taille d'écran, le vocabulaire se feuillette liste
+  par liste. Un défilement vertical résiduel reste possible si une page
+  dépasse malgré tout la hauteur visible, en filet de sécurité.
+- Chaque lettre montre désormais sa graphie en début, milieu et fin de mot,
+  avec exemple à chaque position (sauf pour les lettres non connectantes,
+  qui n'ont pas de forme médiane distincte — expliqué à l'écran).
+- Le vocabulaire s'illustre : pastilles de couleur réelles pour la liste
+  "couleurs", icône pour les autres.
 """
 import tkinter as tk
 from tkinter import ttk
@@ -20,6 +28,8 @@ from core.langue_arabe_engine import (
 
 GRIS_INACTIF = "#d1d5db"
 GRIS_TEXTE_CLAIR = "#9ca3af"
+LARGEUR_MIN_CARTE = 145   # en dessous, une carte n'a plus la place d'être lisible
+LIGNES_PAR_PAGE = 3       # nombre de rangées de cartes visées par page
 
 
 class EcranLangueArabe(tk.Frame):
@@ -28,6 +38,10 @@ class EcranLangueArabe(tk.Frame):
         self.app = app_reference
         self.etape_active = 0
         self.cartes_retournees = set()
+        self.page_alphabet = 0
+        self.index_liste_vocabulaire = 0
+        self._derniere_largeur_connue = 0
+        self._id_redimensionnement = None
 
         self.canevas = tk.Canvas(self, bg=BLANC, bd=0, highlightthickness=0)
         self.scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.canevas.yview)
@@ -38,7 +52,7 @@ class EcranLangueArabe(tk.Frame):
         self.canevas.configure(yscrollcommand=self.scrollbar.set)
         self.canevas.pack(side="left", fill="both", expand=True)
         self.scrollbar.pack(side="right", fill="y")
-        self.canevas.bind("<Configure>", self._ajuster_largeur_contenu)
+        self.canevas.bind("<Configure>", self._sur_redimensionnement)
         self.canevas.bind_all("<MouseWheel>", lambda e: self.canevas.yview_scroll(int(-1 * (e.delta / 120)), "units"))
         self.canevas.bind_all("<Button-4>", lambda e: self.canevas.yview_scroll(-2, "units"))
         self.canevas.bind_all("<Button-5>", lambda e: self.canevas.yview_scroll(2, "units"))
@@ -46,8 +60,32 @@ class EcranLangueArabe(tk.Frame):
         DICTIONNAIRE_LANGUES.moteur_i18n.abonner_au_changement_langue(self.action_changement_langue)
         self.construire_interface()
 
-    def _ajuster_largeur_contenu(self, event):
+    # --- Redimensionnement réactif, avec anti-rebond pour ne pas reconstruire
+    # l'écran à chaque pixel glissé pendant un drag de fenêtre ---
+    def _sur_redimensionnement(self, event):
         self.canevas.itemconfig(self.id_fenetre_scroll, width=event.width)
+        if abs(event.width - self._derniere_largeur_connue) < 15:
+            return
+        self._derniere_largeur_connue = event.width
+        if self._id_redimensionnement:
+            self.after_cancel(self._id_redimensionnement)
+        self._id_redimensionnement = self.after(150, self._reconstruire_apres_redimensionnement)
+
+    def _reconstruire_apres_redimensionnement(self):
+        self._id_redimensionnement = None
+        if self.winfo_exists():
+            self.construire_interface()
+
+    def _largeur_disponible(self):
+        largeur = self.canevas.winfo_width()
+        return largeur if largeur > 1 else (self.winfo_width() or 700)
+
+    def _colonnes_et_wraplength(self):
+        largeur = self._largeur_disponible() - 28  # marge intérieure
+        nb_colonnes = max(1, min(6, largeur // LARGEUR_MIN_CARTE))
+        largeur_carte = largeur // nb_colonnes
+        wraplength = max(90, largeur_carte - 24)
+        return nb_colonnes, wraplength
 
     def action_changement_langue(self, nouveau_dictionnaire):
         if self.winfo_exists():
@@ -166,6 +204,9 @@ class EcranLangueArabe(tk.Frame):
 
     def _choisir_etape(self, index):
         self.etape_active = index
+        self.page_alphabet = 0
+        self.index_liste_vocabulaire = 0
+        self.cartes_retournees.clear()
         self.construire_interface()
 
     def _construire_message_attente(self, etape):
@@ -179,12 +220,24 @@ class EcranLangueArabe(tk.Frame):
             font=("Helvetica", 9), fg=GRIS_TEXTE, bg=SABLE, wraplength=560, justify="left"
         ).pack(anchor="w", padx=14, pady=(0, 12))
 
-    # --- Grille de cartes générique (réutilisée par alphabet et vocabulaire) ---
-    def _construire_grille_cartes(self, items, cle_etape, progres):
-        largeur_placeholder = self.canevas.winfo_width()
-        is_mobile = getattr(self.app, "mode_smartphone_actif", False)
-        nb_colonnes = 2 if is_mobile else 4
+    # --- Barre de pagination générique ("changement de page") ---
+    def _construire_barre_pagination(self, page_actuelle, nb_pages, libelle, action_precedent, action_suivant):
+        if nb_pages <= 1:
+            return
+        barre = tk.Frame(self.zone_scrollable, bg=BLANC)
+        barre.pack(fill="x", padx=20, pady=(4, 16))
+        b_prec = tk.Button(barre, text="◂ Précédent", font=("Helvetica", 9), bg=SABLE, fg=TERRACOTTA_FONCE, bd=0, padx=10, pady=5, cursor="hand2", command=action_precedent)
+        b_prec.pack(side="left")
+        if page_actuelle == 0:
+            b_prec.config(state=tk.DISABLED, fg=GRIS_TEXTE_CLAIR)
+        tk.Label(barre, text=libelle, font=("Helvetica", 9, "bold"), fg=GRIS_TEXTE, bg=BLANC).pack(side="left", expand=True)
+        b_suiv = tk.Button(barre, text="Suivant ▸", font=("Helvetica", 9), bg=SABLE, fg=TERRACOTTA_FONCE, bd=0, padx=10, pady=5, cursor="hand2", command=action_suivant)
+        b_suiv.pack(side="right")
+        if page_actuelle >= nb_pages - 1:
+            b_suiv.config(state=tk.DISABLED, fg=GRIS_TEXTE_CLAIR)
 
+    # --- Grille de cartes générique (réutilisée par alphabet et vocabulaire) ---
+    def _construire_grille_cartes(self, items, cle_etape, progres, nb_colonnes, wraplength):
         grille = tk.Frame(self.zone_scrollable, bg=BLANC)
         grille.pack(fill="x", padx=14)
         for c in range(nb_colonnes):
@@ -192,11 +245,10 @@ class EcranLangueArabe(tk.Frame):
 
         for i, item in enumerate(items):
             ligne, colonne = divmod(i, nb_colonnes)
-            self._construire_carte_item(grille, item, cle_etape, ligne, colonne, progres)
+            self._construire_carte_item(grille, item, cle_etape, ligne, colonne, progres, wraplength)
 
-    def _construire_carte_item(self, parent, item, cle_etape, ligne, colonne, progres):
+    def _construire_carte_item(self, parent, item, cle_etape, ligne, colonne, progres, wraplength):
         identifiant = item["id"]
-        retournee = identifiant in self.cartes_retournees
         etape_data = progres.get(cle_etape, {"connues": [], "a_revoir": []})
         est_connue = identifiant in etape_data["connues"]
         est_a_revoir = identifiant in etape_data["a_revoir"]
@@ -209,9 +261,9 @@ class EcranLangueArabe(tk.Frame):
             for w in carte.winfo_children():
                 w.destroy()
             if identifiant in self.cartes_retournees:
-                self._peupler_face_detail(carte, item, cle_etape, basculer)
+                self._peupler_face_detail(carte, item, cle_etape, basculer, wraplength)
             else:
-                self._peupler_face_recto(carte, item, basculer)
+                self._peupler_face_recto(carte, item, basculer, wraplength)
 
         def basculer(event=None):
             if identifiant in self.cartes_retournees:
@@ -223,19 +275,31 @@ class EcranLangueArabe(tk.Frame):
         carte.bind("<Button-1>", basculer)
         rafraichir_carte()
 
-    def _peupler_face_recto(self, carte, item, basculer):
-        lbl1 = tk.Label(carte, text=item.get("principal", "?"), font=("Helvetica", item.get("taille_police_recto", 20)), bg=BLANC, fg=TERRACOTTA_FONCE, wraplength=150, justify="center")
-        lbl1.pack(pady=(14, 2))
-        lbl2 = tk.Label(carte, text=item.get("sous_titre_recto", ""), font=("Helvetica", 9), bg=BLANC, fg=GRIS_TEXTE)
-        lbl2.pack(pady=(0, 14))
-        lbl1.bind("<Button-1>", basculer)
-        lbl2.bind("<Button-1>", basculer)
+    def _peupler_face_recto(self, carte, item, basculer, wraplength):
+        widgets = []
 
-    def _peupler_face_detail(self, carte, item, cle_etape, basculer):
-        for texte, police, couleur, wrap in item.get("lignes_detail", []):
-            kwargs = {"wraplength": wrap, "justify": "center"} if wrap else {}
-            lbl = tk.Label(carte, text=texte, font=police, bg=BLANC, fg=couleur, **kwargs)
-            lbl.pack(pady=(2, 2))
+        if item.get("couleur_hex"):
+            zone_swatch = tk.Canvas(carte, width=44, height=44, bg=BLANC, highlightthickness=0)
+            zone_swatch.pack(pady=(14, 4))
+            zone_swatch.create_oval(2, 2, 42, 42, fill=item["couleur_hex"], outline=GRIS_TEXTE)
+            widgets.append(zone_swatch)
+        elif item.get("icone"):
+            lbl_icone = tk.Label(carte, text=item["icone"], font=("Helvetica", 22), bg=BLANC)
+            lbl_icone.pack(pady=(12, 0))
+            widgets.append(lbl_icone)
+
+        lbl1 = tk.Label(carte, text=item.get("principal", "?"), font=("Helvetica", item.get("taille_police_recto", 18)), bg=BLANC, fg=TERRACOTTA_FONCE, wraplength=wraplength, justify="center")
+        lbl1.pack(pady=(8 if widgets else 14, 2))
+        lbl2 = tk.Label(carte, text=item.get("sous_titre_recto", ""), font=("Helvetica", 9), bg=BLANC, fg=GRIS_TEXTE, wraplength=wraplength, justify="center")
+        lbl2.pack(pady=(0, 14))
+        widgets += [lbl1, lbl2]
+        for w in widgets:
+            w.bind("<Button-1>", basculer)
+
+    def _peupler_face_detail(self, carte, item, cle_etape, basculer, wraplength):
+        for texte, police, couleur in item.get("lignes_detail", []):
+            lbl = tk.Label(carte, text=texte, font=police, bg=BLANC, fg=couleur, wraplength=wraplength, justify="center")
+            lbl.pack(pady=(3, 3))
             lbl.bind("<Button-1>", basculer)
 
         pied = tk.Frame(carte, bg=BLANC)
@@ -250,58 +314,94 @@ class EcranLangueArabe(tk.Frame):
         tk.Button(pied, text="✓ Je la connais", font=("Helvetica", 7), bg=VERT_SUCCES, fg=BLANC, bd=0, padx=6, pady=3, command=lambda: marquer(True)).pack(side="left", padx=2)
         tk.Button(pied, text="🔁 À revoir", font=("Helvetica", 7), bg=AMBRE_ATTENTE, fg=BLANC, bd=0, padx=6, pady=3, command=lambda: marquer(False)).pack(side="left", padx=2)
 
-    # --- Étape Alphabet ---
+    # --- Étape Alphabet, paginée ---
     def _construire_etape_alphabet(self, etape):
         lettres = etape.get("lettres", [])
         progres = self._charger_progres()
         resume = resume_etape(progres, "alphabet", len(lettres))
         self._construire_bandeau_resume(resume)
 
-        items = []
-        for i, l in enumerate(lettres):
-            items.append({
-                "id": str(i),
-                "principal": l.get("lettre", "?"), "taille_police_recto": 28,
-                "sous_titre_recto": l.get("nom", ""),
-                "lignes_detail": [
-                    (f"{l.get('lettre','')}  ·  {l.get('nom','')}", ("Helvetica", 12, "bold"), TERRACOTTA_FONCE, None),
-                    (f"Translittération : {l.get('translitteration','')}", ("Helvetica", 8), GRIS_TEXTE, None),
-                    (f"Connexion : {l.get('connexion','')}", ("Helvetica", 8), GRIS_TEXTE, 150),
-                    (l.get("son", ""), ("Helvetica", 8), GRIS_TEXTE, 150),
-                    (f"{l.get('exemple_mot','')} — {l.get('exemple_translitteration','')}\n« {l.get('exemple_sens','')} »", ("Helvetica", 9, "italic"), OCRE_FONCE, 150),
-                ],
-            })
-        self._construire_grille_cartes(items, "alphabet", progres)
+        nb_colonnes, wraplength = self._colonnes_et_wraplength()
+        par_page = max(nb_colonnes * LIGNES_PAR_PAGE, nb_colonnes)
+        nb_pages = max(1, (len(lettres) + par_page - 1) // par_page)
+        self.page_alphabet = min(self.page_alphabet, nb_pages - 1)
+        debut = self.page_alphabet * par_page
+        lettres_page = list(enumerate(lettres))[debut:debut + par_page]
 
-    # --- Étape Vocabulaire ---
+        items = []
+        for i, l in lettres_page:
+            lignes = [(f"{l.get('lettre','')}  ·  {l.get('nom','')}", ("Helvetica", 12, "bold"), TERRACOTTA_FONCE),
+                      (f"Translittération : {l.get('translitteration','')}", ("Helvetica", 8), GRIS_TEXTE),
+                      (f"Connexion : {l.get('connexion','')}", ("Helvetica", 8), GRIS_TEXTE),
+                      (l.get("son", ""), ("Helvetica", 8), GRIS_TEXTE)]
+
+            occurrences = l.get("occurrences", [])
+            positions_presentes = {o["position"] for o in occurrences}
+            if "milieu" not in positions_presentes:
+                lignes.append(("(lettre non connectante : pas de forme médiane distincte)", ("Helvetica", 7, "italic"), GRIS_TEXTE_CLAIR))
+            for occ in occurrences:
+                lignes.append((f"{occ['position'].capitalize()} : {occ['mot']} ({occ['translitteration']}) — {occ['sens']}", ("Helvetica", 8), OCRE_FONCE))
+
+            items.append({"id": str(i), "principal": l.get("lettre", "?"), "taille_police_recto": 26, "sous_titre_recto": l.get("nom", ""), "lignes_detail": lignes})
+
+        self._construire_grille_cartes(items, "alphabet", progres, nb_colonnes, wraplength)
+        self._construire_barre_pagination(
+            self.page_alphabet, nb_pages, f"Page {self.page_alphabet + 1} / {nb_pages}",
+            lambda: self._changer_page_alphabet(-1), lambda: self._changer_page_alphabet(1)
+        )
+
+    def _changer_page_alphabet(self, delta):
+        self.page_alphabet += delta
+        self.cartes_retournees.clear()
+        self.construire_interface()
+
+    # --- Étape Vocabulaire, paginée liste par liste ---
     def _construire_etape_vocabulaire(self, etape):
         listes = etape.get("listes", [])
+        if not listes:
+            self._construire_message_attente(etape)
+            return
         progres = self._charger_progres()
-
         total_mots = sum(len(l.get("mots", [])) for l in listes)
         resume = resume_etape(progres, "vocabulaire", total_mots)
         self._construire_bandeau_resume(resume)
 
-        for i_liste, liste in enumerate(listes):
-            tk.Label(
-                self.zone_scrollable, text=liste.get("titre", ""), font=("Helvetica", 11, "bold"),
-                fg=TERRACOTTA_FONCE, bg=BLANC
-            ).pack(anchor="w", padx=20, pady=(16, 6))
+        self.index_liste_vocabulaire = min(self.index_liste_vocabulaire, len(listes) - 1)
+        i_liste = self.index_liste_vocabulaire
+        liste = listes[i_liste]
 
-            items = []
-            for i_mot, mot in enumerate(liste.get("mots", [])):
-                identifiant = f"liste{i_liste}_mot{i_mot}"
-                items.append({
-                    "id": identifiant,
-                    "principal": mot.get("arabe", "?"), "taille_police_recto": 16,
-                    "sous_titre_recto": mot.get("sens", ""),
-                    "lignes_detail": [
-                        (mot.get("arabe", ""), ("Helvetica", 16, "bold"), TERRACOTTA_FONCE, None),
-                        (mot.get("translitteration", ""), ("Helvetica", 9, "italic"), GRIS_TEXTE, 150),
-                        (f"« {mot.get('sens','')} »", ("Helvetica", 9), OCRE_FONCE, 150),
-                    ],
-                })
-            self._construire_grille_cartes(items, "vocabulaire", progres)
+        tk.Label(
+            self.zone_scrollable, text=liste.get("titre", ""), font=("Helvetica", 12, "bold"),
+            fg=TERRACOTTA_FONCE, bg=BLANC
+        ).pack(anchor="w", padx=20, pady=(6, 10))
+
+        nb_colonnes, wraplength = self._colonnes_et_wraplength()
+        items = []
+        for i_mot, mot in enumerate(liste.get("mots", [])):
+            identifiant = f"liste{i_liste}_mot{i_mot}"
+            items.append({
+                "id": identifiant,
+                "principal": mot.get("arabe", "?"), "taille_police_recto": 15,
+                "sous_titre_recto": mot.get("sens", ""),
+                "icone": mot.get("icone"), "couleur_hex": mot.get("couleur_hex"),
+                "lignes_detail": [
+                    (mot.get("arabe", ""), ("Helvetica", 15, "bold"), TERRACOTTA_FONCE),
+                    (mot.get("translitteration", ""), ("Helvetica", 9, "italic"), GRIS_TEXTE),
+                    (f"« {mot.get('sens','')} »", ("Helvetica", 9), OCRE_FONCE),
+                ],
+            })
+        self._construire_grille_cartes(items, "vocabulaire", progres, nb_colonnes, wraplength)
+
+        libelles_listes = [l.get("titre", f"Liste {i+1}") for i, l in enumerate(listes)]
+        self._construire_barre_pagination(
+            i_liste, len(listes), f"{i_liste + 1} / {len(listes)} — {libelles_listes[i_liste]}",
+            lambda: self._changer_liste_vocabulaire(-1), lambda: self._changer_liste_vocabulaire(1)
+        )
+
+    def _changer_liste_vocabulaire(self, delta):
+        self.index_liste_vocabulaire += delta
+        self.cartes_retournees.clear()
+        self.construire_interface()
 
     def _construire_bandeau_resume(self, resume):
         bandeau = tk.Frame(self.zone_scrollable, bg=OCRE_CLAIR)
