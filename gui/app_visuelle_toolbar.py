@@ -113,6 +113,7 @@ def dessiner_boutons_navigation(app):
             (menu_json.get("mouhasabah", "📿 Mouhasabah"), "MOUHASABAH"), 
             (menu_json.get("audit", "📖 Audit"), "AUDIT"),
             (menu_json.get("encyclopedie", "📚 Encyclopédie"), "ENCYCLOPEDIE"),
+            (menu_json.get("langue_arabe", "🔤 Langue arabe"), "LANGUE_ARABE"),
             (menu_json.get("profil", "👤 Profil"), "PROFIL"),
             (menu_json.get("reglages", "⚙️ Réglages"), "REGLAGES")
         ]
@@ -124,7 +125,8 @@ def dessiner_boutons_navigation(app):
             (menu_json.get("onboarding", "🏠 Accueil"), "ONBOARDING"),
             (lbl_zakat_tiers, "ZAKAT_TIERS"), 
             (lbl_heritage_tiers, "HERITAGE_TIERS"),
-            (menu_json.get("encyclopedie", "📚 Encyclopédie"), "ENCYCLOPEDIE")
+            (menu_json.get("encyclopedie", "📚 Encyclopédie"), "ENCYCLOPEDIE"),
+            (menu_json.get("langue_arabe", "🔤 Langue arabe"), "LANGUE_ARABE")
         ]
 
     # --- FORMAT SMARTPHONE (BOTTOM NAV) ---

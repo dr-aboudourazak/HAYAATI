@@ -12,7 +12,8 @@
     "audit": "📖 Analyses",
     "profil": "👤 Profil",
     "reglages": "⚙️ Réglages",
-    "encyclopedie": "📚 Encyclopédie"
+    "encyclopedie": "📚 Encyclopédie",
+    "langue_arabe": "🔤 Langue arabe"
   },
   "barre_outils": {
     "titre_app": "🕌 HAYAATI",
@@ -362,33 +363,841 @@
     "categories": [
       {
         "titre": "🏦 MODULE : Zakat - Finances et Parures",
-        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate At-Tawbah, v.34 : 'A ceux qui thésaurisent l'or et l'argent et ne les dépensent pas dans le sentier de Dieu, annonce un châtiment douloureux.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nSelon Amr ibn Shu'ayb (Abu Dawoud n°1563, Authentifié), le Prophète ﷺ a vu une femme avec sa fille portant deux lourds bracelets d'or. Il dit : 'En acquittes-tu la Zakat ?' Elle dit : 'Non'. Il dit : 'Te plairait-il qu'Allah t'en revête deux bracelets de feu ?'.\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\n• École Hanafi : Imposition stricte à 2,5% de tout l'or possédé, l'usage de parure ne modifiant pas sa nature imposable.\n• Écoles Maliki, Shafi'i, Hanbali : Exonération de l'or de parure licite de la femme. Seul l'or d'investissement ou d'épargne est soumis à la taxe."
+        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate At-Tawbah, v.34 : 'A ceux qui thésaurisent l'or et l'argent et ne les dépensent pas dans le sentier de Dieu, annonce un châtiment douloureux.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nSelon Amr ibn Shu'ayb (Abu Dawoud n°1563, Authentifié), le Prophète ﷺ a vu une femme avec sa fille portant deux lourds bracelets d'or. Il dit : 'En acquittes-tu la Zakat ?' Elle dit : 'Non'. Il dit : 'Te plairait-il qu'Allah t'en revête deux bracelets de feu ?'.\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\n• École Hanafi : Imposition stricte à 2,5% de tout l'or possédé, l'usage de parure ne modifiant pas sa nature imposable.\n• Écoles Maliki, Shafi'i, Hanbali : Exonération de l'or de parure licite de la femme. Seul l'or d'investissement ou d'épargne est soumis à la taxe.",
+        "quiz": [
+          {
+            "question": "Selon l'école Hanafi, la parure en or portée par une femme est-elle soumise à la Zakat ?",
+            "choix": [
+              "Oui, toujours",
+              "Non, jamais",
+              "Seulement au-delà de 200 g"
+            ],
+            "reponse": 0,
+            "explication": "L'école Hanafi impose 2,5% de tout l'or possédé : l'usage de parure ne change pas sa nature imposable."
+          },
+          {
+            "question": "Quelles écoles exonèrent la parure licite de la femme de la Zakat ?",
+            "choix": [
+              "Hanafi seule",
+              "Maliki, Chafi'ite et Hanbalite",
+              "Aucune école"
+            ],
+            "reponse": 1,
+            "explication": "Seul l'or d'investissement ou d'épargne est taxé chez les Maliki, Chafi'ite et Hanbalite."
+          },
+          {
+            "question": "Dans le hadith rapporté par Abu Dawoud, que portait la femme questionnée par le Prophète ﷺ ?",
+            "choix": [
+              "Une bague en argent",
+              "Deux lourds bracelets d'or",
+              "Un collier de perles"
+            ],
+            "reponse": 1,
+            "explication": "Le Prophète ﷺ lui a demandé si elle en acquittait la Zakat, avant l'avertissement sur les bracelets de feu."
+          }
+        ]
       },
       {
         "titre": "🌾 MODULE : Zakat - Agriculture et Bétail",
-        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate Al-An'am, v.141 : 'Et acquittez-en les droits le jour de la récolte.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nRapporté par Jabir (Muslim n°981), le Prophète ﷺ a dit : 'Pour ce qui est irrigué par les cieux ou les nappes, la dîme (10%) est due. Pour ce qui est irrigué artificiellement, la demi-dîme (5%) est due.' Le seuil (Nissab) est fixé à 5 Wasaqs (environ 653 kg).\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus unanime sur les taux d'irrigation. Concernant le bétail, la charte officielle d'Abu Bakr (Al-Boukhari n°1454) fixe le seuil des ovins : de 40 à 120 moutons = 1 mouton dû. Sous 40 têtes, aucune Zakat n'est exigible."
+        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate Al-An'am, v.141 : 'Et acquittez-en les droits le jour de la récolte.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nRapporté par Jabir (Muslim n°981), le Prophète ﷺ a dit : 'Pour ce qui est irrigué par les cieux ou les nappes, la dîme (10%) est due. Pour ce qui est irrigué artificiellement, la demi-dîme (5%) est due.' Le seuil (Nissab) est fixé à 5 Wasaqs (environ 653 kg).\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus unanime sur les taux d'irrigation. Concernant le bétail, la charte officielle d'Abu Bakr (Al-Boukhari n°1454) fixe le seuil des ovins : de 40 à 120 moutons = 1 mouton dû. Sous 40 têtes, aucune Zakat n'est exigible.",
+        "quiz": [
+          {
+            "question": "Quel taux de Zakat s'applique à une récolte irriguée naturellement (pluie, nappe) ?",
+            "choix": [
+              "2,5 %",
+              "5 %",
+              "10 %"
+            ],
+            "reponse": 2,
+            "explication": "La dîme complète (10%) est due pour l'irrigation naturelle ; la demi-dîme (5%) pour l'irrigation artificielle."
+          },
+          {
+            "question": "Combien de moutons faut-il posséder au minimum avant que la Zakat sur le bétail soit exigible ?",
+            "choix": [
+              "20",
+              "40",
+              "100"
+            ],
+            "reponse": 1,
+            "explication": "Sous 40 têtes, aucune Zakat n'est due ; de 40 à 120, un seul mouton est dû."
+          },
+          {
+            "question": "Le seuil du Nissab pour les récoltes correspond approximativement à quel poids ?",
+            "choix": [
+              "≈ 200 kg",
+              "≈ 653 kg",
+              "≈ 1000 kg"
+            ],
+            "reponse": 1,
+            "explication": "Le Nissab agricole est fixé à 5 Wasaqs, soit environ 653 kg."
+          }
+        ]
       },
       {
         "titre": "📜 MODULE : Purge Prioritaire des Dettes",
-        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate An-Nissa, v.11 : La répartition des parts n'intervient qu'après l'application de la clause souveraine : '...après exécution du testament ou paiement des dettes.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nRapporté par Salamah ibn al-Akwah (Al-Boukhari n°2289), on apporta un mort au Prophète ﷺ pour qu'il prie sur lui. Il demande : 'A-t-il laissé des dettes ?' Ils dirent : 'Oui, trois dinars'. Il dit : 'Priez sur votre compagnon (moi je ne prie pas sur lui)'. Jusqu'à ce qu'un compagnon se porte garant de la dette.\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\n• Dettes Passives : Priorité absolue sur l'héritage et la Wasiyya. Chez les Malikites et Hanbalites, elles réduisent aussi l'assiette imposable de la Zakat financière.\n• Dettes Actives (Créances) : Si elles sont recouvrables (débiteur solvable), l'école Hanafi impose la Zakat chaque année, tandis que l'école Maliki exige le paiement une seule fois au moment de la récupération."
+        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate An-Nissa, v.11 : La répartition des parts n'intervient qu'après l'application de la clause souveraine : '...après exécution du testament ou paiement des dettes.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nRapporté par Salamah ibn al-Akwah (Al-Boukhari n°2289), on apporta un mort au Prophète ﷺ pour qu'il prie sur lui. Il demande : 'A-t-il laissé des dettes ?' Ils dirent : 'Oui, trois dinars'. Il dit : 'Priez sur votre compagnon (moi je ne prie pas sur lui)'. Jusqu'à ce qu'un compagnon se porte garant de la dette.\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\n• Dettes Passives : Priorité absolue sur l'héritage et la Wasiyya. Chez les Malikites et Hanbalites, elles réduisent aussi l'assiette imposable de la Zakat financière.\n• Dettes Actives (Créances) : Si elles sont recouvrables (débiteur solvable), l'école Hanafi impose la Zakat chaque année, tandis que l'école Maliki exige le paiement une seule fois au moment de la récupération.",
+        "quiz": [
+          {
+            "question": "D'après le hadith de Salamah ibn al-Akwah, combien de dinars le défunt devait-il ?",
+            "choix": [
+              "1 dinar",
+              "3 dinars",
+              "10 dinars"
+            ],
+            "reponse": 1,
+            "explication": "Le Prophète ﷺ a refusé de prier sur lui jusqu'à ce qu'un compagnon se porte garant de ces 3 dinars."
+          },
+          {
+            "question": "Qu'est-ce qui doit impérativement être réglé avant le partage successoral ?",
+            "choix": [
+              "Les dettes et le testament",
+              "La part du fils aîné uniquement",
+              "Rien, le partage est immédiat"
+            ],
+            "reponse": 0,
+            "explication": "Sourate An-Nissa v.11 : la répartition n'intervient qu'après exécution du testament et paiement des dettes."
+          },
+          {
+            "question": "Pour une créance recouvrable, quelle école impose la Zakat chaque année ?",
+            "choix": [
+              "Hanafi",
+              "Maliki",
+              "Chafi'ite"
+            ],
+            "reponse": 0,
+            "explication": "L'école Maliki exige un paiement unique au moment de la récupération, contrairement à l'école Hanafi."
+          }
+        ]
       },
       {
         "titre": "⚖️ MODULE : Partage Successoral",
-        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate An-Nissa, v.11 : 'Voici ce que Dieu vous enjoint au sujet de vos enfants : au fils, une part équivalente à celle de deux filles.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nRapporté par Ibn Abbas (Al-Boukhari n°6732, Muslim n°1615), le Prophète ﷺ a dit : 'Attribuez les parts fixes (Fara'idh) à ceux qui y ont droit. Ce qui reste après cela revient à l'homme le plus proche du défunt.'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus absolu sur la répartition par double ratio. Cette règle s'adosse à l'obligation financière d'entretien (Nafaqah) incombant exclusivement à l'homme. La femme conserve l'entièreté de sa part pour son usage privé sans obligation de dépense pour le foyer. Les bénéficiaires potentiels incluent les descendants, ascendants, collatéraux (frères, sœurs, oncles paternels germains et paternels, neveux, cousins) et le conjoint survivant."
+        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate An-Nissa, v.11 : 'Voici ce que Dieu vous enjoint au sujet de vos enfants : au fils, une part équivalente à celle de deux filles.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nRapporté par Ibn Abbas (Al-Boukhari n°6732, Muslim n°1615), le Prophète ﷺ a dit : 'Attribuez les parts fixes (Fara'idh) à ceux qui y ont droit. Ce qui reste après cela revient à l'homme le plus proche du défunt.'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus absolu sur la répartition par double ratio. Cette règle s'adosse à l'obligation financière d'entretien (Nafaqah) incombant exclusivement à l'homme. La femme conserve l'entièreté de sa part pour son usage privé sans obligation de dépense pour le foyer. Les bénéficiaires potentiels incluent les descendants, ascendants, collatéraux (frères, sœurs, oncles paternels germains et paternels, neveux, cousins) et le conjoint survivant.",
+        "quiz": [
+          {
+            "question": "Selon le Coran (An-Nissa v.11), quelle est la part du fils par rapport à celle de la fille ?",
+            "choix": [
+              "Une part égale",
+              "Le double de celle de la fille",
+              "La moitié de celle de la fille"
+            ],
+            "reponse": 1,
+            "explication": "\"Au fils, une part équivalente à celle de deux filles\" — le ratio de base est de 2 pour 1."
+          },
+          {
+            "question": "D'après le hadith rapporté par Ibn Abbas, à qui revient le reliquat après les parts fixes ?",
+            "choix": [
+              "À l'État",
+              "À l'homme le plus proche du défunt",
+              "Il est redistribué également entre tous"
+            ],
+            "reponse": 1,
+            "explication": "\"Ce qui reste après cela revient à l'homme le plus proche du défunt\" — c'est le principe de l'Asabah."
+          },
+          {
+            "question": "Quelle obligation financière justifie le ratio 2 pour 1 en faveur des hommes ?",
+            "choix": [
+              "La Zakat",
+              "La Nafaqah (obligation d'entretien)",
+              "Le Hajj"
+            ],
+            "reponse": 1,
+            "explication": "L'homme a la charge financière du foyer ; la femme conserve sa part sans obligation de dépense."
+          }
+        ]
       },
       {
         "titre": "💡 MODULE : Héritage sans Enfant (Kalâlah)",
-        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate An-Nissa, v.12 : 'Et si un homme ou une femme meurt sans héritier direct (Kalâlah), laissant un frère ou une sœur (utérins), à chacun d'eux alors un sixième. S'ils sont plus de deux, ils partagent alors le tiers.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nInterrogé sur le sens exact du Kalâlah, le calife Abu Bakr As-Siddiq (Validé par le consensus des compagnons) a dit : 'Le Kalâlah est celui qui n'a ni descendant (enfant) ni ascendant masculin direct (père/grand-père).'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nDans le cas du Kalâlah, la fratrie utérine (côté mère) hérite à parts strictement égales entre hommes et femmes (dérogation unique au double ratio). La fratrie germaine, elle, récupère le reliquat en tant qu'héritiers résiduels (Asabah)."
+        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate An-Nissa, v.12 : 'Et si un homme ou une femme meurt sans héritier direct (Kalâlah), laissant un frère ou une sœur (utérins), à chacun d'eux alors un sixième. S'ils sont plus de deux, ils partagent alors le tiers.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nInterrogé sur le sens exact du Kalâlah, le calife Abu Bakr As-Siddiq (Validé par le consensus des compagnons) a dit : 'Le Kalâlah est celui qui n'a ni descendant (enfant) ni ascendant masculin direct (père/grand-père).'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nDans le cas du Kalâlah, la fratrie utérine (côté mère) hérite à parts strictement égales entre hommes et femmes (dérogation unique au double ratio). La fratrie germaine, elle, récupère le reliquat en tant qu'héritiers résiduels (Asabah).",
+        "quiz": [
+          {
+            "question": "Comment le calife Abu Bakr a-t-il défini le Kalâlah ?",
+            "choix": [
+              "Celui qui n'a ni descendant ni ascendant masculin direct",
+              "Celui qui n'a pas de conjoint",
+              "Celui qui est orphelin de père"
+            ],
+            "reponse": 0,
+            "explication": "Ni enfant, ni père, ni grand-père — c'est la définition validée par le consensus des compagnons."
+          },
+          {
+            "question": "Dans le cas du Kalâlah, comment se partage l'héritage entre frères et sœurs utérins ?",
+            "choix": [
+              "Part égale entre hommes et femmes",
+              "Part double pour l'homme",
+              "Rien pour les utérins"
+            ],
+            "reponse": 0,
+            "explication": "C'est l'unique dérogation au ratio 2 pour 1 habituel."
+          },
+          {
+            "question": "Si plus de deux frères/sœurs utérins sont concernés, quelle fraction se partagent-ils ?",
+            "choix": [
+              "Un sixième",
+              "Un tiers",
+              "La moitié"
+            ],
+            "reponse": 1,
+            "explication": "À deux ou moins, un sixième chacun ; au-delà, ils se partagent le tiers."
+          }
+        ]
       },
       {
         "titre": "📝 MODULE : Testament et Plafond du Tiers",
-        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate Al-Baqarah, v.180 : 'On vous a prescrit, quand la mort se présente à l'un de vous et s'il laisse des biens, de faire un testament en faveur de ses père et mère et de ses plus proches parents...'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nRapporté par Sa'd ibn Abi Waqqas (Al-Boukhari n°2744, Muslim n°1628), le Prophète ﷺ lui dit alors qu'il était malade et voulait donner tous ses biens en aumône : 'Donne le tiers. Et le tiers, c'est déjà beaucoup. Que tu laisses tes héritiers riches vaut mieux que de les laisser pauvres, tendant la main aux gens.'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus unanime : La Wasiyya est strictement interdite en faveur d'un héritier légal (sauf accord unanime des autres héritiers après la mort), et elle est plafonnée à un tiers (1/3) maximum du patrimoine net après épuration des dettes. L'application bloque automatiquement tout surplus."
+        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate Al-Baqarah, v.180 : 'On vous a prescrit, quand la mort se présente à l'un de vous et s'il laisse des biens, de faire un testament en faveur de ses père et mère et de ses plus proches parents...'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\nRapporté par Sa'd ibn Abi Waqqas (Al-Boukhari n°2744, Muslim n°1628), le Prophète ﷺ lui dit alors qu'il était malade et voulait donner tous ses biens en aumône : 'Donne le tiers. Et le tiers, c'est déjà beaucoup. Que tu laisses tes héritiers riches vaut mieux que de les laisser pauvres, tendant la main aux gens.'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus unanime : La Wasiyya est strictement interdite en faveur d'un héritier légal (sauf accord unanime des autres héritiers après la mort), et elle est plafonnée à un tiers (1/3) maximum du patrimoine net après épuration des dettes. L'application bloque automatiquement tout surplus.",
+        "quiz": [
+          {
+            "question": "Quelle est la limite maximale de la Wasiyya (testament) par rapport au patrimoine net ?",
+            "choix": [
+              "Un quart",
+              "Un tiers",
+              "La moitié"
+            ],
+            "reponse": 1,
+            "explication": "Consensus unanime des quatre écoles : un tiers maximum, après épuration des dettes."
+          },
+          {
+            "question": "Que répond le Prophète ﷺ à Sa'd ibn Abi Waqqas, qui voulait tout donner en aumône ?",
+            "choix": [
+              "\"Donne tout\"",
+              "\"Donne le tiers, et le tiers c'est déjà beaucoup\"",
+              "\"Ne donne rien\""
+            ],
+            "reponse": 1,
+            "explication": "Il ajoute : mieux vaut laisser ses héritiers riches que pauvres et tendant la main."
+          },
+          {
+            "question": "Peut-on léguer par testament à un héritier légal déjà pourvu d'une part fixe ?",
+            "choix": [
+              "Oui, librement",
+              "Non, sauf accord unanime des autres héritiers",
+              "Oui, dans la limite de 10 %"
+            ],
+            "reponse": 1,
+            "explication": "La Wasiyya en faveur d'un héritier légal est interdite sauf validation unanime après le décès."
+          }
+        ]
       },
       {
         "titre": "📿 MODULE : Suivi Quotidien",
-        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate Al-Hachr, v.18 : 'Ô vous qui croyez ! Craignez Allah. Que chaque âme voit bien ce qu'elle a préparé pour demain.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\n• Sur les Jours Blancs (Al-Tirmidhi n°761, Authentique) : Le Prophète ﷺ a dit : 'Si tu jeûnes trois jours du mois, jeûne le 13, le 14 et le 15.' Le jeûne de ces jours équivaut au jeûne de toute une vie.\n• Sur les prières surérogatoires (Muslim n°728) : Le Prophète ﷺ a dit : 'Quiconque prie douze Rak'ahs surérogatoires chaque jour, Allah lui construira une maison au Paradis.'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus sur le caractère hautement méritoire (Sunnah Mouakkadah) des prières rattachées (Rawatib) et du jeûne des jours blancs, outils essentiels de la purification quotidienne de l'âme."
+        "texte": "✨ PIÈCE A : FONDEMENT CORANIQUE\nSourate Al-Hachr, v.18 : 'Ô vous qui croyez ! Craignez Allah. Que chaque âme voit bien ce qu'elle a préparé pour demain.'\n\n✨ PIÈCE B : HADITH AUTHENTIQUE\n• Sur les Jours Blancs (Al-Tirmidhi n°761, Authentique) : Le Prophète ﷺ a dit : 'Si tu jeûnes trois jours du mois, jeûne le 13, le 14 et le 15.' Le jeûne de ces jours équivaut au jeûne de toute une vie.\n• Sur les prières surérogatoires (Muslim n°728) : Le Prophète ﷺ a dit : 'Quiconque prie douze Rak'ahs surérogatoires chaque jour, Allah lui construira une maison au Paradis.'\n\n✨ PIÈCE C : FIQH DES QUATRE ÉCOLES (SUNNITE)\nConsensus sur le caractère hautement méritoire (Sunnah Mouakkadah) des prières rattachées (Rawatib) et du jeûne des jours blancs, outils essentiels de la purification quotidienne de l'âme.",
+        "quiz": [
+          {
+            "question": "Quels jours du mois correspondent aux \"Jours Blancs\" recommandés pour le jeûne ?",
+            "choix": [
+              "1, 2, 3",
+              "13, 14, 15",
+              "27, 28, 29"
+            ],
+            "reponse": 1,
+            "explication": "Rapporté par At-Tirmidhi : jeûner ces trois jours équivaut au jeûne de toute une vie."
+          },
+          {
+            "question": "Combien de Rak'ahs surérogatoires quotidiennes sont associées à la promesse d'une maison au Paradis ?",
+            "choix": [
+              "2",
+              "12",
+              "20"
+            ],
+            "reponse": 1,
+            "explication": "Rapporté par Muslim : douze Rak'ahs de Rawatib chaque jour."
+          },
+          {
+            "question": "Quel verset de Sourate Al-Hachr exhorte chaque âme à regarder ce qu'elle a préparé pour demain ?",
+            "choix": [
+              "Verset 18",
+              "Verset 3",
+              "Verset 21"
+            ],
+            "reponse": 0,
+            "explication": "\"Que chaque âme voit bien ce qu'elle a préparé pour demain.\""
+          }
+        ]
       }
     ],
     "progres_lecture": "{} sur {} thèmes parcourus"
+  },
+  "langue_arabe": {
+    "titre": "🔤 Langue arabe",
+    "sous_titre": "Un parcours pas à pas : alphabet, vocabulaire, conjugaison, grammaire, puis lecture de textes.",
+    "avertissement_audio": "La description écrite des sons oriente, elle ne remplace pas une oreille entraînée : pratiquez si possible avec un locuteur natif ou un enregistrement audio, en particulier pour les lettres sans équivalent français.",
+    "etapes": [
+      {
+        "cle": "alphabet",
+        "titre": "1. الأبجدية - L'alphabet",
+        "type": "alphabet",
+        "disponible": true,
+        "lettres": [
+          {
+            "lettre": "ا",
+            "nom": "Alif",
+            "translitteration": "ā",
+            "connexion": "ne se connecte qu'à droite (non connectante)",
+            "son": "Voyelle longue « a », comme dans « pâte » prolongé. Sert aussi de support à la Hamza.",
+            "exemple_mot": "أَسَد",
+            "exemple_translitteration": "asad",
+            "exemple_sens": "lion"
+          },
+          {
+            "lettre": "ب",
+            "nom": "Bā'",
+            "translitteration": "b",
+            "connexion": "des deux côtés",
+            "son": "Comme le « b » français de « bateau ».",
+            "exemple_mot": "بَاب",
+            "exemple_translitteration": "bāb",
+            "exemple_sens": "porte"
+          },
+          {
+            "lettre": "ت",
+            "nom": "Tā'",
+            "translitteration": "t",
+            "connexion": "des deux côtés",
+            "son": "Comme le « t » français de « table ».",
+            "exemple_mot": "تُفَّاح",
+            "exemple_translitteration": "tuffāḥ",
+            "exemple_sens": "pomme"
+          },
+          {
+            "lettre": "ث",
+            "nom": "Thā'",
+            "translitteration": "th",
+            "connexion": "des deux côtés",
+            "son": "Comme le « th » anglais de « think » (pas d'équivalent en français).",
+            "exemple_mot": "ثَعْلَب",
+            "exemple_translitteration": "tha'lab",
+            "exemple_sens": "renard"
+          },
+          {
+            "lettre": "ج",
+            "nom": "Jīm",
+            "translitteration": "j",
+            "connexion": "des deux côtés",
+            "son": "Comme le « j » français de « jardin ».",
+            "exemple_mot": "جَمَل",
+            "exemple_translitteration": "jamal",
+            "exemple_sens": "chameau"
+          },
+          {
+            "lettre": "ح",
+            "nom": "Hā'",
+            "translitteration": "ḥ",
+            "connexion": "des deux côtés",
+            "son": "Souffle rauque venant du fond de la gorge, sans équivalent en français : à travailler à l'oreille avec un locuteur natif.",
+            "exemple_mot": "حِصَان",
+            "exemple_translitteration": "ḥiṣān",
+            "exemple_sens": "cheval"
+          },
+          {
+            "lettre": "خ",
+            "nom": "Khā'",
+            "translitteration": "kh",
+            "connexion": "des deux côtés",
+            "son": "Comme le « j » espagnol de « Jose » ou le « ch » allemand de « Bach ».",
+            "exemple_mot": "خَرُوف",
+            "exemple_translitteration": "kharūf",
+            "exemple_sens": "mouton"
+          },
+          {
+            "lettre": "د",
+            "nom": "Dāl",
+            "translitteration": "d",
+            "connexion": "ne se connecte qu'à droite (non connectante)",
+            "son": "Comme le « d » français de « danse ».",
+            "exemple_mot": "دِيك",
+            "exemple_translitteration": "dīk",
+            "exemple_sens": "coq"
+          },
+          {
+            "lettre": "ذ",
+            "nom": "Dhāl",
+            "translitteration": "dh",
+            "connexion": "ne se connecte qu'à droite (non connectante)",
+            "son": "Comme le « th » anglais de « this » (pas d'équivalent en français).",
+            "exemple_mot": "ذِئْب",
+            "exemple_translitteration": "dhi'b",
+            "exemple_sens": "loup"
+          },
+          {
+            "lettre": "ر",
+            "nom": "Rā'",
+            "translitteration": "r",
+            "connexion": "ne se connecte qu'à droite (non connectante)",
+            "son": "R roulé, comme en espagnol ou en italien — pas le « r » guttural français.",
+            "exemple_mot": "رُمَّان",
+            "exemple_translitteration": "rummān",
+            "exemple_sens": "grenade (fruit)"
+          },
+          {
+            "lettre": "ز",
+            "nom": "Zāy",
+            "translitteration": "z",
+            "connexion": "ne se connecte qu'à droite (non connectante)",
+            "son": "Comme le « z » français de « zèbre ».",
+            "exemple_mot": "زَرَافَة",
+            "exemple_translitteration": "zarāfa",
+            "exemple_sens": "girafe"
+          },
+          {
+            "lettre": "س",
+            "nom": "Sīn",
+            "translitteration": "s",
+            "connexion": "des deux côtés",
+            "son": "Comme le « s » français de « soleil ».",
+            "exemple_mot": "سَمَك",
+            "exemple_translitteration": "samak",
+            "exemple_sens": "poisson"
+          },
+          {
+            "lettre": "ش",
+            "nom": "Shīn",
+            "translitteration": "sh",
+            "connexion": "des deux côtés",
+            "son": "Comme le « ch » français de « chat ».",
+            "exemple_mot": "شَمْس",
+            "exemple_translitteration": "shams",
+            "exemple_sens": "soleil"
+          },
+          {
+            "lettre": "ص",
+            "nom": "Sād",
+            "translitteration": "ṣ",
+            "connexion": "des deux côtés",
+            "son": "« s » emphatique, prononcé avec la langue plus reculée et la bouche plus arrondie qu'un « s » ordinaire.",
+            "exemple_mot": "صَقْر",
+            "exemple_translitteration": "ṣaqr",
+            "exemple_sens": "faucon"
+          },
+          {
+            "lettre": "ض",
+            "nom": "Dād",
+            "translitteration": "ḍ",
+            "connexion": "des deux côtés",
+            "son": "« d » emphatique. Lettre considérée comme caractéristique de l'arabe classique.",
+            "exemple_mot": "ضِفْدَع",
+            "exemple_translitteration": "ḍifda'",
+            "exemple_sens": "grenouille"
+          },
+          {
+            "lettre": "ط",
+            "nom": "Tā' emphatique",
+            "translitteration": "ṭ",
+            "connexion": "des deux côtés",
+            "son": "« t » emphatique, plus sourd et reculé que le « t » ordinaire.",
+            "exemple_mot": "طَائِر",
+            "exemple_translitteration": "ṭā'ir",
+            "exemple_sens": "oiseau"
+          },
+          {
+            "lettre": "ظ",
+            "nom": "Zā' emphatique",
+            "translitteration": "ẓ",
+            "connexion": "des deux côtés",
+            "son": "Version emphatique du « th » anglais de « this ».",
+            "exemple_mot": "ظُفْر",
+            "exemple_translitteration": "ẓufr",
+            "exemple_sens": "ongle"
+          },
+          {
+            "lettre": "ع",
+            "nom": "'Ayn",
+            "translitteration": "'",
+            "connexion": "des deux côtés",
+            "son": "Consonne pharyngale, contraction du fond de la gorge sans souffle. Considérée comme la lettre la plus difficile pour un francophone : demande de la pratique orale.",
+            "exemple_mot": "عَيْن",
+            "exemple_translitteration": "'ayn",
+            "exemple_sens": "œil"
+          },
+          {
+            "lettre": "غ",
+            "nom": "Ghayn",
+            "translitteration": "gh",
+            "connexion": "des deux côtés",
+            "son": "Comme le « r » français grasseyé (le « r » de Paris), venant du fond de la gorge.",
+            "exemple_mot": "غَزَال",
+            "exemple_translitteration": "ghazāl",
+            "exemple_sens": "gazelle"
+          },
+          {
+            "lettre": "ف",
+            "nom": "Fā'",
+            "translitteration": "f",
+            "connexion": "des deux côtés",
+            "son": "Comme le « f » français de « fleur ».",
+            "exemple_mot": "فِيل",
+            "exemple_translitteration": "fīl",
+            "exemple_sens": "éléphant"
+          },
+          {
+            "lettre": "ق",
+            "nom": "Qāf",
+            "translitteration": "q",
+            "connexion": "des deux côtés",
+            "son": "« k » prononcé très au fond de la gorge, plus profond qu'un « k » français.",
+            "exemple_mot": "قَمَر",
+            "exemple_translitteration": "qamar",
+            "exemple_sens": "lune"
+          },
+          {
+            "lettre": "ك",
+            "nom": "Kāf",
+            "translitteration": "k",
+            "connexion": "des deux côtés",
+            "son": "Comme le « k » français de « kilo ».",
+            "exemple_mot": "كِتَاب",
+            "exemple_translitteration": "kitāb",
+            "exemple_sens": "livre"
+          },
+          {
+            "lettre": "ل",
+            "nom": "Lām",
+            "translitteration": "l",
+            "connexion": "des deux côtés",
+            "son": "Comme le « l » français de « lune ».",
+            "exemple_mot": "لَيْمُون",
+            "exemple_translitteration": "laymūn",
+            "exemple_sens": "citron"
+          },
+          {
+            "lettre": "م",
+            "nom": "Mīm",
+            "translitteration": "m",
+            "connexion": "des deux côtés",
+            "son": "Comme le « m » français de « maison ».",
+            "exemple_mot": "مَوْز",
+            "exemple_translitteration": "mawz",
+            "exemple_sens": "banane"
+          },
+          {
+            "lettre": "ن",
+            "nom": "Nūn",
+            "translitteration": "n",
+            "connexion": "des deux côtés",
+            "son": "Comme le « n » français de « nid ».",
+            "exemple_mot": "نَجْمَة",
+            "exemple_translitteration": "najma",
+            "exemple_sens": "étoile"
+          },
+          {
+            "lettre": "ه",
+            "nom": "Hā'",
+            "translitteration": "h",
+            "connexion": "des deux côtés",
+            "son": "Un souffle léger, comme le « h » aspiré anglais de « house ».",
+            "exemple_mot": "هِلَال",
+            "exemple_translitteration": "hilāl",
+            "exemple_sens": "croissant de lune"
+          },
+          {
+            "lettre": "و",
+            "nom": "Wāw",
+            "translitteration": "w / ū",
+            "connexion": "ne se connecte qu'à droite (non connectante)",
+            "son": "Consonne « w » comme dans « ouest », ou voyelle longue « ou » selon la position.",
+            "exemple_mot": "وَرْدَة",
+            "exemple_translitteration": "warda",
+            "exemple_sens": "rose (fleur)"
+          },
+          {
+            "lettre": "ي",
+            "nom": "Yā'",
+            "translitteration": "y / ī",
+            "connexion": "des deux côtés",
+            "son": "Consonne « y » comme dans « yaourt », ou voyelle longue « i » selon la position.",
+            "exemple_mot": "يَد",
+            "exemple_translitteration": "yad",
+            "exemple_sens": "main"
+          }
+        ]
+      },
+      {
+        "cle": "vocabulaire",
+        "titre": "2. المفردات - Vocabulaire",
+        "type": "vocabulaire",
+        "disponible": true,
+        "listes": [
+          {
+            "titre": "👋 Salutations et politesse",
+            "mots": [
+              {
+                "arabe": "السَّلَامُ عَلَيْكُمْ",
+                "translitteration": "as-salāmu 'alaykum",
+                "sens": "que la paix soit sur vous (salutation)"
+              },
+              {
+                "arabe": "وَعَلَيْكُمُ السَّلَامُ",
+                "translitteration": "wa 'alaykum as-salām",
+                "sens": "et sur vous la paix (réponse)"
+              },
+              {
+                "arabe": "شُكْرًا",
+                "translitteration": "shukran",
+                "sens": "merci"
+              },
+              {
+                "arabe": "مِنْ فَضْلِكَ",
+                "translitteration": "min faḍlik",
+                "sens": "s'il te plaît"
+              },
+              {
+                "arabe": "نَعَمْ",
+                "translitteration": "na'am",
+                "sens": "oui"
+              },
+              {
+                "arabe": "لَا",
+                "translitteration": "lā",
+                "sens": "non"
+              },
+              {
+                "arabe": "عَفْوًا",
+                "translitteration": "'afwan",
+                "sens": "de rien / pardon"
+              },
+              {
+                "arabe": "مَعَ السَّلَامَة",
+                "translitteration": "ma'a as-salāma",
+                "sens": "au revoir"
+              }
+            ]
+          },
+          {
+            "titre": "👪 La famille",
+            "mots": [
+              {
+                "arabe": "أَب",
+                "translitteration": "ab",
+                "sens": "père"
+              },
+              {
+                "arabe": "أُم",
+                "translitteration": "umm",
+                "sens": "mère"
+              },
+              {
+                "arabe": "ابْن",
+                "translitteration": "ibn",
+                "sens": "fils"
+              },
+              {
+                "arabe": "بِنْت",
+                "translitteration": "bint",
+                "sens": "fille"
+              },
+              {
+                "arabe": "أَخ",
+                "translitteration": "akh",
+                "sens": "frère"
+              },
+              {
+                "arabe": "أُخْت",
+                "translitteration": "ukht",
+                "sens": "sœur"
+              },
+              {
+                "arabe": "جَدّ",
+                "translitteration": "jadd",
+                "sens": "grand-père"
+              },
+              {
+                "arabe": "جَدَّة",
+                "translitteration": "jadda",
+                "sens": "grand-mère"
+              }
+            ]
+          },
+          {
+            "titre": "🕌 Le culte",
+            "mots": [
+              {
+                "arabe": "صَلَاة",
+                "translitteration": "ṣalāh",
+                "sens": "prière"
+              },
+              {
+                "arabe": "وُضُوء",
+                "translitteration": "wuḍū'",
+                "sens": "ablutions"
+              },
+              {
+                "arabe": "مَسْجِد",
+                "translitteration": "masjid",
+                "sens": "mosquée"
+              },
+              {
+                "arabe": "قُرْآن",
+                "translitteration": "qur'ān",
+                "sens": "Coran"
+              },
+              {
+                "arabe": "صِيَام",
+                "translitteration": "ṣiyām",
+                "sens": "jeûne"
+              },
+              {
+                "arabe": "زَكَاة",
+                "translitteration": "zakāh",
+                "sens": "aumône légale"
+              },
+              {
+                "arabe": "دُعَاء",
+                "translitteration": "du'ā'",
+                "sens": "invocation"
+              },
+              {
+                "arabe": "قِبْلَة",
+                "translitteration": "qibla",
+                "sens": "direction de la prière"
+              }
+            ]
+          },
+          {
+            "titre": "🔢 Les nombres (1 à 10)",
+            "mots": [
+              {
+                "arabe": "وَاحِد",
+                "translitteration": "wāḥid",
+                "sens": "un"
+              },
+              {
+                "arabe": "اِثْنَان",
+                "translitteration": "ithnān",
+                "sens": "deux"
+              },
+              {
+                "arabe": "ثَلَاثَة",
+                "translitteration": "thalātha",
+                "sens": "trois"
+              },
+              {
+                "arabe": "أَرْبَعَة",
+                "translitteration": "arba'a",
+                "sens": "quatre"
+              },
+              {
+                "arabe": "خَمْسَة",
+                "translitteration": "khamsa",
+                "sens": "cinq"
+              },
+              {
+                "arabe": "سِتَّة",
+                "translitteration": "sitta",
+                "sens": "six"
+              },
+              {
+                "arabe": "سَبْعَة",
+                "translitteration": "sab'a",
+                "sens": "sept"
+              },
+              {
+                "arabe": "ثَمَانِيَة",
+                "translitteration": "thamāniya",
+                "sens": "huit"
+              },
+              {
+                "arabe": "تِسْعَة",
+                "translitteration": "tis'a",
+                "sens": "neuf"
+              },
+              {
+                "arabe": "عَشَرَة",
+                "translitteration": "'ashara",
+                "sens": "dix"
+              }
+            ]
+          },
+          {
+            "titre": "🎨 Les couleurs",
+            "mots": [
+              {
+                "arabe": "أَحْمَر",
+                "translitteration": "aḥmar",
+                "sens": "rouge"
+              },
+              {
+                "arabe": "أَزْرَق",
+                "translitteration": "azraq",
+                "sens": "bleu"
+              },
+              {
+                "arabe": "أَخْضَر",
+                "translitteration": "akhḍar",
+                "sens": "vert"
+              },
+              {
+                "arabe": "أَصْفَر",
+                "translitteration": "aṣfar",
+                "sens": "jaune"
+              },
+              {
+                "arabe": "أَبْيَض",
+                "translitteration": "abyaḍ",
+                "sens": "blanc"
+              },
+              {
+                "arabe": "أَسْوَد",
+                "translitteration": "aswad",
+                "sens": "noir"
+              }
+            ]
+          },
+          {
+            "titre": "🏠 La maison",
+            "mots": [
+              {
+                "arabe": "بَيْت",
+                "translitteration": "bayt",
+                "sens": "maison"
+              },
+              {
+                "arabe": "بَاب",
+                "translitteration": "bāb",
+                "sens": "porte"
+              },
+              {
+                "arabe": "نَافِذَة",
+                "translitteration": "nāfidha",
+                "sens": "fenêtre"
+              },
+              {
+                "arabe": "طَاوِلَة",
+                "translitteration": "ṭāwila",
+                "sens": "table"
+              },
+              {
+                "arabe": "كِتَاب",
+                "translitteration": "kitāb",
+                "sens": "livre"
+              },
+              {
+                "arabe": "مَاء",
+                "translitteration": "mā'",
+                "sens": "eau"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "cle": "conjugaison",
+        "titre": "3. التصريف - Conjugaison",
+        "type": "conjugaison",
+        "disponible": false,
+        "verbes": []
+      },
+      {
+        "cle": "grammaire",
+        "titre": "4. النحو - Grammaire",
+        "type": "grammaire",
+        "disponible": false,
+        "lecons": []
+      },
+      {
+        "cle": "lecture",
+        "titre": "5. القراءة - Lecture de textes",
+        "type": "lecture",
+        "disponible": false,
+        "textes": []
+      }
+    ]
   }
 }
