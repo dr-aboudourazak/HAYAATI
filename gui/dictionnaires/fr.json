@@ -633,9 +633,20 @@
             "translitteration": "ā",
             "connexion": "ne se connecte qu'à droite (non connectante)",
             "son": "Voyelle longue « a », comme dans « pâte » prolongé. Sert aussi de support à la Hamza.",
-            "exemple_mot": "أَسَد",
-            "exemple_translitteration": "asad",
-            "exemple_sens": "lion"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "أَسَد",
+                "translitteration": "asad",
+                "sens": "lion"
+              },
+              {
+                "position": "fin",
+                "mot": "دَعَا",
+                "translitteration": "da'ā",
+                "sens": "il a appelé"
+              }
+            ]
           },
           {
             "lettre": "ب",
@@ -643,9 +654,26 @@
             "translitteration": "b",
             "connexion": "des deux côtés",
             "son": "Comme le « b » français de « bateau ».",
-            "exemple_mot": "بَاب",
-            "exemple_translitteration": "bāb",
-            "exemple_sens": "porte"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "بَاب",
+                "translitteration": "bāb",
+                "sens": "porte"
+              },
+              {
+                "position": "milieu",
+                "mot": "كَبِير",
+                "translitteration": "kabīr",
+                "sens": "grand"
+              },
+              {
+                "position": "fin",
+                "mot": "كَلْب",
+                "translitteration": "kalb",
+                "sens": "chien"
+              }
+            ]
           },
           {
             "lettre": "ت",
@@ -653,9 +681,26 @@
             "translitteration": "t",
             "connexion": "des deux côtés",
             "son": "Comme le « t » français de « table ».",
-            "exemple_mot": "تُفَّاح",
-            "exemple_translitteration": "tuffāḥ",
-            "exemple_sens": "pomme"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "تُفَّاح",
+                "translitteration": "tuffāḥ",
+                "sens": "pomme"
+              },
+              {
+                "position": "milieu",
+                "mot": "كَتَبَ",
+                "translitteration": "kataba",
+                "sens": "il a écrit"
+              },
+              {
+                "position": "fin",
+                "mot": "بَيْت",
+                "translitteration": "bayt",
+                "sens": "maison"
+              }
+            ]
           },
           {
             "lettre": "ث",
@@ -663,9 +708,26 @@
             "translitteration": "th",
             "connexion": "des deux côtés",
             "son": "Comme le « th » anglais de « think » (pas d'équivalent en français).",
-            "exemple_mot": "ثَعْلَب",
-            "exemple_translitteration": "tha'lab",
-            "exemple_sens": "renard"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "ثَعْلَب",
+                "translitteration": "tha'lab",
+                "sens": "renard"
+              },
+              {
+                "position": "milieu",
+                "mot": "مُثَلَّث",
+                "translitteration": "muthallath",
+                "sens": "triangle"
+              },
+              {
+                "position": "fin",
+                "mot": "ثَالِث",
+                "translitteration": "thālith",
+                "sens": "troisième"
+              }
+            ]
           },
           {
             "lettre": "ج",
@@ -673,9 +735,26 @@
             "translitteration": "j",
             "connexion": "des deux côtés",
             "son": "Comme le « j » français de « jardin ».",
-            "exemple_mot": "جَمَل",
-            "exemple_translitteration": "jamal",
-            "exemple_sens": "chameau"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "جَمَل",
+                "translitteration": "jamal",
+                "sens": "chameau"
+              },
+              {
+                "position": "milieu",
+                "mot": "نَجَاح",
+                "translitteration": "najāḥ",
+                "sens": "succès"
+              },
+              {
+                "position": "fin",
+                "mot": "بُرْج",
+                "translitteration": "burj",
+                "sens": "tour"
+              }
+            ]
           },
           {
             "lettre": "ح",
@@ -683,9 +762,26 @@
             "translitteration": "ḥ",
             "connexion": "des deux côtés",
             "son": "Souffle rauque venant du fond de la gorge, sans équivalent en français : à travailler à l'oreille avec un locuteur natif.",
-            "exemple_mot": "حِصَان",
-            "exemple_translitteration": "ḥiṣān",
-            "exemple_sens": "cheval"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "حِصَان",
+                "translitteration": "ḥiṣān",
+                "sens": "cheval"
+              },
+              {
+                "position": "milieu",
+                "mot": "بَحْر",
+                "translitteration": "baḥr",
+                "sens": "mer"
+              },
+              {
+                "position": "fin",
+                "mot": "مِفْتَاح",
+                "translitteration": "miftāḥ",
+                "sens": "clé"
+              }
+            ]
           },
           {
             "lettre": "خ",
@@ -693,9 +789,26 @@
             "translitteration": "kh",
             "connexion": "des deux côtés",
             "son": "Comme le « j » espagnol de « Jose » ou le « ch » allemand de « Bach ».",
-            "exemple_mot": "خَرُوف",
-            "exemple_translitteration": "kharūf",
-            "exemple_sens": "mouton"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "خَرُوف",
+                "translitteration": "kharūf",
+                "sens": "mouton"
+              },
+              {
+                "position": "milieu",
+                "mot": "أَخْضَر",
+                "translitteration": "akhḍar",
+                "sens": "vert"
+              },
+              {
+                "position": "fin",
+                "mot": "تَارِيخ",
+                "translitteration": "tārīkh",
+                "sens": "date, histoire"
+              }
+            ]
           },
           {
             "lettre": "د",
@@ -703,9 +816,20 @@
             "translitteration": "d",
             "connexion": "ne se connecte qu'à droite (non connectante)",
             "son": "Comme le « d » français de « danse ».",
-            "exemple_mot": "دِيك",
-            "exemple_translitteration": "dīk",
-            "exemple_sens": "coq"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "دِيك",
+                "translitteration": "dīk",
+                "sens": "coq"
+              },
+              {
+                "position": "fin",
+                "mot": "وَلَد",
+                "translitteration": "walad",
+                "sens": "garçon"
+              }
+            ]
           },
           {
             "lettre": "ذ",
@@ -713,9 +837,20 @@
             "translitteration": "dh",
             "connexion": "ne se connecte qu'à droite (non connectante)",
             "son": "Comme le « th » anglais de « this » (pas d'équivalent en français).",
-            "exemple_mot": "ذِئْب",
-            "exemple_translitteration": "dhi'b",
-            "exemple_sens": "loup"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "ذِئْب",
+                "translitteration": "dhi'b",
+                "sens": "loup"
+              },
+              {
+                "position": "fin",
+                "mot": "أُسْتَاذ",
+                "translitteration": "ustādh",
+                "sens": "professeur"
+              }
+            ]
           },
           {
             "lettre": "ر",
@@ -723,9 +858,20 @@
             "translitteration": "r",
             "connexion": "ne se connecte qu'à droite (non connectante)",
             "son": "R roulé, comme en espagnol ou en italien — pas le « r » guttural français.",
-            "exemple_mot": "رُمَّان",
-            "exemple_translitteration": "rummān",
-            "exemple_sens": "grenade (fruit)"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "رُمَّان",
+                "translitteration": "rummān",
+                "sens": "grenade (fruit)"
+              },
+              {
+                "position": "fin",
+                "mot": "قَمَر",
+                "translitteration": "qamar",
+                "sens": "lune"
+              }
+            ]
           },
           {
             "lettre": "ز",
@@ -733,9 +879,20 @@
             "translitteration": "z",
             "connexion": "ne se connecte qu'à droite (non connectante)",
             "son": "Comme le « z » français de « zèbre ».",
-            "exemple_mot": "زَرَافَة",
-            "exemple_translitteration": "zarāfa",
-            "exemple_sens": "girafe"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "زَرَافَة",
+                "translitteration": "zarāfa",
+                "sens": "girafe"
+              },
+              {
+                "position": "fin",
+                "mot": "خُبْز",
+                "translitteration": "khubz",
+                "sens": "pain"
+              }
+            ]
           },
           {
             "lettre": "س",
@@ -743,9 +900,26 @@
             "translitteration": "s",
             "connexion": "des deux côtés",
             "son": "Comme le « s » français de « soleil ».",
-            "exemple_mot": "سَمَك",
-            "exemple_translitteration": "samak",
-            "exemple_sens": "poisson"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "سَمَك",
+                "translitteration": "samak",
+                "sens": "poisson"
+              },
+              {
+                "position": "milieu",
+                "mot": "مَدْرَسَة",
+                "translitteration": "madrasa",
+                "sens": "école"
+              },
+              {
+                "position": "fin",
+                "mot": "شَمْس",
+                "translitteration": "shams",
+                "sens": "soleil"
+              }
+            ]
           },
           {
             "lettre": "ش",
@@ -753,9 +927,26 @@
             "translitteration": "sh",
             "connexion": "des deux côtés",
             "son": "Comme le « ch » français de « chat ».",
-            "exemple_mot": "شَمْس",
-            "exemple_translitteration": "shams",
-            "exemple_sens": "soleil"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "شَمْس",
+                "translitteration": "shams",
+                "sens": "soleil"
+              },
+              {
+                "position": "milieu",
+                "mot": "مَشْغُول",
+                "translitteration": "mashghūl",
+                "sens": "occupé"
+              },
+              {
+                "position": "fin",
+                "mot": "فِرَاش",
+                "translitteration": "firāsh",
+                "sens": "lit"
+              }
+            ]
           },
           {
             "lettre": "ص",
@@ -763,9 +954,26 @@
             "translitteration": "ṣ",
             "connexion": "des deux côtés",
             "son": "« s » emphatique, prononcé avec la langue plus reculée et la bouche plus arrondie qu'un « s » ordinaire.",
-            "exemple_mot": "صَقْر",
-            "exemple_translitteration": "ṣaqr",
-            "exemple_sens": "faucon"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "صَقْر",
+                "translitteration": "ṣaqr",
+                "sens": "faucon"
+              },
+              {
+                "position": "milieu",
+                "mot": "قَصِير",
+                "translitteration": "qaṣīr",
+                "sens": "court, petit"
+              },
+              {
+                "position": "fin",
+                "mot": "قَمِيص",
+                "translitteration": "qamīṣ",
+                "sens": "chemise"
+              }
+            ]
           },
           {
             "lettre": "ض",
@@ -773,9 +981,26 @@
             "translitteration": "ḍ",
             "connexion": "des deux côtés",
             "son": "« d » emphatique. Lettre considérée comme caractéristique de l'arabe classique.",
-            "exemple_mot": "ضِفْدَع",
-            "exemple_translitteration": "ḍifda'",
-            "exemple_sens": "grenouille"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "ضِفْدَع",
+                "translitteration": "ḍifda'",
+                "sens": "grenouille"
+              },
+              {
+                "position": "milieu",
+                "mot": "حَاضِر",
+                "translitteration": "ḥāḍir",
+                "sens": "présent"
+              },
+              {
+                "position": "fin",
+                "mot": "أَبْيَض",
+                "translitteration": "abyaḍ",
+                "sens": "blanc"
+              }
+            ]
           },
           {
             "lettre": "ط",
@@ -783,9 +1008,26 @@
             "translitteration": "ṭ",
             "connexion": "des deux côtés",
             "son": "« t » emphatique, plus sourd et reculé que le « t » ordinaire.",
-            "exemple_mot": "طَائِر",
-            "exemple_translitteration": "ṭā'ir",
-            "exemple_sens": "oiseau"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "طَائِر",
+                "translitteration": "ṭā'ir",
+                "sens": "oiseau"
+              },
+              {
+                "position": "milieu",
+                "mot": "مَطْبَخ",
+                "translitteration": "maṭbakh",
+                "sens": "cuisine"
+              },
+              {
+                "position": "fin",
+                "mot": "خَط",
+                "translitteration": "khaṭṭ",
+                "sens": "ligne, trait"
+              }
+            ]
           },
           {
             "lettre": "ظ",
@@ -793,9 +1035,26 @@
             "translitteration": "ẓ",
             "connexion": "des deux côtés",
             "son": "Version emphatique du « th » anglais de « this ».",
-            "exemple_mot": "ظُفْر",
-            "exemple_translitteration": "ẓufr",
-            "exemple_sens": "ongle"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "ظُفْر",
+                "translitteration": "ẓufr",
+                "sens": "ongle"
+              },
+              {
+                "position": "milieu",
+                "mot": "نَظِيف",
+                "translitteration": "naẓīf",
+                "sens": "propre"
+              },
+              {
+                "position": "fin",
+                "mot": "حِفْظ",
+                "translitteration": "ḥifẓ",
+                "sens": "mémorisation"
+              }
+            ]
           },
           {
             "lettre": "ع",
@@ -803,9 +1062,26 @@
             "translitteration": "'",
             "connexion": "des deux côtés",
             "son": "Consonne pharyngale, contraction du fond de la gorge sans souffle. Considérée comme la lettre la plus difficile pour un francophone : demande de la pratique orale.",
-            "exemple_mot": "عَيْن",
-            "exemple_translitteration": "'ayn",
-            "exemple_sens": "œil"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "عَيْن",
+                "translitteration": "'ayn",
+                "sens": "œil"
+              },
+              {
+                "position": "milieu",
+                "mot": "جَعَلَ",
+                "translitteration": "ja'ala",
+                "sens": "il a fait, mis"
+              },
+              {
+                "position": "fin",
+                "mot": "جَمِيع",
+                "translitteration": "jamī'",
+                "sens": "tous, ensemble"
+              }
+            ]
           },
           {
             "lettre": "غ",
@@ -813,9 +1089,26 @@
             "translitteration": "gh",
             "connexion": "des deux côtés",
             "son": "Comme le « r » français grasseyé (le « r » de Paris), venant du fond de la gorge.",
-            "exemple_mot": "غَزَال",
-            "exemple_translitteration": "ghazāl",
-            "exemple_sens": "gazelle"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "غَزَال",
+                "translitteration": "ghazāl",
+                "sens": "gazelle"
+              },
+              {
+                "position": "milieu",
+                "mot": "صَغِير",
+                "translitteration": "ṣaghīr",
+                "sens": "petit"
+              },
+              {
+                "position": "fin",
+                "mot": "فَرَاغ",
+                "translitteration": "farāgh",
+                "sens": "vide, temps libre"
+              }
+            ]
           },
           {
             "lettre": "ف",
@@ -823,9 +1116,26 @@
             "translitteration": "f",
             "connexion": "des deux côtés",
             "son": "Comme le « f » français de « fleur ».",
-            "exemple_mot": "فِيل",
-            "exemple_translitteration": "fīl",
-            "exemple_sens": "éléphant"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "فِيل",
+                "translitteration": "fīl",
+                "sens": "éléphant"
+              },
+              {
+                "position": "milieu",
+                "mot": "سَفِينَة",
+                "translitteration": "safīna",
+                "sens": "bateau"
+              },
+              {
+                "position": "fin",
+                "mot": "خَرِيف",
+                "translitteration": "kharīf",
+                "sens": "automne"
+              }
+            ]
           },
           {
             "lettre": "ق",
@@ -833,9 +1143,26 @@
             "translitteration": "q",
             "connexion": "des deux côtés",
             "son": "« k » prononcé très au fond de la gorge, plus profond qu'un « k » français.",
-            "exemple_mot": "قَمَر",
-            "exemple_translitteration": "qamar",
-            "exemple_sens": "lune"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "قَمَر",
+                "translitteration": "qamar",
+                "sens": "lune"
+              },
+              {
+                "position": "milieu",
+                "mot": "وَقْت",
+                "translitteration": "waqt",
+                "sens": "temps"
+              },
+              {
+                "position": "fin",
+                "mot": "طَرِيق",
+                "translitteration": "ṭarīq",
+                "sens": "chemin, route"
+              }
+            ]
           },
           {
             "lettre": "ك",
@@ -843,9 +1170,26 @@
             "translitteration": "k",
             "connexion": "des deux côtés",
             "son": "Comme le « k » français de « kilo ».",
-            "exemple_mot": "كِتَاب",
-            "exemple_translitteration": "kitāb",
-            "exemple_sens": "livre"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "كِتَاب",
+                "translitteration": "kitāb",
+                "sens": "livre"
+              },
+              {
+                "position": "milieu",
+                "mot": "مَكْتَب",
+                "translitteration": "maktab",
+                "sens": "bureau"
+              },
+              {
+                "position": "fin",
+                "mot": "سَمَك",
+                "translitteration": "samak",
+                "sens": "poisson"
+              }
+            ]
           },
           {
             "lettre": "ل",
@@ -853,9 +1197,26 @@
             "translitteration": "l",
             "connexion": "des deux côtés",
             "son": "Comme le « l » français de « lune ».",
-            "exemple_mot": "لَيْمُون",
-            "exemple_translitteration": "laymūn",
-            "exemple_sens": "citron"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "لَيْمُون",
+                "translitteration": "laymūn",
+                "sens": "citron"
+              },
+              {
+                "position": "milieu",
+                "mot": "قَلَم",
+                "translitteration": "qalam",
+                "sens": "stylo"
+              },
+              {
+                "position": "fin",
+                "mot": "جَمَل",
+                "translitteration": "jamal",
+                "sens": "chameau"
+              }
+            ]
           },
           {
             "lettre": "م",
@@ -863,9 +1224,26 @@
             "translitteration": "m",
             "connexion": "des deux côtés",
             "son": "Comme le « m » français de « maison ».",
-            "exemple_mot": "مَوْز",
-            "exemple_translitteration": "mawz",
-            "exemple_sens": "banane"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "مَوْز",
+                "translitteration": "mawz",
+                "sens": "banane"
+              },
+              {
+                "position": "milieu",
+                "mot": "قَمَر",
+                "translitteration": "qamar",
+                "sens": "lune"
+              },
+              {
+                "position": "fin",
+                "mot": "قَلَم",
+                "translitteration": "qalam",
+                "sens": "stylo"
+              }
+            ]
           },
           {
             "lettre": "ن",
@@ -873,9 +1251,26 @@
             "translitteration": "n",
             "connexion": "des deux côtés",
             "son": "Comme le « n » français de « nid ».",
-            "exemple_mot": "نَجْمَة",
-            "exemple_translitteration": "najma",
-            "exemple_sens": "étoile"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "نَجْمَة",
+                "translitteration": "najma",
+                "sens": "étoile"
+              },
+              {
+                "position": "milieu",
+                "mot": "بِنْت",
+                "translitteration": "bint",
+                "sens": "fille"
+              },
+              {
+                "position": "fin",
+                "mot": "لَوْن",
+                "translitteration": "lawn",
+                "sens": "couleur"
+              }
+            ]
           },
           {
             "lettre": "ه",
@@ -883,9 +1278,26 @@
             "translitteration": "h",
             "connexion": "des deux côtés",
             "son": "Un souffle léger, comme le « h » aspiré anglais de « house ».",
-            "exemple_mot": "هِلَال",
-            "exemple_translitteration": "hilāl",
-            "exemple_sens": "croissant de lune"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "هِلَال",
+                "translitteration": "hilāl",
+                "sens": "croissant de lune"
+              },
+              {
+                "position": "milieu",
+                "mot": "شَهْر",
+                "translitteration": "shahr",
+                "sens": "mois"
+              },
+              {
+                "position": "fin",
+                "mot": "وَجْه",
+                "translitteration": "wajh",
+                "sens": "visage"
+              }
+            ]
           },
           {
             "lettre": "و",
@@ -893,9 +1305,20 @@
             "translitteration": "w / ū",
             "connexion": "ne se connecte qu'à droite (non connectante)",
             "son": "Consonne « w » comme dans « ouest », ou voyelle longue « ou » selon la position.",
-            "exemple_mot": "وَرْدَة",
-            "exemple_translitteration": "warda",
-            "exemple_sens": "rose (fleur)"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "وَرْدَة",
+                "translitteration": "warda",
+                "sens": "rose (fleur)"
+              },
+              {
+                "position": "fin",
+                "mot": "دَلْو",
+                "translitteration": "dalw",
+                "sens": "seau"
+              }
+            ]
           },
           {
             "lettre": "ي",
@@ -903,9 +1326,26 @@
             "translitteration": "y / ī",
             "connexion": "des deux côtés",
             "son": "Consonne « y » comme dans « yaourt », ou voyelle longue « i » selon la position.",
-            "exemple_mot": "يَد",
-            "exemple_translitteration": "yad",
-            "exemple_sens": "main"
+            "occurrences": [
+              {
+                "position": "début",
+                "mot": "يَد",
+                "translitteration": "yad",
+                "sens": "main"
+              },
+              {
+                "position": "milieu",
+                "mot": "بَيْت",
+                "translitteration": "bayt",
+                "sens": "maison"
+              },
+              {
+                "position": "fin",
+                "mot": "كُرْسِي",
+                "translitteration": "kursī",
+                "sens": "chaise"
+              }
+            ]
           }
         ]
       },
@@ -921,42 +1361,50 @@
               {
                 "arabe": "السَّلَامُ عَلَيْكُمْ",
                 "translitteration": "as-salāmu 'alaykum",
-                "sens": "que la paix soit sur vous (salutation)"
+                "sens": "que la paix soit sur vous (salutation)",
+                "icone": "🤝"
               },
               {
                 "arabe": "وَعَلَيْكُمُ السَّلَامُ",
                 "translitteration": "wa 'alaykum as-salām",
-                "sens": "et sur vous la paix (réponse)"
+                "sens": "et sur vous la paix (réponse)",
+                "icone": "🤲"
               },
               {
                 "arabe": "شُكْرًا",
                 "translitteration": "shukran",
-                "sens": "merci"
+                "sens": "merci",
+                "icone": "🙏"
               },
               {
                 "arabe": "مِنْ فَضْلِكَ",
                 "translitteration": "min faḍlik",
-                "sens": "s'il te plaît"
+                "sens": "s'il te plaît",
+                "icone": "🙏"
               },
               {
                 "arabe": "نَعَمْ",
                 "translitteration": "na'am",
-                "sens": "oui"
+                "sens": "oui",
+                "icone": "✅"
               },
               {
                 "arabe": "لَا",
                 "translitteration": "lā",
-                "sens": "non"
+                "sens": "non",
+                "icone": "🚫"
               },
               {
                 "arabe": "عَفْوًا",
                 "translitteration": "'afwan",
-                "sens": "de rien / pardon"
+                "sens": "de rien / pardon",
+                "icone": "🤍"
               },
               {
                 "arabe": "مَعَ السَّلَامَة",
                 "translitteration": "ma'a as-salāma",
-                "sens": "au revoir"
+                "sens": "au revoir",
+                "icone": "👋"
               }
             ]
           },
@@ -966,42 +1414,50 @@
               {
                 "arabe": "أَب",
                 "translitteration": "ab",
-                "sens": "père"
+                "sens": "père",
+                "icone": "👨"
               },
               {
                 "arabe": "أُم",
                 "translitteration": "umm",
-                "sens": "mère"
+                "sens": "mère",
+                "icone": "👩"
               },
               {
                 "arabe": "ابْن",
                 "translitteration": "ibn",
-                "sens": "fils"
+                "sens": "fils",
+                "icone": "👦"
               },
               {
                 "arabe": "بِنْت",
                 "translitteration": "bint",
-                "sens": "fille"
+                "sens": "fille",
+                "icone": "👧"
               },
               {
                 "arabe": "أَخ",
                 "translitteration": "akh",
-                "sens": "frère"
+                "sens": "frère",
+                "icone": "🧑‍🦱"
               },
               {
                 "arabe": "أُخْت",
                 "translitteration": "ukht",
-                "sens": "sœur"
+                "sens": "sœur",
+                "icone": "👩‍🦱"
               },
               {
                 "arabe": "جَدّ",
                 "translitteration": "jadd",
-                "sens": "grand-père"
+                "sens": "grand-père",
+                "icone": "👴"
               },
               {
                 "arabe": "جَدَّة",
                 "translitteration": "jadda",
-                "sens": "grand-mère"
+                "sens": "grand-mère",
+                "icone": "👵"
               }
             ]
           },
@@ -1011,42 +1467,50 @@
               {
                 "arabe": "صَلَاة",
                 "translitteration": "ṣalāh",
-                "sens": "prière"
+                "sens": "prière",
+                "icone": "🕌"
               },
               {
                 "arabe": "وُضُوء",
                 "translitteration": "wuḍū'",
-                "sens": "ablutions"
+                "sens": "ablutions",
+                "icone": "💧"
               },
               {
                 "arabe": "مَسْجِد",
                 "translitteration": "masjid",
-                "sens": "mosquée"
+                "sens": "mosquée",
+                "icone": "🕌"
               },
               {
                 "arabe": "قُرْآن",
                 "translitteration": "qur'ān",
-                "sens": "Coran"
+                "sens": "Coran",
+                "icone": "📖"
               },
               {
                 "arabe": "صِيَام",
                 "translitteration": "ṣiyām",
-                "sens": "jeûne"
+                "sens": "jeûne",
+                "icone": "🌙"
               },
               {
                 "arabe": "زَكَاة",
                 "translitteration": "zakāh",
-                "sens": "aumône légale"
+                "sens": "aumône légale",
+                "icone": "🤲"
               },
               {
                 "arabe": "دُعَاء",
                 "translitteration": "du'ā'",
-                "sens": "invocation"
+                "sens": "invocation",
+                "icone": "🤲"
               },
               {
                 "arabe": "قِبْلَة",
                 "translitteration": "qibla",
-                "sens": "direction de la prière"
+                "sens": "direction de la prière",
+                "icone": "🧭"
               }
             ]
           },
@@ -1056,52 +1520,62 @@
               {
                 "arabe": "وَاحِد",
                 "translitteration": "wāḥid",
-                "sens": "un"
+                "sens": "un",
+                "icone": "1️⃣"
               },
               {
                 "arabe": "اِثْنَان",
                 "translitteration": "ithnān",
-                "sens": "deux"
+                "sens": "deux",
+                "icone": "2️⃣"
               },
               {
                 "arabe": "ثَلَاثَة",
                 "translitteration": "thalātha",
-                "sens": "trois"
+                "sens": "trois",
+                "icone": "3️⃣"
               },
               {
                 "arabe": "أَرْبَعَة",
                 "translitteration": "arba'a",
-                "sens": "quatre"
+                "sens": "quatre",
+                "icone": "4️⃣"
               },
               {
                 "arabe": "خَمْسَة",
                 "translitteration": "khamsa",
-                "sens": "cinq"
+                "sens": "cinq",
+                "icone": "5️⃣"
               },
               {
                 "arabe": "سِتَّة",
                 "translitteration": "sitta",
-                "sens": "six"
+                "sens": "six",
+                "icone": "6️⃣"
               },
               {
                 "arabe": "سَبْعَة",
                 "translitteration": "sab'a",
-                "sens": "sept"
+                "sens": "sept",
+                "icone": "7️⃣"
               },
               {
                 "arabe": "ثَمَانِيَة",
                 "translitteration": "thamāniya",
-                "sens": "huit"
+                "sens": "huit",
+                "icone": "8️⃣"
               },
               {
                 "arabe": "تِسْعَة",
                 "translitteration": "tis'a",
-                "sens": "neuf"
+                "sens": "neuf",
+                "icone": "9️⃣"
               },
               {
                 "arabe": "عَشَرَة",
                 "translitteration": "'ashara",
-                "sens": "dix"
+                "sens": "dix",
+                "icone": "🔟"
               }
             ]
           },
@@ -1111,32 +1585,38 @@
               {
                 "arabe": "أَحْمَر",
                 "translitteration": "aḥmar",
-                "sens": "rouge"
+                "sens": "rouge",
+                "couleur_hex": "#dc2626"
               },
               {
                 "arabe": "أَزْرَق",
                 "translitteration": "azraq",
-                "sens": "bleu"
+                "sens": "bleu",
+                "couleur_hex": "#2563eb"
               },
               {
                 "arabe": "أَخْضَر",
                 "translitteration": "akhḍar",
-                "sens": "vert"
+                "sens": "vert",
+                "couleur_hex": "#16a34a"
               },
               {
                 "arabe": "أَصْفَر",
                 "translitteration": "aṣfar",
-                "sens": "jaune"
+                "sens": "jaune",
+                "couleur_hex": "#eab308"
               },
               {
                 "arabe": "أَبْيَض",
                 "translitteration": "abyaḍ",
-                "sens": "blanc"
+                "sens": "blanc",
+                "couleur_hex": "#f9fafb"
               },
               {
                 "arabe": "أَسْوَد",
                 "translitteration": "aswad",
-                "sens": "noir"
+                "sens": "noir",
+                "couleur_hex": "#111827"
               }
             ]
           },
@@ -1146,32 +1626,38 @@
               {
                 "arabe": "بَيْت",
                 "translitteration": "bayt",
-                "sens": "maison"
+                "sens": "maison",
+                "icone": "🏠"
               },
               {
                 "arabe": "بَاب",
                 "translitteration": "bāb",
-                "sens": "porte"
+                "sens": "porte",
+                "icone": "🚪"
               },
               {
                 "arabe": "نَافِذَة",
                 "translitteration": "nāfidha",
-                "sens": "fenêtre"
+                "sens": "fenêtre",
+                "icone": "🪟"
               },
               {
                 "arabe": "طَاوِلَة",
                 "translitteration": "ṭāwila",
-                "sens": "table"
+                "sens": "table",
+                "icone": "🪑"
               },
               {
                 "arabe": "كِتَاب",
                 "translitteration": "kitāb",
-                "sens": "livre"
+                "sens": "livre",
+                "icone": "📖"
               },
               {
                 "arabe": "مَاء",
                 "translitteration": "mā'",
-                "sens": "eau"
+                "sens": "eau",
+                "icone": "💧"
               }
             ]
           }
