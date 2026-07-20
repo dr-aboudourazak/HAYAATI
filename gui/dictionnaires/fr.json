@@ -1667,8 +1667,370 @@
         "cle": "conjugaison",
         "titre": "3. التصريف - Conjugaison",
         "type": "conjugaison",
-        "disponible": false,
-        "verbes": []
+        "disponible": true,
+        "verbe_modele": {
+          "racine": "ذ - ه - ب",
+          "forme_base": "ذَهَبَ",
+          "sens": "aller, partir"
+        },
+        "source": "Université de Médine, Livre 2, Leçon 1 : الفعل الماضي (le passé) — voir Sources islamiques/Université madina/tome_2/tome_2_grammaire.pdf",
+        "temps": [
+          {
+            "cle": "passe",
+            "titre": "الماضي - Passé",
+            "conjugaisons": [
+              {
+                "pronom": "هُوَ",
+                "pronom_translitteration": "huwa",
+                "personne": "3e masc. singulier",
+                "forme": "ذَهَبَ",
+                "translitteration": "dhahaba",
+                "sens": "il est allé"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3e masc. duel",
+                "forme": "ذَهَبَا",
+                "translitteration": "dhahabā",
+                "sens": "ils deux sont allés"
+              },
+              {
+                "pronom": "هُمْ",
+                "pronom_translitteration": "hum",
+                "personne": "3e masc. pluriel",
+                "forme": "ذَهَبُوا",
+                "translitteration": "dhahabū",
+                "sens": "ils sont allés"
+              },
+              {
+                "pronom": "هِيَ",
+                "pronom_translitteration": "hiya",
+                "personne": "3e fém. singulier",
+                "forme": "ذَهَبَتْ",
+                "translitteration": "dhahabat",
+                "sens": "elle est allée"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3e fém. duel",
+                "forme": "ذَهَبَتَا",
+                "translitteration": "dhahabatā",
+                "sens": "elles deux sont allées"
+              },
+              {
+                "pronom": "هُنَّ",
+                "pronom_translitteration": "hunna",
+                "personne": "3e fém. pluriel",
+                "forme": "ذَهَبْنَ",
+                "translitteration": "dhahabna",
+                "sens": "elles sont allées"
+              },
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2e masc. singulier",
+                "forme": "ذَهَبْتَ",
+                "translitteration": "dhahabta",
+                "sens": "tu es allé"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2e duel",
+                "forme": "ذَهَبْتُمَا",
+                "translitteration": "dhahabtumā",
+                "sens": "vous deux êtes allés"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2e masc. pluriel",
+                "forme": "ذَهَبْتُمْ",
+                "translitteration": "dhahabtum",
+                "sens": "vous êtes allés"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2e fém. singulier",
+                "forme": "ذَهَبْتِ",
+                "translitteration": "dhahabti",
+                "sens": "tu es allée"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2e duel",
+                "forme": "ذَهَبْتُمَا",
+                "translitteration": "dhahabtumā",
+                "sens": "vous deux êtes allées"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2e fém. pluriel",
+                "forme": "ذَهَبْتُنَّ",
+                "translitteration": "dhahabtunna",
+                "sens": "vous êtes allées"
+              },
+              {
+                "pronom": "أَنَا",
+                "pronom_translitteration": "anā",
+                "personne": "1re singulier",
+                "forme": "ذَهَبْتُ",
+                "translitteration": "dhahabtu",
+                "sens": "je suis allé(e)"
+              },
+              {
+                "pronom": "نَحْنُ",
+                "pronom_translitteration": "naḥnu",
+                "personne": "1re pluriel",
+                "forme": "ذَهَبْنَا",
+                "translitteration": "dhahabnā",
+                "sens": "nous sommes allé(e)s"
+              }
+            ]
+          },
+          {
+            "cle": "present",
+            "titre": "المضارع - Présent",
+            "conjugaisons": [
+              {
+                "pronom": "هُوَ",
+                "pronom_translitteration": "huwa",
+                "personne": "3e masc. singulier",
+                "forme": "يَذْهَبُ",
+                "translitteration": "yadhhabu",
+                "sens": "il va"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3e masc. duel",
+                "forme": "يَذْهَبَانِ",
+                "translitteration": "yadhhabāni",
+                "sens": "ils deux vont"
+              },
+              {
+                "pronom": "هُمْ",
+                "pronom_translitteration": "hum",
+                "personne": "3e masc. pluriel",
+                "forme": "يَذْهَبُونَ",
+                "translitteration": "yadhhabūna",
+                "sens": "ils vont"
+              },
+              {
+                "pronom": "هِيَ",
+                "pronom_translitteration": "hiya",
+                "personne": "3e fém. singulier",
+                "forme": "تَذْهَبُ",
+                "translitteration": "tadhhabu",
+                "sens": "elle va"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3e fém. duel",
+                "forme": "تَذْهَبَانِ",
+                "translitteration": "tadhhabāni",
+                "sens": "elles deux vont"
+              },
+              {
+                "pronom": "هُنَّ",
+                "pronom_translitteration": "hunna",
+                "personne": "3e fém. pluriel",
+                "forme": "يَذْهَبْنَ",
+                "translitteration": "yadhhabna",
+                "sens": "elles vont"
+              },
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2e masc. singulier",
+                "forme": "تَذْهَبُ",
+                "translitteration": "tadhhabu",
+                "sens": "tu vas"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2e duel",
+                "forme": "تَذْهَبَانِ",
+                "translitteration": "tadhhabāni",
+                "sens": "vous deux allez"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2e masc. pluriel",
+                "forme": "تَذْهَبُونَ",
+                "translitteration": "tadhhabūna",
+                "sens": "vous allez"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2e fém. singulier",
+                "forme": "تَذْهَبِينَ",
+                "translitteration": "tadhhabīna",
+                "sens": "tu vas"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2e duel",
+                "forme": "تَذْهَبَانِ",
+                "translitteration": "tadhhabāni",
+                "sens": "vous deux allez"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2e fém. pluriel",
+                "forme": "تَذْهَبْنَ",
+                "translitteration": "tadhhabna",
+                "sens": "vous allez"
+              },
+              {
+                "pronom": "أَنَا",
+                "pronom_translitteration": "anā",
+                "personne": "1re singulier",
+                "forme": "أَذْهَبُ",
+                "translitteration": "adhhabu",
+                "sens": "je vais"
+              },
+              {
+                "pronom": "نَحْنُ",
+                "pronom_translitteration": "naḥnu",
+                "personne": "1re pluriel",
+                "forme": "نَذْهَبُ",
+                "translitteration": "nadhhabu",
+                "sens": "nous allons"
+              }
+            ]
+          },
+          {
+            "cle": "futur",
+            "titre": "المستقبل - Futur",
+            "note_pedagogique": "Le futur ne change pas la conjugaison : il ajoute simplement un préfixe devant le présent. سَـ (sa-) pour un futur proche ou général — la forme montrée ici. سَوْفَ (sawfa), séparé, pour un futur plus lointain ou insisté : سَوْفَ يَذْهَبُ (sawfa yadhhabu) a le même sens que سَيَذْهَبُ, avec une nuance d'éloignement ou d'insistance en plus.",
+            "conjugaisons": [
+              {
+                "pronom": "هُوَ",
+                "pronom_translitteration": "huwa",
+                "personne": "3e masc. singulier",
+                "forme": "سَيَذْهَبُ",
+                "translitteration": "sa-yadhhabu",
+                "sens": "il ira"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3e masc. duel",
+                "forme": "سَيَذْهَبَانِ",
+                "translitteration": "sa-yadhhabāni",
+                "sens": "ils deux iront"
+              },
+              {
+                "pronom": "هُمْ",
+                "pronom_translitteration": "hum",
+                "personne": "3e masc. pluriel",
+                "forme": "سَيَذْهَبُونَ",
+                "translitteration": "sa-yadhhabūna",
+                "sens": "ils iront"
+              },
+              {
+                "pronom": "هِيَ",
+                "pronom_translitteration": "hiya",
+                "personne": "3e fém. singulier",
+                "forme": "سَتَذْهَبُ",
+                "translitteration": "sa-tadhhabu",
+                "sens": "elle ira"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3e fém. duel",
+                "forme": "سَتَذْهَبَانِ",
+                "translitteration": "sa-tadhhabāni",
+                "sens": "elles deux iront"
+              },
+              {
+                "pronom": "هُنَّ",
+                "pronom_translitteration": "hunna",
+                "personne": "3e fém. pluriel",
+                "forme": "سَيَذْهَبْنَ",
+                "translitteration": "sa-yadhhabna",
+                "sens": "elles iront"
+              },
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2e masc. singulier",
+                "forme": "سَتَذْهَبُ",
+                "translitteration": "sa-tadhhabu",
+                "sens": "tu iras"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2e duel",
+                "forme": "سَتَذْهَبَانِ",
+                "translitteration": "sa-tadhhabāni",
+                "sens": "vous deux irez"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2e masc. pluriel",
+                "forme": "سَتَذْهَبُونَ",
+                "translitteration": "sa-tadhhabūna",
+                "sens": "vous irez"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2e fém. singulier",
+                "forme": "سَتَذْهَبِينَ",
+                "translitteration": "sa-tadhhabīna",
+                "sens": "tu iras"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2e duel",
+                "forme": "سَتَذْهَبَانِ",
+                "translitteration": "sa-tadhhabāni",
+                "sens": "vous deux irez"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2e fém. pluriel",
+                "forme": "سَتَذْهَبْنَ",
+                "translitteration": "sa-tadhhabna",
+                "sens": "vous irez"
+              },
+              {
+                "pronom": "أَنَا",
+                "pronom_translitteration": "anā",
+                "personne": "1re singulier",
+                "forme": "سَأَذْهَبُ",
+                "translitteration": "sa-adhhabu",
+                "sens": "j'irai"
+              },
+              {
+                "pronom": "نَحْنُ",
+                "pronom_translitteration": "naḥnu",
+                "personne": "1re pluriel",
+                "forme": "سَنَذْهَبُ",
+                "translitteration": "sa-nadhhabu",
+                "sens": "nous irons"
+              }
+            ]
+          }
+        ]
       },
       {
         "cle": "grammaire",
