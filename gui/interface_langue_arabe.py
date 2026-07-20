@@ -39,6 +39,8 @@ class EcranLangueArabe(tk.Frame):
         self.etape_active = 0
         self.cartes_retournees = set()
         self.page_alphabet = 0
+        self.page_conjugaison = 0
+        self.onglet_temps_conjugaison = 0
         self.index_liste_vocabulaire = 0
         self._derniere_largeur_connue = 0
         self._id_redimensionnement = None
@@ -150,6 +152,8 @@ class EcranLangueArabe(tk.Frame):
             self._construire_etape_alphabet(etape_courante)
         elif etape_courante.get("type") == "vocabulaire":
             self._construire_etape_vocabulaire(etape_courante)
+        elif etape_courante.get("type") == "conjugaison":
+            self._construire_etape_conjugaison(etape_courante)
         else:
             self._construire_message_attente(etape_courante)
 
@@ -205,6 +209,8 @@ class EcranLangueArabe(tk.Frame):
     def _choisir_etape(self, index):
         self.etape_active = index
         self.page_alphabet = 0
+        self.page_conjugaison = 0
+        self.onglet_temps_conjugaison = 0
         self.index_liste_vocabulaire = 0
         self.cartes_retournees.clear()
         self.construire_interface()
@@ -400,6 +406,98 @@ class EcranLangueArabe(tk.Frame):
 
     def _changer_liste_vocabulaire(self, delta):
         self.index_liste_vocabulaire += delta
+        self.cartes_retournees.clear()
+        self.construire_interface()
+
+    # --- Étape Conjugaison : sélecteur à 3 segments (Passé/Présent/Futur), chacun paginé ---
+    def _construire_etape_conjugaison(self, etape):
+        verbe = etape.get("verbe_modele", {})
+        temps_liste = etape.get("temps", [])
+        if not temps_liste:
+            self._construire_message_attente(etape)
+            return
+
+        cadre_verbe = tk.Frame(self.zone_scrollable, bg=TERRACOTTA_CLAIR)
+        cadre_verbe.pack(fill="x", padx=20, pady=(0, 10))
+        tk.Label(
+            cadre_verbe, text=f"Verbe modèle : {verbe.get('forme_base','')}  ·  racine {verbe.get('racine','')}  ·  « {verbe.get('sens','')} »",
+            font=("Helvetica", 10, "bold"), fg=TERRACOTTA_FONCE, bg=TERRACOTTA_CLAIR, wraplength=600, justify="left"
+        ).pack(anchor="w", padx=12, pady=10)
+
+        # --- Sélecteur à 3 segments : contrairement aux 5 étapes (trop long à l'horizontale),
+        # 3 libellés courts tiennent sans se tasser, même sur un écran de téléphone.
+        segments = tk.Frame(self.zone_scrollable, bg=BLANC)
+        segments.pack(fill="x", padx=20, pady=(0, 12))
+        for c in range(len(temps_liste)):
+            segments.grid_columnconfigure(c, weight=1)
+        self.onglet_temps_conjugaison = min(self.onglet_temps_conjugaison, len(temps_liste) - 1)
+        for i, temps in enumerate(temps_liste):
+            actif = (i == self.onglet_temps_conjugaison)
+            b = tk.Button(
+                segments, text=temps.get("titre", f"Temps {i+1}"), font=("Helvetica", 9, "bold" if actif else "normal"),
+                bg=TERRACOTTA if actif else SABLE, fg=BLANC if actif else GRIS_TEXTE, bd=0, pady=8, cursor="hand2",
+                command=lambda idx=i: self._choisir_temps_conjugaison(idx)
+            )
+            b.grid(row=0, column=i, sticky="ew", padx=2)
+
+        temps_actif = temps_liste[self.onglet_temps_conjugaison]
+        cle_progres = f"conjugaison_{temps_actif.get('cle', self.onglet_temps_conjugaison)}"
+        conjugaisons = temps_actif.get("conjugaisons", [])
+        progres = self._charger_progres()
+        resume = resume_etape(progres, cle_progres, len(conjugaisons))
+        self._construire_bandeau_resume(resume)
+
+        note = temps_actif.get("note_pedagogique", "")
+        if note:
+            cadre_note = tk.Frame(self.zone_scrollable, bg=OCRE_CLAIR)
+            cadre_note.pack(fill="x", padx=20, pady=(0, 10))
+            tk.Label(
+                cadre_note, text=f"💡 {note}", font=("Helvetica", 8, "italic"), fg=OCRE_FONCE, bg=OCRE_CLAIR,
+                wraplength=600, justify="left"
+            ).pack(anchor="w", padx=12, pady=8)
+
+        source = etape.get("source", "")
+        if source:
+            tk.Label(
+                self.zone_scrollable, text=f"📚 Source : {source}", font=("Helvetica", 7), fg=GRIS_TEXTE_CLAIR, bg=BLANC,
+                wraplength=600, justify="left"
+            ).pack(anchor="w", padx=20, pady=(0, 10))
+
+        nb_colonnes, wraplength = self._colonnes_et_wraplength()
+        par_page = max(nb_colonnes * LIGNES_PAR_PAGE, nb_colonnes)
+        nb_pages = max(1, (len(conjugaisons) + par_page - 1) // par_page)
+        self.page_conjugaison = min(self.page_conjugaison, nb_pages - 1)
+        debut = self.page_conjugaison * par_page
+        page_items = list(enumerate(conjugaisons))[debut:debut + par_page]
+
+        items = []
+        for i, c in page_items:
+            items.append({
+                "id": f"{cle_progres}_{i}",
+                "principal": c.get("forme", "?"), "taille_police_recto": 16,
+                "sous_titre_recto": c.get("pronom", ""),
+                "lignes_detail": [
+                    (f"{c.get('pronom','')} ({c.get('pronom_translitteration','')})", ("Helvetica", 9, "bold"), OCRE_FONCE),
+                    (c.get("personne", ""), ("Helvetica", 7, "italic"), GRIS_TEXTE_CLAIR),
+                    (f"{c.get('forme','')}", ("Helvetica", 14, "bold"), TERRACOTTA_FONCE),
+                    (c.get("translitteration", ""), ("Helvetica", 9, "italic"), GRIS_TEXTE),
+                    (f"« {c.get('sens','')} »", ("Helvetica", 9), OCRE_FONCE),
+                ],
+            })
+        self._construire_grille_cartes(items, cle_progres, progres, nb_colonnes, wraplength)
+        self._construire_barre_pagination(
+            self.page_conjugaison, nb_pages, f"Page {self.page_conjugaison + 1} / {nb_pages}",
+            lambda: self._changer_page_conjugaison(-1), lambda: self._changer_page_conjugaison(1)
+        )
+
+    def _choisir_temps_conjugaison(self, index):
+        self.onglet_temps_conjugaison = index
+        self.page_conjugaison = 0
+        self.cartes_retournees.clear()
+        self.construire_interface()
+
+    def _changer_page_conjugaison(self, delta):
+        self.page_conjugaison += delta
         self.cartes_retournees.clear()
         self.construire_interface()
 
