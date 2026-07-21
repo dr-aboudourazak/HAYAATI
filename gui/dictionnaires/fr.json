@@ -2029,6 +2029,100 @@
                 "sens": "nous irons"
               }
             ]
+          },
+          {
+            "cle": "amr",
+            "titre": "الأمر - Impératif",
+            "note_pedagogique": "L'impératif n'existe qu'à la 2e personne (« toi », « vous ») — on ne peut commander directement qu'à celui à qui l'on parle. Pour dire « allons-y » ou « qu'il aille », l'arabe utilise une autre construction (لِـ + jussif), qu'on verra plus tard. Ici, seulement 5 formes, pas 14 : la 2e personne n'a pas de distinction masc./fém. au duel.",
+            "conjugaisons": [
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2e masc. singulier",
+                "forme": "اِذْهَبْ",
+                "translitteration": "idhhab",
+                "sens": "va !"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2e duel (masc/fém)",
+                "forme": "اِذْهَبَا",
+                "translitteration": "idhhabā",
+                "sens": "allez, vous deux !"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2e masc. pluriel",
+                "forme": "اِذْهَبُوا",
+                "translitteration": "idhhabū",
+                "sens": "allez !"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2e fém. singulier",
+                "forme": "اِذْهَبِي",
+                "translitteration": "idhhabī",
+                "sens": "va ! (fém.)"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2e fém. pluriel",
+                "forme": "اِذْهَبْنَ",
+                "translitteration": "idhhabna",
+                "sens": "allez ! (fém.)"
+              }
+            ]
+          },
+          {
+            "cle": "nahy",
+            "titre": "النهي - Défense",
+            "note_pedagogique": "Le défensif (« ne fais pas ») se forme avec لَا + le verbe au mode جزم (jussif — même terminaison que le futur négatif). Structure : لَا + forme du présent avec la terminaison de l'impératif.",
+            "conjugaisons": [
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2e masc. singulier",
+                "forme": "لَا تَذْهَبْ",
+                "translitteration": "lā tadhhab",
+                "sens": "ne va pas !"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2e duel (masc/fém)",
+                "forme": "لَا تَذْهَبَا",
+                "translitteration": "lā tadhhabā",
+                "sens": "n'allez pas, vous deux !"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2e masc. pluriel",
+                "forme": "لَا تَذْهَبُوا",
+                "translitteration": "lā tadhhabū",
+                "sens": "n'allez pas !"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2e fém. singulier",
+                "forme": "لَا تَذْهَبِي",
+                "translitteration": "lā tadhhabī",
+                "sens": "ne va pas ! (fém.)"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2e fém. pluriel",
+                "forme": "لَا تَذْهَبْنَ",
+                "translitteration": "lā tadhhabna",
+                "sens": "n'allez pas ! (fém.)"
+              }
+            ]
           }
         ]
       },
@@ -2036,8 +2130,950 @@
         "cle": "grammaire",
         "titre": "4. النحو - Grammaire",
         "type": "grammaire",
-        "disponible": false,
-        "lecons": []
+        "disponible": true,
+        "source": "Al-Ajurrumiyyah (متن الآجرومية) et Université de Médine, Livres 1-2 — voir Sources islamiques/al-ajourroumiyah.pdf et Sources islamiques/Université madina/tome_1-2/*grammaire*.pdf",
+        "avertissement_source": "Ces cinq premières leçons s'appuient sur ma connaissance de l'Ajurrumiyyah, un texte classique très standardisé — les PDF déposés ont un souci d'encodage qui empêche l'extraction automatique de leur texte exact (voir remarque précédente). Si le libellé diffère de votre édition, signalez-le-moi pour que je corrige.",
+        "babs": [
+          {
+            "cle": "bases",
+            "titre": "Bab 1",
+            "sous_titre": "الأساسيات - Notions de base",
+            "lecons": [
+              {
+                "titre": "1. الكلمة وأقسامها - Les trois types de mots",
+                "explication": "Tout mot arabe appartient à l'une de ces trois catégories : اسم (nom), فِعْل (verbe) ou حَرْف (particule). Reconnaître laquelle change tout, car chacune se comporte différemment dans la phrase.\n\nLe اسم (nom) peut être précédé de l'article الـ, prendre le tanwin (ـٌ ـً ـٍ) et jouer le rôle de sujet. Le فِعْل (verbe) se conjugue dans le temps — c'est exactement ce qu'on a manipulé à l'étape précédente avec ذَهَبَ / يَذْهَبُ / سَيَذْهَبُ. Le حَرْف (particule) ne prend son sens qu'accroché à un nom ou un verbe : seul, il ne veut rien dire.",
+                "exemples": [
+                  {
+                    "arabe": "كِتَابٌ",
+                    "translitteration": "kitābun",
+                    "sens": "un livre (اسم — accepte الـ et le tanwin)"
+                  },
+                  {
+                    "arabe": "كَتَبَ",
+                    "translitteration": "kataba",
+                    "sens": "il a écrit (فِعْل — se conjugue)"
+                  },
+                  {
+                    "arabe": "فِي",
+                    "translitteration": "fī",
+                    "sens": "dans (حَرْف — n'a de sens qu'avec un mot après lui)"
+                  }
+                ]
+              },
+              {
+                "titre": "2. الجملة الاسمية - La phrase nominale",
+                "explication": "La phrase nominale se construit en deux blocs : le مُبْتَدَأ (sujet dont on parle, presque toujours défini) et le خَبَر (ce qu'on en dit, l'information nouvelle). Les deux se mettent normalement au cas مرفوع (nominatif), reconnaissable à la damma ـُ ou au tanwin ـٌ.\n\nDans « البيتُ جميلٌ » (la maison est belle) : البيتُ est le مبتدأ — défini par الـ, donc on sait déjà de quoi on parle. جميلٌ est le خبر — indéfini, marqué du tanwin, c'est l'information neuve qu'on apporte.",
+                "exemples": [
+                  {
+                    "arabe": "البَيْتُ جَمِيلٌ",
+                    "translitteration": "al-baytu jamīlun",
+                    "sens": "la maison est belle (مبتدأ + خبر)"
+                  },
+                  {
+                    "arabe": "الكِتَابُ مُفِيدٌ",
+                    "translitteration": "al-kitābu mufīdun",
+                    "sens": "le livre est utile"
+                  }
+                ]
+              },
+              {
+                "titre": "3. المذكر والمؤنث - Masculin et féminin",
+                "explication": "La plupart des noms et adjectifs féminins se reconnaissent à la ة (tā' marbūta) finale, prononcée comme un « a » léger en pause. Ajouter cette lettre à un mot masculin le féminise généralement.\n\nExceptions à connaître : certains mots sont féminins par nature, sans aucune marque écrite — ils se comportent en féminin dans l'accord alors que rien ne le signale à l'œil.",
+                "exemples": [
+                  {
+                    "arabe": "طَالِبٌ / طَالِبَةٌ",
+                    "translitteration": "ṭālibun / ṭālibatun",
+                    "sens": "un étudiant / une étudiante"
+                  },
+                  {
+                    "arabe": "أُمّ",
+                    "translitteration": "umm",
+                    "sens": "mère (féminin sans ة — exception à mémoriser)"
+                  }
+                ]
+              },
+              {
+                "titre": "4. المفرد والمثنى والجمع - Singulier, duel, pluriel",
+                "explication": "L'arabe distingue trois nombres, pas deux : المفرد (un seul), المثنى (exactement deux, avec sa propre terminaison ـَانِ), et الجمع (trois ou plus).\n\nLe pluriel se forme de deux façons : جمع سالم (« pluriel sain », régulier, on ajoute une terminaison prévisible), ou جمع تكسير (« pluriel brisé », le mot change de forme intérieurement, à apprendre au cas par cas — c'est le cas le plus fréquent pour les noms de tous les jours).",
+                "exemples": [
+                  {
+                    "arabe": "كِتَابٌ",
+                    "translitteration": "kitābun",
+                    "sens": "un livre (مفرد)"
+                  },
+                  {
+                    "arabe": "كِتَابَانِ",
+                    "translitteration": "kitābāni",
+                    "sens": "deux livres (مثنى — terminaison ـَانِ)"
+                  },
+                  {
+                    "arabe": "كُتُبٌ",
+                    "translitteration": "kutubun",
+                    "sens": "des livres (جمع تكسير — la forme change entièrement)"
+                  }
+                ]
+              },
+              {
+                "titre": "5. المعرفة والنكرة - Défini et indéfini",
+                "explication": "النكرة (indéfini) désigne une chose non précisée, généralement marquée par le tanwin : « رَجُلٌ » veut dire « un homme », n'importe lequel.\n\nLa المعرفة (défini) a plusieurs formes : le nom précédé de الـ (« الرَّجُلُ », cet homme précis), les noms propres (déjà définis par nature, même avec le tanwin), les pronoms (هو، أنتَ، أنا...) et les démonstratifs (هذا، هذه...) — tous désignent quelque chose de précis sans avoir besoin de الـ.",
+                "exemples": [
+                  {
+                    "arabe": "رَجُلٌ",
+                    "translitteration": "rajulun",
+                    "sens": "un homme (نكرة — indéfini)"
+                  },
+                  {
+                    "arabe": "الرَّجُلُ",
+                    "translitteration": "ar-rajulu",
+                    "sens": "l'homme, cet homme (معرفة — défini par الـ)"
+                  },
+                  {
+                    "arabe": "هَذَا",
+                    "translitteration": "hādhā",
+                    "sens": "celui-ci (معرفة — défini par nature)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "cle": "nom",
+            "titre": "Bab 2",
+            "sous_titre": "الاسم - Nom",
+            "sous_rubriques": [
+              {
+                "cle": "morphologique",
+                "titre": "Construction (جامد / مشتق)",
+                "lecons": [
+                  {
+                    "titre": "1. الاسم الجامد - Le nom figé",
+                    "explication": "Un الاسم الجامد est un nom « de base », qui n'est pas tiré d'un verbe : c'est un mot simple, sans lien morphologique direct avec une racine verbale. La plupart des noms concrets du quotidien en font partie.",
+                    "exemples": [
+                      {
+                        "arabe": "رَجُلٌ",
+                        "translitteration": "rajulun",
+                        "sens": "un homme (jamid — mot de base)"
+                      },
+                      {
+                        "arabe": "حَجَرٌ",
+                        "translitteration": "ḥajarun",
+                        "sens": "une pierre (jamid)"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "2. الاسم المشتق - Le nom dérivé",
+                    "explication": "Un الاسم المشتق est fabriqué à partir d'une racine verbale : il porte le sens de l'action. Les deux dérivés les plus utiles à connaître :\n\nاسم الفَاعِل (nom d'agent) : « celui qui fait... ». اسم المَفْعُول (nom de patient) : « ce qui subit... / ce qui a été fait ». Ces deux dérivés se construisent directement à partir des formes verbales de la rubrique suivante (الأوزان) — le pont entre les deux est direct.",
+                    "exemples": [
+                      {
+                        "arabe": "كَاتِبٌ",
+                        "translitteration": "kātibun",
+                        "sens": "un écrivain, celui qui écrit (اسم الفاعل, de كَتَبَ)"
+                      },
+                      {
+                        "arabe": "مَكْتُوبٌ",
+                        "translitteration": "maktūbun",
+                        "sens": "écrit, ce qui a été écrit (اسم المفعول, de كَتَبَ)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "cle": "semantique",
+                "titre": "Sens (إنسان، حيوان، نبات...)",
+                "lecons": [
+                  {
+                    "titre": "٣. إنسان، حيوان، نبات، جماد، شيء - Les cinq catégories du monde",
+                    "explication": "Cette classification est différente de جامد/مشتق vue juste avant : elle ne regarde pas la construction du mot, mais la nature de ce qu'il désigne. C'est exactement la logique du jeu traditionnel arabe « إنسان، حيوان، نبات، جماد » (parfois élargi avec بلاد, un pays) : face à une lettre donnée, on doit trouver un mot de chaque catégorie.\n\nAttention à ne pas confondre : جماد ici désigne « ce qui est inanimé » (une catégorie de sens), alors que الاسم الجامد de la leçon précédente désigne « un mot non dérivé d'un verbe » (une catégorie de construction). Même racine, deux idées différentes.",
+                    "exemples": [
+                      {
+                        "arabe": "أَحْمَد",
+                        "translitteration": "aḥmad",
+                        "sens": "Ahmed (إنسان — nom propre de personne)"
+                      },
+                      {
+                        "arabe": "طَبِيبٌ",
+                        "translitteration": "ṭabībun",
+                        "sens": "médecin (إنسان — métier)"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "٤. حَيَوَان - L'animal",
+                    "explication": "Toute créature vivante qui se déplace par elle-même : mammifères, oiseaux, insectes, poissons.",
+                    "exemples": [
+                      {
+                        "arabe": "أَسَد",
+                        "translitteration": "asad",
+                        "sens": "lion"
+                      },
+                      {
+                        "arabe": "عُصْفُور",
+                        "translitteration": "'uṣfūr",
+                        "sens": "oiseau (moineau)"
+                      },
+                      {
+                        "arabe": "نَمْلَة",
+                        "translitteration": "namla",
+                        "sens": "fourmi"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "٥. نَبَات - Le végétal",
+                    "explication": "Tout ce qui pousse de la terre : fruits, légumes, arbres, fleurs, herbes.",
+                    "exemples": [
+                      {
+                        "arabe": "تُفَّاح",
+                        "translitteration": "tuffāḥ",
+                        "sens": "pomme"
+                      },
+                      {
+                        "arabe": "شَجَرَة",
+                        "translitteration": "shajara",
+                        "sens": "arbre"
+                      },
+                      {
+                        "arabe": "وَرْدَة",
+                        "translitteration": "warda",
+                        "sens": "fleur, rose"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "٦. جَمَاد - L'inanimé",
+                    "explication": "Objets solides, fabriqués ou naturels, sans vie : ils ne bougent pas par eux-mêmes, ne grandissent pas, ne respirent pas.",
+                    "exemples": [
+                      {
+                        "arabe": "طَاوِلَة",
+                        "translitteration": "ṭāwila",
+                        "sens": "table"
+                      },
+                      {
+                        "arabe": "قَلَم",
+                        "translitteration": "qalam",
+                        "sens": "stylo"
+                      },
+                      {
+                        "arabe": "حَجَر",
+                        "translitteration": "ḥajar",
+                        "sens": "pierre"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "٧. شَيْء - La chose, l'abstrait",
+                    "explication": "Catégorie plus large : concepts, idées, sentiments, phénomènes naturels — tout ce qui ne rentre pas franchement dans les quatre catégories précédentes.",
+                    "exemples": [
+                      {
+                        "arabe": "حُبّ",
+                        "translitteration": "ḥubb",
+                        "sens": "amour"
+                      },
+                      {
+                        "arabe": "فِكْرَة",
+                        "translitteration": "fikra",
+                        "sens": "idée"
+                      },
+                      {
+                        "arabe": "مَطَر",
+                        "translitteration": "maṭar",
+                        "sens": "pluie"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "cle": "verbe",
+            "titre": "Bab 3",
+            "sous_titre": "الفعل - Verbe",
+            "lecons": [
+              {
+                "titre": "1. Forme I (المجرد) - le verbe simple — وزن فَعَلَ",
+                "explication": "La forme de base, sans lettre ajoutée. Toutes les autres formes en dérivent en ajoutant des lettres au radical.\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "كَتَبَ",
+                    "translitteration": "kataba",
+                    "sens": "il a écrit"
+                  },
+                  {
+                    "arabe": "فَعَلَ",
+                    "translitteration": "Faʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يَفْعَلُ",
+                    "translitteration": "Yafʿalu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "فَعْلاً",
+                    "translitteration": "Faʿlan",
+                    "sens": "المصدر — le nom d'action (varie beaucoup en Forme I)"
+                  },
+                  {
+                    "arabe": "فَاعِلٌ",
+                    "translitteration": "Fāʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "مَفْعُولٌ",
+                    "translitteration": "Mafʿūlun",
+                    "sens": "اسم المفعول — ce qui subit l'action"
+                  },
+                  {
+                    "arabe": "اِفْعَلْ",
+                    "translitteration": "Ifʿal",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "2. Forme II — وزن فَعَّلَ",
+                "explication": "Redoublement de la 2e radicale. Souvent causatif ou intensif : عَلِمَ (savoir) → عَلَّمَ (faire savoir, enseigner).\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "عَلَّمَ",
+                    "translitteration": "'allama",
+                    "sens": "il a enseigné"
+                  },
+                  {
+                    "arabe": "فَعَّلَ",
+                    "translitteration": "Faʿʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يُفَعِّلُ",
+                    "translitteration": "Yufaʿʿilu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "تَفْعِيلاً",
+                    "translitteration": "Tafʿīlan",
+                    "sens": "المصدر — le nom d'action"
+                  },
+                  {
+                    "arabe": "مُفَعِّلٌ",
+                    "translitteration": "Mufaʿʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "مُفَعَّلٌ",
+                    "translitteration": "Mufaʿʿalun",
+                    "sens": "اسم المفعول — ce qui subit l'action"
+                  },
+                  {
+                    "arabe": "فَعِّلْ",
+                    "translitteration": "Faʿʿil",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "3. Forme III — وزن فَاعَلَ",
+                "explication": "Alif après la 1re radicale. Souvent une action dirigée vers quelqu'un, ou un effort partagé.\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "كَاتَبَ",
+                    "translitteration": "kātaba",
+                    "sens": "il a correspondu (par écrit) avec quelqu'un"
+                  },
+                  {
+                    "arabe": "فَاعَلَ",
+                    "translitteration": "Fāʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يُفَاعِلُ",
+                    "translitteration": "Yufāʿilu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "مُفَاعَلَةً / فِعَالاً",
+                    "translitteration": "Mufāʿalatan / Fiʿālan",
+                    "sens": "المصدر — le nom d'action (deux formes possibles)"
+                  },
+                  {
+                    "arabe": "مُفَاعِلٌ",
+                    "translitteration": "Mufāʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "مُفَاعَلٌ",
+                    "translitteration": "Mufāʿalun",
+                    "sens": "اسم المفعول — ce qui subit l'action"
+                  },
+                  {
+                    "arabe": "فَاعِلْ",
+                    "translitteration": "Fāʿil",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "4. Forme IV — وزن أَفْعَلَ",
+                "explication": "Hamza en préfixe. Souvent causatif : كَرُمَ (être noble) → أَكْرَمَ (rendre honneur, honorer).\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "أَكْرَمَ",
+                    "translitteration": "akrama",
+                    "sens": "il a honoré"
+                  },
+                  {
+                    "arabe": "أَفْعَلَ",
+                    "translitteration": "Afʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يُفْعِلُ",
+                    "translitteration": "Yufʿilu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "إِفْعَالاً",
+                    "translitteration": "Ifʿālan",
+                    "sens": "المصدر — le nom d'action"
+                  },
+                  {
+                    "arabe": "مُفْعِلٌ",
+                    "translitteration": "Mufʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "مُفْعَلٌ",
+                    "translitteration": "Mufʿalun",
+                    "sens": "اسم المفعول — ce qui subit l'action"
+                  },
+                  {
+                    "arabe": "أَفْعِلْ",
+                    "translitteration": "Afʿil",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "5. Forme V — وزن تَفَعَّلَ",
+                "explication": "Préfixe تَـ + redoublement. Réfléchi de la Forme II : عَلَّمَ (enseigner) → تَعَلَّمَ (apprendre par soi-même).\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "تَعَلَّمَ",
+                    "translitteration": "ta'allama",
+                    "sens": "il a appris"
+                  },
+                  {
+                    "arabe": "تَفَعَّلَ",
+                    "translitteration": "Tafaʿʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يَتَفَعَّلُ",
+                    "translitteration": "Yatafaʿʿalu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "تَفَعُّلاً",
+                    "translitteration": "Tafaʿʿulan",
+                    "sens": "المصدر — le nom d'action"
+                  },
+                  {
+                    "arabe": "مُتَفَعِّلٌ",
+                    "translitteration": "Mutafaʿʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "مُتَفَعَّلٌ",
+                    "translitteration": "Mutafaʿʿalun",
+                    "sens": "اسم المفعول — ce qui subit l'action"
+                  },
+                  {
+                    "arabe": "تَفَعَّلْ",
+                    "translitteration": "Tafaʿʿal",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "6. Forme VI — وزن تَفَاعَلَ",
+                "explication": "Préfixe تَـ + alif. Réciproque de la Forme III : une action mutuelle, partagée entre plusieurs personnes.\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "تَكَاتَبَ",
+                    "translitteration": "takātaba",
+                    "sens": "ils se sont écrit mutuellement"
+                  },
+                  {
+                    "arabe": "تَفَاعَلَ",
+                    "translitteration": "Tafāʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يَتَفَاعَلُ",
+                    "translitteration": "Yatafāʿalu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "تَفَاعُلاً",
+                    "translitteration": "Tafāʿulan",
+                    "sens": "المصدر — le nom d'action"
+                  },
+                  {
+                    "arabe": "مُتَفَاعِلٌ",
+                    "translitteration": "Mutafāʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "مُتَفَاعَلٌ",
+                    "translitteration": "Mutafāʿalun",
+                    "sens": "اسم المفعول — ce qui subit l'action"
+                  },
+                  {
+                    "arabe": "تَفَاعَلْ",
+                    "translitteration": "Tafāʿal",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "7. Forme VII — وزن اِنْفَعَلَ",
+                "explication": "نْ infixé. Passif ou réfléchi autonome : كَسَرَ (casser) → اِنْكَسَرَ (se casser, se retrouver cassé).\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "اِنْكَسَرَ",
+                    "translitteration": "inkasara",
+                    "sens": "il s'est cassé"
+                  },
+                  {
+                    "arabe": "اِنْفَعَلَ",
+                    "translitteration": "Infaʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يَنْفَعِلُ",
+                    "translitteration": "Yanfaʿilu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "اِنْفِعَالاً",
+                    "translitteration": "Infiʿālan",
+                    "sens": "المصدر — le nom d'action"
+                  },
+                  {
+                    "arabe": "مُنْفَعِلٌ",
+                    "translitteration": "Munfaʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "غير مستعمل",
+                    "translitteration": "—",
+                    "sens": "اسم المفعول — inexistant : cette forme est toujours intransitive"
+                  },
+                  {
+                    "arabe": "اِنْفَعِلْ",
+                    "translitteration": "Infaʿil",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "8. Forme VIII — وزن اِفْتَعَلَ",
+                "explication": "تْ infixé après la 1re radicale. Réfléchi ou pour soi-même : جَمَعَ (rassembler) → اِجْتَمَعَ (se rassembler).\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "اِجْتَمَعَ",
+                    "translitteration": "ijtama'a",
+                    "sens": "il s'est réuni, rassemblé"
+                  },
+                  {
+                    "arabe": "اِفْتَعَلَ",
+                    "translitteration": "Iftaʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يَفْتَعِلُ",
+                    "translitteration": "Yaftaʿilu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "اِفْتِعَالاً",
+                    "translitteration": "Iftiʿālan",
+                    "sens": "المصدر — le nom d'action"
+                  },
+                  {
+                    "arabe": "مُفْتَعِلٌ",
+                    "translitteration": "Muftaʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "مُفْتَعَلٌ",
+                    "translitteration": "Muftaʿalun",
+                    "sens": "اسم المفعول — ce qui subit l'action"
+                  },
+                  {
+                    "arabe": "اِفْتَعِلْ",
+                    "translitteration": "Iftaʿil",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "9. Forme IX — وزن اِفْعَلَّ",
+                "explication": "Redoublement de la dernière radicale. Réservée presque exclusivement aux couleurs et aux défauts physiques.\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "اِحْمَرَّ",
+                    "translitteration": "iḥmarra",
+                    "sens": "il est devenu rouge, il a rougi"
+                  },
+                  {
+                    "arabe": "اِفْعَلَّ",
+                    "translitteration": "Ifʿalla",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يَفْعَلُّ",
+                    "translitteration": "Yafʿallu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "اِفْعِلَالاً",
+                    "translitteration": "Ifʿilālan",
+                    "sens": "المصدر — le nom d'action"
+                  },
+                  {
+                    "arabe": "مُفْعَلٌّ",
+                    "translitteration": "Mufʿallun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "غير مستعمل",
+                    "translitteration": "—",
+                    "sens": "اسم المفعول — inexistant : forme purement intransitive"
+                  },
+                  {
+                    "arabe": "اِفْعَلَّ / اِفْعَلِلْ",
+                    "translitteration": "Ifʿalla / Ifʿalil",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              },
+              {
+                "titre": "10. Forme X — وزن اِسْتَفْعَلَ",
+                "explication": "Préfixe اِسْتَـ. Souvent « chercher, demander, considérer comme » : غَفَرَ (pardonner) → اِسْتَغْفَرَ (rechercher/demander le pardon).\n\nصِيغَة صَغِيرَة (Sīghah Saghīrah) — le tableau résumé des formes clés de ce verbe, sur la racine ف-ع-ل :",
+                "exemples": [
+                  {
+                    "arabe": "اِسْتَغْفَرَ",
+                    "translitteration": "istaghfara",
+                    "sens": "il a demandé pardon"
+                  },
+                  {
+                    "arabe": "اِسْتَفْعَلَ",
+                    "translitteration": "Istafʿala",
+                    "sens": "الماضي — le passé"
+                  },
+                  {
+                    "arabe": "يَسْتَفْعِلُ",
+                    "translitteration": "Yastafʿilu",
+                    "sens": "المضارع — le présent"
+                  },
+                  {
+                    "arabe": "اِسْتِفْعَالاً",
+                    "translitteration": "Istifʿālan",
+                    "sens": "المصدر — le nom d'action"
+                  },
+                  {
+                    "arabe": "مُسْتَفْعِلٌ",
+                    "translitteration": "Mustafʿilun",
+                    "sens": "اسم الفاعل — celui qui fait l'action"
+                  },
+                  {
+                    "arabe": "مُسْتَفْعَلٌ",
+                    "translitteration": "Mustafʿalun",
+                    "sens": "اسم المفعول — ce qui subit l'action"
+                  },
+                  {
+                    "arabe": "اِسْتَفْعِلْ",
+                    "translitteration": "Istafʿil",
+                    "sens": "الأمر — ordre direct"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "cle": "particule",
+            "titre": "Bab 4",
+            "sous_titre": "الحرف - Particule",
+            "lecons": [
+              {
+                "titre": "1. حروف الجر - Les prépositions",
+                "explication": "Ces particules se collent toujours à un nom, qui se met alors au cas مجرور (génitif, marqué par la kasra ـِ). Trois d'entre elles (بِـ، لِـ، كَـ) s'écrivent attachées directement au mot suivant, sans espace.",
+                "exemples": [
+                  {
+                    "arabe": "مِنْ",
+                    "translitteration": "min",
+                    "sens": "de, depuis"
+                  },
+                  {
+                    "arabe": "إِلَى",
+                    "translitteration": "ilā",
+                    "sens": "vers, à"
+                  },
+                  {
+                    "arabe": "عَلَى",
+                    "translitteration": "'alā",
+                    "sens": "sur"
+                  },
+                  {
+                    "arabe": "فِي",
+                    "translitteration": "fī",
+                    "sens": "dans"
+                  },
+                  {
+                    "arabe": "بِـ",
+                    "translitteration": "bi-",
+                    "sens": "avec, par (attachée)"
+                  },
+                  {
+                    "arabe": "لِـ",
+                    "translitteration": "li-",
+                    "sens": "pour, à (attachée)"
+                  }
+                ]
+              },
+              {
+                "titre": "2. حروف العطف - Les conjonctions de coordination",
+                "explication": "Elles relient deux mots ou deux phrases de même statut. وَ et فَ s'écrivent elles aussi collées au mot qui suit.",
+                "exemples": [
+                  {
+                    "arabe": "وَ",
+                    "translitteration": "wa",
+                    "sens": "et"
+                  },
+                  {
+                    "arabe": "فَ",
+                    "translitteration": "fa",
+                    "sens": "puis, donc (immédiat)"
+                  },
+                  {
+                    "arabe": "ثُمَّ",
+                    "translitteration": "thumma",
+                    "sens": "puis (avec un délai)"
+                  },
+                  {
+                    "arabe": "أَوْ",
+                    "translitteration": "aw",
+                    "sens": "ou"
+                  }
+                ]
+              },
+              {
+                "titre": "3. حروف النفي - Les particules de négation",
+                "explication": "L'arabe choisit sa négation selon le temps visé : ce n'est pas une seule particule pour tout, contrairement au français « ne...pas ».",
+                "exemples": [
+                  {
+                    "arabe": "لَا",
+                    "translitteration": "lā",
+                    "sens": "ne...pas (présent, général)"
+                  },
+                  {
+                    "arabe": "لَمْ",
+                    "translitteration": "lam",
+                    "sens": "ne...pas (passé — suivi du jussif)"
+                  },
+                  {
+                    "arabe": "لَنْ",
+                    "translitteration": "lan",
+                    "sens": "ne...jamais (futur — suivi du subjonctif)"
+                  },
+                  {
+                    "arabe": "مَا",
+                    "translitteration": "mā",
+                    "sens": "ne...pas (passé, usage courant)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "cle": "phrase",
+            "titre": "Bab 5",
+            "sous_titre": "الجملة - Phrase",
+            "sous_rubriques": [
+              {
+                "cle": "types",
+                "titre": "Types de phrases",
+                "lecons": [
+                  {
+                    "titre": "1. الجملة الاسمية والفعلية - Les deux types de phrases",
+                    "explication": "L'arabe distingue deux grandes phrases, selon ce qui vient en premier.\n\nLa الجملة الاسمية (phrase nominale) commence par un nom : c'est celle qu'on a vue avec مبتدأ/خبر.\n\nLa الجملة الفعلية (phrase verbale) commence par un verbe conjugué, suivi de son sujet. C'est l'ordre normal en arabe : verbe d'abord, sujet ensuite — l'inverse du français.",
+                    "exemples": [
+                      {
+                        "arabe": "البَيْتُ جَمِيلٌ",
+                        "translitteration": "al-baytu jamīlun",
+                        "sens": "la maison est belle (جملة اسمية — commence par un nom)"
+                      },
+                      {
+                        "arabe": "ذَهَبَ الوَلَدُ",
+                        "translitteration": "dhahaba al-waladu",
+                        "sens": "le garçon est parti, litt. « est-parti le-garçon » (جملة فعلية — commence par le verbe)"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "2. الجملة الاستفهامية - La phrase interrogative",
+                    "explication": "Pour poser une question fermée (oui/non), l'arabe ajoute simplement هَلْ ou أَ devant la phrase — la structure interne ne change pas.\n\nهَلْ s'utilise dans la plupart des cas neutres. أَ (une simple hamza collée au mot suivant) est plus littéraire et sert aussi pour offrir un choix (أَ ... أَمْ ... = est-ce... ou...).",
+                    "exemples": [
+                      {
+                        "arabe": "هَلْ أَنْتَ طَالِبٌ؟",
+                        "translitteration": "hal anta ṭālibun?",
+                        "sens": "es-tu étudiant ?"
+                      },
+                      {
+                        "arabe": "أَأَنْتَ مِنَ الهِنْدِ أَمْ مِنْ بَاكِسْتَانَ؟",
+                        "translitteration": "a-anta mina al-hindi am min bākistān?",
+                        "sens": "es-tu de l'Inde ou du Pakistan ?"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "cle": "parties",
+                "titre": "Parties de la phrase",
+                "lecons": [
+                  {
+                    "titre": "1. الفعل والفاعل - Le verbe et son agent",
+                    "explication": "Dans une phrase verbale, le فِعْل (verbe) vient en premier, suivi du فَاعِل — celui qui accomplit l'action. Le فاعل est toujours au cas مرفوع (nominatif, marqué par la damma ـُ).\n\nAttention : فاعل ne veut pas dire « acteur » au sens large, mais précisément « celui qui fait l'action du verbe qui précède » — un rôle grammatical, pas un métier.",
+                    "exemples": [
+                      {
+                        "arabe": "كَتَبَ الطَّالِبُ",
+                        "translitteration": "kataba aṭ-ṭālibu",
+                        "sens": "l'étudiant a écrit — الطالبُ est فاعل, مرفوع"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "2. المفعول به - Le complément d'objet direct",
+                    "explication": "Ce sur quoi tombe l'action du verbe s'appelle le مَفْعُول بِه. Il se met au cas مَنْصُوب (accusatif), marqué par la fatha ـَ (ou le tanwin فتح ـً s'il est indéfini).\n\nUne phrase verbale complète suit donc l'ordre : فعل (verbe) + فاعل (agent, مرفوع) + مفعول به (objet, منصوب).",
+                    "exemples": [
+                      {
+                        "arabe": "كَتَبَ الطَّالِبُ الدَّرْسَ",
+                        "translitteration": "kataba aṭ-ṭālibu ad-darsa",
+                        "sens": "l'étudiant a écrit la leçon — الدرسَ est مفعول به, منصوب"
+                      },
+                      {
+                        "arabe": "قَرَأَتْ فَاطِمَةُ كِتَابًا",
+                        "translitteration": "qara'at fāṭimatu kitāban",
+                        "sens": "Fatima a lu un livre — كتابًا est مفعول به indéfini, tanwin fatḥ"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "cle": "actif_passif",
+                "titre": "Actif / Passif",
+                "lecons": [
+                  {
+                    "titre": "1. المبني للمعلوم والمجهول - Actif et passif",
+                    "explication": "Le passif ne s'obtient pas en ajoutant un mot, mais en changeant les voyelles internes du verbe : la 1re voyelle devient une damma, l'avant-dernière une kasra. Le فاعل disparaît de la phrase — on ne dit plus qui a fait l'action.",
+                    "exemples": [
+                      {
+                        "arabe": "كَتَبَ",
+                        "translitteration": "kataba",
+                        "sens": "il a écrit (actif — المعلوم)"
+                      },
+                      {
+                        "arabe": "كُتِبَ",
+                        "translitteration": "kutiba",
+                        "sens": "il a été écrit (passif — المجهول)"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "2. نَائِب الفاعل - Le substitut du sujet",
+                    "explication": "Au passif, le مفعول به (complément d'objet de la phrase active) devient نَائِب الفاعل — littéralement « celui qui remplace le sujet ». Il prend alors la place du فاعل et passe au مرفوع (nominatif), alors qu'il était منصوب à l'actif.",
+                    "exemples": [
+                      {
+                        "arabe": "كَتَبَ الطَّالِبُ الدَّرْسَ",
+                        "translitteration": "kataba aṭ-ṭālibu ad-darsa",
+                        "sens": "l'étudiant a écrit la leçon (actif)"
+                      },
+                      {
+                        "arabe": "كُتِبَ الدَّرْسُ",
+                        "translitteration": "kutiba ad-darsu",
+                        "sens": "la leçon a été écrite — الدرسُ est نائب الفاعل, مرفوع"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "cle": "possessif",
+                "titre": "Possessif (الإضافة)",
+                "lecons": [
+                  {
+                    "titre": "1. الإضافة - L'annexion (possession par juxtaposition)",
+                    "explication": "L'arabe n'a pas de mot pour « de » : pour dire « le livre de l'étudiant », on juxtapose simplement les deux noms. Le premier (مُضَاف) perd son الـ et son tanwin ; le second (مُضَاف إِلَيْه) se met au مجرور (kasra).",
+                    "exemples": [
+                      {
+                        "arabe": "كِتَابُ الطَّالِبِ",
+                        "translitteration": "kitābu aṭ-ṭālibi",
+                        "sens": "le livre de l'étudiant (litt. « livre-de l'étudiant »)"
+                      },
+                      {
+                        "arabe": "بَيْتُ المُدَرِّسِ",
+                        "translitteration": "baytu al-mudarrisi",
+                        "sens": "la maison du professeur"
+                      }
+                    ]
+                  },
+                  {
+                    "titre": "2. ضمائر الملكية المتصلة - Les suffixes possessifs",
+                    "explication": "Pour dire « mon », « ton », « son »..., l'arabe accroche un suffixe directement à la fin du nom, plutôt que d'utiliser un mot séparé.",
+                    "exemples": [
+                      {
+                        "arabe": "كِتَابِي",
+                        "translitteration": "kitābī",
+                        "sens": "mon livre"
+                      },
+                      {
+                        "arabe": "كِتَابُكَ",
+                        "translitteration": "kitābuka",
+                        "sens": "ton livre (à un homme)"
+                      },
+                      {
+                        "arabe": "كِتَابُكِ",
+                        "translitteration": "kitābuki",
+                        "sens": "ton livre (à une femme)"
+                      },
+                      {
+                        "arabe": "كِتَابُهُ",
+                        "translitteration": "kitābuhu",
+                        "sens": "son livre (à lui)"
+                      },
+                      {
+                        "arabe": "كِتَابُهَا",
+                        "translitteration": "kitābuhā",
+                        "sens": "son livre (à elle)"
+                      },
+                      {
+                        "arabe": "كِتَابُنَا",
+                        "translitteration": "kitābunā",
+                        "sens": "notre livre"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "cle": "lecture",
