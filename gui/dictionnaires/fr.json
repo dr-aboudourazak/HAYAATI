@@ -2033,7 +2033,7 @@
           {
             "cle": "amr",
             "titre": "الأمر - Impératif",
-            "note_pedagogique": "L'impératif n'existe qu'à la 2e personne (« toi », « vous ») — on ne peut commander directement qu'à celui à qui l'on parle. Pour dire « allons-y » ou « qu'il aille », l'arabe utilise une autre construction (لِـ + jussif), qu'on verra plus tard. Ici, seulement 5 formes, pas 14 : la 2e personne n'a pas de distinction masc./fém. au duel.",
+            "note_pedagogique": "L'impératif n'existe qu'à la 2e personne (« toi », « vous ») — on ne peut commander directement qu'à celui à qui l'on parle. Pour dire « allons-y » ou « qu'il aille », l'arabe utilise une autre construction (لِـ + jussif), qu'on verra plus tard. Ici, seulement 5 formes, pas 14 : la 2e personne n'a pas de distinction masc./fém. au duel. Autre point essentiel : selon le verbe, la hamza de l'impératif ne se prononce pas toujours pareil — voir les 3 règles ci-dessous avant les cartes.",
             "conjugaisons": [
               {
                 "pronom": "أَنْتَ",
@@ -2075,12 +2075,62 @@
                 "translitteration": "idhhabna",
                 "sens": "allez ! (fém.)"
               }
+            ],
+            "regles_type_verbe": [
+              {
+                "type": "Timbre ُ (damma)",
+                "regle": "Quand la voyelle de l'avant-dernière lettre du présent est une damma (ُ), la hamza de l'impératif prend aussi une damma.",
+                "madi": "كَتَبَ",
+                "mudari": "يَكْتُبُ",
+                "mudari_translitteration": "yaktubu",
+                "amr": "اُكْتُبْ",
+                "amr_translitteration": "uktub",
+                "sens": "écris ! (de كَتَبَ, écrire)"
+              },
+              {
+                "type": "Timbre ِ (kasra)",
+                "regle": "Quand cette voyelle est une fatha ou une kasra, la hamza de l'impératif prend une kasra — c'est le cas de notre verbe modèle ذهب.",
+                "madi": "ذَهَبَ",
+                "mudari": "يَذْهَبُ",
+                "mudari_translitteration": "yadhhabu",
+                "amr": "اِذْهَبْ",
+                "amr_translitteration": "idhhab",
+                "sens": "va ! (de ذَهَبَ, aller)"
+              },
+              {
+                "type": "Aucune hamza",
+                "regle": "Pour les verbes concaves (dont la 2e radicale est و ou ي, comme نَامَ), cette lettre disparaît au mode جزم : ce qui reste après avoir retiré le préfixe se prononce déjà seul, sans aucune voyelle d'appui.",
+                "madi": "نَامَ",
+                "mudari": "يَنَامُ",
+                "mudari_translitteration": "yanāmu",
+                "amr": "نَمْ",
+                "amr_translitteration": "nam",
+                "sens": "dors ! (de نَامَ, dormir)"
+              }
+            ],
+            "note_temporelle": "L'impératif et le défensif n'ont ni passé ni futur propres : par nature, un ordre désigne toujours une action qui n'a pas encore eu lieu — le futur est déjà contenu dans le sens même de ces deux modes. Pour rapporter un ordre au passé ou au futur (discours indirect), l'arabe change de construction : un verbe ordinaire (أَمَرَ / نَهَى) suivi de أَنْ + un verbe au مَنْصُوب (subjonctif).",
+            "exemples_temporels": [
+              {
+                "arabe": "أَمَرَهُ أَنْ يَذْهَبَ",
+                "translitteration": "amarahu an yadhhaba",
+                "sens": "il lui a ordonné d'aller (ordre rapporté au passé)"
+              },
+              {
+                "arabe": "سَيَأْمُرُهُ أَنْ يَذْهَبَ",
+                "translitteration": "sa-ya'muruhu an yadhhaba",
+                "sens": "il lui ordonnera d'aller (ordre rapporté au futur)"
+              },
+              {
+                "arabe": "نَهَاهُ عَنِ الذَّهَابِ",
+                "translitteration": "nahāhu 'ani adh-dhahābi",
+                "sens": "il lui a interdit d'aller (défense rapportée au passé)"
+              }
             ]
           },
           {
             "cle": "nahy",
             "titre": "النهي - Défense",
-            "note_pedagogique": "Le défensif (« ne fais pas ») se forme avec لَا + le verbe au mode جزم (jussif — même terminaison que le futur négatif). Structure : لَا + forme du présent avec la terminaison de l'impératif.",
+            "note_pedagogique": "Le défensif (« ne fais pas ») se forme avec لَا + le verbe au mode جزم (jussif — même terminaison que le futur négatif). Structure : لَا + forme du présent avec la terminaison de l'impératif. Contrairement à l'Amr, le Nahy ne pose aucun problème de timbre de hamza : le préfixe تَـ du présent reste toujours en place, لا vient juste se placer devant.",
             "conjugaisons": [
               {
                 "pronom": "أَنْتَ",
@@ -2121,6 +2171,24 @@
                 "forme": "لَا تَذْهَبْنَ",
                 "translitteration": "lā tadhhabna",
                 "sens": "n'allez pas ! (fém.)"
+              }
+            ],
+            "note_temporelle": "L'impératif et le défensif n'ont ni passé ni futur propres : par nature, un ordre désigne toujours une action qui n'a pas encore eu lieu — le futur est déjà contenu dans le sens même de ces deux modes. Pour rapporter un ordre au passé ou au futur (discours indirect), l'arabe change de construction : un verbe ordinaire (أَمَرَ / نَهَى) suivi de أَنْ + un verbe au مَنْصُوب (subjonctif).",
+            "exemples_temporels": [
+              {
+                "arabe": "أَمَرَهُ أَنْ يَذْهَبَ",
+                "translitteration": "amarahu an yadhhaba",
+                "sens": "il lui a ordonné d'aller (ordre rapporté au passé)"
+              },
+              {
+                "arabe": "سَيَأْمُرُهُ أَنْ يَذْهَبَ",
+                "translitteration": "sa-ya'muruhu an yadhhaba",
+                "sens": "il lui ordonnera d'aller (ordre rapporté au futur)"
+              },
+              {
+                "arabe": "نَهَاهُ عَنِ الذَّهَابِ",
+                "translitteration": "nahāhu 'ani adh-dhahābi",
+                "sens": "il lui a interdit d'aller (défense rapportée au passé)"
               }
             ]
           }
@@ -2284,23 +2352,38 @@
                 "titre": "Sens (إنسان، حيوان، نبات...)",
                 "lecons": [
                   {
-                    "titre": "٣. إنسان، حيوان، نبات، جماد، شيء - Les cinq catégories du monde",
-                    "explication": "Cette classification est différente de جامد/مشتق vue juste avant : elle ne regarde pas la construction du mot, mais la nature de ce qu'il désigne. C'est exactement la logique du jeu traditionnel arabe « إنسان، حيوان، نبات، جماد » (parfois élargi avec بلاد, un pays) : face à une lettre donnée, on doit trouver un mot de chaque catégorie.\n\nAttention à ne pas confondre : جماد ici désigne « ce qui est inanimé » (une catégorie de sens), alors que الاسم الجامد de la leçon précédente désigne « un mot non dérivé d'un verbe » (une catégorie de construction). Même racine, deux idées différentes.",
+                    "titre": "٣. مقدمة - Une classification par le sens, pas par la forme",
+                    "explication": "Cette classification est différente de جامد/مشتق vue juste avant : elle ne regarde pas la construction du mot, mais la nature de ce qu'il désigne. C'est exactement la logique du jeu traditionnel arabe « إنسان، حيوان، نبات، جماد » (parfois élargi avec بلاد, un pays) : face à une lettre donnée, on doit trouver un mot de chaque catégorie.\n\nAttention à ne pas confondre : جماد ici désignera « ce qui est inanimé » (une catégorie de sens, à venir), alors que الاسم الجامد de la leçon précédente désigne « un mot non dérivé d'un verbe » (une catégorie de construction). Même racine, deux idées différentes — gardez les deux sens bien séparés.",
+                    "exemples": []
+                  },
+                  {
+                    "titre": "٤. إِنْسَان (Insān) - L'être humain",
+                    "explication": "Cette catégorie regroupe tout ce qui désigne une personne : noms propres, métiers, rôles familiaux, types de personnes.",
                     "exemples": [
                       {
                         "arabe": "أَحْمَد",
                         "translitteration": "aḥmad",
-                        "sens": "Ahmed (إنسان — nom propre de personne)"
+                        "sens": "Ahmed (nom propre de personne)"
                       },
                       {
                         "arabe": "طَبِيبٌ",
                         "translitteration": "ṭabībun",
-                        "sens": "médecin (إنسان — métier)"
+                        "sens": "médecin (métier)"
+                      },
+                      {
+                        "arabe": "أُمّ",
+                        "translitteration": "umm",
+                        "sens": "mère (rôle familial)"
+                      },
+                      {
+                        "arabe": "رَجُلٌ",
+                        "translitteration": "rajulun",
+                        "sens": "homme (type de personne)"
                       }
                     ]
                   },
                   {
-                    "titre": "٤. حَيَوَان - L'animal",
+                    "titre": "٥. حَيَوَان - L'animal",
                     "explication": "Toute créature vivante qui se déplace par elle-même : mammifères, oiseaux, insectes, poissons.",
                     "exemples": [
                       {
@@ -2321,7 +2404,7 @@
                     ]
                   },
                   {
-                    "titre": "٥. نَبَات - Le végétal",
+                    "titre": "٦. نَبَات - Le végétal",
                     "explication": "Tout ce qui pousse de la terre : fruits, légumes, arbres, fleurs, herbes.",
                     "exemples": [
                       {
@@ -2342,7 +2425,7 @@
                     ]
                   },
                   {
-                    "titre": "٦. جَمَاد - L'inanimé",
+                    "titre": "٧. جَمَاد - L'inanimé",
                     "explication": "Objets solides, fabriqués ou naturels, sans vie : ils ne bougent pas par eux-mêmes, ne grandissent pas, ne respirent pas.",
                     "exemples": [
                       {
@@ -2363,7 +2446,7 @@
                     ]
                   },
                   {
-                    "titre": "٧. شَيْء - La chose, l'abstrait",
+                    "titre": "٨. شَيْء - La chose, l'abstrait",
                     "explication": "Catégorie plus large : concepts, idées, sentiments, phénomènes naturels — tout ce qui ne rentre pas franchement dans les quatre catégories précédentes.",
                     "exemples": [
                       {
@@ -3079,8 +3162,208 @@
         "cle": "lecture",
         "titre": "5. القراءة - Lecture de textes",
         "type": "lecture",
-        "disponible": false,
-        "textes": []
+        "disponible": true,
+        "textes": [
+          {
+            "titre": "١. تَعَارُف - Se présenter",
+            "niveau": "Débutant",
+            "type": "recit",
+            "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "السَّلَامُ عَلَيْكُمْ! اِسْمِي أَحْمَد.",
+                "traduction": "Que la paix soit sur vous ! Je m'appelle Ahmed."
+              },
+              {
+                "locuteur": "",
+                "arabe": "أَنَا مِنَ الهِنْدِ، وَأَسْكُنُ فِي مَدِينَةٍ كَبِيرَةٍ.",
+                "traduction": "Je suis de l'Inde, et j'habite dans une grande ville."
+              },
+              {
+                "locuteur": "",
+                "arabe": "عِنْدِي أَبٌ وَأُمٌّ وَأُخْتَانِ.",
+                "traduction": "J'ai un père, une mère et deux sœurs."
+              },
+              {
+                "locuteur": "",
+                "arabe": "أَبِي طَبِيبٌ، وَأُمِّي مُدَرِّسَةٌ.",
+                "traduction": "Mon père est médecin, et ma mère est enseignante."
+              },
+              {
+                "locuteur": "",
+                "arabe": "عِنْدَنَا بَيْتٌ جَمِيلٌ فِيهِ حَدِيقَةٌ خَضْرَاءُ.",
+                "traduction": "Nous avons une belle maison avec un jardin vert."
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "أَسْكُنُ",
+                "translitteration": "askunu",
+                "sens": "j'habite"
+              },
+              {
+                "arabe": "مَدِينَة",
+                "translitteration": "madīna",
+                "sens": "ville"
+              },
+              {
+                "arabe": "مُدَرِّسَة",
+                "translitteration": "mudarrisa",
+                "sens": "enseignante"
+              },
+              {
+                "arabe": "حَدِيقَة",
+                "translitteration": "ḥadīqa",
+                "sens": "jardin"
+              }
+            ]
+          },
+          {
+            "titre": "٢. لِقَاء جَدِيد - Une nouvelle rencontre",
+            "niveau": "Débutant",
+            "type": "dialogue",
+            "lignes": [
+              {
+                "locuteur": "أحمد",
+                "arabe": "السَّلَامُ عَلَيْكُمْ!",
+                "traduction": "Que la paix soit sur vous !"
+              },
+              {
+                "locuteur": "سارة",
+                "arabe": "وَعَلَيْكُمُ السَّلَامُ! كَيْفَ حَالُكَ؟",
+                "traduction": "Et sur vous la paix ! Comment vas-tu ?"
+              },
+              {
+                "locuteur": "أحمد",
+                "arabe": "بِخَيْرٍ، الحَمْدُ لِلَّهِ. وَأَنْتِ؟",
+                "traduction": "Bien, Dieu merci. Et toi ?"
+              },
+              {
+                "locuteur": "سارة",
+                "arabe": "بِخَيْرٍ أَيْضًا. مَا اسْمُكَ؟",
+                "traduction": "Bien aussi. Quel est ton nom ?"
+              },
+              {
+                "locuteur": "أحمد",
+                "arabe": "اِسْمِي أَحْمَد. وَأَنْتِ؟",
+                "traduction": "Je m'appelle Ahmed. Et toi ?"
+              },
+              {
+                "locuteur": "سارة",
+                "arabe": "اِسْمِي سَارَة. مِنْ أَيْنَ أَنْتَ؟",
+                "traduction": "Je m'appelle Sara. D'où es-tu ?"
+              },
+              {
+                "locuteur": "أحمد",
+                "arabe": "أَنَا مِنَ الهِنْدِ. وَأَنْتِ؟",
+                "traduction": "Je suis de l'Inde. Et toi ?"
+              },
+              {
+                "locuteur": "سارة",
+                "arabe": "أَنَا مِنْ مِصْرَ.",
+                "traduction": "Je suis d'Égypte."
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "كَيْفَ حَالُكَ؟",
+                "translitteration": "kayfa ḥāluka",
+                "sens": "comment vas-tu ? (à un homme)"
+              },
+              {
+                "arabe": "الحَمْدُ لِلَّهِ",
+                "translitteration": "al-ḥamdu lillāh",
+                "sens": "Dieu merci"
+              },
+              {
+                "arabe": "مِصْر",
+                "translitteration": "miṣr",
+                "sens": "Égypte"
+              }
+            ]
+          },
+          {
+            "titre": "٣. عِنْدَ الطَّبِيب - Chez le médecin",
+            "niveau": "Intermédiaire",
+            "type": "dialogue",
+            "lignes": [
+              {
+                "locuteur": "الطبيب",
+                "arabe": "السَّلَامُ عَلَيْكُمْ، مَا اسْمُكَ؟",
+                "traduction": "Que la paix soit sur vous, quel est votre nom ?"
+              },
+              {
+                "locuteur": "المريض",
+                "arabe": "وَعَلَيْكُمُ السَّلَامُ، اِسْمِي يُوسُف.",
+                "traduction": "Et sur vous la paix, je m'appelle Youssouf."
+              },
+              {
+                "locuteur": "الطبيب",
+                "arabe": "مَا بِكَ يَا يُوسُف؟",
+                "traduction": "Qu'avez-vous, Youssouf ?"
+              },
+              {
+                "locuteur": "المريض",
+                "arabe": "عِنْدِي أَلَمٌ فِي رَأْسِي وَحُمَّى.",
+                "traduction": "J'ai une douleur à la tête et de la fièvre."
+              },
+              {
+                "locuteur": "الطبيب",
+                "arabe": "مُنْذُ مَتَى وَأَنْتَ تَشْعُرُ بِهَذَا؟",
+                "traduction": "Depuis quand ressentez-vous cela ?"
+              },
+              {
+                "locuteur": "المريض",
+                "arabe": "مُنْذُ يَوْمَيْنِ.",
+                "traduction": "Depuis deux jours."
+              },
+              {
+                "locuteur": "الطبيب",
+                "arabe": "سَآخُذُ حَرَارَتَكَ وَأَفْحَصُكَ الآنَ.",
+                "traduction": "Je vais prendre votre température et vous examiner maintenant."
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "أَلَم",
+                "translitteration": "alam",
+                "sens": "douleur"
+              },
+              {
+                "arabe": "رَأْس",
+                "translitteration": "ra's",
+                "sens": "tête"
+              },
+              {
+                "arabe": "حُمَّى",
+                "translitteration": "ḥummā",
+                "sens": "fièvre"
+              },
+              {
+                "arabe": "يَشْعُرُ",
+                "translitteration": "yash'uru",
+                "sens": "il ressent"
+              },
+              {
+                "arabe": "حَرَارَة",
+                "translitteration": "ḥarāra",
+                "sens": "température, chaleur"
+              },
+              {
+                "arabe": "يَفْحَصُ",
+                "translitteration": "yafḥaṣu",
+                "sens": "il examine"
+              }
+            ]
+          }
+        ],
+        "consigne": "Trois textes gradués, du récit simple au dialogue professionnel. Chaque mot déjà rencontré ailleurs dans le parcours est volontairement réutilisé ici — lire, c'est aussi réviser."
+      },
+      {
+        "cle": "caravane",
+        "titre": "6. 🗺️ قافلة المعرفة - La Caravane du Savoir",
+        "type": "caravane",
+        "disponible": true
       }
     ]
   }
