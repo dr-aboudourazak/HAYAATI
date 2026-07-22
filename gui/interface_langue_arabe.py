@@ -28,6 +28,7 @@ from gui.palette_hayaati import (
 from core.langue_arabe_engine import (
     CLE_MODULE_LANGUE_ARABE, normaliser_progres, marquer_item, resume_etape
 )
+from core.caravane_savoir_engine import construire_session_revision, compter_points_a_revoir
 
 GRIS_INACTIF = "#d1d5db"
 GRIS_TEXTE_CLAIR = "#6b7280"      # assombri par rapport à la V3 : meilleur contraste sur fond clair
@@ -48,6 +49,8 @@ class EcranLangueArabe(tk.Frame):
         self.index_lecon_grammaire = 0
         self.onglet_bab_grammaire = 0
         self.onglet_sous_rubrique_grammaire = 0
+        self.index_texte_lecture = 0
+        self.index_caravane = 0
         self.sentier_reduit = False
         self._derniere_largeur_connue = 0
         self._id_redimensionnement = None
@@ -177,6 +180,10 @@ class EcranLangueArabe(tk.Frame):
             self._construire_etape_conjugaison(etape_courante)
         elif etape_courante.get("type") == "grammaire":
             self._construire_etape_grammaire(etape_courante)
+        elif etape_courante.get("type") == "lecture":
+            self._construire_etape_lecture(etape_courante)
+        elif etape_courante.get("type") == "caravane":
+            self._construire_etape_caravane(etape_courante)
         else:
             self._construire_message_attente(etape_courante)
 
@@ -256,6 +263,8 @@ class EcranLangueArabe(tk.Frame):
         self.index_lecon_grammaire = 0
         self.onglet_bab_grammaire = 0
         self.onglet_sous_rubrique_grammaire = 0
+        self.index_texte_lecture = 0
+        self.index_caravane = 0
         self.cartes_retournees.clear()
         self.sentier_reduit = True   # une fois l'étape choisie, on rend l'espace au contenu
         self.construire_interface()
@@ -426,7 +435,7 @@ class EcranLangueArabe(tk.Frame):
 
         items = []
         for i, l in lettres_page:
-            lignes = [(f"{l.get('lettre','')}  ·  {l.get('nom','')}", ("Helvetica", 13, "bold"), TERRACOTTA_FONCE),
+            lignes = [(f"{l.get('lettre','')}  ·  {l.get('nom','')}", ("Helvetica", 16, "bold"), TERRACOTTA_FONCE),
                       (f"Translittération : {l.get('translitteration','')}", ("Helvetica", 9), TEXTE_FONCE),
                       (f"Connexion : {l.get('connexion','')}", ("Helvetica", 9), TEXTE_FONCE),
                       (l.get("son", ""), ("Helvetica", 9), TEXTE_FONCE)]
@@ -436,7 +445,9 @@ class EcranLangueArabe(tk.Frame):
             if "milieu" not in positions_presentes:
                 lignes.append(("(lettre non connectante : pas de forme médiane distincte)", ("Helvetica", 8, "italic"), GRIS_TEXTE_CLAIR))
             for occ in occurrences:
-                lignes.append((f"{occ['position'].capitalize()} : {occ['mot']} ({occ['translitteration']}) — {occ['sens']}", ("Helvetica", 9), TEXTE_FONCE))
+                lignes.append((f"{occ['position'].capitalize()} :", ("Helvetica", 8, "italic"), GRIS_TEXTE_CLAIR))
+                lignes.append((occ["mot"], ("Helvetica", 19, "bold"), TEXTE_FONCE))
+                lignes.append((f"{occ['translitteration']} — {occ['sens']}", ("Helvetica", 9), TEXTE_FONCE))
 
             items.append({"id": str(i), "principal": l.get("lettre", "?"), "taille_police_recto": 28, "sous_titre_recto": l.get("nom", ""), "lignes_detail": lignes})
 
@@ -477,11 +488,11 @@ class EcranLangueArabe(tk.Frame):
             identifiant = f"liste{i_liste}_mot{i_mot}"
             items.append({
                 "id": identifiant,
-                "principal": mot.get("arabe", "?"), "taille_police_recto": 16,
+                "principal": mot.get("arabe", "?"), "taille_police_recto": 22,
                 "sous_titre_recto": mot.get("sens", ""),
                 "icone": mot.get("icone"), "couleur_hex": mot.get("couleur_hex"),
                 "lignes_detail": [
-                    (mot.get("arabe", ""), ("Helvetica", 16, "bold"), TERRACOTTA_FONCE),
+                    (mot.get("arabe", ""), ("Helvetica", 22, "bold"), TERRACOTTA_FONCE),
                     (mot.get("translitteration", ""), ("Helvetica", 10, "italic"), TEXTE_FONCE),
                     (f"« {mot.get('sens','')} »", ("Helvetica", 10), TEXTE_FONCE),
                 ],
@@ -540,6 +551,37 @@ class EcranLangueArabe(tk.Frame):
         if note:
             self._construire_encart(note, OCRE, icone="💡", police=("Helvetica", 9, "italic"))
 
+        regles_type_verbe = temps_actif.get("regles_type_verbe", [])
+        if regles_type_verbe:
+            tk.Label(
+                self.zone_scrollable, text="Le timbre de la hamza dépend du verbe :", font=("Helvetica", 10, "bold"),
+                fg=TERRACOTTA_FONCE, bg=BLANC
+            ).pack(anchor="w", padx=20, pady=(2, 6))
+            for regle in regles_type_verbe:
+                cadre_regle = tk.Frame(self.zone_scrollable, bg=SABLE, highlightbackground=TERRACOTTA, highlightthickness=1)
+                cadre_regle.pack(fill="x", padx=20, pady=4)
+                tk.Label(
+                    cadre_regle, text=f"{regle['type']} — {regle['regle']}", font=("Helvetica", 9, "italic"), fg=TEXTE_FONCE, bg=SABLE,
+                    wraplength=self._largeur_disponible() - 60, justify="left"
+                ).pack(anchor="w", padx=12, pady=(8, 4))
+                tk.Label(
+                    cadre_regle, text=f"{regle['madi']}  →  {regle['mudari']} ({regle['mudari_translitteration']})  →  {regle['amr']} ({regle['amr_translitteration']})",
+                    font=("Helvetica", 15, "bold"), fg=TERRACOTTA_FONCE, bg=SABLE, wraplength=self._largeur_disponible() - 60, justify="left"
+                ).pack(anchor="w", padx=12, pady=(0, 4))
+                tk.Label(
+                    cadre_regle, text=regle["sens"], font=("Helvetica", 9), fg=TEXTE_FONCE, bg=SABLE
+                ).pack(anchor="w", padx=12, pady=(0, 8))
+
+        note_temporelle = temps_actif.get("note_temporelle", "")
+        if note_temporelle:
+            tk.Label(
+                self.zone_scrollable, text="Et pour parler d'un ordre au passé ou au futur ?", font=("Helvetica", 10, "bold"),
+                fg=TERRACOTTA_FONCE, bg=BLANC
+            ).pack(anchor="w", padx=20, pady=(10, 6))
+            self._construire_encart(note_temporelle, TERRACOTTA, icone="⏳", police=("Helvetica", 9))
+            self._construire_bloc_exemples(temps_actif.get("exemples_temporels", []))
+            tk.Frame(self.zone_scrollable, bg=BLANC, height=8).pack()
+
         source = etape.get("source", "")
         if source:
             tk.Label(
@@ -558,12 +600,12 @@ class EcranLangueArabe(tk.Frame):
         for i, c in page_items:
             items.append({
                 "id": f"{cle_progres}_{i}",
-                "principal": c.get("forme", "?"), "taille_police_recto": 17,
+                "principal": c.get("forme", "?"), "taille_police_recto": 20,
                 "sous_titre_recto": c.get("pronom", ""),
                 "lignes_detail": [
-                    (f"{c.get('pronom','')} ({c.get('pronom_translitteration','')})", ("Helvetica", 10, "bold"), TERRACOTTA_FONCE),
+                    (f"{c.get('pronom','')} ({c.get('pronom_translitteration','')})", ("Helvetica", 11, "bold"), TERRACOTTA_FONCE),
                     (c.get("personne", ""), ("Helvetica", 8, "italic"), GRIS_TEXTE_CLAIR),
-                    (f"{c.get('forme','')}", ("Helvetica", 15, "bold"), TERRACOTTA_FONCE),
+                    (f"{c.get('forme','')}", ("Helvetica", 20, "bold"), TERRACOTTA_FONCE),
                     (c.get("translitteration", ""), ("Helvetica", 10, "italic"), TEXTE_FONCE),
                     (f"« {c.get('sens','')} »", ("Helvetica", 10), TEXTE_FONCE),
                 ],
@@ -674,9 +716,16 @@ class EcranLangueArabe(tk.Frame):
             ligne_ex = tk.Frame(carte, bg=BLANC, highlightbackground=OCRE, highlightthickness=1)
             ligne_ex.pack(fill="x", padx=16, pady=3)
             tk.Label(
-                ligne_ex, text=f"{ex.get('arabe','')}  ({ex.get('translitteration','')}) — {ex.get('sens','')}",
+                ligne_ex, text=ex.get("arabe", ""), font=("Helvetica", 20, "bold"), fg=TEXTE_FONCE, bg=BLANC,
+                wraplength=wraplength_lecon - 20, justify="left"
+            ).pack(anchor="w", padx=10, pady=(8, 0))
+            tk.Label(
+                ligne_ex, text=f"{ex.get('translitteration','')} — {ex.get('sens','')}",
                 font=("Helvetica", 10), fg=TEXTE_FONCE, bg=BLANC, wraplength=wraplength_lecon - 20, justify="left"
-            ).pack(anchor="w", padx=10, pady=7)
+            ).pack(anchor="w", padx=10, pady=(0, 8))
+        # NB : bloc conservé en logique équivalente à _construire_bloc_exemples, mais imbriqué
+        # dans la carte (fond SABLE) plutôt que dans zone_scrollable directement — la variante
+        # générique est utilisée pour les blocs hors carte (Conjugaison : règles, notes temporelles).
 
         pied = tk.Frame(carte, bg=SABLE)
         pied.pack(fill="x", padx=16, pady=(4, 14))
@@ -718,6 +767,185 @@ class EcranLangueArabe(tk.Frame):
 
     def _changer_lecon_grammaire(self, delta):
         self.index_lecon_grammaire += delta
+        self.construire_interface()
+
+    def _construire_bloc_exemples(self, exemples, wraplength=None):
+        if wraplength is None:
+            wraplength = self._largeur_disponible() - 76
+        for ex in exemples:
+            ligne_ex = tk.Frame(self.zone_scrollable, bg=BLANC, highlightbackground=OCRE, highlightthickness=1)
+            ligne_ex.pack(fill="x", padx=20, pady=3)
+            tk.Label(
+                ligne_ex, text=ex.get("arabe", ""), font=("Helvetica", 20, "bold"), fg=TEXTE_FONCE, bg=BLANC,
+                wraplength=wraplength, justify="left"
+            ).pack(anchor="w", padx=10, pady=(8, 0))
+            tk.Label(
+                ligne_ex, text=f"{ex.get('translitteration','')} — {ex.get('sens','')}",
+                font=("Helvetica", 10), fg=TEXTE_FONCE, bg=BLANC, wraplength=wraplength, justify="left"
+            ).pack(anchor="w", padx=10, pady=(0, 8))
+
+    # --- Étape Lecture : un texte/dialogue à la fois, vocabulaire nouveau en bas ---
+    def _construire_etape_lecture(self, etape):
+        textes = etape.get("textes", [])
+        if not textes:
+            self._construire_message_attente(etape)
+            return
+
+        consigne = etape.get("consigne", "")
+        if consigne:
+            tk.Label(
+                self.zone_scrollable, text=consigne, font=("Helvetica", 10, "italic"), fg=TEXTE_FONCE, bg=BLANC,
+                wraplength=self._largeur_disponible() - 40, justify="left"
+            ).pack(anchor="w", padx=20, pady=(0, 12))
+
+        progres = self._charger_progres()
+        resume = resume_etape(progres, "lecture", len(textes))
+        self._construire_bandeau_resume(resume)
+
+        self.index_texte_lecture = min(self.index_texte_lecture, len(textes) - 1)
+        texte = textes[self.index_texte_lecture]
+        identifiant_texte = str(self.index_texte_lecture)
+
+        entete = tk.Frame(self.zone_scrollable, bg=TERRACOTTA_CLAIR)
+        entete.pack(fill="x", padx=20, pady=(0, 10))
+        tk.Label(
+            entete, text=texte.get("titre", ""), font=("Helvetica", 13, "bold"), fg=TERRACOTTA_FONCE, bg=TERRACOTTA_CLAIR,
+            wraplength=self._largeur_disponible() - 60, justify="left"
+        ).pack(anchor="w", padx=12, pady=(10, 2))
+        tk.Label(
+            entete, text=f"Niveau : {texte.get('niveau','')}", font=("Helvetica", 9, "italic"), fg=TERRACOTTA_FONCE, bg=TERRACOTTA_CLAIR
+        ).pack(anchor="w", padx=12, pady=(0, 10))
+
+        wraplength_lecture = self._largeur_disponible() - 76
+        for ligne in texte.get("lignes", []):
+            bloc = tk.Frame(self.zone_scrollable, bg=SABLE, highlightbackground=OCRE, highlightthickness=1)
+            bloc.pack(fill="x", padx=20, pady=4)
+            if ligne.get("locuteur"):
+                tk.Label(
+                    bloc, text=f"— {ligne['locuteur']} —", font=("Helvetica", 8, "bold italic"), fg=OCRE_FONCE, bg=SABLE
+                ).pack(anchor="w", padx=12, pady=(8, 0))
+            tk.Label(
+                bloc, text=ligne.get("arabe", ""), font=("Helvetica", 17, "bold"), fg=TEXTE_FONCE, bg=SABLE,
+                wraplength=wraplength_lecture, justify="right" if not ligne.get("locuteur") else "left"
+            ).pack(anchor="w", padx=12, pady=(4, 2))
+            tk.Label(
+                bloc, text=ligne.get("traduction", ""), font=("Helvetica", 10, "italic"), fg=TEXTE_FONCE, bg=SABLE,
+                wraplength=wraplength_lecture, justify="left"
+            ).pack(anchor="w", padx=12, pady=(0, 8))
+
+        vocab_nouveau = texte.get("vocabulaire_nouveau", [])
+        if vocab_nouveau:
+            tk.Label(
+                self.zone_scrollable, text="Vocabulaire nouveau dans ce texte :", font=("Helvetica", 10, "bold"),
+                fg=TERRACOTTA_FONCE, bg=BLANC
+            ).pack(anchor="w", padx=20, pady=(10, 4))
+            self._construire_bloc_exemples(vocab_nouveau, wraplength=wraplength_lecture)
+
+        pied = tk.Frame(self.zone_scrollable, bg=BLANC)
+        pied.pack(fill="x", padx=20, pady=(10, 4))
+
+        def marquer_et_avancer(connu):
+            p = self._charger_progres()
+            p = marquer_item(p, "lecture", identifiant_texte, connu)
+            self._sauvegarder_progres(p)
+            if self.index_texte_lecture < len(textes) - 1:
+                self.index_texte_lecture += 1
+            self.construire_interface()
+
+        tk.Button(pied, text="✓ J'ai lu ce texte", font=("Helvetica", 9), bg=VERT_SUCCES, fg=BLANC, bd=0, padx=9, pady=5, cursor="hand2", command=lambda: marquer_et_avancer(True)).pack(side="left", padx=(0, 6))
+        tk.Button(pied, text="🔁 À relire", font=("Helvetica", 9), bg=AMBRE_ATTENTE, fg=BLANC, bd=0, padx=9, pady=5, cursor="hand2", command=lambda: marquer_et_avancer(False)).pack(side="left")
+
+        libelles = [t.get("titre", f"Texte {i+1}") for i, t in enumerate(textes)]
+        self._construire_barre_pagination(
+            self.index_texte_lecture, len(textes), f"{self.index_texte_lecture + 1} / {len(textes)} — {libelles[self.index_texte_lecture]}",
+            lambda: self._changer_texte_lecture(-1), lambda: self._changer_texte_lecture(1)
+        )
+
+    def _changer_texte_lecture(self, delta):
+        self.index_texte_lecture += delta
+        self.construire_interface()
+
+    # --- Étape Caravane du Savoir : révision transversale de tous les modules ---
+    def _construire_etape_caravane(self, etape):
+        progres = self._charger_progres()
+        contenu = DICTIONNAIRE_LANGUES.actif.get("langue_arabe", {})
+        nb_a_revoir_total = compter_points_a_revoir(progres)
+        session = construire_session_revision(progres, contenu, taille_max=10)
+
+        tk.Label(
+            self.zone_scrollable, text="Une halte de révision qui pioche dans tout ce que vous avez déjà rencontré — alphabet, vocabulaire, conjugaison, grammaire et lecture confondus.",
+            font=("Helvetica", 10, "italic"), fg=TEXTE_FONCE, bg=BLANC, wraplength=self._largeur_disponible() - 40, justify="left"
+        ).pack(anchor="w", padx=20, pady=(0, 14))
+
+        if not session:
+            cadre_vide = tk.Frame(self.zone_scrollable, bg=SABLE, highlightbackground=OCRE, highlightthickness=1)
+            cadre_vide.pack(fill="x", padx=20, pady=10)
+            tk.Label(
+                cadre_vide, text="🌱 Pas encore de quoi remplir une caravane", font=("Helvetica", 12, "bold"), fg=OCRE_FONCE, bg=SABLE
+            ).pack(anchor="w", padx=14, pady=(12, 4))
+            tk.Label(
+                cadre_vide, text="Parcourez un peu l'alphabet, le vocabulaire, la conjugaison ou la grammaire — la Caravane se remplira automatiquement avec ce que vous avez vu, en particulier ce qui reste « à revoir ».",
+                font=("Helvetica", 10), fg=TEXTE_FONCE, bg=SABLE, wraplength=560, justify="left"
+            ).pack(anchor="w", padx=14, pady=(0, 12))
+            return
+
+        bandeau = tk.Frame(self.zone_scrollable, bg=OCRE_CLAIR)
+        bandeau.pack(fill="x", padx=20, pady=(0, 14))
+        tk.Label(
+            bandeau, text=f"🧭 {nb_a_revoir_total} point(s) à revoir au total dans tout le parcours — {len(session)} étape(s) dans cette caravane",
+            font=("Helvetica", 10, "bold"), fg=TERRACOTTA_FONCE, bg=OCRE_CLAIR
+        ).pack(anchor="w", padx=12, pady=8)
+
+        self.index_caravane = min(self.index_caravane, len(session) - 1)
+        arret = session[self.index_caravane]
+
+        carte = tk.Frame(self.zone_scrollable, bg=SABLE, highlightbackground=TERRACOTTA, highlightthickness=2)
+        carte.pack(fill="x", padx=20, pady=(0, 10))
+
+        badge_texte = "🔁 À consolider" if not arret.get("complement") else "✓ Déjà connu — petit rappel"
+        tk.Label(
+            carte, text=f"{arret.get('module','')}   ·   {badge_texte}", font=("Helvetica", 9, "bold"),
+            fg=OCRE_FONCE, bg=SABLE
+        ).pack(anchor="w", padx=16, pady=(14, 6))
+
+        tk.Label(
+            carte, text=arret.get("arabe", ""), font=("Helvetica", 26, "bold"), fg=TERRACOTTA_FONCE, bg=SABLE,
+            wraplength=self._largeur_disponible() - 76, justify="left"
+        ).pack(anchor="w", padx=16, pady=(0, 4))
+
+        meta = " — ".join(filter(None, [arret.get("translitteration", ""), arret.get("sens", "")]))
+        tk.Label(
+            carte, text=meta, font=("Helvetica", 11), fg=TEXTE_FONCE, bg=SABLE,
+            wraplength=self._largeur_disponible() - 76, justify="left"
+        ).pack(anchor="w", padx=16, pady=(0, 12))
+
+        pied = tk.Frame(carte, bg=SABLE)
+        pied.pack(fill="x", padx=16, pady=(0, 14))
+
+        def marquer_et_avancer(connu):
+            p = self._charger_progres()
+            p = marquer_item(p, arret["cle_etape"], arret["identifiant"], connu)
+            self._sauvegarder_progres(p)
+            if self.index_caravane < len(session) - 1:
+                self.index_caravane += 1
+            self.construire_interface()
+
+        tk.Button(pied, text="✓ Je la maîtrise maintenant", font=("Helvetica", 9), bg=VERT_SUCCES, fg=BLANC, bd=0, padx=9, pady=5, cursor="hand2", command=lambda: marquer_et_avancer(True)).pack(side="left", padx=(0, 6))
+        tk.Button(pied, text="🔁 Encore à revoir", font=("Helvetica", 9), bg=AMBRE_ATTENTE, fg=BLANC, bd=0, padx=9, pady=5, cursor="hand2", command=lambda: marquer_et_avancer(False)).pack(side="left")
+
+        if self.index_caravane == len(session) - 1:
+            tk.Label(
+                self.zone_scrollable, text="🏁 Dernière étape de cette caravane — une nouvelle vous attendra la prochaine fois, reflétant vos progrès du moment.",
+                font=("Helvetica", 9, "italic"), fg=GRIS_TEXTE_CLAIR, bg=BLANC, wraplength=560, justify="left"
+            ).pack(anchor="w", padx=20, pady=(0, 10))
+
+        self._construire_barre_pagination(
+            self.index_caravane, len(session), f"Étape {self.index_caravane + 1} / {len(session)}",
+            lambda: self._changer_arret_caravane(-1), lambda: self._changer_arret_caravane(1)
+        )
+
+    def _changer_arret_caravane(self, delta):
+        self.index_caravane += delta
         self.construire_interface()
 
     def _construire_bandeau_resume(self, resume):
