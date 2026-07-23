@@ -13,7 +13,8 @@
     "profil": "👤 Profil",
     "reglages": "⚙️ Réglages",
     "encyclopedie": "📚 Encyclopédie",
-    "langue_arabe": "🔤 Langue arabe"
+    "langue_arabe": "🔤 Langue arabe",
+    "sciences_islamiques": "🕌 Sciences islamiques"
   },
   "barre_outils": {
     "titre_app": "🕌 HAYAATI",
@@ -3355,6 +3356,161 @@
                 "sens": "il examine"
               }
             ]
+          },
+          {
+            "titre": "سُورَة الفَاتِحَة - Sourate Al-Fatiha (intégrale)",
+            "niveau": "Tous niveaux",
+            "type": "recit",
+            "source_domaine": "Sciences islamiques — Coran",
+            "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "traduction": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux."
+              },
+              {
+                "locuteur": "",
+                "arabe": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+                "traduction": "Louange à Allah, Seigneur de l'univers."
+              },
+              {
+                "locuteur": "",
+                "arabe": "الرَّحْمَٰنِ الرَّحِيمِ",
+                "traduction": "Le Tout Miséricordieux, le Très Miséricordieux,"
+              },
+              {
+                "locuteur": "",
+                "arabe": "مَالِكِ يَوْمِ الدِّينِ",
+                "traduction": "Maître du Jour de la rétribution."
+              },
+              {
+                "locuteur": "",
+                "arabe": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+                "traduction": "C'est Toi que nous adorons, et c'est Toi dont nous implorons secours."
+              },
+              {
+                "locuteur": "",
+                "arabe": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+                "traduction": "Guide-nous dans le droit chemin,"
+              },
+              {
+                "locuteur": "",
+                "arabe": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+                "traduction": "le chemin de ceux que Tu as comblés, non pas de ceux qui ont encouru Ta colère, ni des égarés."
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "الْعَالَمِينَ",
+                "translitteration": "al-'ālamīn",
+                "sens": "les mondes, l'univers"
+              },
+              {
+                "arabe": "الصِّرَاط",
+                "translitteration": "aṣ-ṣirāṭ",
+                "sens": "le chemin, la voie"
+              }
+            ]
+          },
+          {
+            "titre": "آيَة الكُرْسِي - Ayat Al-Kursi",
+            "niveau": "Intermédiaire",
+            "type": "recit",
+            "source_domaine": "Sciences islamiques — Coran",
+            "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
+                "traduction": "Allah ! Point de divinité à part Lui, le Vivant, Celui qui subsiste par Lui-même."
+              },
+              {
+                "locuteur": "",
+                "arabe": "لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ",
+                "traduction": "Ni somnolence ni sommeil ne Le saisissent."
+              },
+              {
+                "locuteur": "",
+                "arabe": "لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ",
+                "traduction": "À Lui appartient ce qui est dans les cieux et sur la terre."
+              },
+              {
+                "locuteur": "",
+                "arabe": "مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ",
+                "traduction": "Qui peut intercéder auprès de Lui sans Sa permission ?"
+              },
+              {
+                "locuteur": "",
+                "arabe": "وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ",
+                "traduction": "Son Trône s'étend sur les cieux et la terre, dont la garde ne Lui coûte aucune peine. Il est le Très Haut, l'Immense. (Al-Baqarah, 255)"
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "الْقَيُّوم",
+                "translitteration": "al-qayyūm",
+                "sens": "Celui qui subsiste par Lui-même"
+              },
+              {
+                "arabe": "يَشْفَعُ",
+                "translitteration": "yashfa'u",
+                "sens": "il intercède"
+              }
+            ]
+          },
+          {
+            "titre": "حَدِيث النِّيَّات - Le hadith des intentions",
+            "niveau": "Intermédiaire",
+            "type": "recit",
+            "source_domaine": "Sciences islamiques — Hadith",
+            "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+                "traduction": "Les actions ne valent que par les intentions,"
+              },
+              {
+                "locuteur": "",
+                "arabe": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
+                "traduction": "et chacun n'aura que ce qu'il a eu l'intention de faire. (Sahih Al-Bukhari et Sahih Muslim)"
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "الْأَعْمَال",
+                "translitteration": "al-a'māl",
+                "sens": "les actions"
+              },
+              {
+                "arabe": "النِّيَّات",
+                "translitteration": "an-niyyāt",
+                "sens": "les intentions"
+              }
+            ]
+          },
+          {
+            "titre": "حَدِيث الأُخُوَّة - Le hadith de la fraternité",
+            "niveau": "Intermédiaire",
+            "type": "recit",
+            "source_domaine": "Sciences islamiques — Hadith",
+            "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+                "traduction": "Nul d'entre vous n'aura la foi complète tant qu'il n'aimera pas pour son frère ce qu'il aime pour lui-même. (Sahih Al-Bukhari et Sahih Muslim)"
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "يُؤْمِنُ",
+                "translitteration": "yu'minu",
+                "sens": "il croit, il a la foi"
+              },
+              {
+                "arabe": "أَخِيهِ",
+                "translitteration": "akhīhi",
+                "sens": "son frère"
+              }
+            ]
           }
         ],
         "consigne": "Trois textes gradués, du récit simple au dialogue professionnel. Chaque mot déjà rencontré ailleurs dans le parcours est volontairement réutilisé ici — lire, c'est aussi réviser."
@@ -3364,6 +3520,173 @@
         "titre": "6. 🗺️ قافلة المعرفة - La Caravane du Savoir",
         "type": "caravane",
         "disponible": true
+      }
+    ]
+  },
+  "sciences_islamiques": {
+    "titre": "🕌 Sciences islamiques",
+    "sous_titre": "Coran, Hadith, Sîra, Tawhid, Fiqh — les grands principes et la méthode des savants, pas juste des réponses.",
+    "avertissement": "Ce module distingue explicitement ce qui fait consensus de ce qui reste débattu entre savants. Contenu élaboré avec le plus grand soin ; une relecture par un enseignant qualifié reste recommandée avant toute diffusion large.",
+    "etapes": [
+      {
+        "cle": "coran",
+        "titre": "1. القرآن - Coran",
+        "type": "bab_lecons",
+        "disponible": true,
+        "lecons": [
+          {
+            "titre": "١. أَوَّل آيَة نَزَلَتْ - Le tout premier verset révélé",
+            "explication": "Sur ce point, les savants sont unanimes : c'est un fait rapporté par une chaîne de transmission authentique (Sahih Al-Bukhari et Sahih Muslim, hadith de 'Aïsha), qui décrit précisément la scène dans la grotte de Hira. Aucune divergence sérieuse n'existe sur ce point — contrairement au dernier verset, qu'on verra ensuite.",
+            "exemples": [
+              {
+                "arabe": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
+                "translitteration": "iqra' bi-ismi rabbika alladhī khalaq",
+                "sens": "Lis, au nom de ton Seigneur qui a créé (Sourate Al-'Alaq, versets 1 à 5, révélés en entier ensemble)"
+              }
+            ]
+          },
+          {
+            "titre": "٢. آخِر آيَة نَزَلَتْ - Le tout dernier verset révélé",
+            "explication": "Ici, contrairement au premier verset, les savants ne s'accordent pas sur une réponse unique — et c'est important de le savoir : plusieurs versets candidats sont rapportés par différentes chaînes de transmission, sans qu'aucune ne l'emporte de façon décisive. Deux des opinions les plus citées :\n\n1) Le verset sur la crainte du Jour du Retour (Al-Baqarah, 281), rapporté de Ibn 'Abbas.\n2) Les derniers versets sur l'intérêt usurier (Ar-Riba), dans la même sourate.\n\nCertains commentateurs citent aussi le verset sur l'achèvement de la religion (Al-Ma'idah, 3), mais la majorité précise que celui-ci a été révélé pendant le Pèlerinage d'Adieu, quelque temps avant la toute fin — pas littéralement en dernier. Documenter ce désaccord plutôt que de trancher artificiellement, c'est exactement la rigueur que les savants du Coran ont toujours appliquée.\n\nPosition majoritaire : parmi ces opinions, celle rapportée d'Ibn 'Abbas (le verset Al-Baqarah 281) est la plus largement transmise dans les grands recueils de Tafsir (At-Tabari, As-Suyuti), et c'est celle que la majorité des savants retiennent comme la plus probable — sans present cela comme une certitude absolue, puisque le désaccord lui-même est rapporté de façon authentique.",
+            "exemples": [
+              {
+                "arabe": "وَاتَّقُوا يَوْمًا تُرْجَعُونَ فِيهِ إِلَى اللَّهِ",
+                "translitteration": "wattaqū yawman turja'ūna fīhi ila Allāh",
+                "sens": "Et craignez un jour où vous serez ramenés vers Allah (Al-Baqarah, 281 — l'une des opinions les plus rapportées)"
+              }
+            ]
+          },
+          {
+            "titre": "٣. المَكِّي وَالمَدَنِي - Le classement Mecquois / Médinois",
+            "explication": "Les sourates se classent selon le lieu (et non simplement la date) de révélation : مَكِّي (Mecquois) désigne ce qui a été révélé avant l'Hégire (même hors de la Mecque), مَدَنِي (Médinois) ce qui l'a été après. Selon le classement traditionnel le plus répandu : 86 sourates mecquoises et 28 médinoises, pour un total de 114.\n\nCe classement n'est pas qu'une curiosité : il éclaire directement le style. Les sourates mecquoises, plus courtes, insistent sur le Tawhid et l'au-delà ; les médinoises, plus longues, détaillent le droit et la vie communautaire — cohérent avec les circonstances de la jeune communauté musulmane à chaque période.",
+            "exemples": []
+          },
+          {
+            "titre": "٤. الأَجْزَاء وَالأَحْزَاب - Les grandes subdivisions du Coran",
+            "explication": "Le Coran est découpé en unités de lecture qui n'existaient pas du vivant du Prophète ﷺ, ajoutées plus tard pour faciliter la récitation régulière — un exemple concret de rigueur d'organisation, pas de révélation.\n\nجُزْء (Juz', pluriel أَجْزَاء) : 30 parts égales, permettant de terminer le Coran en un mois — l'usage classique pendant le Ramadan.\nحِزْب (Hizb, pluriel أَحْزَاب) : chaque Juz' se divise en 2 Ahzab, soit 60 au total.\nكل حزب يُقسَم لُ 4 أَرْبَاع : رُبْع (le quart), نِصْف (la moitié du Hizb), puis ثَلَاثَة أَرْبَاع (les trois quarts) — des repères imprimés dans la marge de la plupart des Mushaf, notamment celui de Médine.",
+            "exemples": []
+          },
+          {
+            "titre": "٥. الحُرُوف المُقَطَّعَة - Les lettres disjointes",
+            "explication": "29 sourates s'ouvrent par une ou plusieurs lettres isolées, prononcées séparément (comme الم، حم، ن، كهيعص), utilisant 14 des 28 lettres de l'alphabet. Leur sens exact fait partie des questions que les savants classent dans le مُتَشَابِه (l'ambigu), et deux positions principales sont rapportées :\n\n1) Certains Salaf (dont il est rapporté d'Abou Bakr et 'Omar) considéraient que seul Allah en connaît le sens véritable — position de prudence face à l'inconnu.\n2) D'autres commentateurs y voient un rappel du défi lancé aux Arabes : ces lettres, les plus simples et familières de leur langue, composent pourtant un texte qu'ils sont incapables d'imiter — un signe du caractère inimitable du Coran (الإعجاز).\n\nLà encore, les deux avis sont transmis côte à côte dans les grands ouvrages de Tafsir, sans qu'aucun ne soit présenté comme définitivement tranché.\n\nPosition majoritaire : la position dominante chez la majorité des savants, du Tafwid (« nous laissons le sens véritable à Allah, sans nous prononcer dessus »), reste la plus prudente et la plus largement enseignée. Elle n'exclut pas l'autre lecture : beaucoup de savants tiennent les deux à la fois — ignorer le sens exact tout en reconnaissant le signe d'inimitabilité qu'elles représentent.",
+            "exemples": [
+              {
+                "arabe": "الم",
+                "translitteration": "Alif Lam Mim",
+                "sens": "ouverture de Sourate Al-Baqarah et de deux autres sourates"
+              },
+              {
+                "arabe": "كهيعص",
+                "translitteration": "Kaf Ha Ya 'Ayn Sad",
+                "sens": "ouverture de Sourate Maryam — la combinaison la plus longue (5 lettres)"
+              }
+            ]
+          },
+          {
+            "titre": "٦. البَسْمَلَة وَسُورَة التَّوْبَة - Le nombre de Basmalah et le cas particulier d'At-Tawba",
+            "explication": "La Basmalah ouvre 113 des 114 sourates — elle est absente de Sourate At-Tawba (la 9e). Mais elle apparaît une fois de plus À L'INTÉRIEUR du texte, dans Sourate An-Naml (27, verset 30), citée dans la lettre de Salomon à la Reine de Saba. Total : 113 + 1 = 114 occurrences, un chiffre que les savants ont toujours souligné en écho au nombre de sourates.\n\nPourquoi At-Tawba n'en a pas ? Deux explications rapportées, sans certitude absolue tranchée :\n\n1) 'Uthman, qui a supervisé la compilation du Mushaf, n'était pas certain que At-Tawba soit une sourate à part entière plutôt que la suite d'Al-Anfal (thèmes très proches) — par prudence, aucune Basmalah n'a été insérée entre les deux pour ne pas trancher une question incertaine.\n2) La Basmalah exprime la miséricorde et la sécurité ; or At-Tawba s'ouvre sur une déclaration de rupture (بَرَاءَةٌ) envers ceux ayant violé leurs pactes — un ton qui ne s'accorderait pas avec l'ouverture habituelle.",
+            "exemples": [
+              {
+                "arabe": "إِنَّهُ مِنْ سُلَيْمَانَ وَإِنَّهُ بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "translitteration": "innahu min sulaymāna wa-innahu bismillāhi ar-raḥmāni ar-raḥīm",
+                "sens": "« Elle vient de Salomon, et elle est : Au nom d'Allah... » (An-Naml, 30 — la Basmalah « supplémentaire »)"
+              }
+            ]
+          },
+          {
+            "titre": "٧. خَصَائِص أُخْرَى - Autres particularités",
+            "explication": "Quelques repères supplémentaires que tout parcours universitaire de sciences coraniques aborde tôt :\n\nLa sourate la plus longue est Al-Baqarah (286 versets) ; la plus courte, Al-Kawthar (3 versets seulement). Le verset le plus long du Coran est le « verset de la dette » (Al-Baqarah, 282). Ayat Al-Kursi (Al-Baqarah, 255) est rapporté par un hadith authentique comme le verset le plus noble du Coran.\n\nSur le nombre total de versets, la rigueur oblige à nuancer : le chiffre le plus répandu aujourd'hui est 6236 (comptage coufique, utilisé par le Mushaf de Médine), mais les traditions de récitation basriote, chamie ou mecquoise donnent des décomptes légèrement différents (6204, 6214, 6219...). Ce n'est pas une contradiction sur le texte lui-même, mais sur la manière de découper certains longs versets en unités — un point de méthode, pas de contenu.",
+            "exemples": []
+          }
+        ]
+      },
+      {
+        "cle": "hadith",
+        "titre": "2. الحديث - Hadith",
+        "type": "bab_lecons",
+        "disponible": true,
+        "lecons": [
+          {
+            "titre": "١. التصنيف الأساسي - Sahih, Hasan, Da'if, Mawdu'",
+            "explication": "Chaque hadith est classé selon un degré de fiabilité, pas admis en bloc sans examen :\n\nالصَّحِيح (Sahih, authentique) : réunit toutes les conditions de rigueur (voir la leçon suivante).\nالحَسَن (Hasan, bon) : réunit les mêmes conditions, mais avec un rapporteur légèrement moins précis dans sa mémorisation — accepté comme preuve, un cran sous le Sahih.\nالضَّعِيف (Da'if, faible) : une des conditions manque — chaîne rompue, rapporteur peu fiable. Non utilisé comme preuve en matière de croyance ou de droit.\nالمَوْضُوع (Mawdu', fabriqué) : purement inventé et faussement attribué au Prophète ﷺ. Les savants du hadith y ont consacré des ouvrages entiers (comme Al-Mawdu'at d'Ibn Al-Jawzi) pour les répertorier et les dénoncer — la rigueur scientifique appliquée à sa forme la plus stricte.",
+            "exemples": []
+          },
+          {
+            "titre": "٢. شُرُوط الصِّحَّة - Les 5 conditions du Hadith authentique",
+            "explication": "Pour qu'un hadith soit déclaré Sahih, cinq conditions doivent toutes être réunies — l'absence d'une seule suffit à le disqualifier :\n\n1) اتِّصَال السَّنَد : chaque rapporteur a réellement rencontré et entendu directement celui d'avant lui, sans rupture.\n2) عَدَالَة الرُّوَاة : chaque rapporteur est musulman, majeur, sain d'esprit, pieux, évitant les grands péchés.\n3) ضَبْط الرُّوَاة : chaque rapporteur a une mémoire fiable (par cœur ou par écrit), capable de restituer fidèlement ce qu'il a entendu.\n4) عَدَم الشُّذُوذ : le rapport ne contredit pas une version transmise par une chaîne plus fiable.\n5) عَدَم العِلَّة : aucun défaut caché détecté par les spécialistes, même si la chaîne paraît saine en surface.\n\nCe niveau d'exigence, appliqué systématiquement à des dizaines de milliers de rapports, est ce qui distingue la méthode islamique de transmission de toute autre tradition orale ancienne.",
+            "exemples": []
+          },
+          {
+            "titre": "٣. السَّنَد وَالمَتْن - La chaîne de transmission",
+            "explication": "Un hadith complet a deux parties : السَّنَد (Sanad), la chaîne des rapporteurs, et المَتْن (Matn), le texte lui-même. L'un des grands savants du hadith, 'Abdullah ibn Al-Mubarak, résumait ainsi l'importance du Sanad : « الإسناد من الدين، ولولا الإسناد لقال من شاء ما شاء » — « La chaîne de transmission fait partie de la religion ; sans elle, quiconque aurait pu dire ce qu'il voulait. »\n\nVoici, à titre d'exemple, l'une des chaînes considérées par l'imam Ahmad ibn Hanbal comme la plus fiable de toutes — connue sous le nom de « السِّلْسِلَة الذَّهَبِيَّة » (la Chaîne d'Or) :",
+            "type_visuel": "chaine_isnad",
+            "chaine_isnad": [
+              {
+                "role": "النبي ﷺ",
+                "nom": "النَّبِيّ مُحَمَّد ﷺ",
+                "note": "La source de la parole"
+              },
+              {
+                "role": "الصَّحَابِيّ",
+                "nom": "عَبْدُ اللَّهِ بْنُ عُمَر",
+                "note": "Compagnon — a directement entendu le Prophète ﷺ"
+              },
+              {
+                "role": "التَّابِعِيّ",
+                "nom": "نَافِع مَوْلَى ابْنِ عُمَر",
+                "note": "Successeur — a appris directement d'Ibn 'Umar"
+              },
+              {
+                "role": "الإِمَام",
+                "nom": "الإِمَام مَالِك بْن أَنَس",
+                "note": "A recueilli et transmis ce rapport dans son Muwatta"
+              }
+            ],
+            "exemples": []
+          },
+          {
+            "titre": "٤. عِلْم الرِّجَال - La science biographique des rapporteurs",
+            "explication": "Pour vérifier qu'une chaîne est fiable, les savants ont bâti une science entière consacrée aux rapporteurs eux-mêmes : dates de naissance et de mort, lieux de résidence, maîtres fréquentés, réputation de mémoire et d'honnêteté. Des ouvrages biographiques recensent ainsi des dizaines de milliers de rapporteurs, permettant de vérifier, par exemple, qu'un rapporteur donné a réellement pu rencontrer celui dont il prétend tenir un hadith — et non pas seulement être né après sa mort. C'est un travail de vérification matérielle, comparable à une enquête historique systématique, mené des siècles avant que la critique historique occidentale n'en formalise les méthodes.",
+            "exemples": []
+          },
+          {
+            "titre": "٥. الكُتُب السِّتَّة - Les six grands recueils",
+            "explication": "Deux recueils dominent par leur degré d'exigence : صَحِيح البُخَارِي (Sahih Al-Bukhari, par l'imam Al-Bukhari, m. 256H) est considéré par la majorité des savants sunnites comme le livre le plus authentique après le Coran lui-même. صَحِيح مُسْلِم (Sahih Muslim, par l'imam Muslim ibn Al-Hajjaj, m. 261H) vient juste après.\n\nAvec quatre autres recueils (السُّنَن الأَرْبَعَة) — Abu Dawud, At-Tirmidhi, An-Nasa'i et Ibn Majah — ils forment ce qu'on appelle الكُتُب السِّتَّة (les Six Livres), la référence canonique du hadith sunnite. Certaines listes traditionnelles substituent Ibn Majah par le Muwatta de l'imam Malik ou le Sunan Ad-Darimi — un point de détail sur lequel les catalogueurs eux-mêmes ont documenté leur désaccord, sans que cela affecte le cœur du corpus.",
+            "exemples": []
+          },
+          {
+            "titre": "٦. الحَدِيث القُدْسِي - Le Hadith Qudsi",
+            "explication": "Une catégorie à part : le Hadith Qudsi rapporte une parole attribuée à Allah, mais formulée dans les mots du Prophète ﷺ — contrairement au Coran, qui est la parole d'Allah mot pour mot, récitée en adoration et inimitable dans sa forme même. Le Hadith Qudsi, lui, peut être Sahih, Hasan ou Da'if comme n'importe quel autre hadith : le fait qu'il rapporte une parole divine ne le dispense pas de l'examen rigoureux de sa chaîne.",
+            "exemples": [
+              {
+                "arabe": "يَا عِبَادِي إِنِّي حَرَّمْتُ الظُّلْمَ عَلَى نَفْسِي وَجَعَلْتُهُ بَيْنَكُمْ مُحَرَّمًا فَلَا تَظَالَمُوا",
+                "translitteration": "yā 'ibādī innī ḥarramtu aẓ-ẓulma 'alā nafsī wa ja'altuhu baynakum muḥarraman falā taẓālamū",
+                "sens": "Ô Mes serviteurs, Je Me suis interdit l'injustice, et Je l'ai rendue interdite entre vous — ne vous faites donc pas d'injustice mutuellement (rapporté dans Sahih Muslim)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "cle": "sira",
+        "titre": "3. السيرة - Sîra",
+        "type": "bab_lecons",
+        "disponible": false,
+        "lecons": []
+      },
+      {
+        "cle": "tawhid",
+        "titre": "4. التوحيد - Tawhid",
+        "type": "bab_lecons",
+        "disponible": false,
+        "lecons": []
+      },
+      {
+        "cle": "fiqh",
+        "titre": "5. الفقه - Fiqh",
+        "type": "bab_lecons",
+        "disponible": false,
+        "lecons": []
       }
     ]
   }
