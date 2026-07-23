@@ -29,6 +29,7 @@ from core.langue_arabe_engine import (
     CLE_MODULE_LANGUE_ARABE, normaliser_progres, marquer_item, resume_etape
 )
 from core.caravane_savoir_engine import construire_session_revision, compter_points_a_revoir
+from gui.interface_sciences_islamiques import CLE_MODULE_SCIENCES_ISLAMIQUES
 
 GRIS_INACTIF = "#d1d5db"
 GRIS_TEXTE_CLAIR = "#6b7280"      # assombri par rapport à la V3 : meilleur contraste sur fond clair
@@ -865,12 +866,38 @@ class EcranLangueArabe(tk.Frame):
         self.index_texte_lecture += delta
         self.construire_interface()
 
+    def _charger_progres_combine(self):
+        """La Caravane doit voir les points 'à revoir' des DEUX modules de stockage
+        (Langue arabe et Sciences islamiques), qui vivent dans des clés sync_engine
+        séparées. Fusion en lecture seule ici ; l'écriture reste routée par module
+        via _sauvegarder_selon_module."""
+        u_id = getattr(self.app, "user_id_connecte", None)
+        if not u_id:
+            return normaliser_progres(None)
+        donnees_langue = self.app.sync_engine.charger_donnees_module(u_id, CLE_MODULE_LANGUE_ARABE)
+        donnees_sciences = self.app.sync_engine.charger_donnees_module(u_id, CLE_MODULE_SCIENCES_ISLAMIQUES)
+        combine = dict(normaliser_progres(donnees_langue))
+        combine.update(normaliser_progres(donnees_sciences))  # clés "sciences_*" jamais en collision avec celles de Langue arabe
+        return combine
+
+    def _sauvegarder_selon_module(self, cle_etape, progres_complet):
+        u_id = getattr(self.app, "user_id_connecte", None)
+        if not u_id:
+            return
+        if cle_etape.startswith("sciences_"):
+            sous_ensemble = {k: v for k, v in progres_complet.items() if k.startswith("sciences_")}
+            self.app.sync_engine.executer_sauvegarde_module(u_id, CLE_MODULE_SCIENCES_ISLAMIQUES, sous_ensemble)
+        else:
+            sous_ensemble = {k: v for k, v in progres_complet.items() if not k.startswith("sciences_")}
+            self.app.sync_engine.executer_sauvegarde_module(u_id, CLE_MODULE_LANGUE_ARABE, sous_ensemble)
+
     # --- Étape Caravane du Savoir : révision transversale de tous les modules ---
     def _construire_etape_caravane(self, etape):
-        progres = self._charger_progres()
+        progres = self._charger_progres_combine()
         contenu = DICTIONNAIRE_LANGUES.actif.get("langue_arabe", {})
+        contenu_sciences = DICTIONNAIRE_LANGUES.actif.get("sciences_islamiques", {})
         nb_a_revoir_total = compter_points_a_revoir(progres)
-        session = construire_session_revision(progres, contenu, taille_max=10)
+        session = construire_session_revision(progres, contenu, taille_max=10, contenu_sciences_islamiques=contenu_sciences)
 
         tk.Label(
             self.zone_scrollable, text="Une halte de révision qui pioche dans tout ce que vous avez déjà rencontré — alphabet, vocabulaire, conjugaison, grammaire et lecture confondus.",
@@ -923,9 +950,9 @@ class EcranLangueArabe(tk.Frame):
         pied.pack(fill="x", padx=16, pady=(0, 14))
 
         def marquer_et_avancer(connu):
-            p = self._charger_progres()
+            p = self._charger_progres_combine()
             p = marquer_item(p, arret["cle_etape"], arret["identifiant"], connu)
-            self._sauvegarder_progres(p)
+            self._sauvegarder_selon_module(arret["cle_etape"], p)
             if self.index_caravane < len(session) - 1:
                 self.index_caravane += 1
             self.construire_interface()

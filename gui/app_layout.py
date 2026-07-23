@@ -14,6 +14,7 @@ from gui.interface_mouhasabah import EcranMouhasabah
 from gui.interface_audit import InterfaceAudit
 from gui.interface_encyclopedie import EcranEncyclopedie
 from gui.interface_langue_arabe import EcranLangueArabe
+from gui.interface_sciences_islamiques import EcranSciencesIslamiques
 
 from gui.interface_zakat_tiers import EcranZakatTiers
 from gui.interface_heritage_tiers import EcranHeritageTiers
@@ -55,6 +56,7 @@ class OrganisateurLayout(tk.Frame):
             "AUDIT": (InterfaceAudit, [self.app]),
             "ENCYCLOPEDIE": (EcranEncyclopedie, [self.app]),
             "LANGUE_ARABE": (EcranLangueArabe, [self.app]),
+            "SCIENCES_ISLAMIQUES": (EcranSciencesIslamiques, [self.app]),
             
             "ZAKAT_TIERS": (EcranZakatTiers, [self.app]),
             "HERITAGE_TIERS": (EcranHeritageTiers, [self.app])
