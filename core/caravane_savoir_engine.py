@@ -83,7 +83,27 @@ def _resoudre_lecture(etape, identifiant):
     return {"arabe": texte.get("titre", ""), "translitteration": "", "sens": texte.get("niveau", ""), "module": "Lecture"}
 
 
-def resoudre_item(contenu_langue_arabe, cle_etape, identifiant):
+def _resoudre_sciences_islamiques(contenu_sciences, cle_etape, identifiant):
+    if not contenu_sciences:
+        return None
+    domaine_cle = cle_etape[len("sciences_"):]
+    try:
+        i = int(identifiant)
+    except ValueError:
+        return None
+    for etape_domaine in contenu_sciences.get("etapes", []):
+        if etape_domaine.get("cle") != domaine_cle:
+            continue
+        lecons = etape_domaine.get("lecons", [])
+        if 0 <= i < len(lecons):
+            lecon = lecons[i]
+            ex = _premier_exemple(lecon)
+            return {"arabe": ex.get("arabe") or lecon.get("titre", ""), "translitteration": ex.get("translitteration", ""),
+                    "sens": lecon.get("titre", ""), "module": f"Sciences islamiques — {etape_domaine.get('titre','')}"}
+    return None
+
+
+def resoudre_item(contenu_langue_arabe, cle_etape, identifiant, contenu_sciences_islamiques=None):
     """Retrouve (arabe/translitteration/sens/module) pour un identifiant de progression donné.
     Renvoie None si le contenu source a changé ou disparu — l'appelant doit ignorer ces cas
     plutôt que planter, le contenu du dictionnaire pouvant évoluer indépendamment."""
@@ -99,12 +119,14 @@ def resoudre_item(contenu_langue_arabe, cle_etape, identifiant):
             return _resoudre_grammaire(etapes_index.get("grammaire", {}), cle_etape, identifiant)
         if cle_etape == "lecture":
             return _resoudre_lecture(etapes_index.get("lecture", {}), identifiant)
+        if cle_etape.startswith("sciences_"):
+            return _resoudre_sciences_islamiques(contenu_sciences_islamiques, cle_etape, identifiant)
     except Exception:
         return None
     return None
 
 
-def construire_session_revision(progres, contenu_langue_arabe, taille_max=10):
+def construire_session_revision(progres, contenu_langue_arabe, taille_max=10, contenu_sciences_islamiques=None):
     """Priorité aux points marqués "à revoir" dans n'importe quel module ; si la
     session est trop courte (débutant, peu de contenu vu), on complète avec des
     points déjà "connus" pour ne jamais présenter un écran vide."""
@@ -113,7 +135,7 @@ def construire_session_revision(progres, contenu_langue_arabe, taille_max=10):
         if cle_etape == "caravane":
             continue
         for identifiant in donnees.get("a_revoir", []):
-            item = resoudre_item(contenu_langue_arabe, cle_etape, identifiant)
+            item = resoudre_item(contenu_langue_arabe, cle_etape, identifiant, contenu_sciences_islamiques)
             if item:
                 item.update({"cle_etape": cle_etape, "identifiant": identifiant, "complement": False})
                 candidats.append(item)
@@ -125,7 +147,7 @@ def construire_session_revision(progres, contenu_langue_arabe, taille_max=10):
             for identifiant in donnees.get("connues", []):
                 if len(candidats) >= taille_max:
                     break
-                item = resoudre_item(contenu_langue_arabe, cle_etape, identifiant)
+                item = resoudre_item(contenu_langue_arabe, cle_etape, identifiant, contenu_sciences_islamiques)
                 if item:
                     item.update({"cle_etape": cle_etape, "identifiant": identifiant, "complement": True})
                     candidats.append(item)
