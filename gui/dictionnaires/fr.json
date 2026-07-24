@@ -3597,6 +3597,42 @@
             "titre": "٧. خَصَائِص أُخْرَى - Autres particularités",
             "explication": "Quelques repères supplémentaires que tout parcours universitaire de sciences coraniques aborde tôt :\n\nLa sourate la plus longue est Al-Baqarah (286 versets) ; la plus courte, Al-Kawthar (3 versets seulement). Le verset le plus long du Coran est le « verset de la dette » (Al-Baqarah, 282). Ayat Al-Kursi (Al-Baqarah, 255) est rapporté par un hadith authentique comme le verset le plus noble du Coran.\n\nSur le nombre total de versets, la rigueur oblige à nuancer : le chiffre le plus répandu aujourd'hui est 6236 (comptage coufique, utilisé par le Mushaf de Médine), mais les traditions de récitation basriote, chamie ou mecquoise donnent des décomptes légèrement différents (6204, 6214, 6219...). Ce n'est pas une contradiction sur le texte lui-même, mais sur la manière de découper certains longs versets en unités — un point de méthode, pas de contenu.",
             "exemples": []
+          },
+          {
+            "titre": "٨. سُورَة النَّاس - Lecture : la toute dernière sourate du Coran",
+            "explication": "Pour clore ce parcours, une sourate complète à lire d'un bout à l'autre : سُورَة النَّاس, la 114e et dernière du Mushaf — un point final concret après tant de théorie.",
+            "exemples": [
+              {
+                "arabe": "قُلْ أَعُوذُ بِرَبِّ النَّاسِ",
+                "translitteration": "qul a'ūdhu birabbi an-nās",
+                "sens": "Dis : Je cherche protection auprès du Seigneur des hommes,"
+              },
+              {
+                "arabe": "مَلِكِ النَّاسِ",
+                "translitteration": "maliki an-nās",
+                "sens": "Roi des hommes,"
+              },
+              {
+                "arabe": "إِلَٰهِ النَّاسِ",
+                "translitteration": "ilāhi an-nās",
+                "sens": "Dieu des hommes,"
+              },
+              {
+                "arabe": "مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ",
+                "translitteration": "min sharri al-waswāsi al-khannās",
+                "sens": "contre le mal du tentateur, qui se dérobe [au rappel d'Allah],"
+              },
+              {
+                "arabe": "الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ",
+                "translitteration": "alladhī yuwaswisu fī ṣudūri an-nās",
+                "sens": "qui souffle le mal dans les poitrines des hommes,"
+              },
+              {
+                "arabe": "مِنَ الْجِنَّةِ وَالنَّاسِ",
+                "translitteration": "mina al-jinnati wa-an-nās",
+                "sens": "qu'il soit des djinns ou des hommes."
+              }
+            ]
           }
         ]
       },
@@ -3662,6 +3698,17 @@
                 "arabe": "يَا عِبَادِي إِنِّي حَرَّمْتُ الظُّلْمَ عَلَى نَفْسِي وَجَعَلْتُهُ بَيْنَكُمْ مُحَرَّمًا فَلَا تَظَالَمُوا",
                 "translitteration": "yā 'ibādī innī ḥarramtu aẓ-ẓulma 'alā nafsī wa ja'altuhu baynakum muḥarraman falā taẓālamū",
                 "sens": "Ô Mes serviteurs, Je Me suis interdit l'injustice, et Je l'ai rendue interdite entre vous — ne vous faites donc pas d'injustice mutuellement (rapporté dans Sahih Muslim)"
+              }
+            ]
+          },
+          {
+            "titre": "٧. حَدِيث صَحِيح - Lecture : un hadith authentique pour clore",
+            "explication": "Pour clore ce parcours, l'un des hadiths les plus connus de tout le corpus — rapporté à la fois par Al-Bukhari et Muslim, donc au plus haut degré d'authenticité, et placé en ouverture de nombreux recueils tant il est jugé fondamental.",
+            "exemples": [
+              {
+                "arabe": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
+                "translitteration": "innamā al-a'mālu bin-niyyāti, wa innamā li-kulli imri'in mā nawā",
+                "sens": "Les actions ne valent que par les intentions, et chacun n'aura que ce qu'il a eu l'intention de faire (Sahih Al-Bukhari et Sahih Muslim)"
               }
             ]
           }
