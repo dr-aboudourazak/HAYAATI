@@ -30,6 +30,7 @@ from core.langue_arabe_engine import (
 )
 from core.caravane_savoir_engine import construire_session_revision, compter_points_a_revoir
 from gui.interface_sciences_islamiques import CLE_MODULE_SCIENCES_ISLAMIQUES
+from gui.rendu_arabe import construire_texte_mixte
 
 GRIS_INACTIF = "#d1d5db"
 GRIS_TEXTE_CLAIR = "#6b7280"      # assombri par rapport à la V3 : meilleur contraste sur fond clair
@@ -708,10 +709,10 @@ class EcranLangueArabe(tk.Frame):
             wraplength=wraplength_lecon, justify="left"
         ).pack(anchor="w", padx=16, pady=(14, 8))
 
-        tk.Label(
-            carte, text=lecon.get("explication", ""), font=("Helvetica", 11), fg=TEXTE_FONCE, bg=SABLE,
-            wraplength=wraplength_lecon, justify="left"
-        ).pack(anchor="w", padx=16, pady=(0, 10))
+        construire_texte_mixte(
+            carte, lecon.get("explication", ""), bg=SABLE, couleur_texte=TEXTE_FONCE,
+            taille_normale=11, taille_arabe=17, wraplength=wraplength_lecon, padx=16, pady=(0, 10)
+        )
 
         for ex in lecon.get("exemples", []):
             ligne_ex = tk.Frame(carte, bg=BLANC, highlightbackground=OCRE, highlightthickness=1)
@@ -866,6 +867,7 @@ class EcranLangueArabe(tk.Frame):
         self.index_texte_lecture += delta
         self.construire_interface()
 
+    # --- Étape Caravane du Savoir : révision transversale de tous les modules ---
     def _charger_progres_combine(self):
         """La Caravane doit voir les points 'à revoir' des DEUX modules de stockage
         (Langue arabe et Sciences islamiques), qui vivent dans des clés sync_engine
@@ -891,7 +893,6 @@ class EcranLangueArabe(tk.Frame):
             sous_ensemble = {k: v for k, v in progres_complet.items() if not k.startswith("sciences_")}
             self.app.sync_engine.executer_sauvegarde_module(u_id, CLE_MODULE_LANGUE_ARABE, sous_ensemble)
 
-    # --- Étape Caravane du Savoir : révision transversale de tous les modules ---
     def _construire_etape_caravane(self, etape):
         progres = self._charger_progres_combine()
         contenu = DICTIONNAIRE_LANGUES.actif.get("langue_arabe", {})

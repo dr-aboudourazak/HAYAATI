@@ -4,6 +4,7 @@ Version 3.3 - Alignement i18n complet, suppression des mentions '(Tiers)' codée
 """
 import tkinter as tk
 from tkinter import ttk
+from gui import ressources_visuelles
 
 def configurer_bandeau_superieur(app):
     """Dessine et gère les liaisons d'écouteurs de la barre supérieure i18n."""
@@ -13,9 +14,15 @@ def configurer_bandeau_superieur(app):
     barre_json = app.txt_global.get("barre_outils", {})
     is_m = app.mode_smartphone_actif if hasattr(app, 'mode_smartphone_actif') else False
     
-    # 1. En-tête : Titre et Identité de Session
-    titre_app = barre_json.get("titre_app", "🕌 HAYAATI")
-    tk.Label(app.barre_outils, text=titre_app[:12] if is_m else titre_app, font=("Helvetica", 10 if is_m else 12, "bold"), fg="#ffffff", bg="#064e3b").pack(side="left", padx=5)
+    # 1. En-tête : Icône (le logo porte déjà le nom HAYAATI, inutile de le redoubler en texte)
+    icone_img = ressources_visuelles.icone(taille=22 if is_m else 26)
+    if icone_img:
+        lbl_icone = tk.Label(app.barre_outils, image=icone_img, bg="#064e3b")
+        lbl_icone.image = icone_img  # référence conservée, sinon Tkinter la ramasse et l'icône disparaît
+        lbl_icone.pack(side="left", padx=(8, 5))
+    else:
+        titre_app = barre_json.get("titre_app", "🕌 HAYAATI")
+        tk.Label(app.barre_outils, text=titre_app[:12] if is_m else titre_app, font=("Helvetica", 10 if is_m else 12, "bold"), fg="#ffffff", bg="#064e3b").pack(side="left", padx=5)
 
     statut_txt = f"👤 {app.nom_utilisateur_connecte}" if app.est_mode_connecte else barre_json.get("visiteur", "👤 Visiteur")
     tk.Label(app.barre_outils, text=statut_txt[:12] if is_m else statut_txt, font=("Helvetica", 8 if is_m else 9, "italic"), fg="#e5e7eb", bg="#064e3b").pack(side="left", padx=5)
@@ -114,7 +121,6 @@ def dessiner_boutons_navigation(app):
             (menu_json.get("audit", "📖 Audit"), "AUDIT"),
             (menu_json.get("encyclopedie", "📚 Encyclopédie"), "ENCYCLOPEDIE"),
             (menu_json.get("langue_arabe", "🔤 Langue arabe"), "LANGUE_ARABE"),
-            (menu_json.get("sciences_islamiques", "🕌 Sciences islamiques"), "SCIENCES_ISLAMIQUES"),
             (menu_json.get("profil", "👤 Profil"), "PROFIL"),
             (menu_json.get("reglages", "⚙️ Réglages"), "REGLAGES")
         ]
@@ -127,8 +133,7 @@ def dessiner_boutons_navigation(app):
             (lbl_zakat_tiers, "ZAKAT_TIERS"), 
             (lbl_heritage_tiers, "HERITAGE_TIERS"),
             (menu_json.get("encyclopedie", "📚 Encyclopédie"), "ENCYCLOPEDIE"),
-            (menu_json.get("langue_arabe", "🔤 Langue arabe"), "LANGUE_ARABE"),
-            (menu_json.get("sciences_islamiques", "🕌 Sciences islamiques"), "SCIENCES_ISLAMIQUES")
+            (menu_json.get("langue_arabe", "🔤 Langue arabe"), "LANGUE_ARABE")
         ]
 
     # --- FORMAT SMARTPHONE (BOTTOM NAV) ---

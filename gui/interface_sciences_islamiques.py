@@ -14,6 +14,7 @@ from gui.palette_hayaati import (
     TEXTE_FONCE
 )
 from core.langue_arabe_engine import normaliser_progres, marquer_item, resume_etape
+from gui.rendu_arabe import construire_texte_mixte
 
 GRIS_INACTIF = "#d1d5db"
 GRIS_TEXTE_CLAIR = "#6b7280"
@@ -276,7 +277,10 @@ class EcranSciencesIslamiques(tk.Frame):
         carte = tk.Frame(self.zone_scrollable, bg=SABLE, highlightbackground=TERRACOTTA, highlightthickness=1)
         carte.pack(fill="x", padx=20, pady=(0, 10))
         tk.Label(carte, text=lecon.get("titre", ""), font=("Helvetica", 13, "bold"), fg=TERRACOTTA_FONCE, bg=SABLE, wraplength=wraplength, justify="left").pack(anchor="w", padx=16, pady=(14, 8))
-        tk.Label(carte, text=lecon.get("explication", ""), font=("Helvetica", 11), fg=TEXTE_FONCE, bg=SABLE, wraplength=wraplength, justify="left").pack(anchor="w", padx=16, pady=(0, 10))
+        construire_texte_mixte(
+            carte, lecon.get("explication", ""), bg=SABLE, couleur_texte=TEXTE_FONCE,
+            taille_normale=11, taille_arabe=17, wraplength=wraplength, padx=16, pady=(0, 10)
+        )
 
         if lecon.get("type_visuel") == "chaine_isnad":
             self._construire_chaine_isnad(carte, lecon.get("chaine_isnad", []), wraplength)

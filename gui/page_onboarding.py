@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 from gui.page_onboarding_alerts import compiler_alertes_espace_prive
 from gui.langues import DICTIONNAIRE_LANGUES
+from gui import ressources_visuelles
 
 class PageOnboarding(tk.Frame):
     def __init__(self, parent, app_reference):
@@ -165,7 +166,13 @@ class PageOnboarding(tk.Frame):
         c_onb = tk.Frame(self.zone_dynamique, bg="#ffffff", padx=40, pady=25)
         c_onb.place(relx=0.5, rely=0.5, anchor="center")
         
-        tk.Label(c_onb, text=DICTIONNAIRE_LANGUES.actif.get("barre_outils", {}).get("titre_app", "Hayaati"), font=("Helvetica", 18, "bold"), fg="#064e3b", bg="#ffffff").pack()
+        logo_img = ressources_visuelles.logo(taille=110)
+        if logo_img:
+            lbl_logo = tk.Label(c_onb, image=logo_img, bg="#ffffff")
+            lbl_logo.image = logo_img  # référence conservée, sinon Tkinter la ramasse et le logo disparaît
+            lbl_logo.pack(pady=(0, 8))
+        else:
+            tk.Label(c_onb, text=DICTIONNAIRE_LANGUES.actif.get("barre_outils", {}).get("titre_app", "Hayaati"), font=("Helvetica", 18, "bold"), fg="#064e3b", bg="#ffffff").pack()
         
         desc_humaine = txt_onb.get("guide_visiteur_humain", "Mode Simulation Tiers.")
         self.lbl_vitrine_desc = tk.Label(c_onb, text=desc_humaine, font=("Helvetica", 10), bg="#ffffff", fg="#374151", justify="center")

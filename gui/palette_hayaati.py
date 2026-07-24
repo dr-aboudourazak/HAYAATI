@@ -19,6 +19,12 @@ OCRE = "#D9A441"
 OCRE_CLAIR = "#FBF0DA"
 OCRE_FONCE = "#7A5510"
 
+# --- Texte de corps sur fond coloré ou clair : contraste maximal, jamais coloré lui-même.
+# (Le retour utilisateur a signalé qu'un texte coloré-sur-clair devient difficile à lire
+# dès qu'il y a beaucoup à lire — cette couleur remplace OCRE_FONCE/TERRACOTTA_FONCE
+# pour tout corps de texte long ; les couleurs de marque restent réservées aux titres courts.)
+TEXTE_FONCE = "#2b1607"
+
 # --- Neutres et fonds ---
 SABLE = "#FBF6EE"
 BLANC = "#ffffff"
