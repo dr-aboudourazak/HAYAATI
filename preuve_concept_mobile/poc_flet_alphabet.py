@@ -74,7 +74,7 @@ def construire_carte_lettre(lettre, index, etat, rafraichir_resume):
 
     carte_container = ft.Container(
         content=contenu_recto,
-        width=150, height=140,
+        width=150,
         border=_bordure_uniforme(couleur_bordure()),
         border_radius=10,
         alignment=ft.Alignment(0, 0),
@@ -98,17 +98,19 @@ def construire_carte_lettre(lettre, index, etat, rafraichir_resume):
             carte_container.update()
 
         lignes.append(
-            ft.Row(
+            ft.Column(
                 [
-                    ft.ElevatedButton("✓ Je la connais", bgcolor=VERT_SUCCES, color="white",
-                                       on_click=lambda e: marquer(e, True), height=30),
-                    ft.ElevatedButton("🔁 À revoir", bgcolor=AMBRE_ATTENTE, color="white",
-                                       on_click=lambda e: marquer(e, False), height=30),
+                    ft.Button(ft.Text("✓ Je la connais", size=11), bgcolor=VERT_SUCCES, color="white",
+                              on_click=lambda e: marquer(e, True), height=30, width=140),
+                    ft.Button(ft.Text("🔁 À revoir", size=11), bgcolor=AMBRE_ATTENTE, color="white",
+                              on_click=lambda e: marquer(e, False), height=30, width=140),
                 ],
-                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                spacing=4,
+                tight=True,
             )
         )
-        return ft.Column(lignes, horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=4)
+        return ft.Column(lignes, horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=4, tight=True)
 
     def basculer(e):
         if carte_container.content == contenu_recto:
