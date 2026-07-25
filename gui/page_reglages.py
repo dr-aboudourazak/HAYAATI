@@ -26,8 +26,10 @@ class PageReglages(tk.Frame):
         self.cb_devise = ttk.Combobox(self.c_pref, values=["XOF", "FCFA", "EUR", "SAR", "USD"], width=8, state="readonly")
         
         self.lbl_guide_langue = tk.Label(self.c_pref, bg="#ffffff", font=("Helvetica", 9))
-        m_index = DICTIONNAIRE_LANGUES.moteur_i18n.langues_disponibles_index
-        self.cb_langue = ttk.Combobox(self.c_pref, values=list(m_index.keys()), width=8, state="readonly")
+        m_index = DICTIONNAIRE_LANGUES.moteur_i18n.langues_disponibles_index  # {code: nom_langue}
+        self.map_langue_cle_vers_trad = dict(m_index)
+        self.map_langue_trad_vers_cle = {str(v).strip(): k for k, v in m_index.items()}
+        self.cb_langue = ttk.Combobox(self.c_pref, values=list(m_index.values()), width=14, state="readonly")
         
         self.lbl_guide_fiqh = tk.Label(self.c_pref, bg="#ffffff", font=("Helvetica", 9))
         self.cb_fiqh = ttk.Combobox(self.c_pref, width=12, state="readonly")
@@ -37,7 +39,7 @@ class PageReglages(tk.Frame):
         
         # 🌐 Récupération des valeurs d'initialisation stables de l'application
         self.cb_devise.set(self.app.devise_active)
-        self.cb_langue.set(self.app.langue_actuelle)
+        self.cb_langue.set(getattr(self, "map_langue_cle_vers_trad", {}).get(self.app.langue_actuelle, self.app.langue_actuelle))
 
         # 🎯 CURSEUR EXPLICITE GRADUÉ (-2, -1, 0, 1, 2)
         self.c_lunaire = tk.Frame(self.c_pref, bg="#ffffff")
@@ -190,6 +192,7 @@ class PageReglages(tk.Frame):
         u = self.app.user_id_connecte
         d = self.cb_devise.get()
         l = self.cb_langue.get()
+        l = getattr(self, "map_langue_trad_vers_cle", {}).get(str(l).strip(), self.app.langue_actuelle)
         
         # 🎯 SÉCURITÉ FIQH SÉCURISÉE PAR MAP LOCAL
         trad_fiqh_choisie = str(self.cb_fiqh.get()).strip().upper()
@@ -315,7 +318,7 @@ class PageReglages(tk.Frame):
 
     def actualiser_donnees_affichage(self):
         self.cb_devise.set(self.app.devise_active)
-        self.cb_langue.set(self.app.langue_actuelle)
+        self.cb_langue.set(getattr(self, "map_langue_cle_vers_trad", {}).get(self.app.langue_actuelle, self.app.langue_actuelle))
         
         if hasattr(self.app, "sync_engine") and self.app.sync_engine:
             c_p = self.app.sync_engine.charger_donnees_module(getattr(self.app, "user_id_connecte", None), "PREFERENCES")

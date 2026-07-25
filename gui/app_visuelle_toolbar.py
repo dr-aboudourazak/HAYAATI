@@ -5,6 +5,7 @@ Version 3.3 - Alignement i18n complet, suppression des mentions '(Tiers)' codée
 import tkinter as tk
 from tkinter import ttk
 from gui import ressources_visuelles
+from gui.langues import DICTIONNAIRE_LANGUES
 
 def configurer_bandeau_superieur(app):
     """Dessine et gère les liaisons d'écouteurs de la barre supérieure i18n."""
@@ -68,11 +69,21 @@ def configurer_bandeau_superieur(app):
     app.combo_devise.pack(side="right", padx=1)
     app.combo_devise.bind("<<ComboboxSelected>>", lambda e: [setattr(app, "devise_active", app.combo_devise.get()), hasattr(app, 'declencher_changement_global') and app.declencher_changement_global()])
 
-    # Langue
-    app.combo_langue = ttk.Combobox(cadre_combos, values=["FR", "EN", "HA", "AR", "ES", "ZH"], width=3, state=etat_menu)
-    app.combo_langue.set(app.langue_actuelle)
+    # Langue — liste dynamique (toute nouvelle langue déposée dans gui/dictionnaires
+    # apparaît automatiquement), affichée par son nom réel plutôt que le nom du fichier.
+    m_index_langues = DICTIONNAIRE_LANGUES.moteur_i18n.langues_disponibles_index  # {code: nom_langue}
+    app._map_langue_cle_vers_trad = dict(m_index_langues)
+    app._map_langue_trad_vers_cle = {str(v).strip(): k for k, v in m_index_langues.items()}
+    app.combo_langue = ttk.Combobox(cadre_combos, values=list(m_index_langues.values()), width=10 if is_m else 14, state=etat_menu)
+    app.combo_langue.set(app._map_langue_cle_vers_trad.get(app.langue_actuelle, app.langue_actuelle))
     app.combo_langue.pack(side="right", padx=1)
-    app.combo_langue.bind("<<ComboboxSelected>>", lambda e: app.changer_langue_globale(app.combo_langue.get()))
+
+    def _on_langue_selectionnee(event):
+        nom_choisi = app.combo_langue.get()
+        code_choisi = app._map_langue_trad_vers_cle.get(str(nom_choisi).strip(), app.langue_actuelle)
+        app.changer_langue_globale(code_choisi)
+
+    app.combo_langue.bind("<<ComboboxSelected>>", _on_langue_selectionnee)
 
     # Fiqh / Madhhab
     if not is_m:
