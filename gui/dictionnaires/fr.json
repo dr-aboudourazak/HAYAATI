@@ -3511,6 +3511,71 @@
                 "sens": "son frère"
               }
             ]
+          },
+          {
+            "titre": "لِمَاذَا أُرْسِلَ الرَّسُولُ ﷺ - Pourquoi le Messager a été envoyé",
+            "niveau": "Intermédiaire",
+            "type": "recit",
+            "source_domaine": "Sciences islamiques — Sîra",
+            "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْعَالَمِينَ",
+                "traduction": "Et Nous ne t'avons envoyé qu'en tant que miséricorde pour l'univers. (Sourate Al-Anbiya, verset 107)"
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "أَرْسَلْنَاكَ",
+                "translitteration": "arsalnāka",
+                "sens": "Nous t'avons envoyé"
+              },
+              {
+                "arabe": "رَحْمَة",
+                "translitteration": "raḥma",
+                "sens": "miséricorde"
+              }
+            ]
+          },
+          {
+            "titre": "سُورَة الإِخْلَاص - Sourate Al-Ikhlas (intégrale)",
+            "niveau": "Débutant",
+            "type": "recit",
+            "source_domaine": "Sciences islamiques — Tawhid",
+            "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "قُلْ هُوَ اللَّهُ أَحَدٌ",
+                "traduction": "Dis : Il est Allah, Unique."
+              },
+              {
+                "locuteur": "",
+                "arabe": "اللَّهُ الصَّمَدُ",
+                "traduction": "Allah, Celui à qui l'on s'en remet entièrement."
+              },
+              {
+                "locuteur": "",
+                "arabe": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+                "traduction": "Il n'a jamais engendré et n'a pas été engendré."
+              },
+              {
+                "locuteur": "",
+                "arabe": "وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ",
+                "traduction": "Et nul n'est égal à Lui."
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "أَحَد",
+                "translitteration": "aḥad",
+                "sens": "unique, un seul"
+              },
+              {
+                "arabe": "الصَّمَد",
+                "translitteration": "aṣ-ṣamad",
+                "sens": "celui à qui l'on s'en remet entièrement, qui ne dépend de rien"
+              }
+            ]
           }
         ],
         "consigne": "Trois textes gradués, du récit simple au dialogue professionnel. Chaque mot déjà rencontré ailleurs dans le parcours est volontairement réutilisé ici — lire, c'est aussi réviser."
@@ -3718,15 +3783,174 @@
         "cle": "sira",
         "titre": "3. السيرة - Sîra",
         "type": "bab_lecons",
-        "disponible": false,
-        "lecons": []
+        "disponible": true,
+        "lecons": [
+          {
+            "titre": "١. عِلْم السِّيرَة - Une science, pas une légende",
+            "explication": "La Sîra n'est pas un recueil d'anecdotes transmises au hasard : elle applique la même rigueur critique que la science du hadith. Chaque récit biographique est examiné selon sa chaîne de transmission, croisé avec le Coran et les hadiths authentifiés, et les spécialistes (comme Ibn Kathir dans Al-Bidaya wa'n-Nihaya) trient explicitement les récits faibles ou légendaires qui se sont parfois glissés dans certaines compilations populaires — exactement le même travail de vérification qu'en 'Ilm Al-Hadith, appliqué cette fois à l'ensemble d'une vie.",
+            "exemples": []
+          },
+          {
+            "titre": "٢. خَط زَمَنِي - Chronologie des grands événements",
+            "explication": "Onze repères, de la naissance au décès, pour situer chaque étape dans le temps plutôt que d'apprendre des dates isolées :",
+            "type_visuel": "chronologie",
+            "chronologie": [
+              {
+                "date": "٥٧٠ م.",
+                "evenement": "Naissance du Prophète ﷺ à La Mecque, l'Année de l'Éléphant"
+              },
+              {
+                "date": "٦١٠ م.",
+                "evenement": "Première révélation (Sourate Al-'Alaq), grotte de Hira — 40 ans"
+              },
+              {
+                "date": "٦١٣ م.",
+                "evenement": "Début de la prédication publique, après 3 ans de prédication privée"
+              },
+              {
+                "date": "٦٢٢ م. — An 1 H",
+                "evenement": "الهِجْرَة : émigration vers Médine — début du calendrier musulman"
+              },
+              {
+                "date": "٦٢٤ م. — An 2 H",
+                "evenement": "Bataille de Badr"
+              },
+              {
+                "date": "٦٢٥ م. — An 3 H",
+                "evenement": "Bataille de Uhud"
+              },
+              {
+                "date": "٦٢٧ م. — An 5 H",
+                "evenement": "Bataille du Fossé (الخَنْدَق)"
+              },
+              {
+                "date": "٦٢٨ م. — An 6 H",
+                "evenement": "Traité de Hudaybiyya"
+              },
+              {
+                "date": "٦٣٠ م. — An 8 H",
+                "evenement": "فَتْح مَكَّة : conquête de La Mecque, sans effusion de sang majeure"
+              },
+              {
+                "date": "٦٣٢ م. — An 10 H",
+                "evenement": "حَجَّة الوَدَاع : le Pèlerinage d'Adieu"
+              },
+              {
+                "date": "٦٣٢ م. — An 11 H",
+                "evenement": "Décès du Prophète ﷺ à Médine, à 63 ans"
+              }
+            ],
+            "exemples": []
+          },
+          {
+            "titre": "٣. الأَمِين - Avant la révélation",
+            "explication": "Né à La Mecque dans le clan des Banu Hashim (tribu de Quraych), orphelin de père avant sa naissance puis de mère à 6 ans, il est élevé par son grand-père 'Abd Al-Muttalib puis son oncle Abu Talib. Bien avant la révélation, il est déjà connu de tous sous le surnom الأَمِين (« le digne de confiance ») pour son honnêteté reconnue jusque par ses adversaires ultérieurs. Il épouse Khadija, marchande respectée, à 25 ans.",
+            "exemples": [
+              {
+                "arabe": "الأَمِين",
+                "translitteration": "al-amīn",
+                "sens": "le digne de confiance — surnom du Prophète ﷺ avant même la révélation"
+              }
+            ]
+          },
+          {
+            "titre": "٤. الوَحْي - La révélation et la prédication secrète",
+            "explication": "À 40 ans, dans la grotte de Hira où il avait pris l'habitude de se retirer, il reçoit la première révélation. Suivent trois années de prédication discrète, réservée à son entourage proche, avant que l'ordre ne vienne d'annoncer le message publiquement — une période de préparation, pas d'hésitation.",
+            "exemples": []
+          },
+          {
+            "titre": "٥. الهِجْرَة - L'émigration, un tournant",
+            "explication": "Face à la persécution croissante à La Mecque, l'émigration vers Médine en 622 marque plus qu'un déplacement géographique : c'est là que se construit la première communauté musulmane organisée, avec ses propres institutions. Cet événement est si structurant qu'il devient le point de départ du calendrier musulman lui-même — toutes les dates hégiriennes se comptent à partir de cette année-là.",
+            "exemples": []
+          },
+          {
+            "titre": "٦. فَتْح مَكَّة - La conquête de La Mecque",
+            "explication": "En l'an 8 de l'Hégire, La Mecque est reprise sans effusion de sang majeure. Le Prophète ﷺ y accorde une amnistie générale à ceux qui l'avaient combattu et persécuté pendant plus d'une décennie — un geste dont les biographes soulignent systématiquement le caractère volontairement clément, à l'opposé d'une revanche.",
+            "exemples": []
+          },
+          {
+            "titre": "٧. وَفَاتُهُ ﷺ - Son décès",
+            "explication": "Après le Pèlerinage d'Adieu en l'an 10 de l'Hégire — au cours duquel il prononce un discours resté célèbre sur l'égalité entre les croyants — le Prophète ﷺ décède à Médine l'année suivante, à 63 ans, laissant derrière lui une communauté déjà organisée et un message consigné avec un soin scrupuleux, comme on l'a vu tout au long de ce parcours.",
+            "exemples": []
+          },
+          {
+            "titre": "٨. نَص لِلقِرَاءَة - Lecture : un verset qui résume sa mission",
+            "explication": "Pour clore ce parcours, un verset coranique cité par tous les biographes en ouverture ou en conclusion de son étude, tant il résume le sens même de la mission prophétique.",
+            "exemples": [
+              {
+                "arabe": "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْعَالَمِينَ",
+                "translitteration": "wa mā arsalnāka illā raḥmatan lil-'ālamīn",
+                "sens": "Et Nous ne t'avons envoyé qu'en tant que miséricorde pour l'univers (Sourate Al-Anbiya, verset 107)"
+              }
+            ]
+          }
+        ]
       },
       {
         "cle": "tawhid",
         "titre": "4. التوحيد - Tawhid",
         "type": "bab_lecons",
-        "disponible": false,
-        "lecons": []
+        "disponible": true,
+        "lecons": [
+          {
+            "titre": "١. التَّوْحِيد - Ce qui fonde tout le reste",
+            "explication": "التوحيد (le monothéisme pur) est le principe fondateur : reconnaître qu'Allah est unique, sans associé, dans Sa seigneurie, Son droit exclusif à être adoré, et Ses noms et attributs. Ce n'est pas un sujet parmi d'autres — c'est le socle sur lequel tout le reste (Coran, Hadith, Fiqh) prend son sens. Le témoignage لَا إِلَٰهَ إِلَّا اللَّهُ (« Il n'y a de divinité digne d'adoration qu'Allah ») en est la formulation la plus condensée.",
+            "exemples": [
+              {
+                "arabe": "لَا إِلَٰهَ إِلَّا اللَّهُ",
+                "translitteration": "lā ilāha illā Allāh",
+                "sens": "il n'y a de divinité digne d'adoration qu'Allah"
+              }
+            ]
+          },
+          {
+            "titre": "٢. الشِّرْك - Son contraire",
+            "explication": "الشرك (associer une divinité à Allah, dans l'adoration ou la seigneurie) en est l'exact opposé, et le Coran le désigne comme la faute la plus grave qui soit, si elle n'est pas repentie avant la mort. Comprendre le Tawhid suppose de comprendre aussi clairement ce qui le brise — pas seulement une définition positive, mais sa négation précise.",
+            "exemples": []
+          },
+          {
+            "titre": "٣. أَقْسَام التَّوْحِيد - Une classification en trois, avec une nuance à connaître",
+            "explication": "Le Tawhid se décompose classiquement en trois catégories, cadre aujourd'hui très répandu dans l'enseignement sunnite :\n\nرُبُوبِيَّة (Rububiyya) : Allah seul crée, possède et gouverne l'univers.\nأُلُوهِيَّة (Uluhiyya) : Allah seul mérite d'être adoré — la catégorie la plus contestée historiquement, puisque même les polythéistes de l'époque du Prophète ﷺ reconnaissaient souvent la Rububiyya sans en tirer la conséquence de n'adorer qu'Allah.\nأَسْمَاء وَصِفَات (Noms et Attributs) : Allah a des noms et attributs décrits dans le Coran et la Sunna, affirmés sans les déformer, sans demander « comment », et sans les comparer à ceux de la création.\n\nNuance à connaître : cette systématisation précise en trois catégories a été particulièrement développée et popularisée par Ibn Taymiyya. D'autres courants théologiques sunnites (ash'arite, maturidite) affirment le même Tawhid et rejettent le même shirk, mais organisent traditionnellement leur discours autour d'autres catégories. Le fond est partagé ; le découpage en trois n'est pas la seule façon historique de l'exposer.",
+            "exemples": []
+          },
+          {
+            "titre": "٤. الأَسْئِلَة الثَّلَاثَة - Les trois questions fondamentales",
+            "explication": "Un hadith rapporte que chaque personne, après sa mort, est questionnée sur trois points : مَنْ رَبُّكَ (qui est ton Seigneur), وَمَا دِينُكَ (quelle est ta religion), وَمَنْ نَبِيُّكَ (qui est ton Prophète). C'est cette structure en trois questions que reprend Al-Usul Ath-Thalatha (« Les Trois Fondements »), un petit traité pédagogique très largement utilisé pour organiser l'enseignement de base du Tawhid autour de ces mêmes trois axes : connaître son Seigneur, connaître sa religion avec ses preuves, connaître son Prophète ﷺ.",
+            "exemples": [
+              {
+                "arabe": "مَنْ رَبُّكَ؟ وَمَا دِينُكَ؟ وَمَنْ نَبِيُّكَ؟",
+                "translitteration": "man rabbuka? wa mā dīnuka? wa man nabiyyuka?",
+                "sens": "Qui est ton Seigneur ? Quelle est ta religion ? Qui est ton Prophète ?"
+              }
+            ]
+          },
+          {
+            "titre": "٥. نَص لِلقِرَاءَة - Lecture : la sourate la plus concentrée sur le Tawhid",
+            "explication": "Pour clore ce parcours, la sourate que le Prophète ﷺ décrivait lui-même comme équivalant, à elle seule, à un tiers du Coran tant elle concentre la question du Tawhid — سُورَة الإِخْلَاص.",
+            "exemples": [
+              {
+                "arabe": "قُلْ هُوَ اللَّهُ أَحَدٌ",
+                "translitteration": "qul huwa Allāhu aḥad",
+                "sens": "Dis : Il est Allah, Unique."
+              },
+              {
+                "arabe": "اللَّهُ الصَّمَدُ",
+                "translitteration": "Allāhu aṣ-ṣamad",
+                "sens": "Allah, Celui à qui l'on s'en remet entièrement."
+              },
+              {
+                "arabe": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+                "translitteration": "lam yalid wa lam yūlad",
+                "sens": "Il n'a jamais engendré et n'a pas été engendré."
+              },
+              {
+                "arabe": "وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ",
+                "translitteration": "wa lam yakun lahu kufuwan aḥad",
+                "sens": "Et nul n'est égal à Lui. (Sourate Al-Ikhlas, intégrale)"
+              }
+            ]
+          }
+        ]
       },
       {
         "cle": "fiqh",
