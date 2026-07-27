@@ -1,0 +1,38 @@
+[project]
+name = "hayaati"
+version = "1.2.0"
+description = "Plateforme d'Audits Patrimoniaux et Vigilance Doctrinale Sharia-Compliant"
+authors = [
+    { name = "Hayaati Support", email = "aboudourazak@gmail.com" }
+]
+dependencies = [
+    "flet==0.86.2",
+    "reportlab>=4.1.0",
+    "arabic-reshaper>=3.0.0",
+    "python-bidi>=0.4.2"
+]
+requires-python = ">=3.10"
+
+[tool.flet]
+app-name = "Hayaati"
+description = "Calculs Rituels de Zakat & Successions Vivantes"
+package-name = "app.hayaati.ritual"
+company-name = "Hayaati"
+version = "1.2.0"
+build-number = 1
+
+[tool.flet.android]
+permissions = [
+    "INTERNET",
+    "WRITE_EXTERNAL_STORAGE",
+    "READ_EXTERNAL_STORAGE"
+]
+# Icônes officielles de marque pour l'écran d'accueil du smartphone
+icon = "assets/images/Icone Hayaati.png"
+
+[tool.flet.assets]
+include = [
+    "assets/images/*",
+    "assets/fonts/*",
+    "core/hayaati_private.db" # Incorpore la base SQLite vierge d'initialisation
+]

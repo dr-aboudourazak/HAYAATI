@@ -1,0 +1,130 @@
+Structure du dossier pour le volume OS
+Le numéro de série du volume est 46B8-13E6
+C:.
+|   erreur_systeme.txt
+|   main.py
+|   requirements.txt
+|   sitecustomize.py
+|   specifications.md
+|   structure.txt
+|   trouver_bug.py
+|   
++---assets
+|   +---fonts
+|   |       NotoSansArabic-Regular.ttf
+|   |       NotoSansSC-Regular.ttf
+|   |       
+|   +---images
+|   |       Icone Hayaati.png
+|   |       Logo-Hayaati.png
+|   |       Logo-Hayaati.svg
+|   |       
+|   \---locales
+|           ar.json
+|           bis.json
+|           bm.json
+|           de.json
+|           en.json
+|           es.json
+|           fr.json
+|           ha.json
+|           hi.json
+|           mos.json
+|           sw.json
+|           
++---Certificats
+|       Hayaati_HERITAGE_aboudourazak_gmail_com_2026-07-23_20-14-46.pdf
+|       Hayaati_HERITAGE_aboudourazak_gmail_com_2026-07-23_20-15-20.pdf
+|       Hayaati_ZAKAT_aboudourazak_gmail_com_2026-07-23_20-14-09.pdf
+|       
++---core
+|   |   agenda_engine.py
+|   |   certificate_engine.py
+|   |   database_manager.py
+|   |   database_schema.sql
+|   |   db_arbre.py
+|   |   db_init.py
+|   |   db_profil.py
+|   |   financial_engine.py
+|   |   hayaati_private.db
+|   |   heritage_engine.py
+|   |   mouhasabah_engine.py
+|   |   sync_engine.py
+|   |   time_engine.py
+|   |   wasiyya_engine.py
+|   |   web_processing.py
+|   |   __init__.py
+|   |   
+|   +---heritage
+|   |   |   exclusions.py
+|   |   |   fractions.py
+|   |   |   math_adjust.py
+|   |   |   __init__.py
+|   |   |   
+|   |   \---__pycache__
+|   |           exclusions.cpython-314.pyc
+|   |           fractions.cpython-314.pyc
+|   |           math_adjust.cpython-314.pyc
+|   |           __init__.cpython-314.pyc
+|   |           
+|   +---zakat
+|   |   |   agriculture.py
+|   |   |   commerce.py
+|   |   |   finance.py
+|   |   |   __init__.py
+|   |   |   
+|   |   \---__pycache__
+|   |           agriculture.cpython-314.pyc
+|   |           __init__.cpython-314.pyc
+|   |           
+|   \---__pycache__
+|           agenda_engine.cpython-314.pyc
+|           certificate_engine.cpython-314.pyc
+|           database_manager.cpython-314.pyc
+|           financial_engine.cpython-314.pyc
+|           heritage_engine.cpython-314.pyc
+|           sync_engine.cpython-314.pyc
+|           time_engine.cpython-314.pyc
+|           __init__.cpython-314.pyc
+|           
+\---gui
+    |   app_layout.py
+    |   app_visuelle.py
+    |   app_visuelle_toolbar.py
+    |   langues.py
+    |   __init__.py
+    |   
+    +---components
+    |   |   interface_arbre.py
+    |   |   interface_audit.py
+    |   |   interface_finances.py
+    |   |   interface_heritage.py
+    |   |   interface_heritage_tiers.py
+    |   |   interface_mouhasabah.py
+    |   |   interface_testament.py
+    |   |   interface_zakat.py
+    |   |   interface_zakat_tiers.py
+    |   |   
+    |   \---__pycache__
+    |           interface_heritage_tiers.cpython-314.pyc
+    |           interface_zakat_tiers.cpython-314.pyc
+    |           
+    +---pages
+    |   |   page_connexion.py
+    |   |   page_inscription.py
+    |   |   page_onboarding.py
+    |   |   page_onboarding_alerts.py
+    |   |   page_profil.py
+    |   |   page_reglages.py
+    |   |   
+    |   \---__pycache__
+    |           page_onboarding.cpython-314.pyc
+    |           page_onboarding_alerts.cpython-314.pyc
+    |           
+    \---__pycache__
+            app_layout.cpython-314.pyc
+            app_visuelle.cpython-314.pyc
+            app_visuelle_toolbar.cpython-314.pyc
+            langues.cpython-314.pyc
+            __init__.cpython-314.pyc
+            
