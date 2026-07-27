@@ -3420,6 +3420,11 @@
             "lignes": [
               {
                 "locuteur": "",
+                "arabe": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "traduction": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux"
+              },
+              {
+                "locuteur": "",
                 "arabe": "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
                 "traduction": "Allah ! Point de divinité à part Lui, le Vivant, Celui qui subsiste par Lui-même."
               },
@@ -3520,6 +3525,11 @@
             "lignes": [
               {
                 "locuteur": "",
+                "arabe": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "traduction": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux"
+              },
+              {
+                "locuteur": "",
                 "arabe": "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْعَالَمِينَ",
                 "traduction": "Et Nous ne t'avons envoyé qu'en tant que miséricorde pour l'univers. (Sourate Al-Anbiya, verset 107)"
               }
@@ -3543,6 +3553,11 @@
             "type": "recit",
             "source_domaine": "Sciences islamiques — Tawhid",
             "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "traduction": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux"
+              },
               {
                 "locuteur": "",
                 "arabe": "قُلْ هُوَ اللَّهُ أَحَدٌ",
@@ -3574,6 +3589,41 @@
                 "arabe": "الصَّمَد",
                 "translitteration": "aṣ-ṣamad",
                 "sens": "celui à qui l'on s'en remet entièrement, qui ne dépend de rien"
+              }
+            ]
+          },
+          {
+            "titre": "الاعْتِصَام بِحَبْل اللَّه - L'appel à l'unité",
+            "niveau": "Intermédiaire",
+            "type": "recit",
+            "source_domaine": "Sciences islamiques — Fiqh",
+            "lignes": [
+              {
+                "locuteur": "",
+                "arabe": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "traduction": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux"
+              },
+              {
+                "locuteur": "",
+                "arabe": "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا",
+                "traduction": "Et cramponnez-vous tous ensemble au câble d'Allah et ne vous divisez pas. (Sourate Aal-'Imran, verset 103)"
+              }
+            ],
+            "vocabulaire_nouveau": [
+              {
+                "arabe": "اعْتَصِمُوا",
+                "translitteration": "i'taṣimū",
+                "sens": "cramponnez-vous, tenez fermement"
+              },
+              {
+                "arabe": "حَبْل",
+                "translitteration": "ḥabl",
+                "sens": "câble, corde (au sens figuré : lien, pacte)"
+              },
+              {
+                "arabe": "تَفَرَّقُوا",
+                "translitteration": "tafarraqū",
+                "sens": "vous vous divisiez"
               }
             ]
           }
@@ -3667,6 +3717,11 @@
             "titre": "٨. سُورَة النَّاس - Lecture : la toute dernière sourate du Coran",
             "explication": "Pour clore ce parcours, une sourate complète à lire d'un bout à l'autre : سُورَة النَّاس, la 114e et dernière du Mushaf — un point final concret après tant de théorie.",
             "exemples": [
+              {
+                "arabe": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "translitteration": "bismillāhi ar-raḥmāni ar-raḥīm",
+                "sens": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux"
+              },
               {
                 "arabe": "قُلْ أَعُوذُ بِرَبِّ النَّاسِ",
                 "translitteration": "qul a'ūdhu birabbi an-nās",
@@ -3878,6 +3933,11 @@
             "explication": "Pour clore ce parcours, un verset coranique cité par tous les biographes en ouverture ou en conclusion de son étude, tant il résume le sens même de la mission prophétique.",
             "exemples": [
               {
+                "arabe": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "translitteration": "bismillāhi ar-raḥmāni ar-raḥīm",
+                "sens": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux"
+              },
+              {
                 "arabe": "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْعَالَمِينَ",
                 "translitteration": "wa mā arsalnāka illā raḥmatan lil-'ālamīn",
                 "sens": "Et Nous ne t'avons envoyé qu'en tant que miséricorde pour l'univers (Sourate Al-Anbiya, verset 107)"
@@ -3956,8 +4016,70 @@
         "cle": "fiqh",
         "titre": "5. الفقه - Fiqh",
         "type": "bab_lecons",
-        "disponible": false,
-        "lecons": []
+        "disponible": true,
+        "lecons": [
+          {
+            "titre": "١. الفِقْه - La discipline, pas la loi elle-même",
+            "explication": "Une distinction à poser d'emblée : الشَّرِيعَة (la Charia) désigne la loi divine elle-même, ses finalités et ses textes sources. الفِقْه est l'effort humain, savant, pour comprendre cette loi et en déduire des règles concrètes face à des situations précises. Deux savants sincères et compétents peuvent donc aboutir à des conclusions différentes sur un même point sans que l'un ait forcément tort — c'est tout l'enjeu des écoles juridiques qu'on va voir.",
+            "exemples": []
+          },
+          {
+            "titre": "٢. أُصُول الفِقْه - Les sources reconnues par tous",
+            "explication": "Quatre sources, dans cet ordre de priorité, font consensus entre les quatre écoles sunnites : القُرْآن (le Coran), السُّنَّة (les hadiths authentifiés du Prophète ﷺ), الإِجْمَاع (le consensus des savants qualifiés sur une question), القِيَاس (le raisonnement par analogie, pour étendre une règle existante à un cas nouveau et comparable). Certaines écoles reconnaissent en plus des sources secondaires (l'intérêt général, la coutume locale...), ce qui explique une partie de leurs divergences de méthode.",
+            "exemples": []
+          },
+          {
+            "titre": "٣. المَذَاهِب الأَرْبَعَة - Les quatre grandes écoles",
+            "explication": "حَنَفِي (Hanafite, d'après Abu Hanifa) : école la plus répandue historiquement, connue pour un usage assez développé du raisonnement analogique. Très implantée en Turquie, Asie centrale et du Sud.\n\nمَالِكِي (Malikite, d'après Malik ibn Anas) : accorde une place particulière à la pratique des habitants de Médine du vivant des premières générations. Très implantée en Afrique du Nord et de l'Ouest.\n\nشَافِعِي (Chafiite, d'après Ash-Shafi'i) : le premier à avoir systématisé la méthodologie du fiqh comme discipline à part entière (Usul Al-Fiqh). Très implantée en Afrique de l'Est, Asie du Sud-Est et au Yémen.\n\nحَنْبَلِي (Hanbalite, d'après Ahmad ibn Hanbal) : la plus prudente dans le recours au raisonnement analogique, avec un attachement particulièrement strict au texte du hadith. Très implantée dans la péninsule arabique.",
+            "exemples": []
+          },
+          {
+            "titre": "٤. اِخْتِلَاف لَا فُرْقَة - Une divergence qui n'est pas une division",
+            "explication": "Point essentiel, trop souvent oublié : les quatre écoles sont considérées à égalité de légitimité dans le sunnisme — aucune n'est jugée plus « correcte » que les autres. Leurs différences portent sur des points de méthode et de détail, jamais sur les fondements de la foi. Exemple concret : réciter la Basmala à voix haute ou basse au début de la Fatiha en prière — les quatre écoles ne tranchent pas pareil, et aucune des deux pratiques n'est considérée comme invalidant la prière chez les autres. C'est le type même de divergence que le sunnisme a toujours su absorber sans rupture.",
+            "exemples": []
+          },
+          {
+            "titre": "٥. الخَوَارِج وَالمُعْتَزِلَة - Deux ruptures historiques, deux leçons différentes",
+            "explication": "الخَوَارِج (les Kharijites) sont apparus après l'arbitrage qui a suivi la bataille de Siffin, avec un trait distinctif : déclarer mécréant tout musulman ayant commis un grand péché, jusqu'à justifier la violence contre lui — ils sont responsables de l'assassinat du calife 'Ali. Position majoritaire sunnite : rejet catégorique de cette logique d'excommunication et de violence, et une mise en garde qui reste d'actualité contre ce que les savants appellent encore aujourd'hui « l'esprit kharijite » — l'excès dans le jugement des autres musulmans.\n\nالمُعْتَزِلَة (les Mu'tazilites) ont développé une théologie privilégiant la raison sur le sens apparent du texte sur certains points, notamment en soutenant que le Coran était « créé » plutôt qu'attribut éternel d'Allah — position qui a conduit, sous certains califes abbassides, à une persécution des savants traditionnalistes (dont l'imam Ahmad ibn Hanbal, qui a refusé de céder). Position majoritaire sunnite : rejet de cette doctrine précise, tout en reconnaissant le rôle historique des Mu'tazilites dans le développement des outils du débat théologique islamique.",
+            "exemples": []
+          },
+          {
+            "titre": "٦. الشِّيعَة - L'autre grand courant de l'islam",
+            "explication": "La division la plus ancienne et la plus large de l'islam remonte au désaccord sur la succession du Prophète ﷺ à la tête de la communauté. Le chiisme en a fait une question de foi (l'Imamat), avec des positions théologiques propres sur ce sujet et sur certains compagnons. Position majoritaire sunnite : rejet de la doctrine de l'Imamat telle qu'elle y est formulée et de la remise en cause de compagnons largement honorés dans la tradition sunnite — présenté ici comme un fait historique et théologique documenté, pas comme un jugement sur les individus qui s'en réclament aujourd'hui.",
+            "exemples": []
+          },
+          {
+            "titre": "٧. التَّصَوُّف - Le soufisme, une réalité plurielle",
+            "explication": "Point à ne pas simplifier à l'excès : le تَصَوُّف (la dimension spirituelle et intérieure de l'islam, souvent résumée par l'Ihsan) a une place ancienne et reconnue dans le sunnisme — de nombreux grands savants des quatre écoles, à travers l'histoire, s'en réclamaient eux-mêmes sans que cela pose de problème doctrinal. Le sujet devient sensible seulement pour certaines pratiques ou affirmations précises de certains courants, pas pour le soufisme dans son ensemble — voir la leçon suivante pour deux exemples concrets, très différents l'un de l'autre.",
+            "exemples": []
+          },
+          {
+            "titre": "٨. أَمْثِلَة مُحَدَّدَة - Trois cas très différents, à ne pas confondre",
+            "explication": "القَادِرِيَّة (la Qadiriyya), rattachée au savant hanbalite Abdul-Qadir Al-Jilani, est l'une des tariqa les plus anciennes et les moins débattues du monde sunnite — largement intégrée au courant majoritaire.\n\nالتِّيجَانِيَّة (la Tijaniyya), très implantée en Afrique de l'Ouest avec sa propre tradition savante malikite, fait l'objet de débats précis chez certains savants sunnites sur des points particuliers attribués à son fondateur (rang spirituel revendiqué, récit de rencontre avec le Prophète ﷺ à l'état éveillé) — des points discutés, pas un rejet global d'une tariqa qui reste largement reconnue dans sa région.\n\nالأَحْمَدِيَّة القَادِيَانِيَّة (le mouvement ahmadiyya-qadiani) n'est pas une tariqa soufie : c'est une revendication de prophétie après le Prophète Muhammad ﷺ. Sur ce point précis, il existe un consensus quasi unanime dans l'ensemble du monde musulman, chiite compris — cette revendication contredit un principe de foi explicite et non ambigu, le sceau de la prophétie (خَاتَم النَّبِيِّين, Coran 33:40).",
+            "exemples": []
+          },
+          {
+            "titre": "٩. مَاذَا تُوصِي بِهِ المَذَاهِب السُّنِّيَّة - Ce que recommandent les écoles sunnites",
+            "explication": "Trois recommandations qui reviennent, de façon constante, chez les savants des quatre écoles face à ces ruptures : rester dans le cadre d'أَهْل السُّنَّة وَالجَمَاعَة (les gens de la tradition prophétique et du rassemblement), en évitant à la fois l'excès (الإِفْرَاط, comme la logique kharijite) et le laxisme (التَّفْرِيط) ; vérifier toute connaissance religieuse auprès de savants qualifiés et d'une chaîne de transmission fiable, exactement la rigueur déjà vue en science du hadith ; et préserver l'unité sur les fondements, tout en tolérant les divergences légitimes de méthode entre les quatre écoles elles-mêmes.",
+            "exemples": []
+          },
+          {
+            "titre": "١٠. نَص لِلقِرَاءَة - Lecture : l'appel coranique à l'unité",
+            "explication": "Pour clore ce parcours et l'ensemble du volet religieux, le verset que les savants citent le plus souvent face aux divisions internes à la communauté.",
+            "exemples": [
+              {
+                "arabe": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                "translitteration": "bismillāhi ar-raḥmāni ar-raḥīm",
+                "sens": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux"
+              },
+              {
+                "arabe": "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا",
+                "translitteration": "wa'taṣimū bi-ḥabli Allāhi jamī'an wa lā tafarraqū",
+                "sens": "Et cramponnez-vous tous ensemble au « habl » (câble) d'Allah et ne vous divisez pas. (Sourate Aal-'Imran, verset 103)"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
