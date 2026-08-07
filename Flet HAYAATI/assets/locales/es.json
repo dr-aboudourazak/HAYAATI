@@ -1,0 +1,2100 @@
+{
+  "nom_langue": "Español",
+  "code_langue": "ES",
+  "menu": {
+    "onboarding": "🏠 Inicio",
+    "finances": "💰 Patrimonio",
+    "zakat": "🏦 Zakat",
+    "arbre": "👥 Familia",
+    "heritage": "📜 Sucesión",
+    "testament": "📝 Testamento",
+    "mouhasabah": "📿 Muhasabah",
+    "audit": "📖 Análisis",
+    "profil": "👤 Perfil",
+    "devoirs_hub": "⚖️ Mis Deberes",
+    "inventaire_hub": "📦 Mi Inventario",
+    "langue_arabe": "🔤 Lengua árabe",
+    "sciences_islamiques": "🕌 Ciencias islámicas",
+    "reglages": "⚙️ Ajustes",
+    "encyclopedie": "📚 Enciclopedia"
+  },
+  "barre_outils": {
+    "titre_app": "🕌 HAYAATI",
+    "mode_live": "🟢 En vivo / Visitante",
+    "mode_tiers": "🟡 Visitante",
+    "label_devise": "Divisa:",
+    "label_langue": "Idioma:",
+    "label_fiqh": "Fiqh:",
+    "ecoles": {
+      "Malikite": "Malikí",
+      "Hanafite": "Hanafi",
+      "Chafiite": "Shafi'i",
+      "Hanbalite": "Hanbalí"
+    },
+    "visiteur": "👤 Visitante",
+    "btn_deconnexion": "🚪 Cerrar sesión"
+  },
+  "auth": {
+    "titre_inscription": "📝 Creación de un Espacio Privado Seguro",
+    "titre_connexion": "🔐 Conexión a su Espacio Privado",
+    "username": "Nombre de usuario:",
+    "email": "Dirección de correo electrónico:",
+    "password": "Contraseña secreta:",
+    "btn_creer": "Crear mi Espacio Cifrado",
+    "btn_valider_connexion": "Abrir mi Caja Fuerte",
+    "deja_compte": "Ya tengo una cuenta",
+    "pas_compte": "Crear una nueva cuenta",
+    "err_champs": "❌ Por favor, complete todos los campos requeridos.",
+    "err_connexion": "❌ Credenciales incorrectas o cuenta inexistente.",
+    "user_lbl": "Identificador / Correo electrónico:",
+    "email_lbl": "Dirección de correo electrónico:",
+    "pass_lbl": "Contraseña:",
+    "btn_soumettre": "Iniciar sesión",
+    "cadre_legal": "📜 Homologación y Consejos",
+    "err_champs_vides": "Todos los campos son obligatorios.",
+    "err_email_invalide": "Correo electrónico inválido.",
+    "err_password_court": "La contraseña debe contener al menos 4 caracteres.",
+    "inscription_ok": "✓ ¡Registro exitoso! Conexión activa.",
+    "message_bienvenue_doctrinal": "🌟 ¡Assalâmou Alaykoum!\n\nPara un cálculo a medida de sus obligaciones rituales, asegúrese de indicar su escuela de jurisprudencia (Fiqh) y su barómetro de Nisab soberano en la página 'Ajustes'.\n\n🛡️ CERTIFICACIÓN: La aplicación Hayaati cuenta con la validación oficial de la Asociación Sunnita y de la Institución Islámica Dar es Salaam de Cinkassé en Togo. Sus auditorías están certificadas como conformes."
+  },
+  "onboarding": {
+    "bienvenue": "Assalâmou Alaykoum, {} 🌟",
+    "sous_titre": "Informe de vigilancia patrimonial y espiritual — Escuela {}",
+    "titre_fortune": " 💰 Fortuna Neta ",
+    "titre_zakat": " 🏦 Estado Zakat ",
+    "titre_mouhasabah": " 📿 Indice Muhasabah ",
+    "cadre_prieres": " 🕋 Oraciones Vencidas ",
+    "cadre_calendrier": " 🌙 Cronología Sagrada ",
+    "prieres_manquees": "⚠️ VIGILANCIA DE ORACIÓN: La hora astronómica local ha superado las siguientes oraciones: {}.\n👉 Por favor, cumpla sus obligaciones inmediatamente para purificar su balance espiritual.",
+    "prieres_ok": "✨ Excelente: Todas sus oraciones obligatorias vencidas están validadas a tiempo.",
+    "joumouah": "🌟 VIERNES (JOUMOU'AH): Recordatorio de lectura de la Surah Al-Kahf y bendiciones sobre el Profeta (ﷺ).\n\n",
+    "jours_blancs": "⚪ ALERTA DE AYUNO: Nos encontramos en el período de los Días Blancos (13, 14, 15 del mes islámico).\n\n",
+    "entete_devotion": "📿 EXAMEN DE VIGILANCIA ESPIRITUAL DEL DÍA:\n",
+    "sec_spirituelle_vide": "📿 Evaluación: Registre sus actos de devoción del día en la pestaña Muhasabah.",
+    "nawafil_ok": "   • ✅ Oraciones rogatorias (Nawafil) validadas. Que Alá fortalezca su apego.\n",
+    "nawafil_ko": "   • 🔴 RECORDATORIO NAWAFIL: Aún no ha registrado oraciones rogatorias hoy.\n     👉 Piense en realizar las Rawatib para compensar las deficiencias de las Farâ'idh.\n",
+    "sadaqah_ok": "   • ✅ Limosna discreta (Sadaqah) registrada hoy. Su pureza social está activa.\n\n",
+    "sadaqah_ko": "   • 🔴 RECORDATORIO SADAQAH: No se ha registrado ninguna limosna voluntaria hoy.\n     👉 'La limosna apaga los pecados como el agua apaga el fuego'. Haga un gesto.\n\n",
+    "hadj_ok": "🕋 HAJJ CUMPLIDO: Ha honrado su obligación. Piense en apadrinar a un pariente directo o cercano para su peregrinaje.\n",
+    "hadj_ko": "🕋 APTITUD HAJJ ACTIVA: Sus ahorros ({:.0f} {}) validan la capacidad financiera requerida (Al-Istita'ah) para el Peregrinaje.\n",
+    "tabaski": "🐑 UDHIYAH: El sacrificio de la Tabaski constituye una Sunnah fuerte para su hogar dada su holgura neta.\n\n",
+    "anniversaire_alerte": "⚠️ RECORDATORIO DOCTRINAL IMPORTANTE: Hoy es el aniversario de su nacimiento.\n   👉 Sentencia Sharia: Celebrar su cumpleaños constituye una innovación religiosa (Bid'ah) ilícita (Haram) según el consenso de las 4 escuelas. Medite más bien sobre el tiempo que pasa.\n",
+    "age_islamique": "🎂 TIEMPO Y EXISTENCIA: Según el calendario lunar islámico, su edad exacta es: {:.1f} años.\n",
+    "fin_muharram": "📌 CRONOLOGÍA: Nos encontramos en el mes sagrado de MUHARRAM.\n👉 Recomendación: Multiplique las súplicas y los actos de caridad.\n\n",
+    "general_devotion": "📖 MEMORIA DEL DÍA A DÍA:\n   • Corán: Dedique un momento hoy a la lectura de al menos unos pocos versículos.\n   • Adhkar: Piense en formular sus invocaciones de la mañana y de la tarde.\n   • Comportamiento: Cuide escrupulosamente la preservación de la lengua y la benevolencia.",
+    "guide_visiteur_humain": "👤 Modo Simulación: análisis de prueba sin registro.\n🔐 Conéctese para activar el panel diario persistente y sus historiales.",
+    "date_prefixe": "Fecha de hoy: ",
+    "mois_nom_1": "Muharram",
+    "mois_nom_2": "Safar",
+    "mois_nom_3": "Rabi' al-Awwal",
+    "mois_nom_4": "Rabi' ath-Thani",
+    "mois_nom_5": "Jumada al-Ula",
+    "mois_nom_6": "Jumada al-Akhirah",
+    "mois_nom_7": "Rajab",
+    "mois_nom_8": "Sha'ban",
+    "mois_nom_9": "Ramadán",
+    "mois_nom_10": "Shawwal",
+    "mois_nom_11": "Dhu al-Qi'dah",
+    "mois_nom_12": "Dhu al-Hijjah",
+    "evenements": {
+      "evt_ramadan": "🌙 MES DE RAMADÁN: Mes del ayuno obligatorio. Multiplique las vigilias nocturnas (Tarawih).",
+      "evt_aid_fitr": "✨ AID AL-FITR: Fiesta de la ruptura del ayuno. No olvide cumplir con la Zakat Al-Fitr.",
+      "evt_aid_adha": "🐑 AID AL-ADHA (TABASKI): Fiesta del sacrificio. Día de compartir y fraternidad.",
+      "evt_achoura": "📌 DÍA DE ASHURA (10 de Muharram): Ayuno altamente recomendado (expiación de los pecados pasados).",
+      "evt_arafa": "🕋 DÍA DE ARAFA (9 de Dhu al-Hijjah): El día más importante del Peregrinaje. Ayuno recomendado.",
+      "evt_nuits_sacrees": "✨ NOCHES DE VIGILANCIA: Período propicio para la introspección y las oraciones nocturnas (Tahajjud).",
+      "evt_fin_ramadan": "🌙 PERÍODO DE FIN DE RAMADÁN: Prepare el pago obligatorio de la Zakat Al-Fitr para cada miembro.",
+      "evt_jours_blancs": "⚪ ALERTA DE AYUNO: Nos encontramos en el período de los Días Blancos (13, 14, 15 del mes islámico).",
+      "evt_dhu_hijjah_base": "🌟 10 PRIMEROS DÍAS DE DHU AL-HIJJAH (Día {}): Multiplique el Tasbih y el Takbir."
+    }
+  },
+  "finances": {
+    "titre_vue": "💰 Evaluación y Estructuración del Patrimonio",
+    "cadre_metaux": " 🪙 Metales Preciosos y Valores Refugio ",
+    "cadre_agropastoral": " 🌾 Producción Agropastoril y Ganadería ",
+    "cadre_liquide": " 💵 Liquidez y Disponibilidades Bancarias ",
+    "cadre_creances": " 📈 Cuentas por Cobrar e Inversiones ",
+    "cadre_dettes": " 📉 Pasivo Exigible y Deudas Deducibles ",
+    "btn_actualiser": "🔄 Recalcular el Patrimonio Neto",
+    "btn_sauvegarder": "💾 Guardar el balance al vuelo",
+    "immo_lbl": "Inmovilizaciones / Terrenos:",
+    "auto_lbl": "Activos Mobiliarios / Vehículos:",
+    "stock_lbl": "Stocks de Mercancías Comerciales:",
+    "liq_lbl": "Disponibilidades en Efectivo / Cuentas:",
+    "creances_lbl": "Cuentas por Cobrar Activas:",
+    "dettes_lbl": "Pasivo Exigible / Deudas:",
+    "lbl_or_refuge": "Oro Refugio (g):",
+    "lbl_argent_refuge": "Plata Refugio (g):",
+    "lbl_or_parures": "Joyería de Oro (g):",
+    "lbl_argent_parures": "Joyería de Plata (g):",
+    "lbl_grain": "Grano / Cereales (Kg):",
+    "lbl_moutons": "Ovejas / Ovinos (Cabezas):",
+    "lbl_bovins": "Bovinos / Vacas (Cabezas):",
+    "valeur_or_refuge": "Valor Oro Refugio:",
+    "valeur_argent_refuge": "Valor Plata Refugio:",
+    "valeur_or_parures": "Valor Joyería de Oro:",
+    "valeur_argent_parures": "Valor Joyería de Plata:",
+    "valeur_grain": "Valor Cosechas:",
+    "valeur_moutons": "Valor Rebaño Ovino:",
+    "valeur_bovins": "Valor Rebaño Bovino:",
+    "status_sauvegarde": "✓ Balance patrimonial memorizado con éxito."
+  },
+  "zakat": {
+    "titre_vue": "🏦 Motor de Cálculo Purificado de la Zakat",
+    "cadre_cours": " 📊 Precios de Referencia del Mercado de Metales ",
+    "lbl_cours_or": "Precio de Referencia del Oro (1g):",
+    "lbl_cours_argent": "Precio de Referencia de la Plata (1g):",
+    "cadre_analyse": " 📜 Informe de Elegibilidad y Liquidación de la Zakat ",
+    "btn_calculer": "🧮 Establecer el Balance Zakat",
+    "rapport_titre": "INFORME DE ZAKAT",
+    "btn_imprimer": "🖨️ Generar el Informe Oficial",
+    "nisab_applique": "Umbral de Nisab Aplicado:",
+    "assiette_imposable": "Base Imponible Global:",
+    "montant_du": "Monto Total de la Zakat Debida:",
+    "statut_eligible": "🔴 IMPONIBLE.",
+    "statut_non_eligible": "🟢 EXENTO ",
+    "zakat_grain": "Zakat Cereales (Deducción en Especie/Valor):",
+    "zakat_bovins": "Zakat Bovinos debida (Especificaciones de edad):",
+    "zakat_moutons": "Zakat Ovinos debida (Número de cabezas):",
+    "options_nisab": {
+      "nisab_plus_bas": "Barómetro Prudente (Más Bajo)",
+      "nisab_or": "Umbral del Oro (85g)",
+      "nisab_argent": "Umbral de la Plata (595g)"
+    }
+  },
+  "arbre": {
+    "titre_vue": "👥 Configuración del Árbol Familiar Conectado",
+    "cadre_ajout": " ➕ Registrar a un Miembro de la Familia ",
+    "lbl_choix_parent": "Seleccionar el parentesco:",
+    "btn_ajouter_membre": "➕ Integrar en la célula familiar",
+    "btn_supprimer_membre": "🗑️ Retirar del árbol",
+    "liste_membres_titre": "Miembros de la familia registrados:",
+    "err_doublon": "❌ Este candidato ya está registrado en su árbol familiar.",
+    "candidats": {
+      "epoux": "Esposo (Marido superviviente)",
+      "epouse": "Esposa(s) superviviente(s)",
+      "fils": "Hijo",
+      "fille": "Hija",
+      "pere": "Padre",
+      "mere": "Madre",
+      "grand_pere": "Abuelo Paterno",
+      "grand_mere": "Abuela",
+      "petit_fils": "Nieto (Hijo del hijo)",
+      "petite_fille": "Nieta (Hija del hijo)",
+      "frere_germain": "Hermano Germano",
+      "soeur_germaine": "Hermana Germana",
+      "frere_paternel": "Hermano Paterno",
+      "soeur_paternelle": "Hermana Paterna",
+      "frere_uterin": "Hermano Uterino",
+      "soeur_uterine": "Hermana Uterina",
+      "fils_frere_germain": "Sobrino (Hijo del hermano germano)",
+      "fils_frere_paternel": "Sobrino (Hijo del hermano paterno)",
+      "oncle_germain": "Tío Paterno Germano",
+      "oncle_paternel": "Tío Paterno",
+      "cousin_germain": "Primo Hermano",
+      "cousin_paternel": "Primo Paterno"
+    }
+  },
+  "heritage": {
+    "titre_vue": "📜 Distribución Legal de Sucesiones (Mirath)",
+    "sec_decompte_heritiers": "👥 Composición Cuantitativa de los Derechohabientes:",
+    "cadre_defunt": " 👤 Información Básica del Difunto ",
+    "cadre_ayants_droit": " 👥 Lista de Derechohabientes Legítimos ",
+    "lbl_alerte_indignite": "⚠️ RECORDATORIO: El autor de un homicidio contra el difunto y el hijo nacido fuera del matrimonio (por parte de padre) están legalmente excluidos de la sucesión.",
+    "btn_simuler": "⚖️ Calcular las Cuotas Partes",
+    "rapport_succession": "INFORME DE SUCESIÓN",
+    "masse_successorale_nette": "Masa hereditaria neta a distribuir",
+    "wasiyya_retenue": "Legados testamentarios retenidos (Máx. 1/3)",
+    "creances_actives_incluses": "Cuentas por cobrar activas incluidas",
+    "dettes_humaines_purgées": "Deudas y pasivos purgados",
+    "btn_imprimer_succession": "🖨️ Editar el Acta Sucesoria",
+    "masculin": "Hombre (Decoración Masculina)",
+    "feminin": "Mujer (Decoración Femenina)",
+    "genre_lbl": "Sexo del difunto:",
+    "candidats": {
+      "epoux": "Esposo (Marido superviviente)",
+      "epouse": "Esposa(s) superviviente(s)",
+      "fils": "Hijo",
+      "fille": "Hija",
+      "pere": "Padre",
+      "mere": "Madre",
+      "grand_pere": "Abuelo Paterno",
+      "grand_mere": "Abuela",
+      "petit_fils": "Nieto (Hijo del hijo)",
+      "petite_fille": "Nieta (Hija del hijo)",
+      "frere_germain": "Hermano Germano",
+      "soeur_germaine": "Hermana Germana",
+      "frere_paternel": "Hermano Paterno",
+      "soeur_paternelle": "Hermana Paterna",
+      "frere_uterin": "Hermano Uterino (Por parte de madre)",
+      "soeur_uterine": "Hermana Uterina (Por parte de madre)",
+      "fils_frere_germain": "Sobrino (Hijo del hermano germano)",
+      "fils_frere_paternel": "Sobrino (Hijo del hermano paterno)",
+      "oncle_germain": "Tío Paterno Germano",
+      "oncle_paternel": "Tío Paterno (Hermano del padre)",
+      "cousin_germain": "Primo (Hijo del tío germano)",
+      "cousin_paternel": "Primo (Hijo del tío paterno)"
+    }
+  },
+  "testament": {
+    "titre_vue": "📝 Registro de Disposiciones Testamentarias (Wasiyyah)",
+    "cadre_redaction": " ✍️ Redacción de Legados Organizados ",
+    "limite_legale": "⚠️ RECORDATORIO CANÓNICO: Un legado no puede exceder el tercio (1/3) del patrimonio neto total y no puede ser atribuido a un heredero legal directo.",
+    "lbl_beneficiaire": "Nombre o Institución Beneficiaria:",
+    "lbl_valeur": "Monto o Proporción atribuida:",
+    "btn_enregistrer": "💾 Validar el Testamento"
+  },
+  "mouhasabah": {
+    "titre_vue": "📿 Muhasabah y Examen Recíproco Espiritual",
+    "cadre_obligations": " 🕋 Conteo de las Oraciones Obligatorias del Día ",
+    "btn_valider_journee": "📝 Cerrar el Examen Diario",
+    "prieres": {
+      "fajr": "Fajr",
+      "dhouhr": "Dhuhr",
+      "asr": "Asr",
+      "maghrib": "Maghrib",
+      "isha": "Isha"
+    },
+    "lbl_nawafil_court": "Nawafil",
+    "lbl_sadaqah_court": "Sadaqah",
+    "lbl_hadj_court": "Hajj"
+  },
+  "audit": {
+    "titre_vue": "📖 Tabla de Auditoría y Análisis Previsionales",
+    "titre_graphique_repartition": "📊 Distribución Actual del Patrimonio",
+    "titre_graphique_evolution": "📈 Evolución Semanal del Índice Espiritual",
+    "libelles_graphe": {
+      "immo": "Inmobiliario",
+      "cash": "Efectivo / Liquidez",
+      "creance": "Cuentas por Cobrar",
+      "dettes": "Deudas Deducibles"
+    },
+    "jours_semaine": {
+      "lun": "Lun", "mar": "Mar", "mer": "Mié", "jeu": "Jue", "ven": "Vie", "sam": "Sáb", "dim": "Dom"
+    }
+  },
+  "profil": {
+    "titre_vue": "👤 Gestión del Espacio Privado y Perfil",
+    "lbl_statut_compte": "Estado de Seguridad:",
+    "lbl_derniere_synchro": "Última copia de seguridad:",
+    "btn_purger": "🗑️ Restablecer mi espacio",
+    "statut_connecte": "Espacio cifrado y seguro",
+    "lbl_identifiant": "Identificador de sesión:",
+    "lbl_statut_synchro": "Sincronización en la Nube:",
+    "lbl_prenom": "Nombre:",
+    "lbl_nom": "Apellido:",
+    "lbl_username": "Nombre de usuario:",
+    "lbl_email": "Correo electrónico:",
+    "lbl_password": "Nueva contraseña:",
+    "lbl_confirm_password": "Confirmar la contraseña:",
+    "lbl_birth": "Fecha de nacimiento:",
+    "lbl_tel": "Número de Teléfono:",
+    "lbl_pays": "País de Residencia:",
+    "lbl_ville": "Ciudad actual:",
+    "lbl_profession": "Profesión / Sector:",
+    "btn_sauvegarder": "💾 Guardar modificaciones",
+    "status_ok_profil": "✓ Perfil actualizado con éxito."
+  },
+  "reglages": {
+    "titre_vue": "⚙️ Configuración de Ajustes Doctrinales",
+    "cadre_pref": " ⚙️ Sus Preferencias Doctrinales y Sesiones ",
+    "btn_sauver_pref": "💾 Guardar mis ajustes",
+    "cadre_feed": " 💬 Formulario de Sugerencias ",
+    "lbl_commentaires": "Sugerencias:",
+    "btn_soumettre": "🚀 Enviar mis sugerencias",
+    "note_lbl": "Su calificación global:",
+    "status_ok_pref": "✓ Parámetros de Espacio Privado guardados y aplicados en vivo.",
+    "status_ok_feed": "✓ Sus comentarios han sido registrados con éxito.",
+    "err_feed_vide": "❌ Por favor, escriba un comentario antes de enviar.",
+    "lbl_guide_devise": "Divisa monetaria:",
+    "lbl_guide_langue": "Idioma:",
+    "lbl_guide_fiqh": "Escuela jurídica (Fiqh):",
+    "lbl_guide_nisab": "Arbitraje Nisab:",
+    "lunaire_lbl": "Ajuste del calendario:"
+  },
+  "pdf": {
+    "titre_document": "Informe Oficial de Conformidad con la Sharia y Auditoría Financiera",
+    "filigrane": "HAYAATI CERTIFIED",
+    "pied_page": "Este informe ha sido generado por la aplicación Hayaati - Conformidad fikhie certificada.",
+    "rapport_zakat_titre": "Informe Oficial de Liquidación y Purificación de la Zakat",
+    "rapport_succession_titre": "Informe Fiqh y Legal de Censo y Reparto de Herencia",
+    "succession_sans_heritier": "El difunto no ha dejado ningún heredero legal elegible. La totalidad del patrimonio es transferida al Bait al-Mal.",
+    "rapport_date": "Fecha de edición del documento: ",
+    "rapport_ecole": "Escuela jurídica aplicada: Escuela ",
+    "entete_cours": "Precios de referencia aplicados — Oro: {} / gramo | Plata: {} / gramo",
+    "tableau_part": "Heredero Elegible",
+    "tableau_fraction": "Cuota / Parte Canónica",
+    "tableau_valeur": "Monto Financiero Asignado",
+    "ligne_or_refuge": "Oro de Reserva (gramos)",
+    "ligne_argent_refuge": "Plata de Reserva (gramos)",
+    "ligne_or_parures": "Oro de Joyería y Adornos (gramos)",
+    "ligne_argent_parures": "Plata de Joyería y Adornos (gramos)",
+    "ligne_grain": "Granos y Cosechas (kilogramos)",
+    "ligne_moutons": "Ovinos y Caprinos (cabezas)",
+    "ligne_bovins": "Bovinos y Equinos (cabezas)",
+    "ligne_total_du": "Monto total de la Zakat a pagar inmediatamente:",
+    "ligne_assiette": "Base financiera global de la cuenta:",
+    "signature_autorite": "Firma y sello de homologación y conformidad doctrinal",
+    "id_certification": "<b>ID de Certificación:</b> {}",
+    "beneficiaire": "<b>Beneficiario Auditado:</b> {}",
+    "compte_audite": "<b>Cuenta de Usuario Conectada:</b> {}",
+    "environnement": "<b>Entorno:</b> {}",
+    "type_session": "<b>Sesión:</b> {}",
+    "coordonnees": "<b>Datos de contacto:</b> {} ({}, {})",
+    "date_analyse": "<b>Fecha:</b> {}",
+    "fiqh_applique": "<b>Fiqh:</b> {}",
+    "lbl_guide_nisab": "Nisab",
+    "devise_rapport": "<b>Divisa:</b> {}",
+    "col_parametre": "Partida Presupuestaria / Inventario",
+    "col_valeur": "Monto o Cantidad",
+    "sec_1_titre_zakat": "<b>1. Datos Zakat Declarados:</b>",
+    "sec_1_titre_heritage": "<b>1. Masa Patrimonial Sucesoria:</b>",
+    "sec_2_titre_zakat": "<b>2. Balance de Elegibilidad y Purificación:</b>",
+    "sec_2_titre_heritage": "<b>2. Reparto Legal de Partes (Fara'idh):</b>",
+    "sec_3_titre_exclus": "<b>3. Candidatos Bloqueados o Apartados de la Sucesión (Hajb):</b>",
+    "sec_3_corps_exclus": "• {} (Excluido de la distribución conforme a las reglas de prioridad del Fiqh)",
+    "sceau_titre": "<b>SELLO DE CONFORMIDAD DIGITAL HAYAATI v1.2</b>",
+    "sceau_corps": "<i>Informe de auditoría oficial {} - Certificado Conforme a las Fuentes Doctrinales</i>",
+    "alerte_supervision_savant": "⚠️ Advertencia: Hayaati es una potente herramienta de ayuda que requiere imperativamente la validación y supervisión de un sabio o una autoridad religiosa cualificada.",
+    "env_live": "Espacio Privado SQLite Seguro",
+    "env_tiers": "Diagnóstico Manual para Terceros",
+    "statut_live": "Datos Certificados Personales",
+    "statut_tiers": "Evaluación Aislada de Prueba"
+  },
+  "encyclopedie": {
+    "titre": "📖 Enciclopedia de Auditoría y Validación Doctrinal Hayaati",
+    "consigne": "Seleccione una funcionalidad de la plataforma para auditar sus 3 pilares de pruebas conformes a la Sharia:",
+    "categories": [
+      {
+        "titre": "🏦 MÓDULO: Zakat - Finanzas y Joyería",
+        "texte": "✨ PIEZA A: FUNDAMENTO CORÁNICO\nSurah At-Tawbah, v.34: 'A aquellos que atesoran el oro y la plata y no los gastan en el camino de Dios, anúnciales un castigo doloroso.'\n\n✨ PIEZA B: HADITH AUTÉNTICO\nSegún Amr ibn Shu'ayb (Abu Dawoud n.º 1563, Autenticado), el Profeta ﷺ vio a una mujer con su hija portando dos pesados brazaletes de oro. Él dijo: '¿Pagáis la Zakat de esto?'. Ella dijo: 'No'. Él dijo: '¿Te agradaría que Alá te vistiera con dos brazaletes de fuego?'.\n\n✨ PIEZA C: FIQH DE LAS CUATRO ESCUELAS (SUNNITA)\n• Escuela Hanafi: Imposición estricta del 2,5% de todo el oro poseído, el uso como joyería no modifica su naturaleza imponible.\n• Escuelas Maliki, Shafi'i, Hanbali: Exoneración del oro de joyería lícito de la mujer. Solo el oro de inversión o ahorro está sujeto al impuesto.",
+        "quiz": [
+          {
+            "question": "Según la escuela Hanafi, ¿la joyería de oro portada por una mujer está sujeta a la Zakat?",
+            "choix": [
+              "Sí, siempre",
+              "No, nunca",
+              "Solo por encima de 200 g"
+            ],
+            "reponse": 0,
+            "explication": "La escuela Hanafi grava el 2,5% de todo el oro poseído: el uso como joyería no cambia su naturaleza imponible."
+          },
+          {
+            "question": "¿Qué escuelas exoneran la joyería lícita de la mujer de la Zakat?",
+            "choix": [
+              "Hanafi únicamente",
+              "Maliki, Shafi'i y Hanbali",
+              "Ninguna escuela"
+            ],
+            "reponse": 1,
+            "explication": "Solo el oro de inversión o ahorro es gravado entre los Maliki, Shafi'i y Hanbali."
+          },
+          {
+            "question": "En el hadith narrado por Abu Dawoud, ¿qué llevaba la mujer interrogada por el Profeta ﷺ?",
+            "choix": [
+              "Un anillo de plata",
+              "Dos pesados brazaletes de oro",
+              "Un collar de perlas"
+            ],
+            "reponse": 1,
+            "explication": "El Profeta ﷺ le preguntó si pagaba la Zakat de ellos, antes de la advertencia sobre los brazaletes de fuego."
+          }
+        ]
+      },
+      {
+        "titre": "🌾 MÓDULO: Zakat - Agricultura y Ganadería",
+        "texte": "✨ PIEZA A: FUNDAMENTO CORÁNICO\nSurah Al-An'am, v.141: 'Y pagad sus derechos el día de la cosecha.'\n\n✨ PIEZA B: HADITH AUTÉNTICO\nNarrado por Yabir (Muslim n.º 981), el Profeta ﷺ dijo: 'Para lo que es regado por los cielos o los mantos acuíferos, se debe el diezmo (10%). Para lo que es regado artificialmente, se debe medio diezmo (5%).' El umbral (Nisab) está fijado en 5 Wasaqs (aproximadamente 653 kg).\n\n✨ PIEZA C: FIQH DE LAS CUATRO ESCUELAS (SUNNITA)\nConsenso unánime sobre las tasas de riego. Respecto al ganado, la carta oficial de Abu Bakr (Al-Bujari n.º 1454) fija el umbral de los ovinos: de 40 a 120 ovejas = 1 oveja debida. Por debajo de 40 cabezas, no se exige ninguna Zakat.",
+        "quiz": [
+          {
+            "question": "¿Qué tasa de Zakat se aplica a una cosecha regada de forma natural (lluvia, manto acuífero)?",
+            "choix": [
+              "2,5 %",
+              "5 %",
+              "10 %"
+            ],
+            "reponse": 2,
+            "explication": "El diezmo completo (10%) se debe por el riego natural; el medio diezmo (5%) por el riego artificial."
+          },
+          {
+            "question": "¿Cuántas ovejas hay que poseer como mínimo antes de que sea exigible la Zakat sobre el ganado?",
+            "choix": [
+              "20",
+              "40",
+              "100"
+            ],
+            "reponse": 1,
+            "explication": "Por debajo de 40 cabezas no se debe Zakat; de 40 a 120, se debe una sola oveja."
+          },
+          {
+            "question": "¿A qué peso corresponde aproximadamente el umbral del Nisab para las cosechas?",
+            "choix": [
+              "≈ 200 kg",
+              "≈ 653 kg",
+              "≈ 1000 kg"
+            ],
+            "reponse": 1,
+            "explication": "El Nisab agrícola está fijado en 5 Wasaqs, es decir, unos 653 kg."
+          }
+        ]
+      },
+      {
+        "titre": "📜 MÓDULO: Purga Prioritaria de Deudas",
+        "texte": "✨ PIEZA A: FUNDAMENTO CORÁNICO\nSurah An-Nisa, v.11: El reparto de las partes solo interviene tras la aplicación de la cláusula soberana: '...después de la ejecución del testamento o del pago de las deudas.'\n\n✨ PIEZA B: HADITH AUTÉNTICO\nNarrado por Salamah ibn al-Akwah (Al-Bujari n.º 2289), se trajo a un difunto ante el Profeta ﷺ para que orara por él. Él preguntó: '¿Ha dejado deudas?'. Dijeron: 'Sí, tres dinares'. Él dijo: ' Orad por vuestro compañero (yo no oro por él)'. Hasta que un compañero se ofreció como garante de la deuda.\n\n✨ PIEZA C: FIQH DE LAS CUATRO ESCUELAS (SUNNITA)\n• Deudas Pasivas: Prioridad absoluta sobre la herencia y la Wasiyya. Entre los Malikis y Hanbalis, también reducen la base imponible de la Zakat financiera.\n• Deudas Activas (Cuentas por cobrar): Si son cobrables (deudor solvente), la escuela Hanafi impone la Zakat cada año, mientras que la escuela Maliki exige el pago una sola vez en el momento de la recuperación.",
+        "quiz": [
+          {
+            "question": "Según el hadith de Salamah ibn al-Akwah, ¿cuántos dinares debía el difunto?",
+            "choix": [
+              "1 dinar",
+              "3 dinares",
+              "10 dinares"
+            ],
+            "reponse": 1,
+            "explication": "El Profeta ﷺ se negó a orar por él hasta que un compañero se hizo garante de esos 3 dinares."
+          },
+          {
+            "question": "¿Qué debe pagarse imperativamente antes del reparto sucesorio?",
+            "choix": [
+              "Las deudas y el testamento",
+              "La parte del hijo mayor únicamente",
+              "Nada, el reparto es inmediato"
+            ],
+            "reponse": 0,
+            "explication": "Surah An-Nisa v.11: el reparto solo interviene tras la ejecución del testamento y el pago de las deudas."
+          },
+          {
+            "question": "Para una cuenta por cobrar recuperable, ¿qué escuela impone la Zakat cada año?",
+            "choix": [
+              "Hanafi",
+              "Maliki",
+              "Shafi'i"
+            ],
+            "reponse": 0,
+            "explication": "La escuela Maliki exige un pago único en el momento de la recuperación, al contrario de la escuela Hanafi."
+          }
+        ]
+      },
+      {
+        "titre": "⚖️ MÓDULO: Reparto Sucesorio",
+        "texte": "✨ PIEZA A: FUNDAMENTO CORÁNICO\nSurah An-Nisa, v.11: 'Esto es lo que Dios os manda respecto a vuestros hijos: al hijo, una parte equivalente a la de dos hijas.'\n\n✨ PIEZA B: HADITH AUTÉNTICO\nNarrado por Ibn Abbas (Al-Bujari n.º 6732, Muslim n.º 1615), el Profeta ﷺ dijo: 'Asignad las partes fijas (Fara'idh) a quienes tienen derecho a ellas. Lo que queda después de eso pertenece al hombre más cercano al difunto.'\n\n✨ PIEZA C: FIQH DE LAS CUATRO ESCUELAS (SUNNITA)\nConsenso absoluto sobre el reparto por doble ratio. Esta regla se apoya en la obligación financiera de mantenimiento (Nafaqah) que recae exclusivamente sobre el hombre. La mujer conserva la totalidad de su parte para su uso privado sin obligación de gastar en el hogar. Los beneficiarios potenciales incluyen descendientes, ascendientes, colaterales (hermanos, hermanas, tíos paternos germanos y paternos, sobrinos, primos) y el cónyuge superviviente.",
+        "quiz": [
+          {
+            "question": "Según el Corán (An-Nisa v.11), ¿cuál es la parte del hijo en comparación con la de la hija?",
+            "choix": [
+              "Una parte igual",
+              "El doble que la de la hija",
+              "La mitad que la de la hija"
+            ],
+            "reponse": 1,
+            "explication": "\"Al hijo, una parte equivalente a la de dos hijas\" — la proporción base es de 2 a 1."
+          },
+          {
+            "question": "Según el hadith narrado por Ibn Abbas, ¿a quién corresponde el remanente tras las partes fijas?",
+            "choix": [
+              "Al Estado",
+              "Al hombre más cercano al difunto",
+              "Se redistribuye equitativamente entre todos"
+            ],
+            "reponse": 1,
+            "explication": "\"Lo que queda después de eso pertenece al hombre más cercano al difunto\" — es el principio del Asabah."
+          },
+          {
+            "question": "¿Qué obligación financiera justifica la proporción 2 a 1 a favor de los hombres?",
+            "choix": [
+              "La Zakat",
+              "La Nafaqah (obligación de mantenimiento)",
+              "El Hajj"
+            ],
+            "reponse": 1,
+            "explication": "El hombre tiene la carga financiera del hogar; la mujer conserva su parte sin obligación de gasto."
+          }
+        ]
+      },
+      {
+        "titre": "💡 MÓDULO: Herencia sin Hijos (Kalâlah)",
+        "texte": "✨ PIEZA A: FUNDAMENTO CORÁNICO\nSurah An-Nisa, v.12: 'Y si un hombre o una mujer muere sin heredero directo (Kalâlah), dejando un hermano o una hermana (uterinos), a cada uno de ellos entonces un sexto. Si son más de dos, comparten entonces el tercio.'\n\n✨ PIEZA B: HADITH AUTÉNTICO\nInterrogado sobre el sentido exacto del Kalâlah, el califa Abu Bakr As-Siddiq (Validado por el consenso de los compañeros) dijo: 'El Kalâlah es aquel que no tiene ni descendiente (hijo) ni ascendiente masculino directo (padre/abuelo).'\n\n✨ PIEZA C: FIQH DE LAS CUATRO ESCUELAS (SUNNITA)\nEn el caso del Kalâlah, los hermanos uterinos (por parte de madre) heredan en partes estrictamente iguales entre hombres y mujeres (única excepción al doble ratio). Los hermanos germanos, por su parte, recuperan el remanente como herederos residuales (Asabah).",
+        "quiz": [
+          {
+            "question": "¿Cómo definió el califa Abu Bakr el Kalâlah?",
+            "choix": [
+              "Aquel que no tiene ni descendiente ni ascendiente masculino directo",
+              "Aquel que no tiene cónyuge",
+              "Aquel que es huérfano de padre"
+            ],
+            "reponse": 0,
+            "explication": "Ni hijo, ni padre, ni abuelo — es la definición validada por el consenso de los compañeros."
+          },
+          {
+            "question": "En el caso del Kalâlah, ¿cómo se reparte la herencia entre hermanos y hermanas uterinos?",
+            "choix": [
+              "Parte igual entre hombres y mujeres",
+              "Parte doble para el hombre",
+              "Nada para los uterinos"
+            ],
+            "reponse": 0,
+            "explication": "Es la única excepción a la proporción habitual de 2 a 1."
+          },
+          {
+            "question": "Si hay más de dos hermanos/hermanas uterinos involucrados, ¿qué fracción comparten?",
+            "choix": [
+              "Un sexto",
+              "Un tercio",
+              "La mitad"
+            ],
+            "reponse": 1,
+            "explication": "Con dos o menos, un sexto cada uno; por encima, comparten el tercio."
+          }
+        ]
+      },
+      {
+        "titre": "📝 MÓDULO: Testamento y Límite del Tercio",
+        "texte": "✨ PIEZA A: FUNDAMENTO CORÁNICO\nSurah Al-Baqarah, v.180: 'Se os ha prescrito, cuando la muerte se presente a uno de vosotros y si deja bienes, hacer un testamento a favor de sus padres y parientes más cercanos...'\n\n✨ PIEZA B: HADITH AUTÉNTICO\nNarrado por Sa'd ibn Abi Waqqas (Al-Bujari n.º 2744, Muslim n.º 1628), el Profeta ﷺ le dijo cuando estaba enfermo y quería dar todos sus bienes en limosna: 'Da el tercio. Y el tercio ya es mucho. Que dejes a tus herederos ricos es mejor que dejarlos pobres, pidiendo limosna a la gente.'\n\n✨ PIEZA C: FIQH DE LAS CUATRO ESCUELAS (SUNNITA)\nConsenso unánime: La Wasiyya está estrictamente prohibida a favor de un heredero legal (salvo acuerdo unánime de los demás herederos tras la muerte), y está limitada a un tercio (1/3) máximo del patrimonio neto tras la depuración de deudas. La aplicación bloquea automáticamente cualquier excedente.",
+        "quiz": [
+          {
+            "question": "¿Cuál es el límite máximo de la Wasiyya (testamento) con respecto al patrimonio neto?",
+            "choix": [
+              "Un cuarto",
+              "Un tercio",
+              "La mitad"
+            ],
+            "reponse": 1,
+            "explication": "Consenso unánime de las cuatro escuelas: un tercio máximo, tras la depuración de deudas."
+          },
+          {
+            "question": "¿Qué responde el Profeta ﷺ a Sa'd ibn Abi Waqqas, que quería dar todo en limosna?",
+            "choix": [
+              "\"Da todo\"",
+              "\"Da el tercio, y el tercio ya es mucho\"",
+              "\"No des nada\""
+            ],
+            "reponse": 1,
+            "explication": "Añade: es mejor dejar a tus herederos ricos que pobres y pidiendo limosna."
+          },
+          {
+            "question": "¿Se puede legar por testamento a un heredero legal que ya cuenta con una parte fija?",
+            "choix": [
+              "Sí, libremente",
+              "No, salvo acuerdo unánime de los demás herederos",
+              "Sí, dentro del límite del 10 %"
+            ],
+            "reponse": 1,
+            "explication": "La Wasiyya a favor de un heredero legal está prohibida salvo validación unánime tras el fallecimiento."
+          }
+        ]
+      },
+      {
+        "titre": "📿 MÓDULO: Seguimiento Diario",
+        "texte": "✨ PIEZA A: FUNDAMENTO CORÁNICO\nSurah Al-Hashr, v.18: '¡Oh vosotros los que creéis! Temed a Alá. Que cada alma mire bien lo que ha preparado para mañana.'\n\n✨ PIEZA B: HADITH AUTÉNTICO\n• Sobre los Días Blancos (At-Tirmidhi n.º 761, Auténtico): El Profeta ﷺ dijo: 'Si ayunas tres días del mes, ayuna el 13, el 14 y el 15.' El ayuno de estos días equivale al ayuno de toda una vida.\n• Sobre las oraciones rogatorias (Muslim n.º 728): El Profeta ﷺ dijo: 'Quien ore doce Rak'ahs rogatorias cada día, Alá le construirá una casa en el Paraíso.'\n\n✨ PIEZA C: FIQH DE LAS CUATRO ESCUELAS (SUNNITA)\nConsenso sobre el carácter altamente meritorio (Sunnah Muakkadah) de las oraciones adjuntas (Rawatib) y el ayuno de los días blancos, herramientas esenciales para la purificación diaria del alma.",
+        "quiz": [
+          {
+            "question": "¿Qué días del mes corresponden a los \"Días Blancos\" recomendados para el ayuno?",
+            "choix": [
+              "1, 2, 3",
+              "13, 14, 15",
+              "27, 28, 29"
+            ],
+            "reponse": 1,
+            "explication": "Narrado por At-Tirmidhi: ayunar estos tres días equivale al ayuno de toda una vida."
+          },
+          {
+            "question": "¿Cuántas Rak'ahs rogatorias diarias están asociadas a la promesa de una casa en el Paraíso?",
+            "choix": [
+              "2",
+              "12",
+              "20"
+            ],
+            "reponse": 1,
+            "explication": "Narrado por Muslim: doce Rak'ahs de Rawatib cada día."
+          },
+          {
+            "question": "¿Qué versículo de la Surah Al-Hashr exhorta a cada alma a mirar lo que ha preparado para mañana?",
+            "choix": [
+              "Versículo 18",
+              "Versículo 3",
+              "Versículo 21"
+            ],
+            "reponse": 0,
+            "explication": "\"Que cada alma mire bien lo que ha preparado para mañana.\""
+          }
+        ]
+      }
+    ],
+    "progres_lecture": "{} de {} temas recorridos"
+  },
+  "langue_arabe": {
+    "titre": "🔤 Lengua árabe",
+    "sous_titre": "Un recorrido paso a paso: alfabeto, vocabulario, conjugación, gramática y lectura de textos.",
+    "avertissement_audio": "La descripción escrita de los sonidos orienta, pero no reemplaza a un oído entrenado: practique si es posible con un hablante nativo o una grabación de audio, en particular para las letras sin equivalente en español.",
+    "etapes": [
+      {
+        "cle": "alphabet",
+        "titre": "1. الأبجدية - El alfabeto",
+        "type": "alphabet",
+        "disponible": true,
+        "lettres": [
+          {
+            "lettre": "ا",
+            "nom": "Alif",
+            "translitteration": "ā",
+            "connexion": "solo se conecta por la derecha (no conectante)",
+            "son": "Vocal larga «a», como en una «a» prolongada. Sirve también de soporte para la Hamza.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "أَسَد",
+                "translitteration": "asad",
+                "sens": "león"
+              },
+              {
+                "position": "final",
+                "mot": "دَعَا",
+                "translitteration": "da'ā",
+                "sens": "él llamó"
+              }
+            ]
+          },
+          {
+            "lettre": "ب",
+            "nom": "Bā'",
+            "translitteration": "b",
+            "connexion": "por ambos lados",
+            "son": "Como la «b» en español de «barco».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "بَاب",
+                "translitteration": "bāb",
+                "sens": "puerta"
+              },
+              {
+                "position": "medio",
+                "mot": "كَبِير",
+                "translitteration": "kabīr",
+                "sens": "grande"
+              },
+              {
+                "position": "final",
+                "mot": "كَلْب",
+                "translitteration": "kalb",
+                "sens": "perro"
+              }
+            ]
+          },
+          {
+            "lettre": "ت",
+            "nom": "Tā'",
+            "translitteration": "t",
+            "connexion": "por ambos lados",
+            "son": "Como la «t» en español de «taza».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "تُفَّاح",
+                "translitteration": "tuffāḥ",
+                "sens": "manzana"
+              },
+              {
+                "position": "medio",
+                "mot": "كَتَبَ",
+                "translitteration": "kataba",
+                "sens": "él escribió"
+              },
+              {
+                "position": "final",
+                "mot": "بَيْت",
+                "translitteration": "bayt",
+                "sens": "casa"
+              }
+            ]
+          },
+          {
+            "lettre": "ث",
+            "nom": "Thā'",
+            "translitteration": "th",
+            "connexion": "por ambos lados",
+            "son": "Como el sonido «z» interdental del español peninsular en «caza» (o el «th» inglés de «think»).",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "ثَعْلَب",
+                "translitteration": "tha'lab",
+                "sens": "zorro"
+              },
+              {
+                "position": "medio",
+                "mot": "مُثَلَّث",
+                "translitteration": "muthallath",
+                "sens": "triángulo"
+              },
+              {
+                "position": "final",
+                "mot": "ثَالِث",
+                "translitteration": "thālith",
+                "sens": "tercero"
+              }
+            ]
+          },
+          {
+            "lettre": "ج",
+            "nom": "Jīm",
+            "translitteration": "j",
+            "connexion": "por ambos lados",
+            "son": "Como la «y» fuerte o la «ye» rioplatense (o el sonido «j» en inglés en «jam»).",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "جَمَل",
+                "translitteration": "jamal",
+                "sens": "camello"
+              },
+              {
+                "position": "medio",
+                "mot": "نَجَاح",
+                "translitteration": "najāḥ",
+                "sens": "éxito"
+              },
+              {
+                "position": "final",
+                "mot": "بُرْج",
+                "translitteration": "burj",
+                "sens": "torre"
+              }
+            ]
+          },
+          {
+            "lettre": "ح",
+            "nom": "Hā'",
+            "translitteration": "ḥ",
+            "connexion": "por ambos lados",
+            "son": "Soplo ronco proveniente del fondo de la garganta, sin equivalente exacto en español.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "حِصَان",
+                "translitteration": "ḥiṣān",
+                "sens": "caballo"
+              },
+              {
+                "position": "medio",
+                "mot": "بَحْر",
+                "translitteration": "baḥr",
+                "sens": "mar"
+              },
+              {
+                "position": "final",
+                "mot": "مِفْتَاح",
+                "translitteration": "miftāḥ",
+                "sens": "llave"
+              }
+            ]
+          },
+          {
+            "lettre": "خ",
+            "nom": "Khā'",
+            "translitteration": "kh",
+            "connexion": "por ambos lados",
+            "son": "Como la «j» española fuerte de «jamón» o la «ch» alemana en «Bach».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "خَرُوف",
+                "translitteration": "kharūf",
+                "sens": "cordero"
+              },
+              {
+                "position": "medio",
+                "mot": "أَخْضَر",
+                "translitteration": "akhḍar",
+                "sens": "verde"
+              },
+              {
+                "position": "final",
+                "mot": "تَارِيخ",
+                "translitteration": "tārīkh",
+                "sens": "fecha, historia"
+              }
+            ]
+          },
+          {
+            "lettre": "د",
+            "nom": "Dāl",
+            "translitteration": "d",
+            "connexion": "solo se conecta por la derecha (no conectante)",
+            "son": "Como la «d» en español de «dedo».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "دِيك",
+                "translitteration": "dīk",
+                "sens": "gallo"
+              },
+              {
+                "position": "final",
+                "mot": "وَلَد",
+                "translitteration": "walad",
+                "sens": "niño"
+              }
+            ]
+          },
+          {
+            "lettre": "ذ",
+            "nom": "Dhāl",
+            "translitteration": "dh",
+            "connexion": "solo se conecta por la derecha (no conectante)",
+            "son": "Como la «z» interdental suave del español en «zumos» (o el «th» inglés de «this»).",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "ذِئْب",
+                "translitteration": "dhi'b",
+                "sens": "lobo"
+              },
+              {
+                "position": "final",
+                "mot": "أُسْتَاذ",
+                "translitteration": "ustādh",
+                "sens": "profesor"
+              }
+            ]
+          },
+          {
+            "lettre": "ر",
+            "nom": "Rā'",
+            "translitteration": "r",
+            "connexion": "solo se conecta por la derecha (no conectante)",
+            "son": "R vibrante simple o múltiple, como en español — no la «r» gutural francesa.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "رُمَّان",
+                "translitteration": "rummān",
+                "sens": "granada (fruta)"
+              },
+              {
+                "position": "final",
+                "mot": "قَمَر",
+                "translitteration": "qamar",
+                "sens": "luna"
+              }
+            ]
+          },
+          {
+            "lettre": "ز",
+            "nom": "Zāy",
+            "translitteration": "z",
+            "connexion": "solo se conecta por la derecha (no conectante)",
+            "son": "Como la «z» sonora en inglés o francés (como en «zero»).",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "زَرَافَة",
+                "translitteration": "zarāfa",
+                "sens": "jirafa"
+              },
+              {
+                "position": "final",
+                "mot": "خُبْز",
+                "translitteration": "khubz",
+                "sens": "pan"
+              }
+            ]
+          },
+          {
+            "lettre": "س",
+            "nom": "Sīn",
+            "translitteration": "s",
+            "connexion": "por ambos lados",
+            "son": "Como la «s» sorda en español de «sal».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "سَمَك",
+                "translitteration": "samak",
+                "sens": "pescado"
+              },
+              {
+                "position": "medio",
+                "mot": "مَدْرَسَة",
+                "translitteration": "madrasa",
+                "sens": "escuela"
+              },
+              {
+                "position": "final",
+                "mot": "شَمْس",
+                "translitteration": "shams",
+                "sens": "sol"
+              }
+            ]
+          },
+          {
+            "lettre": "ش",
+            "nom": "Shīn",
+            "translitteration": "sh",
+            "connexion": "por ambos lados",
+            "son": "Como la «ch» en español de «chico» (o el «sh» inglés de «shoe»).",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "شَمْس",
+                "translitteration": "shams",
+                "sens": "sol"
+              },
+              {
+                "position": "medio",
+                "mot": "مَشْغُول",
+                "translitteration": "mashghūl",
+                "sens": "ocupado"
+              },
+              {
+                "position": "final",
+                "mot": "فِرَاش",
+                "translitteration": "firāsh",
+                "sens": "cama"
+              }
+            ]
+          },
+          {
+            "lettre": "ص",
+            "nom": "Sād",
+            "translitteration": "ṣ",
+            "connexion": "por ambos lados",
+            "son": "«s» enfática, pronunciada con la lengua más retraída y la boca más redondeada.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "صَقْر",
+                "translitteration": "ṣaqr",
+                "sens": "halcón"
+              },
+              {
+                "position": "medio",
+                "mot": "قَصِير",
+                "translitteration": "qaṣīr",
+                "sens": "corto, bajo"
+              },
+              {
+                "position": "final",
+                "mot": "قَمِيص",
+                "translitteration": "qamīṣ",
+                "sens": "camisa"
+              }
+            ]
+          },
+          {
+            "lettre": "ض",
+            "nom": "Dād",
+            "translitteration": "ḍ",
+            "connexion": "por ambos lados",
+            "son": "«d» enfática. Letra considerada característica de la lengua árabe clásica.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "ضِفْدَع",
+                "translitteration": "ḍifda'",
+                "sens": "rana"
+              },
+              {
+                "position": "medio",
+                "mot": "حَاضِر",
+                "translitteration": "ḥāḍir",
+                "sens": "presente"
+              },
+              {
+                "position": "final",
+                "mot": "أَبْيَض",
+                "translitteration": "abyaḍ",
+                "sens": "blanco"
+              }
+            ]
+          },
+          {
+            "lettre": "ط",
+            "nom": "Tā' enfática",
+            "translitteration": "ṭ",
+            "connexion": "por ambos lados",
+            "son": "«t» enfática, más sorda y retraída que la «t» ordinaria.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "طَائِر",
+                "translitteration": "ṭā'ir",
+                "sens": "pájaro"
+              },
+              {
+                "position": "medio",
+                "mot": "مَطْبَخ",
+                "translitteration": "maṭbakh",
+                "sens": "cocina"
+              },
+              {
+                "position": "final",
+                "mot": "خَط",
+                "translitteration": "khaṭṭ",
+                "sens": "línea, trazo"
+              }
+            ]
+          },
+          {
+            "lettre": "ظ",
+            "nom": "Zā' enfática",
+            "translitteration": "ẓ",
+            "connexion": "por ambos lados",
+            "son": "Versión enfática del sonido interdental suave («th» de «this»).",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "ظُفْر",
+                "translitteration": "ẓufr",
+                "sens": "uña"
+              },
+              {
+                "position": "medio",
+                "mot": "نَظِيف",
+                "translitteration": "naẓīf",
+                "sens": "limpio"
+              },
+              {
+                "position": "final",
+                "mot": "حِفْظ",
+                "translitteration": "ḥifẓ",
+                "sens": "memorización"
+              }
+            ]
+          },
+          {
+            "lettre": "ع",
+            "nom": "'Ayn",
+            "translitteration": "'",
+            "connexion": "por ambos lados",
+            "son": "Consonante faríngea, contracción del fondo de la garganta sin expeler aire.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "عَيْن",
+                "translitteration": "'ayn",
+                "sens": "ojo"
+              },
+              {
+                "position": "medio",
+                "mot": "جَعَلَ",
+                "translitteration": "ja'ala",
+                "sens": "él hizo, puso"
+              },
+              {
+                "position": "final",
+                "mot": "جَمِيع",
+                "translitteration": "jamī'",
+                "sens": "todos, juntos"
+              }
+            ]
+          },
+          {
+            "lettre": "غ",
+            "nom": "Ghayn",
+            "translitteration": "gh",
+            "connexion": "por ambos lados",
+            "son": "Como la «g» suave o fricativa en español (como en «fuego» o la «r» francesa).",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "غَزَال",
+                "translitteration": "ghazāl",
+                "sens": "gacela"
+              },
+              {
+                "position": "medio",
+                "mot": "صَغِير",
+                "translitteration": "ṣaghīr",
+                "sens": "pequeño"
+              },
+              {
+                "position": "final",
+                "mot": "فَرَاغ",
+                "translitteration": "farāgh",
+                "sens": "vacío, tiempo libre"
+              }
+            ]
+          },
+          {
+            "lettre": "ف",
+            "nom": "Fā'",
+            "translitteration": "f",
+            "connexion": "por ambos lados",
+            "son": "Como la «f» en español de «fresa».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "فِيل",
+                "translitteration": "fīl",
+                "sens": "elefante"
+              },
+              {
+                "position": "medio",
+                "mot": "سَفِينَة",
+                "translitteration": "safīna",
+                "sens": "barco"
+              },
+              {
+                "position": "final",
+                "mot": "خَرِيف",
+                "translitteration": "kharīf",
+                "sens": "otoño"
+              }
+            ]
+          },
+          {
+            "lettre": "ق",
+            "nom": "Qāf",
+            "translitteration": "q",
+            "connexion": "por ambos lados",
+            "son": "Una «k» pronunciada muy al fondo de la garganta, más profunda que la «k» ordinaria.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "قَمَر",
+                "translitteration": "qamar",
+                "sens": "luna"
+              },
+              {
+                "position": "medio",
+                "mot": "وَقْت",
+                "translitteration": "waqt",
+                "sens": "tiempo"
+              },
+              {
+                "position": "final",
+                "mot": "طَرِيق",
+                "translitteration": "ṭarīq",
+                "sens": "camino, ruta"
+              }
+            ]
+          },
+          {
+            "lettre": "ك",
+            "nom": "Kāf",
+            "translitteration": "k",
+            "connexion": "por ambos lados",
+            "son": "Como la «k» en español de «kilo».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "كِتَاب",
+                "translitteration": "kitāb",
+                "sens": "libro"
+              },
+              {
+                "position": "medio",
+                "mot": "مَكْتَب",
+                "translitteration": "maktab",
+                "sens": "escritorio, oficina"
+              },
+              {
+                "position": "final",
+                "mot": "سَمَك",
+                "translitteration": "samak",
+                "sens": "pescado"
+              }
+            ]
+          },
+          {
+            "lettre": "ل",
+            "nom": "Lām",
+            "translitteration": "l",
+            "connexion": "por ambos lados",
+            "son": "Como la «l» en español de «luna».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "لَيْمُون",
+                "translitteration": "laymūn",
+                "sens": "limón"
+              },
+              {
+                "position": "medio",
+                "mot": "قَلَم",
+                "translitteration": "qalam",
+                "sens": "bolígrafo"
+              },
+              {
+                "position": "final",
+                "mot": "جَمَل",
+                "translitteration": "jamal",
+                "sens": "camello"
+              }
+            ]
+          },
+          {
+            "lettre": "م",
+            "nom": "Mīm",
+            "translitteration": "m",
+            "connexion": "por ambos lados",
+            "son": "Como la «m» en español de «mano».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "مَوْز",
+                "translitteration": "mawz",
+                "sens": "plátano"
+              },
+              {
+                "position": "medio",
+                "mot": "قَمَر",
+                "translitteration": "qamar",
+                "sens": "luna"
+              },
+              {
+                "position": "final",
+                "mot": "قَلَم",
+                "translitteration": "qalam",
+                "sens": "bolígrafo"
+              }
+            ]
+          },
+          {
+            "lettre": "ن",
+            "nom": "Nūn",
+            "translitteration": "n",
+            "connexion": "por ambos lados",
+            "son": "Como la «n» en español de «nido».",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "نَجْمَة",
+                "translitteration": "najma",
+                "sens": "estrella"
+              },
+              {
+                "position": "medio",
+                "mot": "بِنْت",
+                "translitteration": "bint",
+                "sens": "hija, niña"
+              },
+              {
+                "position": "final",
+                "mot": "لَوْن",
+                "translitteration": "lawn",
+                "sens": "color"
+              }
+            ]
+          },
+          {
+            "lettre": "ه",
+            "nom": "Hā'",
+            "translitteration": "h",
+            "connexion": "por ambos lados",
+            "son": "Un soplo ligero, como la «h» aspirada en inglés («house»).",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "هِلَال",
+                "translitteration": "hilāl",
+                "sens": "creciente lunar"
+              },
+              {
+                "position": "medio",
+                "mot": "شَهْر",
+                "translitteration": "shahr",
+                "sens": "mes"
+              },
+              {
+                "position": "final",
+                "mot": "وَجْه",
+                "translitteration": "wajh",
+                "sens": "rostro, cara"
+              }
+            ]
+          },
+          {
+            "lettre": "و",
+            "nom": "Wāw",
+            "translitteration": "w / ū",
+            "connexion": "solo se conecta por la derecha (no conectante)",
+            "son": "Consonante «w» como en inglés o vocal larga «u», según su posición.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "وَرْدَة",
+                "translitteration": "warda",
+                "sens": "rosa (flor)"
+              },
+              {
+                "position": "final",
+                "mot": "دَلْو",
+                "translitteration": "dalw",
+                "sens": "cubo, balde"
+              }
+            ]
+          },
+          {
+            "lettre": "ي",
+            "nom": "Yā'",
+            "translitteration": "y / ī",
+            "connexion": "por ambos lados",
+            "son": "Consonante «y» como en «yeso» o vocal larga «i», según su posición.",
+            "occurrences": [
+              {
+                "position": "principio",
+                "mot": "يَد",
+                "translitteration": "yad",
+                "sens": "mano"
+              },
+              {
+                "position": "medio",
+                "mot": "بَيْت",
+                "translitteration": "bayt",
+                "sens": "casa"
+              },
+              {
+                "position": "final",
+                "mot": "كُرْسِي",
+                "translitteration": "kursī",
+                "sens": "silla"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "cle": "vocabulaire",
+        "titre": "2. المفردات - Vocabulario",
+        "type": "vocabulaire",
+        "disponible": true,
+        "listes": [
+          {
+            "titre": "👋 Saludos y cortesía",
+            "mots": [
+              {
+                "arabe": "السَّلَامُ عَلَيْكُمْ",
+                "translitteration": "as-salāmu 'alaykum",
+                "sens": "la paz sea con vosotros (saludo)",
+                "icone": "🤝"
+              },
+              {
+                "arabe": "وَعَلَيْكُمُ السَّلَامُ",
+                "translitteration": "wa 'alaykum as-salām",
+                "sens": "y con vosotros la paz (respuesta)",
+                "icone": "🤲"
+              },
+              {
+                "arabe": "شُكْرًا",
+                "translitteration": "shukran",
+                "sens": "gracias",
+                "icone": "🙏"
+              },
+              {
+                "arabe": "مِنْ فَضْلِكَ",
+                "translitteration": "min faḍlik",
+                "sens": "por favor",
+                "icone": "🙏"
+              },
+              {
+                "arabe": "نَعَمْ",
+                "translitteration": "na'am",
+                "sens": "sí",
+                "icone": "✅"
+              },
+              {
+                "arabe": "لَا",
+                "translitteration": "lā",
+                "sens": "no",
+                "icone": "🚫"
+              },
+              {
+                "arabe": "عَفْوًا",
+                "translitteration": "'afwan",
+                "sens": "de nada / perdón",
+                "icone": "🤍"
+              },
+              {
+                "arabe": "مَعَ السَّلَامَة",
+                "translitteration": "ma'a as-salāma",
+                "sens": "adiós",
+                "icone": "👋"
+              }
+            ]
+          },
+          {
+            "titre": "👪 La familia",
+            "mots": [
+              {
+                "arabe": "أَب",
+                "translitteration": "ab",
+                "sens": "padre",
+                "icone": "👨"
+              },
+              {
+                "arabe": "أُم",
+                "translitteration": "umm",
+                "sens": "madre",
+                "icone": "👩"
+              },
+              {
+                "arabe": "ابْن",
+                "translitteration": "ibn",
+                "sens": "hijo",
+                "icone": "👦"
+              },
+              {
+                "arabe": "بِنْت",
+                "translitteration": "bint",
+                "sens": "hija",
+                "icone": "👧"
+              },
+              {
+                "arabe": "أَخ",
+                "translitteration": "akh",
+                "sens": "hermano",
+                "icone": "🧑‍🦱"
+              },
+              {
+                "arabe": "أُخْت",
+                "translitteration": "ukht",
+                "sens": "hermana",
+                "icone": "👩‍🦱"
+              },
+              {
+                "arabe": "جَدّ",
+                "translitteration": "jadd",
+                "sens": "abuelo",
+                "icone": "👴"
+              },
+              {
+                "arabe": "جَدَّة",
+                "translitteration": "jadda",
+                "sens": "abuela",
+                "icone": "👵"
+              }
+            ]
+          },
+          {
+            "titre": "🕌 El culto",
+            "mots": [
+              {
+                "arabe": "صَلَاة",
+                "translitteration": "ṣalāh",
+                "sens": "oración",
+                "icone": "🕌"
+              },
+              {
+                "arabe": "وُضُوء",
+                "translitteration": "wuḍū'",
+                "sens": "ablución",
+                "icone": "💧"
+              },
+              {
+                "arabe": "مَسْجِد",
+                "translitteration": "masjid",
+                "sens": "mezquita",
+                "icone": "🕌"
+              },
+              {
+                "arabe": "قُرْآن",
+                "translitteration": "qur'ān",
+                "sens": "Corán",
+                "icone": "📖"
+              },
+              {
+                "arabe": "صِيَام",
+                "translitteration": "ṣiyām",
+                "sens": "ayuno",
+                "icone": "🌙"
+              },
+              {
+                "arabe": "زَكَاة",
+                "translitteration": "zakāh",
+                "sens": "limosna legal",
+                "icone": "🤲"
+              },
+              {
+                "arabe": "دُعَاء",
+                "translitteration": "du'ā'",
+                "sens": "súplica",
+                "icone": "🤲"
+              },
+              {
+                "arabe": "قِبْلَة",
+                "translitteration": "qibla",
+                "sens": "dirección de la oración",
+                "icone": "🧭"
+              }
+            ]
+          },
+          {
+            "titre": "🔢 Los números (1 al 10)",
+            "mots": [
+              {
+                "arabe": "وَاحِد",
+                "translitteration": "wāḥid",
+                "sens": "uno",
+                "icone": "1️⃣"
+              },
+              {
+                "arabe": "اِثْنَان",
+                "translitteration": "ithnān",
+                "sens": "dos",
+                "icone": "2️⃣"
+              },
+              {
+                "arabe": "ثَلَاثَة",
+                "translitteration": "thalātha",
+                "sens": "tres",
+                "icone": "3️⃣"
+              },
+              {
+                "arabe": "أَرْبَعَة",
+                "translitteration": "arba'a",
+                "sens": "cuatro",
+                "icone": "4️⃣"
+              },
+              {
+                "arabe": "خَمْسَة",
+                "translitteration": "khamsa",
+                "sens": "cinco",
+                "icone": "5️⃣"
+              },
+              {
+                "arabe": "سِتَّة",
+                "translitteration": "sitta",
+                "sens": "seis",
+                "icone": "6️⃣"
+              },
+              {
+                "arabe": "سَبْعَة",
+                "translitteration": "sab'a",
+                "sens": "siete",
+                "icone": "7️⃣"
+              },
+              {
+                "arabe": "ثَمَانِيَة",
+                "translitteration": "thamāniya",
+                "sens": "ocho",
+                "icone": "8️⃣"
+              },
+              {
+                "arabe": "تِسْعَة",
+                "translitteration": "tis'a",
+                "sens": "nueve",
+                "icone": "9️⃣"
+              },
+              {
+                "arabe": "عَشَرَة",
+                "translitteration": "'ashara",
+                "sens": "diez",
+                "icone": "🔟"
+              }
+            ]
+          },
+          {
+            "titre": "🎨 Los colores",
+            "mots": [
+              {
+                "arabe": "أَحْمَر",
+                "translitteration": "aḥmar",
+                "sens": "rojo",
+                "couleur_hex": "#dc2626"
+              },
+              {
+                "arabe": "أَزْرَق",
+                "translitteration": "azraq",
+                "sens": "azul",
+                "couleur_hex": "#2563eb"
+              },
+              {
+                "arabe": "أَخْضَر",
+                "translitteration": "akhḍar",
+                "sens": "verde",
+                "couleur_hex": "#16a34a"
+              },
+              {
+                "arabe": "أَصْفَر",
+                "translitteration": "aṣfar",
+                "sens": "amarillo",
+                "couleur_hex": "#eab308"
+              },
+              {
+                "arabe": "أَبْيَض",
+                "translitteration": "abyaḍ",
+                "sens": "blanco",
+                "couleur_hex": "#f9fafb"
+              },
+              {
+                "arabe": "أَسْوَد",
+                "translitteration": "aswad",
+                "sens": "negro",
+                "couleur_hex": "#111827"
+              }
+            ]
+          },
+          {
+            "titre": "🏠 La casa",
+            "mots": [
+              {
+                "arabe": "بَيْت",
+                "translitteration": "bayt",
+                "sens": "casa",
+                "icone": "🏠"
+              },
+              {
+                "arabe": "بَاب",
+                "translitteration": "bāb",
+                "sens": "puerta",
+                "icone": "🚪"
+              },
+              {
+                "arabe": "نَافِذَة",
+                "translitteration": "nāfidha",
+                "sens": "ventana",
+                "icone": "🪟"
+              },
+              {
+                "arabe": "طَاوِلَة",
+                "translitteration": "ṭāwila",
+                "sens": "mesa",
+                "icone": "🪑"
+              },
+              {
+                "arabe": "كِتَاب",
+                "translitteration": "kitāb",
+                "sens": "libro",
+                "icone": "📖"
+              },
+              {
+                "arabe": "مَاء",
+                "translitteration": "mā'",
+                "sens": "agua",
+                "icone": "💧"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "cle": "conjugaison",
+        "titre": "3. التصريف - Conjugación",
+        "type": "conjugaison",
+        "disponible": true,
+        "verbe_modele": {
+          "racine": "ذ - ه - ب",
+          "forme_base": "ذَهَبَ",
+          "sens": "ir, marchar"
+        },
+        "source": "Universidad de Medina, Libro 2, Lección 1 : الفعل الماضي (el pasado) — ver Ciencias islámicas/Universidad madina/tome_2/tome_2_grammaire.pdf",
+        "temps": [
+          {
+            "cle": "passe",
+            "titre": "الماضي - Pasado",
+            "conjugaisons": [
+              {
+                "pronom": "هُوَ",
+                "pronom_translitteration": "huwa",
+                "personne": "3.ª masc. singular",
+                "forme": "ذَهَبَ",
+                "translitteration": "dhahaba",
+                "sens": "él fue"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3.ª masc. dual",
+                "forme": "ذَهَبَا",
+                "translitteration": "dhahabā",
+                "sens": "ellos dos fueron"
+              },
+              {
+                "pronom": "هُمْ",
+                "pronom_translitteration": "hum",
+                "personne": "3.ª masc. plural",
+                "forme": "ذَهَبُوا",
+                "translitteration": "dhahabū",
+                "sens": "ellos fueron"
+              },
+              {
+                "pronom": "هِيَ",
+                "pronom_translitteration": "hiya",
+                "personne": "3.ª fem. singular",
+                "forme": "ذَهَبَتْ",
+                "translitteration": "dhahabat",
+                "sens": "ella fue"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3.ª fem. dual",
+                "forme": "ذَهَبَتَا",
+                "translitteration": "dhahabatā",
+                "sens": "ellas dos fueron"
+              },
+              {
+                "pronom": "هُنَّ",
+                "pronom_translitteration": "hunna",
+                "personne": "3.ª fem. plural",
+                "forme": "ذَهَبْنَ",
+                "translitteration": "dhahabna",
+                "sens": "ellas fueron"
+              },
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2.ª masc. singular",
+                "forme": "ذَهَبْتَ",
+                "translitteration": "dhahabta",
+                "sens": "tú fuiste"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2.ª dual",
+                "forme": "ذَهَبْتُمَا",
+                "translitteration": "dhahabtumā",
+                "sens": "vosotros dos fuisteis"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2.ª masc. plural",
+                "forme": "ذَهَبْتُمْ",
+                "translitteration": "dhahabtum",
+                "sens": "vosotros fuisteis"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2.ª fem. singular",
+                "forme": "ذَهَبْتِ",
+                "translitteration": "dhahabti",
+                "sens": "tú fuiste (femenino)"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2.ª dual",
+                "forme": "ذَهَبْتُمَا",
+                "translitteration": "dhahabtumā",
+                "sens": "vosotras dos fuisteis"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2.ª fem. plural",
+                "forme": "ذَهَبْتُنَّ",
+                "translitteration": "dhahabtunna",
+                "sens": "vosotras fuisteis"
+              },
+              {
+                "pronom": "أَنَا",
+                "pronom_translitteration": "anā",
+                "personne": "1.ª singular",
+                "forme": "ذَهَبْتُ",
+                "translitteration": "dhahabtu",
+                "sens": "yo fui"
+              },
+              {
+                "pronom": "نَحْنُ",
+                "pronom_translitteration": "naḥnu",
+                "personne": "1.ª plural",
+                "forme": "ذَهَبْنَا",
+                "translitteration": "dhahabnā",
+                "sens": "nosotros/as fuimos"
+              }
+            ]
+          },
+          {
+            "cle": "present",
+            "titre": "المضارع - Presente",
+            "conjugaisons": [
+              {
+                "pronom": "هُوَ",
+                "pronom_translitteration": "huwa",
+                "personne": "3.ª masc. singular",
+                "forme": "يَذْهَبُ",
+                "translitteration": "yadhhabu",
+                "sens": "él va"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3.ª masc. dual",
+                "forme": "يَذْهَبَانِ",
+                "translitteration": "yadhhabāni",
+                "sens": "ellos dos van"
+              },
+              {
+                "pronom": "هُمْ",
+                "pronom_translitteration": "hum",
+                "personne": "3.ª masc. plural",
+                "forme": "يَذْهَبُونَ",
+                "translitteration": "yadhhabūna",
+                "sens": "ellos van"
+              },
+              {
+                "pronom": "هِيَ",
+                "pronom_translitteration": "hiya",
+                "personne": "3.ª fem. singular",
+                "forme": "تَذْهَبُ",
+                "translitteration": "tadhhabu",
+                "sens": "ella va"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3.ª fem. dual",
+                "forme": "تَذْهَبَانِ",
+                "translitteration": "tadhhabāni",
+                "sens": "ellas dos van"
+              },
+              {
+                "pronom": "هُنَّ",
+                "pronom_translitteration": "hunna",
+                "personne": "3.ª fem. plural",
+                "forme": "يَذْهَبْنَ",
+                "translitteration": "yadhhabna",
+                "sens": "ellas van"
+              },
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2.ª masc. singular",
+                "forme": "تَذْهَبُ",
+                "translitteration": "tadhhabu",
+                "sens": "tú vas"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2.ª dual",
+                "forme": "تَذْهَبَانِ",
+                "translitteration": "tadhhabāni",
+                "sens": "vosotros dos vais"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2.ª masc. plural",
+                "forme": "تَذْهَبُونَ",
+                "translitteration": "tadhhabūna",
+                "sens": "vosotros vais"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2.ª fem. singular",
+                "forme": "تَذْهَبِينَ",
+                "translitteration": "tadhhabīna",
+                "sens": "tú vas (femenino)"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2.ª dual",
+                "forme": "تَذْهَبَانِ",
+                "translitteration": "tadhhabāni",
+                "sens": "vosotras dos vais"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2.ª fem. plural",
+                "forme": "تَذْهَبْنَ",
+                "translitteration": "tadhhabna",
+                "sens": "vosotras vais"
+              },
+              {
+                "pronom": "أَنَا",
+                "pronom_translitteration": "anā",
+                "personne": "1.ª singular",
+                "forme": "أَذْهَبُ",
+                "translitteration": "adhhabu",
+                "sens": "yo voy"
+              },
+              {
+                "pronom": "نَحْنُ",
+                "pronom_translitteration": "naḥnu",
+                "personne": "1.ª plural",
+                "forme": "نَذْهَبُ",
+                "translitteration": "nadhhabu",
+                "sens": "nosotros/as vamos"
+              }
+            ]
+          },
+          {
+            "cle": "futur",
+            "titre": "المستقبل - Futuro",
+            "note_pedagogique": "El futuro no cambia la conjugación: simplemente añade un prefijo delante del presente. سَـ (sa-) para un futuro cercano o general — la forma mostrada aquí. سَوْفَ (sawfa), separado, para un futuro más lejano o enfático.",
+            "conjugaisons": [
+              {
+                "pronom": "هُوَ",
+                "pronom_translitteration": "huwa",
+                "personne": "3.ª masc. singular",
+                "forme": "سَيَذْهَبُ",
+                "translitteration": "sa-yadhhabu",
+                "sens": "él irá"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3.ª masc. dual",
+                "forme": "سَيَذْهَبَانِ",
+                "translitteration": "sa-yadhhabāni",
+                "sens": "ellos dos irán"
+              },
+              {
+                "pronom": "هُمْ",
+                "pronom_translitteration": "hum",
+                "personne": "3.ª masc. plural",
+                "forme": "سَيَذْهَبُونَ",
+                "translitteration": "sa-yadhhabūna",
+                "sens": "ellos irán"
+              },
+              {
+                "pronom": "هِيَ",
+                "pronom_translitteration": "hiya",
+                "personne": "3.ª fem. singular",
+                "forme": "سَتَذْهَبُ",
+                "translitteration": "sa-tadhhabu",
+                "sens": "ella irá"
+              },
+              {
+                "pronom": "هُمَا",
+                "pronom_translitteration": "humā",
+                "personne": "3.ª fem. dual",
+                "forme": "سَتَذْهَبَانِ",
+                "translitteration": "sa-tadhhabāni",
+                "sens": "ellas dos irán"
+              },
+              {
+                "pronom": "هُنَّ",
+                "pronom_translitteration": "hunna",
+                "personne": "3.ª fem. plural",
+                "forme": "سَيَذْهَبْنَ",
+                "translitteration": "sa-yadhhabna",
+                "sens": "ellas irán"
+              },
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2.ª masc. singular",
+                "forme": "سَتَذْهَبُ",
+                "translitteration": "sa-tadhhabu",
+                "sens": "tú irás"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2.ª dual",
+                "forme": "سَتَذْهَبَانِ",
+                "translitteration": "sa-tadhhabāni",
+                "sens": "vosotros dos iréis"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2.ª masc. plural",
+                "forme": "سَتَذْهَبُونَ",
+                "translitteration": "sa-tadhhabūna",
+                "sens": "vosotros iréis"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2.ª fem. singular",
+                "forme": "سَتَذْهَبِينَ",
+                "translitteration": "sa-tadhhabīna",
+                "sens": "tú irás (femenino)"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2.ª dual",
+                "forme": "سَتَذْهَبَانِ",
+                "translitteration": "sa-tadhhabāni",
+                "sens": "vosotras dos iréis"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2.ª fem. plural",
+                "forme": "سَتَذْهَبْنَ",
+                "translitteration": "sa-tadhhabna",
+                "sens": "vosotras iréis"
+              },
+              {
+                "pronom": "أَنَا",
+                "pronom_translitteration": "anā",
+                "personne": "1.ª singular",
+                "forme": "سَأَذْهَبُ",
+                "translitteration": "sa-adhhabu",
+                "sens": "yo iré"
+              },
+              {
+                "pronom": "نَحْنُ",
+                "pronom_translitteration": "naḥnu",
+                "personne": "1.ª plural",
+                "forme": "سَنَذْهَبُ",
+                "translitteration": "sa-nadhhabu",
+                "sens": "nosotros/as iremos"
+              }
+            ]
+          },
+          {
+            "cle": "amr",
+            "titre": "الأمر - Imperativo",
+            "note_pedagogique": "El imperativo solo existe en la segunda persona.",
+            "conjugaisons": [
+              {
+                "pronom": "أَنْتَ",
+                "pronom_translitteration": "anta",
+                "personne": "2.ª masc. singular",
+                "forme": "اِذْهَبْ",
+                "translitteration": "idhhab",
+                "sens": "¡ve!"
+              },
+              {
+                "pronom": "أَنْتُمَا",
+                "pronom_translitteration": "antumā",
+                "personne": "2.ª dual (masc/fem)",
+                "forme": "اِذْهَبَا",
+                "translitteration": "idhhabā",
+                "sens": "¡id, vosotros dos!"
+              },
+              {
+                "pronom": "أَنْتُمْ",
+                "pronom_translitteration": "antum",
+                "personne": "2.ª masc. plural",
+                "forme": "اِذْهَبُوا",
+                "translitteration": "idhhabū",
+                "sens": "¡id!"
+              },
+              {
+                "pronom": "أَنْتِ",
+                "pronom_translitteration": "anti",
+                "personne": "2.ª fem. singular",
+                "forme": "اِذْهَبِي",
+                "translitteration": "idhhabī",
+                "sens": "¡ve! (femenino)"
+              },
+              {
+                "pronom": "أَنْتُنَّ",
+                "pronom_translitteration": "antunna",
+                "personne": "2.ª fem. plural",
+                "forme": "اِذْهَبْنَ",
+                "translitteration": "idhhabna",
+                "sens": "¡id! (femenino)"
+              }
+            ],
+            "regles_type_verbe": [
+              {
+                "type": "Timbre ُ (damma)",
+                "regle": "Cuando la vocal de la penúltima letra del presente es damma, la hamza del imperativo también toma damma.",
+                "madi": "كَتَبَ",
+                "mudari": "يَكْتُبُ",
+                "mudari_translitteration": "yaktubu",
+                "amr": "اُكْتُبْ",
+                "amr_translitteration": "uktub",
+                "sens": "¡escribe!"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
