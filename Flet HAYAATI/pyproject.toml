@@ -1,0 +1,49 @@
+[project]
+name = "Hayaati"
+version = "1.2.0"
+description = "Plateforme d'Audits Patrimoniaux et Vigilance Doctrinale Sharia-Compliant"
+authors = [
+    { name = "Hayaati Support", email = "aboudourazak@gmail.com" }
+]
+dependencies = [
+    "flet==0.86.2",
+    "reportlab>=4.1.0",
+    "arabic-reshaper>=3.0.0",
+    "python-bidi>=0.4.2",
+    "cryptography>=42.0.0",
+    "plyer>=2.1.0",
+    "flet-android-notifications>=0.1.0"
+]
+requires-python = ">=3.10"
+
+[tool.flet]
+org = "app.hayaati"           # ← identifiant unique (reverse domain)
+product = "Hayaati"
+company = "Hayaati"
+copyright = "Copyright (C) 2026 by Hayaati"
+build_number = 1
+
+[tool.flet.app]
+module = "main"               # ← fichier d'entrée : main.py
+path = "."                    # ← racine du projet
+
+[tool.flet.android]
+icon = "assets/icon.png"
+adaptive_icon_background = "#FFFFFF"
+target_sdk_version = 34
+split_per_abi = true         # ← mettre true si vous voulez un APK plus léger par architecture
+
+# =========================================================================
+# PERMISSIONS ANDROID — SYNTAXE OFFICIELLE FLET
+# =========================================================================
+[tool.flet.android.permission]
+"android.permission.INTERNET" = true
+"android.permission.WRITE_EXTERNAL_STORAGE" = true
+"android.permission.READ_EXTERNAL_STORAGE" = true
+"android.permission.POST_NOTIFICATIONS" = true
+"android.permission.MANAGE_DOCUMENTS" = true
+"android.permission.SCHEDULE_EXACT_ALARM" = true
+"android.permission.RECEIVE_BOOT_COMPLETED" = true
+"android.permission.WAKE_LOCK" = true
+"android.permission.FOREGROUND_SERVICE" = true
+"android.permission.FOREGROUND_SERVICE_SPECIAL_USE" = true
