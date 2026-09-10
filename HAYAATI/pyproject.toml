@@ -1,0 +1,67 @@
+[project]
+name = "Hayaati"
+version = "1.0.0"
+description = "Application de vigilance financiere et spirituelle islamique"
+requires-python = ">=3.10"
+dependencies = [
+    "flet>=0.86.2",
+    "reportlab>=4.1.0",
+    "arabic-reshaper>=3.0.0",
+    "python-bidi>=0.4.2",
+    "cryptography>=42.0.0",
+    "plyer>=2.1.0",
+    "flet-android-notifications>=0.1.0",
+    "flet-geolocator>=0.86.5",
+    "hayaati-alarm @ file:///F:/hayaati_alarm/hayaati_alarm",
+]
+
+[tool.flet]
+org = "app.hayaati"
+product = "Hayaati"
+company = "Hayaati"
+copyright = "Copyright (C) 2026 by Hayaati"
+build_number = 1
+path = "main.py"
+
+[tool.flet.assets]
+assets = "assets"
+
+[tool.flet.android]
+icon = "assets/icon.png"
+adaptive_icon_background = "#FFFFFF"
+target_sdk_version = 34
+split_per_abi = false
+target_arch = ["arm64-v8a"]
+
+[tool.flet.android.permission]
+"android.permission.INTERNET" = true
+"android.permission.WRITE_EXTERNAL_STORAGE" = true
+"android.permission.READ_EXTERNAL_STORAGE" = true
+"android.permission.MANAGE_DOCUMENTS" = true
+"android.permission.POST_NOTIFICATIONS" = true
+"android.permission.SCHEDULE_EXACT_ALARM" = true
+"android.permission.RECEIVE_BOOT_COMPLETED" = true
+"android.permission.WAKE_LOCK" = true
+"android.permission.FOREGROUND_SERVICE" = true
+"android.permission.FOREGROUND_SERVICE_SPECIAL_USE" = true
+"android.permission.USE_FULL_SCREEN_INTENT" = true
+"android.permission.VIBRATE" = true
+# 🆕 08/09/2026 : requises par flet-geolocator (core/geolocation_natif.py).
+# FINE = précision GPS complète ; COARSE = repli réseau/cellulaire si
+# l'utilisateur n'accorde que celle-ci. Les deux sont déclarées, comme
+# pour les autres extensions de ce projet, plutôt que de supposer une
+# fusion automatique depuis le paquet Flutter geolocator.
+"android.permission.ACCESS_FINE_LOCATION" = true
+"android.permission.ACCESS_COARSE_LOCATION" = true
+
+[tool.flet.windows]
+icon = "assets/images/Icone-Hayaati.png"
+
+# ============================================================
+# AJOUT IMPORTANT : Déclaration explicite de l'extension Flutter
+# C'est ce qui manquait pour que Flet génère l'initialisation Dart
+# de HayaatiAlarm dans le projet Flutter.
+# Le chemin est relatif au pubspec.yaml généré (build/flutter/pubspec.yaml)
+# ============================================================
+[tool.flet.flutter.dependencies]
+hayaati_alarm = { path = "../flutter-packages/hayaati_alarm" }
