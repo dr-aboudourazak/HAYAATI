@@ -1,0 +1,7 @@
+site_name: HayaatiAlarm
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings

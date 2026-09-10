@@ -1,0 +1,39 @@
+[project]
+name = "hayaati-alarm"
+version = "0.1.0"
+description = "HayaatiAlarm control for Flet"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Flet contributors", email = "you@example.com" }
+]
+dependencies = [
+    "flet>=0.86.2",
+]
+
+[dependency-groups]
+dev = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]"
+]
+
+[project.urls]
+Homepage = "https://mydomain.dev"
+Documentation = "https://github.com/MyGithubAccount/hayaati-alarm"
+Repository = "https://github.com/MyGithubAccount/hayaati-alarm"
+Issues = "https://github.com/MyGithubAccount/hayaati-alarm/issues"
+
+[tool.setuptools.package-data]
+"flutter.hayaati_alarm" = ["**/*"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+license-files = []
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

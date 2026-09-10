@@ -1,0 +1,33 @@
+name: hayaati_alarm
+description: Flet HayaatiAlarm control
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  alarm: ^5.1.5
+  permission_handler: ^11.3.0
+  flet: ^0.86.2
+  flutter:
+    sdk: flutter
+
+  # your dependencies here
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+# 🆕 04/09/2026 : les sons de l'adhan sont désormais embarqués par
+# l'extension elle-même, en vrais assets Flutter standard, accessibles au
+# paquet 'alarm' via rootBundle. Les assets déclarés côté Flet
+# (pyproject.toml de l'app principale) ne sont pas exposés à ce mécanisme
+# natif — c'est ce qui empêchait le son de jouer malgré une vibration
+# fonctionnelle.
+flutter:
+  assets:
+    - assets/sounds/adhan.mp3
+    - assets/sounds/adhan_fajr.mp3
