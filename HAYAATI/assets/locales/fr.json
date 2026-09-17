@@ -5157,6 +5157,8 @@
     "priere_maghrib": "Maghrib",
     "priere_isha": "Isha",
     "titre_evenements": "🌙 Événements du mois",
-    "aucun_evenement_mois": "Aucun événement particulier ce mois-ci."
+    "aucun_evenement_mois": "Aucun événement particulier ce mois-ci.",
+    "badge_kaaba_compte_a_rebours": "{priere} dans {minutes} min",
+    "badge_kaaba_label": "Qiblah"
   }
 }

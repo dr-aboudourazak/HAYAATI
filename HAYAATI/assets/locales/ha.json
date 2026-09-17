@@ -5153,6 +5153,8 @@
     "priere_maghrib": "Magriba",
     "priere_isha": "Isha'i",
     "titre_evenements": "🌙 Abubuwan da suka faru wannan wata",
-    "aucun_evenement_mois": "Babu wani muhimmin abu wannan wata."
+    "aucun_evenement_mois": "Babu wani muhimmin abu wannan wata.",
+    "badge_kaaba_compte_a_rebours": "{priere} cikin mintuna {minutes}",
+    "badge_kaaba_label": "Alkibla"
   }
 }

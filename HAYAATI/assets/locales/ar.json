@@ -5206,6 +5206,8 @@
     "priere_maghrib": "المغرب",
     "priere_isha": "العشاء",
     "titre_evenements": "🌙 أحداث هذا الشهر",
-    "aucun_evenement_mois": "لا يوجد حدث خاص هذا الشهر."
+    "aucun_evenement_mois": "لا يوجد حدث خاص هذا الشهر.",
+    "badge_kaaba_compte_a_rebours": "{priere} خلال {minutes} د",
+    "badge_kaaba_label": "القبلة"
   }
 }
