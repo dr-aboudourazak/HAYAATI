@@ -247,11 +247,11 @@ class PagePriere(ft.Container):
         self._filtre_boussole = FiltreBoussole()
         self._capteurs_actifs = False
         self._horloge_active = True
-        # ⚠️ 12/09/2026 : pas encore raccordé à la préférence fiqh
-        # personnelle de l'utilisateur (le +/-2 jours de page_reglages.py) —
-        # reste à 0 pour l'instant. Simplification assumée, à corriger si
-        # besoin en la faisant transiter jusqu'ici comme le fait déjà
-        # page_onboarding.py pour son propre calendrier.
+        # 🔧 17/09/2026 : raccordé à la préférence fiqh personnelle de
+        # l'utilisateur (le +/-2 jours de page_reglages.py) — valeur de
+        # secours ici le temps du tout premier rendu, réellement lue et
+        # tenue à jour dans actualiser_donnees_affichage() ci-dessous,
+        # comme le fait déjà page_onboarding.py pour son propre calendrier.
         self._ajustement_lune = 0
 
         self.lbl_titre = ft.Text(size=16, weight=ft.FontWeight.BOLD, color=VERT_PROFOND)
@@ -638,6 +638,14 @@ class PagePriere(ft.Container):
             self.branches_labels[cle]["nom"].value = str(nom_traduit)
         if not self._capteurs_actifs:
             self.lbl_note_capteur.value = self._texte_note_capteur_indisponible()
+        # 🔧 17/09/2026 : sans cet appel, la liste des événements lunaires
+        # restait dans l'ancienne langue jusqu'au prochain retour sur la
+        # page — traduire_page() ne touchait que le titre, les noms de
+        # prières et la note capteur.
+        try:
+            self._rafraichir_liste_evenements()
+        except Exception:
+            pass
         if self.page_flet:
             try:
                 self.update()
@@ -645,6 +653,18 @@ class PagePriere(ft.Container):
                 pass
 
     def actualiser_donnees_affichage(self):
+        # 🔧 17/09/2026 : lu à chaque rafraîchissement (pas seulement à la
+        # construction) pour que le curseur +/-2 jours de page_reglages.py
+        # s'applique immédiatement au retour sur cette page, comme il
+        # s'applique déjà au calendrier et aux alertes de l'onboarding.
+        try:
+            u_id = getattr(self.app, "user_id_connecte", "INVITE")
+            if hasattr(self.app, "sync_engine") and self.app.sync_engine:
+                c_pref = self.app.sync_engine.charger_donnees_module(u_id, "PREFERENCES") or {}
+                self._ajustement_lune = int(c_pref.get("ajustement_hegiri", 0))
+        except Exception as exc:
+            print(f"[PRIERE] Lecture ajustement_hegiri échouée, valeur conservée : {exc}")
+
         try:
             moteur_position = AgendaEngine()
             lat, lon = moteur_position.latitude, moteur_position.longitude

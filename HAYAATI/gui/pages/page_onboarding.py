@@ -140,6 +140,21 @@ class PageOnboarding(ft.Container):
                 break
 
     def action_changement_langue(self, nuevo_dic: dict):
+        # 🔧 17/09/2026 : le bandeau verset/hadith et le badge Kaaba ne se
+        # reconstruisent pas eux-mêmes dans actualiser_contexte() (ce sont
+        # des widgets créés une seule fois dans __init__, pas reconstruits
+        # à chaque rendu comme le reste du tableau de bord) — sans ces deux
+        # appels, ils restaient dans l'ancienne langue jusqu'au prochain
+        # basculement périodique de la boucle async.
+        try:
+            self._basculer_verset()
+            self.bandeau_versets.update()
+        except Exception:
+            pass
+        try:
+            self._rafraichir_badge_kaaba()
+        except Exception:
+            pass
         self.actualiser_contexte()
 
     # ═══════════════════════════════════════════════════════════════════════
