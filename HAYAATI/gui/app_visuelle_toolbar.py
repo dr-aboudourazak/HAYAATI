@@ -177,7 +177,7 @@ def dessiner_boutons_navigation(app):
                 except Exception: pass
 
             btn_pc = ft.Container(
-                content=ft.Text(value=str(lib), size=12, color=ft.Colors.BLACK87, weight=ft.FontWeight.BOLD if est_a else ft.FontWeight.NORMAL),
+                content=ft.Text(value=str(lib), size=12, color=ft.Colors.BLACK_87, weight=ft.FontWeight.BOLD if est_a else ft.FontWeight.NORMAL),
                 bgcolor="#d1d5db" if est_a else "#f3f4f6", padding=ft.Padding(15, 10, 15, 10), alignment=ft.Alignment(-1, 0),
                 on_click=lambda e, t_c=cle: app.basculer_ecran(t_c), on_hover=gerer_survol_bouton
             )
