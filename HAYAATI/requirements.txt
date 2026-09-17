@@ -1,12 +1,12 @@
 # HAYAATI — Dépendances Python
 # Installation : py -3.14 -m pip install -r requirements.txt
 
-flet>=0.86.2
+flet==0.86.5
 reportlab>=4.1.0
 arabic-reshaper>=3.0.0
 python-bidi>=0.4.2
 cryptography>=42.0.0
 plyer>=2.1.0
-flet-android-notifications>=0.1.0
+flet-android-notifications==0.10.0
 hayaati-alarm @ file:///F:/hayaati_alarm/hayaati_alarm
-flet-geolocator>=0.86.5
+flet-geolocator==0.86.5
