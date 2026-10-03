@@ -1,0 +1,46 @@
+# Bytecode et cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+*.so
+hayaati_donnees_privees/
+config_privee.py
+
+# Packages et builds Python / Setuptools
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+*.iml
+hayaati_private.db
+.cle_maitresse.key
+*.db
+
+# Caches et outils Flutter / Dart
+.dart_tool/
+.pub/
+.pub-cache/
+pubspec.lock
+
+# Cache local spécifique au script de build HAYAATI
+.gradle_cache_hayaati/
+.pub-cache-hayaati/
+.temp-hayaati/
+
+# Environnements virtuels
+venv/
+.venv/
+env/
+
+# Fichiers système et IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

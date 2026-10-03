@@ -1,0 +1,76 @@
+# Ajouté le 23/09/2026, suite à l'incident où core/hayaati_private.db
+# (compte utilisateur en clair + modules chiffrés) a été committé et
+# rendu public faute d'un .gitignore. Défense en profondeur : ce fichier
+# est la première ligne (rien ne doit même être proposé à `git add`),
+# le déplacement du chemin de données hors de core/ (voir
+# core/emplacements_donnees.py) est la deuxième.
+
+# Données privées de l'application : base SQLite, clé de chiffrement,
+# cache de position — jamais dans le dépôt, sous aucun nom de dossier.
+hayaati_donnees_privees/
+hayaati_notif_dedup.json
+*.db
+*.db-journal
+*.db-wal
+*.sqlite
+*.sqlite3
+*.key
+.cle_maitresse.key
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+*.so
+.venv/
+venv/
+*.egg-info/
+.eggs/
+*.egg
+build/
+dist/
+core/config_privee.py
+
+# Build Flet / Android
+*.apk
+*.aab
+.flutter-plugins*
+.dart_tool/
+
+# Environnement / secrets
+.env
+.env.*
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+
+# Packages et builds Python / Setuptools
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+*.iml
+build_android.ps1
+build_config.local.ps1
+logs_build/
+
+# Caches et outils Flutter / Dart
+.dart_tool/
+.pub/
+.pub-cache/
+pubspec.lock
+
+# Cache local spécifique au script de build HAYAATI
+.gradle_cache_hayaati/
+.pub-cache-hayaati/
+.temp-hayaati/
+
+# Fichiers système et IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
