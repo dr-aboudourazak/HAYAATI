@@ -461,7 +461,7 @@
   "sec_2_titre_heritage": "<b>2. Rarraba Haƙƙoƙi bisa ga Doka (Fara'idh) :</b>",
   "sec_3_titre_exclus": "<b>3. Masu Haƙƙi da aka Hana ko Akwace daga Gado (Hajb) :</b>",
   "sec_3_corps_exclus": "• {} (An cire shi daga rarraba bisa ga dokokin fifiko na Fiqh)",
-  "sceau_titre": "<b>TAMBARIN TABBATARWA NA HAYAATI v1.2</b>",
+  "sceau_titre": "<b>TAMBARIN TABBATARWA NA HAYAATI v0.1.0</b>",
   "sceau_corps": "<i>Rahoton bincike na hukuma {}- Tabbatar da Daidaito bisa ga Littattafan Addini</i>",
   "alerte_supervision_savant": "⚠️ Hayaati kayan aiki ne mai ƙarfi wanda yana buƙatar tabbatarwa da kula daga wani malami ko wanda ya cancanta a addini.",
   "env_live": "Wuri na Sirri na SQLite mai Tsaro",

@@ -477,7 +477,7 @@ def generer_certificat_pdf(identite_dict, type_module, madhhab, devise, donnees_
     # ------------------------------------------------------------
     # 🎯 COUPLAGE DU SCEAU OFFICIEL ET AVERTISSEMENT DOCTRINAL DE SÉCURITÉ
     # ------------------------------------------------------------
-    sceau_titre_clean = str(pdf_txt.get('sceau_titre', 'SCEAU HAYAATI v1.2')).replace('<b>', '').replace('</b>', '')
+    sceau_titre_clean = str(pdf_txt.get('sceau_titre', 'SCEAU HAYAATI v0.1.0')).replace('<b>', '').replace('</b>', '')
     sceau_corps_clean = str(pdf_txt.get('sceau_corps', 'Certifié Conforme')).replace('<i>', '').replace('</i>', '').format(type_module)
     
     # 🌟 EXTRACTION DE L'AVERTISSEMENT DE SUPERVISION DEPUIS LE JSON (Avec repli si absent)

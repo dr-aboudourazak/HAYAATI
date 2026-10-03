@@ -461,7 +461,7 @@
   "sec_2_titre_heritage": "<b>2. Legal Distribution of Shares (Fara'idh):</b>",
   "sec_3_titre_exclus": "<b>3. Candidates Blocked or Excluded from the Estate (Hajb):</b>",
   "sec_3_corps_exclus": "• {} (Excluded from distribution in accordance with Fiqh priority rules)",
-  "sceau_titre": "<b>HAYAATI DIGITAL COMPLIANCE SEAL v1.2</b>",
+  "sceau_titre": "<b>HAYAATI DIGITAL COMPLIANCE SEAL v0.1.0</b>",
   "sceau_corps": "<i>Official audit report {}- Certified Compliant with Doctrinal Sources</i>",
   "env_live": "Secure Private SQLite Space",
   "env_tiers": "Manual Diagnostic for Third Parties",

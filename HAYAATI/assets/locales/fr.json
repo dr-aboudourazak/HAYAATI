@@ -461,7 +461,7 @@
   "sec_2_titre_heritage": "<b>2. Répartition Légale des Parts (Fara'idh) :</b>",
   "sec_3_titre_exclus": "<b>3. Candidats Bloqués ou Écartés de la Succession (Hajb) :</b>",
   "sec_3_corps_exclus": "• {} (Évincé de la ventilation conformément aux règles de priorité du Fiqh)",
-  "sceau_titre": "<b>SCEAU DE CONFORMITÉ NUMÉRIQUE HAYAATI v1.2</b>",
+  "sceau_titre": "<b>SCEAU DE CONFORMITÉ NUMÉRIQUE HAYAATI v0.1.0</b>",
   "sceau_corps": "<i>Rapport d'audit officiel {}- Certifié Conforme aux Sources Doctrinales</i>",
   "alerte_supervision_savant": "⚠️ Avertissement: Hayaati est un outil d'aide puissant qui nécessite impérativement la validation et la supervision d'un savant ou d'une autorité religieuse qualifiée.",
   "env_live": "Espace Privé SQLite Sécurisé",
