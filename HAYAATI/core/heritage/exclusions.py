@@ -70,6 +70,15 @@ def appliquer_blocages_reciproques(liste_membres_filtres, doctrine_active="Malik
         if "grand_mere" in finaux: 
             del finaux["grand_mere"]
 
+    # 🎯 4 bis. Les utérins sont exclus par tout descendant, filles et petites-filles comprises
+    if dict_h.get("fille", 0) > 0 or dict_h.get("petite_fille", 0) > 0:
+        for h_uterin in ["frere_uterin", "soeur_uterine"]:
+            if h_uterin in finaux: del finaux[h_uterin]
+
+    # 🎯 4 ter. Deux filles ou plus excluent la petite-fille, sauf présence d'un petit-fils (ta'sib)
+    if dict_h.get("fille", 0) >= 2 and dict_h.get("petit_fils", 0) == 0 and "petite_fille" in finaux:
+        del finaux["petite_fille"]
+
     # 🎯 5. DIVERGENCE CRITIQUE DU FIQH : LE GRAND-PÈRE FACE À LA FRATRIE
     if dict_h.get("grand_pere", 0) > 0 and dict_h.get("pere", 0) == 0:
         # Règle absolue (Ijma') : Le grand-père exclut TOUJOURS la lignée utérine (côté mère)

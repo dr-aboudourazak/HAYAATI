@@ -5,6 +5,10 @@ Version Finale Intégrale Statique - Totalement compatible Flet 0.86.2, Python 3
 from __future__ import annotations
 import flet as ft
 from gui.langues import DICTIONNAIRE_LANGUES
+from gui.components.zakat_affichage import (
+    MODES_IRRIGATION, libelle_ovins, libelle_bovins, libelle_irrigation, suffixe_taux,
+    creer_menu_irrigation, creer_cellule_irrigation, actualiser_cours_en_ligne,
+)
 from core.financial_engine import FinancialEngine
 from core.certificate_engine import generer_certificat_pdf
 
@@ -40,11 +44,9 @@ class EcranZakatTiers(ft.Container):
             value="Fatoumata ", width=140, height=38, text_size=12,
             border_radius=6, border_color=ft.Colors.GREY_400, bgcolor=ft.Colors.WHITE
         )
-        self.cb_nisab_tiers = ft.Dropdown(
-            width=180, height=38, text_size=12, dense=True, bgcolor=ft.Colors.WHITE
-        )
+        # 04/10/2026 : le choix du nisab se fait dans Réglages (accessible en mode Visiteur comme en mode Live).
         
-        self.c_nom = ft.Row([self.lbl_nom, self.en_nom_tiers, self.cb_nisab_tiers], spacing=10, alignment=ft.MainAxisAlignment.START, wrap=True)
+        self.c_nom = ft.Row([self.lbl_nom, self.en_nom_tiers], spacing=10, alignment=ft.MainAxisAlignment.START, wrap=True)
 
         self.lbl_cadre_f = ft.Text(size=11, weight=ft.FontWeight.BOLD, color="#d97706")
         self.grille_f = ft.ResponsiveRow(spacing=8, run_spacing=8)
@@ -84,8 +86,25 @@ class EcranZakatTiers(ft.Container):
             else:
                 self.grille_f.controls.append(cellule_formulaire)
 
-        self.entries["or_cours"].value = "45000"
-        self.entries["argent_cours"].value = "650"
+        # 🌾 03/10/2026 : mode d'irrigation (pluie 10 %, artificielle 5 %, mixte 7,5 %)
+        self.lbl_irrigation = ft.Text(size=11, weight=ft.FontWeight.W_500, color="#4b5563")
+        self.cb_irrigation_tiers = creer_menu_irrigation(38, 12)
+        self.lbl_irrigation_aide = ft.Text(size=10, italic=True, color="#6b7280")
+        _cell_menu, _cell_aide = creer_cellule_irrigation(
+            self.lbl_irrigation, self.cb_irrigation_tiers, self.lbl_irrigation_aide, {"xs": 12, "sm": 6, "md": 3})
+        self.grille_a.controls.insert(1, _cell_menu)
+        self.grille_a.controls.insert(2, _cell_aide)
+
+        # 🔄 Cours de l'or et de l'argent en ligne (la saisie manuelle reste toujours possible)
+        self.btn_cours = ft.OutlinedButton(content=ft.Text("🔄", size=12), on_click=lambda _: self._lancer_actualisation_cours())
+        self.lbl_cours_etat = ft.Text(size=10, italic=True, color="#6b7280")
+        self.grille_m.controls.append(ft.Container(
+            content=ft.Column([self.btn_cours, self.lbl_cours_etat], spacing=4), col={"xs": 12}))
+
+        # Cours de repli indicatifs en XOF uniquement : ailleurs, a saisir ou a recuperer en ligne.
+        _xof = getattr(self.app, "devise_active", "XOF") == "XOF"
+        self.entries["or_cours"].value = "45000" if _xof else "0"
+        self.entries["argent_cours"].value = "650" if _xof else "0"
 
         self.btn_calculer = ft.ElevatedButton(
             content=ft.Text("Calculer", size=13, weight=ft.FontWeight.BOLD),
@@ -148,31 +167,51 @@ class EcranZakatTiers(ft.Container):
         self.labels["ovins"].value = str(fin.get("lbl_moutons", "Moutons :"))
         self.labels["bovins"].value = str(fin.get("lbl_bovins", "Bovins :"))
 
-        # Restauration de l'état de sélection du Dropdown autonome
-        memoire_nisab_local = str(self.cb_nisab_tiers.value or "")
-        cle_technique_restauration = self.map_nisab_trad_vers_cle.get(memoire_nisab_local, "PLUS_BAS")
-        
-        self.map_nisab_trad_vers_cle.clear()
-        options_cles = ["PLUS_BAS", "OR", "ARGENT"]
-        
-        opt_nisab = zk.get("options_nisab", {})
-        trads = {
-            "PLUS_BAS": opt_nisab.get("nisab_plus_bas", "Baromètre Prudent"), 
-            "OR": opt_nisab.get("nisab_or", "Seuil de l'Or (85g)"), 
-            "ARGENT": opt_nisab.get("nisab_argent", "Seuil de l'Argent (595g)")
-        }
-        
-        self.cb_nisab_tiers.options.clear()
-        for c in options_cles:
-            txt_t = str(trads[c])
-            self.map_nisab_trad_vers_cle[txt_t] = c
-            self.cb_nisab_tiers.options.append(ft.dropdown.Option(key=txt_t, text=txt_t))
-            
-        self.cb_nisab_tiers.value = trads.get(cle_technique_restauration, str(trads["PLUS_BAS"]))
+        # Mode d'irrigation : libelles traduits, selection conservee
+        cle_irrigation = self.cb_irrigation_tiers.value if self.cb_irrigation_tiers.value in MODES_IRRIGATION else "pluie"
+        self.lbl_irrigation.value = str(fin.get("lbl_irrigation", "Irrigation des cultures :"))
+        self.lbl_irrigation_aide.value = str(fin.get("irrigation_aide", ""))
+        self.cb_irrigation_tiers.options.clear()
+        for m in MODES_IRRIGATION:
+            self.cb_irrigation_tiers.options.append(ft.dropdown.Option(key=m, text=libelle_irrigation(m, fin)))
+        self.cb_irrigation_tiers.value = cle_irrigation
+        self._txt_fin_tiers = fin
+        if self.btn_cours.content:
+            self.btn_cours.content.value = str(fin.get("btn_cours_en_ligne", "🔄 Cours en ligne"))
+
+        # Nisab : lu dans Réglages (voir _cle_nisab_reglages)
 
         if self.page_flet:
             try: self.update()
             except Exception: pass
+
+    def _cle_nisab_reglages(self):
+        """Nisab choisi dans Réglages (PLUS_BAS / OR / ARGENT), valable en mode Visiteur comme en mode Live."""
+        cle = str(getattr(self.app, "cle_nisab_active_memoire", "") or "").upper()
+        if cle not in ("PLUS_BAS", "OR", "ARGENT"):
+            try:
+                u = self.app.user_id_connecte if getattr(self.app, "est_mode_connecte", False) else "INVITE"
+                cp = self.app.sync_engine.charger_donnees_module(u, "PREFERENCES") or {}
+                cle = str(cp.get("arbitrage_nisab", "PLUS_BAS")).upper()
+            except Exception:
+                cle = "PLUS_BAS"
+        return cle if cle in ("PLUS_BAS", "OR", "ARGENT") else "PLUS_BAS"
+
+    def _libelle_nisab(self, cle):
+        opt = DICTIONNAIRE_LANGUES.actif.get("zakat", {}).get("options_nisab", {})
+        return str({"PLUS_BAS": opt.get("nisab_plus_bas", "Baromètre Prudent"),
+                    "OR": opt.get("nisab_or", "Seuil de l'Or (85g)"),
+                    "ARGENT": opt.get("nisab_argent", "Seuil de l'Argent (595g)")}.get(cle, ""))
+
+    def _lancer_actualisation_cours(self):
+        """Bouton « Cours en ligne » : remplit les champs or / argent (modifiables ensuite)."""
+        if self.page_flet:
+            self.page_flet.run_task(self._actualiser_cours)
+
+    async def _actualiser_cours(self):
+        dev = str(getattr(self.app, "devise_active", "XOF") or "XOF")
+        await actualiser_cours_en_ligne(self, self.entries["or_cours"], self.entries["argent_cours"],
+                                        self.lbl_cours_etat, getattr(self, "_txt_fin_tiers", {}), dev)
 
     def executer_calcul_tiers(self):
         """Déclenche l'évaluation budgétaire du tiers et met à jour l'IHM de simulation."""
@@ -189,11 +228,13 @@ class EcranZakatTiers(ft.Container):
             intrants["ovins"] = int(intrants["ovins"])
             intrants["bovins"] = int(intrants["bovins"])
             
-            intrants["arbitrage_nisab"] = self.map_nisab_trad_vers_cle.get(str(self.cb_nisab_tiers.value), "PLUS_BAS")
+            intrants["arbitrage_nisab"] = self._cle_nisab_reglages()
+            intrants["irrigation_mode"] = self.cb_irrigation_tiers.value if self.cb_irrigation_tiers.value in MODES_IRRIGATION else "pluie"
 
             # Soumission à l'Engine financier d'origine (Véhicule neutre car exclu de ass_brute)
             res = self.moteur_zakat.executer_audit_zakat_complet(
-                mode_persistant=False, user_id=None, madhhab_actif=doc, cours_or_terrain=intrants["or_cours"], donnees_manuelles_tiers=intrants
+                mode_persistant=False, user_id=None, madhhab_actif=doc, cours_or_terrain=intrants["or_cours"], donnees_manuelles_tiers=intrants,
+                cours_par_defaut_autorises=(dev == "XOF")
             )
 
             self.fortune_calculee = {
@@ -206,11 +247,15 @@ class EcranZakatTiers(ft.Container):
             }
             self.agri_calcule = {
                 "poids": intrants["poids"],
-                "due": res.get("zakat_agricole_due_kg", 0.0)
+                "due": res.get("zakat_agricole_due_kg", 0.0),
+                "taux": res.get("taux_agricole_pct", 0.0),
+                "mode": res.get("mode_irrigation", "pluie")
             }
             self.pastoral_calcule = {
-                "o": res.get("obligation_ovins", "0"),
-                "b": res.get("obligation_bovins", "0"),
+                # Le moteur renvoie des codes (code_obligation_*) : ils sont traduits ici. Avant, les
+                # cles lues n'existaient pas et le cheptel s'affichait toujours "0".
+                "o": libelle_ovins(res, txt_zk),
+                "b": libelle_bovins(res, txt_zk),
                 "ovins": res.get("brut_ovins", 0),
                 "bovins": res.get("brut_bovins", 0)
             }
@@ -226,7 +271,7 @@ class EcranZakatTiers(ft.Container):
                 "ARGENT": f"{self.fortune_calculee['argent']:.2f} {dev} ({p_ag_poids:.1f}g)",
                 "DETTES": f"-{self.fortune_calculee['dettes']:.2f} {dev}",
                 "CREANCES": f"{self.fortune_calculee['creances']:.2f} {dev}",
-                "AGRO": f"{self.agri_calcule['poids']:.1f} kg"
+                "AGRO": f"{self.agri_calcule['poids']:.1f} kg · {libelle_irrigation(self.agri_calcule['mode'], txt_fin)}"
             }
 
             b_v = txt_zk.get("statut_eligible", "🟢 ÉLIGIBLE") if res["est_imposable_monetaire"] else txt_zk.get("statut_non_eligible", "🔴 EXEMPTÉ")
@@ -247,7 +292,7 @@ class EcranZakatTiers(ft.Container):
             self.lignes_mem = [
                 [f"{txt_zk.get('assiette_imposable', 'Assiette')} : {self.fortune_calculee['liq']:.2f} {dev}"],
                 [f"{txt_zk.get('montant_du', 'Zakat monétaire due')} (2.5%) : {self.fortune_calculee['due']:.2f} {dev}"],
-                [f"{txt_zk.get('zakat_grain', 'Zakat Agricole')} : {self.agri_calcule['due']:.2f} kg"],
+                [f"{txt_zk.get('zakat_grain', 'Zakat Agricole')} : {self.agri_calcule['due']:.2f} kg{suffixe_taux(self.agri_calcule['taux'])}"],
                 [f"{txt_zk.get('zakat_moutons', 'Zakat Ovins')} : {self.pastoral_calcule['o']}"],
                 [f"{txt_zk.get('zakat_bovins', 'Zakat Bovins')} : {self.pastoral_calcule['b']}"]
             ]
@@ -265,6 +310,10 @@ class EcranZakatTiers(ft.Container):
                 f"   • {self.lignes_mem[4][0]}",
             ]
             
+            if res.get("cours_manquants"):
+                lignes_visuelles_ecran.insert(2, "   " + str(txt_zk.get("cours_manquants", "⚠️ Cours de l'or ou de l'argent non renseigné.")))
+            elif res.get("cours_par_defaut_utilises"):
+                lignes_visuelles_ecran.insert(2, "   " + str(txt_zk.get("cours_indicatifs", "ℹ️ Cours non renseignés : valeurs indicatives utilisées.")))
             self.text_rapport.value = "\n".join(lignes_visuelles_ecran)
             
         except Exception as e:
@@ -287,7 +336,7 @@ class EcranZakatTiers(ft.Container):
             "telephone": "-"
         }
         
-        nisab_choisi_texte = str(self.cb_nisab_tiers.value or "")
+        nisab_choisi_texte = self._libelle_nisab(self._cle_nisab_reglages())
         
         generer_certificat_pdf(
             id_t, 
@@ -323,7 +372,7 @@ class EcranZakatTiers(ft.Container):
         # 🎯 ALIGNEMENT SHARIA-COMPLIANT : Dissociation totale des véhicules personnels du calcul Zakat
         dict_labels_tiers = {
             "liq": fin.get("liq_lbl", "Disponibilités Cash / Comptes :"),
-            "stock": dic.get("menu", {}).get("commerce", "Stocks & Marchandises Commerciales :") if txt_zk.get("options_nisab") else "Stocks / Marchandises :",
+            "stock": dic.get("finances", {}).get("stock_lbl", "Stocks & Marchandises Commerciales :") if txt_zk.get("options_nisab") else "Stocks / Marchandises :",
             "creances": fin.get("creances_lbl", "Créances Actives Recouvrables :"),
             "dettes": fin.get("dettes_lbl", "Passif Exigible / Dettes :")
         }
@@ -343,7 +392,8 @@ class EcranZakatTiers(ft.Container):
         """Cycle de vie : Remet à zéro les simulations."""
         self.en_nom_tiers.value = "Fatoumata "
         for c in self.cles_champs:
-            self.entries[c].value = "45000" if c == "or_cours" else "650" if c == "argent_cours" else "0"
+            _xof = getattr(self.app, "devise_active", "XOF") == "XOF"
+            self.entries[c].value = ("45000" if _xof else "0") if c == "or_cours" else ("650" if _xof else "0") if c == "argent_cours" else "0"
         self.text_rapport.value = ""
         self.traduire_page(DICTIONNAIRE_LANGUES.actif)
         

@@ -6,6 +6,7 @@ from __future__ import annotations
 import flet as ft
 import re
 from gui.langues import DICTIONNAIRE_LANGUES
+from gui.components.heritage_affichage import lignes_bilan, notes_doctrinales
 from core.certificate_engine import generer_certificat_pdf
 from core.heritage_engine import HeritageEngine
 
@@ -27,7 +28,8 @@ class EcranHeritageTiers(ft.Container):
             "oncle_germain", "oncle_paternel", "cousin_germain", 
             "cousin_paternel"
         ]
-        self.cles_caps = ["en_masse", "en_creances", "en_dettes", "en_legs"]
+        # en_frais : frais funeraires (mode Tiers uniquement ; le mode Live ne demande aucun montant)
+        self.cles_caps = ["en_masse", "en_creances", "en_dettes", "en_frais", "en_legs"]
         self.labels: dict[str, ft.Text] = {}
         self.entries: dict[str, ft.TextField] = {}
         self.intrants_mem: dict[str, str] = {}
@@ -275,6 +277,7 @@ class EcranHeritageTiers(ft.Container):
         self.labels["en_masse"].value = h.get("masse_successorale_nette", "Masse :") + " :"
         self.labels["en_creances"].value = h.get("creances_actives_incluses", "Créances :") + " :"
         self.labels["en_dettes"].value = h.get("dettes_humaines_purgées", "Dettes :") + " :"
+        self.labels["en_frais"].value = h.get("frais_funeraires", "Frais funéraires (modérés)") + " :"
         self.labels["en_legs"].value = h.get("wasiyya_retenue", "Legs :") + " :"
         
         self.lbl_cadre_famille.value = str(h.get("cadre_ayants_droit", "Composition de la Cellule Familiale"))
@@ -309,6 +312,7 @@ class EcranHeritageTiers(ft.Container):
             c = float(self.en_creances.value.strip() or 0)
             d = float(self.en_dettes.value.strip() or 0)
             l = float(self.en_legs.value.strip() or 0)
+            fr = float(self.en_frais.value.strip() or 0)
             
             dev = getattr(self.app, "devise_active", "XOF")
             doc = getattr(self.app, "madhhab_actif", "Malikite")
@@ -333,7 +337,7 @@ class EcranHeritageTiers(ft.Container):
 
             # Construction étanche du paquet d'intrants manuels
             intrants_tiers = {
-                "brut": b, "creances_humains": c, "dettes_humains": d, "legs": l, "arbre_saisi": saisi,
+                "brut": b, "creances_humains": c, "dettes_humains": d, "legs": l, "frais_funeraires": fr, "arbre_saisi": saisi,
                 "sexe_defunt": self.sexe_defunt_actif,
                 "cas_khountha_actif": self.actif_khountha,
                 "cas_zawil_arham_actif": self.actif_zawil_arham
@@ -364,12 +368,8 @@ class EcranHeritageTiers(ft.Container):
             self.lbl_dettes_purg = txt_her.get("dettes_humaines_purgées", "Dettes et passif purgés")
             self.lbl_wasiyya = txt_her.get("wasiyya_retenue", "Legs testamentaires retenus (Max 1/3)")
 
-            self.intrants_mem = {
-                self.lbl_ms_nette: f"{self.m_nette:.2f} {dev}",
-                self.lbl_creances_inc: f"{self.creances_inc:.2f} {dev}",
-                self.lbl_dettes_purg: f"-{self.dettes_purg:.2f} {dev}",
-                self.lbl_wasiyya: f"{self.wasiyya_retenue:.2f} {dev}"
-            }
+            self.intrants_mem = dict(lignes_bilan(res, txt_her, dev))
+            self.notes_mem = notes_doctrinales(res, txt_her)
 
             self.lignes_mem.clear()
             
@@ -412,10 +412,10 @@ class EcranHeritageTiers(ft.Container):
             # 🎯 HARMONISATION TEXTUELLE DE LA SECTION 1 SUR L'ÉCRAN PRINCIPAL (Flet Text Value)
             v = f"📜 {self.titre_traduit} ({self.ecole_traduite.upper()}) :\n"
             v += " ==================================================\n"
-            v += f"   ▶ {self.lbl_ms_nette} : {self.m_nette:.2f} {dev}\n"
-            v += f"   ▶ {self.lbl_creances_inc} : {self.creances_inc:.2f} {dev}\n"
-            v += f"   ▶ {self.lbl_dettes_purg} : -{self.dettes_purg:.2f} {dev}\n"
-            v += f"   ▶ {self.lbl_wasiyya} : {self.wasiyya_retenue:.2f} {dev}\n"
+            for _lib, _val in self.intrants_mem.items():
+                v += f"   ▶ {_lib} : {_val}\n"
+            for _note in getattr(self, "notes_mem", []):
+                v += f"   {_note}\n"
             v += " ==================================================\n\n"
 
             # 🎯 SECTION 2 : Ventilation des héritiers à l'écran
@@ -501,24 +501,10 @@ class EcranHeritageTiers(ft.Container):
         # Re-compilation de la composition de l'arbre familial saisi à l'écran
         saisi = {comp: int(self.entries[comp].value or 0) for comp in self.famille}
 
-        # 🎯 RECTIFICATION DIRECTE : Remplacement de max_initiale par masse_initiale pour éviter tout crash
-        masse_initiale = brut + creances
-        safe_mass = max(0.0, masse_initiale - dettes)
-        wasiyya_retenue = min(legs_demande, safe_mass / 3.0)
-        masse_nette = max(0.0, safe_mass - wasiyya_retenue)
-
-        # Traduction forcée et étanche des 4 paramètres d'inventaire
-        label_net = txt_her.get("masse_successorale_nette", "Masse successorale nette à distribuer")
-        label_creances = txt_her.get("creances_actives_incluses", "Créances actives incluses")
-        label_dettes = txt_her.get("dettes_humaines_purgées", "Dettes et passif purgés")
-        label_legs = txt_her.get("wasiyya_retenue", "Legs testamentaires retenus (Max 1/3)")
-
-        self.intrants_ordonnes_i18n_tiers = {
-            label_net: f"{masse_nette:.2f} {dev}",
-            label_creances: f"{creances:.2f} {dev}",
-            label_dettes: f"-{dettes:.2f} {dev}",
-            label_legs: f"{wasiyya_retenue:.2f} {dev}"
-        }
+        # 04/10/2026 : le PDF reprend EXACTEMENT les montants calcules par le moteur (plus de recalcul local,
+        # qui ignorait l'ordre legal et pouvait differer de l'ecran).
+        res_pdf = getattr(self, "dernier_resultat_succession", None) or {}
+        self.intrants_ordonnes_i18n_tiers = dict(lignes_bilan(res_pdf, txt_her, dev))
 
         # 🎯 SECTION 3 VERROUILLÉE : ÉLARGISSEMENT DE L'ESPACE ENTRE HÉRITIER ET COMMENTAIRE
         langue_est_arabe = any('\u0600' <= char <= '\u06FF' for char in str(txt_her.get('rapport_succession', '')))

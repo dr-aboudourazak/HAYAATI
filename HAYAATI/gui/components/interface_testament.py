@@ -62,6 +62,45 @@ class EcranTestament(ft.Container):
             border_radius=6, border_color=ft.Colors.GREY_400, bgcolor=ft.Colors.WHITE
         )
 
+        # C bis. 04/10/2026 : zakat impayee et fidya (dettes envers Dieu)
+        self.lbl_zakat_impayee = ft.Text(size=11, weight=ft.FontWeight.BOLD, color="#4b5563")
+        self.en_zakat_impayee = ft.TextField(
+            value="0", height=40, text_size=13, keyboard_type=ft.KeyboardType.NUMBER,
+            border_radius=6, border_color=ft.Colors.GREY_400, bgcolor=ft.Colors.WHITE
+        )
+        self.lbl_hint_zakat = ft.Text(size=10, italic=True, color="#6b7280")
+        self.lbl_fidya = ft.Text(size=11, weight=ft.FontWeight.BOLD, color="#4b5563")
+        self.en_fidya = ft.TextField(
+            value="0", height=40, text_size=13, keyboard_type=ft.KeyboardType.NUMBER,
+            border_radius=6, border_color=ft.Colors.GREY_400, bgcolor=ft.Colors.WHITE
+        )
+        # Note : legs a un heritier
+        self.lbl_note_legs_heritier = ft.Text(size=10, italic=True, color="#6b7280")
+
+        # E. Volontes pour les obseques (aucun montant : les situations varient selon les pays)
+        self.lbl_cadre_obseques = ft.Text(size=12, weight=ft.FontWeight.BOLD, color="#064e3b")
+        self.lbl_note_obseques = ft.Text(size=10, italic=True, color="#6b7280")
+        self.lbl_obseques_qui = ft.Text(size=11, weight=ft.FontWeight.BOLD, color="#4b5563")
+        self.cb_obseques = ft.Dropdown(
+            value="sans_preference", height=40, text_size=13, dense=True, filled=True, fill_color=ft.Colors.WHITE,
+            border_width=1, border_color=ft.Colors.GREY_400, border_radius=6, focused_border_color="#064e3b",
+            content_padding=ft.Padding(left=10, top=0, right=10, bottom=0),
+            options=[ft.dropdown.Option(key=k, text=k) for k in ("proches", "mosquee", "designe", "sans_preference")],
+        )
+        self.lbl_obseques_volontes = ft.Text(size=11, weight=ft.FontWeight.BOLD, color="#4b5563")
+        self.en_obseques_volontes = ft.TextField(
+            value="", multiline=True, min_lines=2, max_lines=5, text_size=13,
+            border_radius=6, border_color=ft.Colors.GREY_400, bgcolor=ft.Colors.WHITE
+        )
+        self.c_obseques = ft.Container(
+            content=ft.Column([
+                self.lbl_cadre_obseques, self.lbl_note_obseques,
+                ft.Column([self.lbl_obseques_qui, self.cb_obseques], spacing=4),
+                ft.Column([self.lbl_obseques_volontes, self.en_obseques_volontes], spacing=4),
+            ], spacing=10),
+            bgcolor=ft.Colors.WHITE, padding=12, border_radius=8, border=ft.Border.all(1, "#064e3b")
+        )
+
         # D. NOUVEAU CHAMP : Dernières Consignes et Recommandations Morales
         self.lbl_consignes = ft.Text("Dernières consignes spirituelles et messages vertueux à la famille :", size=11, weight=ft.FontWeight.BOLD, color="#4b5563")
         self.en_consignes = ft.TextField(
@@ -76,7 +115,7 @@ class EcranTestament(ft.Container):
             content=ft.Column([
                 self.lbl_cadre_redaction,
                 self.c_rappel,
-                ft.Column([self.lbl_beneficiaire, self.en_beneficiaire], spacing=4),
+                ft.Column([self.lbl_beneficiaire, self.en_beneficiaire, self.lbl_note_legs_heritier], spacing=4),
                 ft.Column([
                     self.lbl_valeur,
                     ft.Row([self.en_valeur_legs, self.lbl_devise_symbole], spacing=8, alignment=ft.MainAxisAlignment.START)
@@ -84,6 +123,8 @@ class EcranTestament(ft.Container):
                 ft.Divider(height=10, color=ft.Colors.GREY_200),
                 ft.Column([self.lbl_kaffara, self.en_kaffara], spacing=4),
                 ft.Column([self.lbl_hajj, self.en_hajj], spacing=4),
+                ft.Column([self.lbl_zakat_impayee, self.en_zakat_impayee, self.lbl_hint_zakat], spacing=4),
+                ft.Column([self.lbl_fidya, self.en_fidya], spacing=4),
                 ft.Column([self.lbl_consignes, self.en_consignes], spacing=4),
             ], spacing=12),
             bgcolor=ft.Colors.WHITE, padding=15, border_radius=8, border=ft.Border.all(1, "#064e3b")
@@ -116,6 +157,7 @@ class EcranTestament(ft.Container):
         self.layout_testament = ft.Column([
             self.btn_retour_hub,
             self.cadre_redaction,
+            self.c_obseques,
             self.btn_valider,
             self.c_notif,
             self.btn_retour_hub
@@ -150,6 +192,21 @@ class EcranTestament(ft.Container):
         self.lbl_kaffara.value = str(t.get("lbl_kaffara", "Expiations rituelles impayées (Kaffârât / An-Noudhour) :"))
         self.lbl_hajj.value = str(t.get("lbl_hajj", "Coût estimé du Hajj obligatoire non accompli :"))
         self.lbl_consignes.value = str(t.get("lbl_consignes", "Dernières consignes spirituelles et messages vertueux à la famille :"))
+        self.lbl_zakat_impayee.value = str(t.get("lbl_zakat_impayee", "Zakat des années passées non acquittée :"))
+        self.lbl_hint_zakat.value = str(t.get("hint_zakat_impayee", "Reprenez le montant calculé dans l'écran Zakat."))
+        self.lbl_fidya.value = str(t.get("lbl_fidya", "Fidya pour jeûnes non rattrapés :"))
+        self.lbl_note_legs_heritier.value = str(t.get("note_legs_heritier", "Un legs en faveur d'un héritier légal n'est valable qu'avec l'accord des autres héritiers après le décès."))
+        self.lbl_cadre_obseques.value = str(t.get("cadre_obseques", "🕌 Mes volontés pour mes obsèques (sans montant)"))
+        self.lbl_note_obseques.value = str(t.get("note_obseques", "Les frais d'inhumation modérés sont prélevés en premier sur la succession. Aucun montant n'est demandé ici."))
+        self.lbl_obseques_qui.value = str(t.get("lbl_obseques_qui", "Qui organise mes obsèques :"))
+        self.lbl_obseques_volontes.value = str(t.get("lbl_obseques_volontes", "Mes volontés (lieu d'inhumation, personne à prévenir...) :"))
+        _libs = {"proches": t.get("obseques_proches", "Mes proches"), "mosquee": t.get("obseques_mosquee", "La mosquée ou la communauté"),
+                 "designe": t.get("obseques_designe", "Une personne que je désigne"), "sans_preference": t.get("obseques_sans_pref", "Pas de préférence")}
+        _cle_obs = self.cb_obseques.value if self.cb_obseques.value in _libs else "sans_preference"
+        self.cb_obseques.options.clear()
+        for _k, _txt in _libs.items():
+            self.cb_obseques.options.append(ft.dropdown.Option(key=_k, text=str(_txt)))
+        self.cb_obseques.value = _cle_obs
         
         # Mise à jour dynamique du texte d'indication (Hint) sans écraser la saisie en cours
         if hasattr(self.en_consignes, "hint_text"):
@@ -181,7 +238,12 @@ class EcranTestament(ft.Container):
             valeur_hajj = float(self.en_hajj.value.strip() or 0.0)
             consignes_morales = self.en_consignes.value.strip()
 
-            if valeur_legs < 0 or valeur_kaffara < 0 or valeur_hajj < 0: 
+            valeur_zakat = float(self.en_zakat_impayee.value.strip() or 0.0)
+            valeur_fidya = float(self.en_fidya.value.strip() or 0.0)
+            obseques_qui = self.cb_obseques.value if self.cb_obseques.value in ("proches", "mosquee", "designe", "sans_preference") else "sans_preference"
+            obseques_volontes = self.en_obseques_volontes.value.strip()
+
+            if valeur_legs < 0 or valeur_kaffara < 0 or valeur_hajj < 0 or valeur_zakat < 0 or valeur_fidya < 0:
                 raise ValueError
 
             if hasattr(self.app, "sync_engine") and self.app.sync_engine:
@@ -194,7 +256,9 @@ class EcranTestament(ft.Container):
                 cache_fin["cout_hajj_obligatoire"] = valeur_hajj
                 
                 # Le moteur HeritageEngine attend la somme totale sous la clé technique 'dettes_spirituelles'
-                cache_fin["dettes_spirituelles"] = valeur_kaffara + valeur_hajj
+                cache_fin["zakat_impayee"] = valeur_zakat
+                cache_fin["fidya_jeunes"] = valeur_fidya
+                cache_fin["dettes_spirituelles"] = valeur_kaffara + valeur_hajj + valeur_zakat + valeur_fidya
                 self.app.sync_engine.executer_sauvegarde_module(u_id, "FINANCES", cache_fin)
                 
                 # Sauvegarde du document textuel d'accompagnement spécifique du Testament
@@ -203,6 +267,10 @@ class EcranTestament(ft.Container):
                     "valeur": valeur_legs,
                     "kaffara_expiation": valeur_kaffara,
                     "cout_hajj_obligatoire": valeur_hajj,
+                    "zakat_impayee": valeur_zakat,
+                    "fidya_jeunes": valeur_fidya,
+                    "obseques_organisation": obseques_qui,
+                    "obseques_volontes": obseques_volontes,
                     "dernieres_consignes_morales": consignes_morales
                 }
                 self.app.sync_engine.executer_sauvegarde_module(u_id, "TESTAMENT", doc_testament)
@@ -231,6 +299,10 @@ class EcranTestament(ft.Container):
         self.en_kaffara.value = f"{float(data.get('kaffara_expiation', 0.0)):.2f}"
         self.en_hajj.value = f"{float(data.get('cout_hajj_obligatoire', 0.0)):.2f}"
         self.en_consignes.value = str(data.get("dernieres_consignes_morales", ""))
+        self.en_zakat_impayee.value = f"{float(data.get('zakat_impayee', 0.0)):.2f}"
+        self.en_fidya.value = f"{float(data.get('fidya_jeunes', 0.0)):.2f}"
+        self.cb_obseques.value = data.get("obseques_organisation", "sans_preference") if data.get("obseques_organisation") in ("proches", "mosquee", "designe", "sans_preference") else "sans_preference"
+        self.en_obseques_volontes.value = str(data.get("obseques_volontes", ""))
         
         if self.page_flet:
             try: self.update()

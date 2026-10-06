@@ -4,7 +4,7 @@ Version 5.6 - Intégration de l'irrigation dynamique et arbitrage des dettes spi
 """
 import os
 import json
-from core.zakat.agriculture import evaluer_recolte_agricole
+from core.zakat.agriculture import evaluer_recolte_agricole, normaliser_mode_irrigation, nombre_brebis_dues
 
 class FinancialEngine:
     def __init__(self, sync_engine_reference=None):
@@ -20,9 +20,12 @@ class FinancialEngine:
         val_c = float(cours_gramme_argent if cours_gramme_argent else self.cours_argent_par_defaut)
         return 595.0 * val_c
 
-    def executer_audit_zakat_complet(self, mode_persistant, user_id, madhhab_actif="Malikite", cours_or_terrain=None, donnees_manuelles_tiers=None):
+    def executer_audit_zakat_complet(self, mode_persistant, user_id, madhhab_actif="Malikite", cours_or_terrain=None, donnees_manuelles_tiers=None, cours_par_defaut_autorises=True):
         doc = str(madhhab_actif).strip().capitalize()
-        c_or = float(cours_or_terrain) if cours_or_terrain else self.cours_or_par_defaut
+        # 04/10/2026 : les cours de repli (45000 / 650) sont des XOF ; hors zone CFA ils sont refuses
+        # (cours_par_defaut_autorises=False) et le resultat porte cours_manquants=True.
+        self.cours_par_defaut_actif = bool(cours_par_defaut_autorises)
+        c_or = float(cours_or_terrain) if cours_or_terrain else (self.cours_or_par_defaut if self.cours_par_defaut_actif else 0.0)
         c_arg = self.cours_argent_par_defaut
         
         or_ref, or_par, arg_ref, arg_par = 0.0, 0.0, 0.0, 0.0
@@ -47,7 +50,8 @@ class FinancialEngine:
                 c_grain = float(cf.get("grain_cours", 0.0)); c_ovin = float(cf.get("ovin_cours", 0.0)); c_bovin = float(cf.get("bovin_cours", 0.0))
                 
                 # Extraction étanche du correctif agro-pastoral et du passif rituel
-                irrigation_artificielle = cf.get("irrigation_artificielle_active", False)
+                # irrigation_mode : "pluie" | "artificielle" | "mixte" (ancien booleen conserve en repli)
+                irrigation_artificielle = cf.get("irrigation_mode") or ("artificielle" if cf.get("irrigation_artificielle_active") else "pluie")
                 dettes_spirituelles = float(cf.get("dettes_spirituelles", 0.0))
 
             return self._calculer_metriques_zakat_atomiq(liq, stock, or_ref, or_par, arg_ref, arg_par, dettes, creances, poids, ovins, bovins, c_or, c_arg, doc, "LIVE_PERSISTANT", c_grain, c_ovin, c_bovin, arbitrage_pref, irrigation_artificielle, dettes_spirituelles)
@@ -63,7 +67,7 @@ class FinancialEngine:
             c_grain = float(intrants.get("grain_cours", 0.0)); c_ovin = float(intrants.get("ovin_cours", 0.0)); c_bovin = float(intrants.get("bovin_cours", 0.0))
             
             # Extraction Tiers correspondante
-            irrigation_artificielle = intrants.get("irrigation_artificielle_active", False)
+            irrigation_artificielle = intrants.get("irrigation_mode") or ("artificielle" if intrants.get("irrigation_artificielle_active") else "pluie")
             dettes_spirituelles = float(intrants.get("dettes_spirituelles", 0.0))
 
             return self._calculer_metriques_zakat_atomiq(liq, stock, or_ref, or_par, arg_ref, arg_par, dettes, creances, poids, ovins, bovins, c_or, c_arg, doc, "DIAGNOSTIC_TIERS", c_grain, c_ovin, c_bovin, arbitrage_pref, irrigation_artificielle, dettes_spirituelles)
@@ -76,10 +80,15 @@ class FinancialEngine:
                                          arbitrage_nisab="PLUS_BAS",
                                          irrigation_artificielle=False,
                                          dettes_spirituelles=0.0):
-        c_or = float(c_or or self.cours_or_par_defaut)
-        c_arg = float(c_arg or self.cours_argent_par_defaut)
-        if c_or <= 0: c_or = self.cours_or_par_defaut
-        if c_arg <= 0: c_arg = self.cours_argent_par_defaut
+        cours_manquants = (not c_or or float(c_or) <= 0) or (not c_arg or float(c_arg) <= 0)
+        if getattr(self, "cours_par_defaut_actif", True):
+            c_or = float(c_or or self.cours_or_par_defaut)
+            c_arg = float(c_arg or self.cours_argent_par_defaut)
+            if c_or <= 0: c_or = self.cours_or_par_defaut
+            if c_arg <= 0: c_arg = self.cours_argent_par_defaut
+        else:
+            c_or = max(0.0, float(c_or or 0.0))
+            c_arg = max(0.0, float(c_arg or 0.0))
 
         n_or = self.calculer_nissab_or_dynamique(c_or)
         n_arg = self.calculer_nissab_argent_dynamique(c_arg)
@@ -133,7 +142,7 @@ class FinancialEngine:
             zk_due = 0.0
             imp = False
 
-        mode_irrigation = "artificiel" if irrigation_artificielle else "pluie"
+        mode_irrigation = normaliser_mode_irrigation(irrigation_artificielle)
         b_agri = evaluer_recolte_agricole(poids, mode_irrigation)
         
         # 🎯 RETOUR AUX CODES DE STATUTS : Envoi d'indicateurs numériques propres à l'IHM
@@ -143,6 +152,8 @@ class FinancialEngine:
         return {
             "contexte_execution": contexte_cle,
             "madhhab_applique": doc,
+            "cours_manquants": bool(cours_manquants and not getattr(self, "cours_par_defaut_actif", True)),
+            "cours_par_defaut_utilises": bool(cours_manquants and getattr(self, "cours_par_defaut_actif", True)),
             "cours_or_applique": c_or,
             "cours_argent_applique": c_arg,
             "nissab_monetaire_calcule": n_app,
@@ -158,6 +169,9 @@ class FinancialEngine:
             "zakat_monetaire_due": zk_due,
             "est_imposable_monetaire": imp,
             "zakat_agricole_due_kg": b_agri.get("zakat_kg", 0.0),
+            "taux_agricole_pct": b_agri.get("taux_pourcentage", 0.0),
+            "mode_irrigation": mode_irrigation,
+            "ovins_dus": nombre_brebis_dues(ovins),
             "code_obligation_ovins": code_ovins,
             "code_obligation_bovins": code_bovins,
             "brut_ovins": ovins,

@@ -57,13 +57,11 @@ def evaluer_avoirs_monetaires(liquidites, dettes_passives, cours_or_gramme, cour
     assiette_brute = float(liquidites or 0.0) + valeur_or + valeur_argent
     
     # 2. Déduction des dettes prioritaires à court terme
-    assiette_nette = blackjack_brute = ASSIETTE_NETTE_INITIALE =章 = assiette_brute - float(dettes_passives or 0.0)
-    if blackjack_brute < 0:
-        blackjack_brute = 0.0
+    assiette_nette = max(0.0, assiette_brute - float(dettes_passives or 0.0))
 
     # 3. Évaluation finale de l'imposabilité face au Nisab de référence
-    if blackjack_brute >= nissab_ref and nissab_ref > 0:
-        montant_zakat = blackjack_brute * 0.025
+    if assiette_nette >= nissab_ref and nissab_ref > 0:
+        montant_zakat = assiette_nette * 0.025
         est_imposable = True
     else:
         montant_zakat = 0.0
@@ -76,7 +74,7 @@ def evaluer_avoirs_monetaires(liquidites, dettes_passives, cours_or_gramme, cour
         "metal_reference": metal_ref,
         "or_imposable_poids": or_imposable,
         "argent_imposable_poids": argent_imposable,
-        "assiette_nette": blackjack_brute,
+        "assiette_nette": assiette_nette,
         "est_imposable": est_imposable,
         "montant_zakat": montant_zakat
     }

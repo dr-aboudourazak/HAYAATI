@@ -7,6 +7,7 @@ import flet as ft
 import re
 from datetime import datetime
 from gui.langues import DICTIONNAIRE_LANGUES
+from gui.components.heritage_affichage import lignes_bilan, notes_doctrinales
 from core.certificate_engine import generer_certificat_pdf
 from core.heritage_engine import HeritageEngine
 
@@ -164,12 +165,10 @@ class EcranHeritage(ft.Container):
         lbl_wasiyya = txt_her.get("wasiyya_retenue", "Legs testamentaires retenus (Max 1/3)")
 
         # Restructuration de l'inventaire mémoire
-        self.intrants_mem = {
-            lbl_ms_nette: f"{m_nette:.2f} {dev}",
-            lbl_creances_inc: f"{c_inc:.2f} {dev}",
-            lbl_dettes_purg: f"-{d_purg:.2f} {dev}",
-            lbl_wasiyya: f"{w_ret:.2f} {dev}"
-        }
+        # 04/10/2026 : lignes du bilan construites a un seul endroit (ecran, PDF) avec la ventilation
+        # frais / dettes des gens / dettes envers Dieu / legs.
+        lignes_ecran_bilan = lignes_bilan(bilan, txt_her, dev)
+        self.intrants_mem = dict(lignes_ecran_bilan)
         
         self.lignes_mem.clear()
 
@@ -180,10 +179,10 @@ class EcranHeritage(ft.Container):
         # 🎯 CONFECTION DU RAPPORT TEXTUEL POUR L'ÉCRAN PRINCIPAL
         v = f"📜 {titre_traduit} ({ecole_traduite.upper()}) :\n"
         v += " ==================================================\n"
-        v += f"   ▶ {lbl_ms_nette} : {m_nette:.2f} {dev}\n"
-        v += f"   ▶ {lbl_creances_inc} : {c_inc:.2f} {dev}\n"
-        v += f"   ▶ {lbl_dettes_purg} : -{d_purg:.2f} {dev}\n"
-        v += f"   ▶ {lbl_wasiyya} : {w_ret:.2f} {dev}\n"
+        for _lib, _val in lignes_ecran_bilan:
+            v += f"   ▶ {_lib} : {_val}\n"
+        for _note in notes_doctrinales(bilan, txt_her):
+            v += f"   {_note}\n"
         v += " ==================================================\n\n"
 
         # Ventilation dynamique des parts à l'écran

@@ -6,6 +6,9 @@ from __future__ import annotations
 from datetime import datetime
 import flet as ft
 from gui.langues import DICTIONNAIRE_LANGUES
+from gui.components.zakat_affichage import (
+    MODES_IRRIGATION, libelle_irrigation, creer_menu_irrigation, creer_cellule_irrigation, actualiser_cours_en_ligne,
+)
 
 class EcranFinances(ft.Container):
     def __init__(self, app_reference):
@@ -62,6 +65,22 @@ class EcranFinances(ft.Container):
                 self.grille_agro.controls.append(cellule_formulaire)
             else:
                 self.grille_avoirs.controls.append(cellule_formulaire)
+
+        # 🌾 Mode d'irrigation (pluie 10 %, artificielle 5 %, mixte 7,5 %) : meme gabarit et memes couleurs
+        # que les champs de saisie voisins ; l'aide est dans une cellule a part (plus de chevauchement).
+        self.lbl_irrigation = ft.Text(size=11, weight=ft.FontWeight.W_500, color="#4b5563")
+        self.cb_irrigation = creer_menu_irrigation(40, 13)
+        self.lbl_irrigation_aide = ft.Text(size=10, italic=True, color="#6b7280")
+        _cell_menu, _cell_aide = creer_cellule_irrigation(
+            self.lbl_irrigation, self.cb_irrigation, self.lbl_irrigation_aide, {"xs": 12, "md": 6})
+        self.grille_agro.controls.insert(1, _cell_menu)
+        self.grille_agro.controls.insert(2, _cell_aide)
+
+        # 🔄 Cours de l'or et de l'argent en ligne (la saisie manuelle reste toujours possible)
+        self.btn_cours = ft.OutlinedButton(content=ft.Text("🔄", size=12), on_click=lambda _: self._lancer_actualisation_cours())
+        self.lbl_cours_etat = ft.Text(size=10, italic=True, color="#6b7280")
+        self.grille_metaux.controls.append(ft.Container(
+            content=ft.Column([self.btn_cours, self.lbl_cours_etat], spacing=4), col={"xs": 12}))
 
         # Bouton d'action maître (Syntaxe immunisée Python 3.14)
         self.btn_sauver = ft.ElevatedButton(
@@ -156,17 +175,40 @@ class EcranFinances(ft.Container):
         self.labels["bovins"].value = str(f.get("lbl_bovins", "Bovins :"))
         self.labels["bovin_cours"].value = str(f.get("valeur_bovins", "Cours :"))
 
+        # Mode d'irrigation : libelles traduits, selection conservee
+        cle_irrigation = self.cb_irrigation.value if self.cb_irrigation.value in MODES_IRRIGATION else "pluie"
+        self.lbl_irrigation.value = str(f.get("lbl_irrigation", "Irrigation des cultures :"))
+        self.lbl_irrigation_aide.value = str(f.get("irrigation_aide", ""))
+        self.cb_irrigation.options.clear()
+        for m in MODES_IRRIGATION:
+            self.cb_irrigation.options.append(ft.dropdown.Option(key=m, text=libelle_irrigation(m, f)))
+        self.cb_irrigation.value = cle_irrigation
+        self._txt_finances = f
+        if self.btn_cours.content:
+            self.btn_cours.content.value = str(f.get("btn_cours_en_ligne", "🔄 Cours en ligne"))
+
         if self.page_flet:
             try:
                 self.update()
             except Exception:
                 pass
 
+    def _lancer_actualisation_cours(self):
+        """Bouton « Cours en ligne » : remplit les champs or / argent (modifiables ensuite)."""
+        if self.page_flet:
+            self.page_flet.run_task(self._actualiser_cours)
+
+    async def _actualiser_cours(self):
+        dev = str(getattr(self.app, "devise_active", "XOF") or "XOF")
+        await actualiser_cours_en_ligne(self, self.entries["or_cours"], self.entries["argent_cours"],
+                                        self.lbl_cours_etat, getattr(self, "_txt_finances", {}), dev)
+
     def sauvegarder(self):
         """Calcule les masses et exporte le dictionnaire d'inventaire vers le SyncEngine."""
         try:
             # Extraction et conversion sécurisée des saisies TextField Flet
             v = {c: float(self.entries[c].value.strip() or 0) for c in self.cles}
+            v["irrigation_mode"] = self.cb_irrigation.value if self.cb_irrigation.value in MODES_IRRIGATION else "pluie"
             
             v["or_poids"] = v["or_refuge_poids"] + v["or_parure_poids"]
             v["argent_poids"] = v["argent_refuge_poids"] + v["argent_parure_poids"]
@@ -228,6 +270,9 @@ class EcranFinances(ft.Container):
                     self.entries["or_refuge_poids"].value = "0"
         except Exception:
             pass
+
+        mode_irr = data.get("irrigation_mode") or ("artificielle" if data.get("irrigation_artificielle_active") else "pluie")
+        self.cb_irrigation.value = mode_irr if mode_irr in MODES_IRRIGATION else "pluie"
 
         self.text_hist.value = str(data.get("historique", ""))
         if self.page_flet:

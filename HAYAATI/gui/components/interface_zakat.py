@@ -6,6 +6,7 @@ from __future__ import annotations
 import flet as ft
 from datetime import datetime
 from gui.langues import DICTIONNAIRE_LANGUES
+from gui.components.zakat_affichage import libelle_ovins, libelle_bovins, libelle_irrigation, suffixe_taux
 from core.financial_engine import FinancialEngine
 from core.certificate_engine import generer_certificat_pdf
 
@@ -147,15 +148,16 @@ class EcranZakat(ft.Container):
         doctrine = getattr(self.app, "madhhab_actif", "Malikite")
         dev = getattr(self.app, "devise_active", "XOF")
         
-        c_or, c_arg = 45000.0, 650.0
+        # Cours de repli indicatifs en XOF uniquement : ailleurs, un cours non saisi est signale.
+        c_or, c_arg = (45000.0, 650.0) if dev == "XOF" else (0.0, 0.0)
         agri_brut_kg = 0.0
         stock_live = 0.0
         
         cache_fin = {}
         if getattr(self.app, "sync_engine", None) and u_id:
             cache_fin = self.app.sync_engine.charger_donnees_module(u_id, "FINANCES") or {}
-            c_or = float(cache_fin.get("or_cours", 45000.0))
-            c_arg = float(cache_fin.get("argent_cours", 650.0))
+            c_or = float(cache_fin.get("or_cours", c_or))
+            c_arg = float(cache_fin.get("argent_cours", c_arg))
             agri_brut_kg = float(cache_fin.get("poids", 0.0))
             # 🌟 INTERCONNEXION EN LIGNE : Extraction de la nouvelle variable de stock marchandisé
             stock_live = float(cache_fin.get("stock", 0.0))
@@ -173,7 +175,8 @@ class EcranZakat(ft.Container):
 
         try:
             res = self.moteur_finance.executer_audit_zakat_complet(
-                mode_persistant=True, user_id=u_id, madhhab_actif=doctrine, cours_or_terrain=c_or
+                mode_persistant=True, user_id=u_id, madhhab_actif=doctrine, cours_or_terrain=c_or,
+                cours_par_defaut_autorises=(dev == "XOF")
             )
             
             n_or = res.get("nissab_or_nominal", 85.0 * c_or)
@@ -190,14 +193,13 @@ class EcranZakat(ft.Container):
                 "dettes": res.get("dettes_humaines_deduites", 0.0)
             }
             
-            self.agri_calcule = {"poids": agri_brut_kg, "due": res.get("zakat_agricole_due_kg", 0.0)}
+            self.agri_calcule = {"poids": agri_brut_kg, "due": res.get("zakat_agricole_due_kg", 0.0),
+                                 "taux": res.get("taux_agricole_pct", 0.0), "mode": res.get("mode_irrigation", "pluie")}
 
             # 🎯 TRADUCTION DYNAMIQUE DES INDICES OBLIGATOIRES DE CHEPTEL
-            c_ovins = res.get("code_obligation_ovins", 0)
-            txt_ovins = txt_zk.get("ovins_1", "1 brebis due") if c_ovins == 1 else txt_zk.get("ovins_2", "2 brebis dues") if c_ovins == 2 else txt_zk.get("ovins_3", "3 brebis dues") if c_ovins == 3 else txt_zk.get("exempt", "Exempté")
+            txt_ovins = libelle_ovins(res, txt_zk)
             
-            c_bovins = res.get("code_obligation_bovins", 0)
-            txt_bovins = txt_zk.get("bovins_1", "1 Tabi (1 an)") if c_bovins == 1 else txt_zk.get("bovins_2", "1 Musinnah (2 ans)") if c_bovins == 2 else txt_zk.get("bovins_3", "2 Tabis") if c_bovins == 3 else txt_zk.get("exempt", "Exempté")
+            txt_bovins = libelle_bovins(res, txt_zk)
 
             self.pastoral_calcule = {
                 "o": txt_ovins, 
@@ -236,7 +238,7 @@ class EcranZakat(ft.Container):
                 "ARGENT": f"{self.fortune_calculee['argent']:.2f} {dev} ({p_ag_poids:.1f}g)",
                 "DETTES": f"-{self.fortune_calculee['dettes']:.2f} {dev}",
                 "CREANCES": f"{self.fortune_calculee['creances']:.2f} {dev}",
-                "AGRO": f"{agri_brut_kg:.1f} kg"
+                "AGRO": f"{agri_brut_kg:.1f} kg · {libelle_irrigation(self.agri_calcule['mode'], txt_fin_bloc)}"
             }
 
             titre_traduit = txt_zk.get("rapport_titre", "BILAN DE ZAKAT")
@@ -244,6 +246,10 @@ class EcranZakat(ft.Container):
             # RECONSTRUCTION DU RAPPORT TEXTUEL MULTILINGUE POUR L'ÉCRAN
             v = f" 🕋 {titre_traduit} ({ecole_traduite.upper()}) :\n"
             v += " ==================================================\n\n"
+            if res.get("cours_manquants"):
+                v += "   " + str(txt_zk.get("cours_manquants", "⚠️ Cours de l'or ou de l'argent non renseigné : le nisab monétaire ne peut pas être calculé. Saisissez-les ou utilisez « Cours en ligne ».")) + "\n\n"
+            elif res.get("cours_par_defaut_utilises"):
+                v += "   " + str(txt_zk.get("cours_indicatifs", "ℹ️ Cours de l'or et de l'argent non renseignés : valeurs indicatives utilisées. Saisissez-les ou utilisez « Cours en ligne » pour un nisab exact.")) + "\n\n"
             v += f"   • {txt_zk.get('options_nisab', {}).get('nisab_or', 'Or')} : {n_or:.2f} {dev}\n"
             v += f"   • {txt_zk.get('options_nisab', {}).get('nisab_argent', 'Argent')}  : {n_arg:.2f} {dev}\n"
             v += f"   • {txt_zk.get('lbl_guide_nisab', 'Baromètre')} : {lbl_m_ref}\n"
@@ -251,7 +257,7 @@ class EcranZakat(ft.Container):
             v += f"   • {txt_zk.get('assiette_imposable', 'Assiette')}   : {net:.2f} {dev}\n\n"
             v += " --------------------------------------------------\n"
             v += f"   ▶ {txt_zk.get('montant_du', 'Zakat')} (2.5%)  : {z_due:.2f} {dev}\n"
-            v += f"   ▶ {txt_zk.get('zakat_grain', 'Agricole')}          : {self.agri_calcule['due']:.2f} kg\n"
+            v += f"   ▶ {txt_zk.get('zakat_grain', 'Agricole')}          : {self.agri_calcule['due']:.2f} kg{suffixe_taux(self.agri_calcule['taux'])}\n"
             v += f"   ▶ {txt_zk.get('zakat_moutons', 'Ovins')}   -> {self.pastoral_calcule['o']}\n"
             v += f"   ▶ {txt_zk.get('zakat_bovins', 'Bovins')}  -> {self.pastoral_calcule['b']}\n"
             v += " ==================================================\n"
@@ -287,7 +293,7 @@ class EcranZakat(ft.Container):
         self.lignes_mem = [
             [f"{txt_zk.get('assiette_imposable', 'Assiette')} : {self.fortune_calculee['liq']:.2f} {dev}"],
             [f"{txt_zk.get('montant_du', 'Zakat monétaire due')} (2.5%) : {self.fortune_calculee['due']:.2f} {dev}"],
-            [f"{txt_zk.get('zakat_grain', 'Zakat Agricole')} : {self.agri_calcule['due']:.2f} kg"],
+            [f"{txt_zk.get('zakat_grain', 'Zakat Agricole')} : {self.agri_calcule['due']:.2f} kg{suffixe_taux(self.agri_calcule.get('taux', 0.0))}"],
             [f"{txt_zk.get('zakat_moutons', 'Zakat Ovins')} : {self.pastoral_calcule['o']}"],
             [f"{txt_zk.get('zakat_bovins', 'Zakat Bovins')} : {self.pastoral_calcule['b']}"]
         ]

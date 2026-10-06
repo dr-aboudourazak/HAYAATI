@@ -94,7 +94,8 @@ def determiner_quotas_fixes_de_base(dictionnaire_heritiers, doctrine_active="Mal
         # =========================================================================
         # 🎯 SHIELD MAÎTRE : CAS DE LA MOUSHTARAKAH
         # =========================================================================
-        if "epoux" in dictionnaire_heritiers and a_mere and nb_fr_ut >= 2 and nb_fr_germ > 0 and not a_descendants_totaux:
+        if "epoux" in dictionnaire_heritiers and a_mere and nb_fr_ut >= 2 and nb_fr_germ > 0 and not a_descendants_totaux \
+                and not a_pere and not (dictionnaire_heritiers.get("grand_pere", 0) > 0):
             if doc in ["Malikite", "Chafi'ite", "Chafiite", "Shafi'ite"]:
                 quotas = {"epoux": 0.5, "mere": 0.16666666666666666}
                 total_tetes_partage = nb_fr_ut + nb_fr_germ
@@ -158,6 +159,11 @@ def determiner_quotas_fixes_de_base(dictionnaire_heritiers, doctrine_active="Mal
                 else: 
                     quotas["pere"] = 0.0  
 
+            # Aieul (sans pere) en presence de descendants : 1/6 dans toutes les ecoles ;
+            # le reliquat lui revient s'il n'y a pas de descendant male (traite plus bas).
+            if a_grand_pere and a_descendants_totaux:
+                quotas["grand_pere"] = 0.16666666666666666
+
         # =========================================================================
         # 🎯 4. DISTRIBUTIONS DE LA LIGNÉE DESCENDANTE (FILLES ET PETITES-FILLES FIXÉES)
         # =========================================================================
@@ -182,6 +188,18 @@ def determiner_quotas_fixes_de_base(dictionnaire_heritiers, doctrine_active="Mal
                 part_u = reliquat / parts_totales
                 if nb_fille > 0: quotas["fille"] = part_u * nb_fille
                 quotas["fils"] = part_u * 2 * nb_fils
+
+        # Cas A bis : filles + petit-fils (fils du fils) -> le petit-fils prend le reliquat (ta'sib),
+        # la petite-fille eventuelle partageant avec lui a 2 pour 1.
+        if nb_fils == 0 and nb_fille > 0 and nb_p_fils > 0:
+            somme_deja = sum([v for k, v in quotas.items() if k not in ["cas_khountha_actif", "cas_zawil_arham_actif", "sexe_defunt"]])
+            reliquat = 1.0 - somme_deja
+            if reliquat > 0:
+                parts_p = (nb_p_fils * 2) + nb_p_fille
+                part_u = reliquat / parts_p
+                quotas["petit_fils"] = part_u * 2 * nb_p_fils
+                if nb_p_fille > 0:
+                    quotas["petite_fille"] = part_u * nb_p_fille
 
         # 🎯 5. FIX CRITIQUE PETITE-FILLE SEULE : Si pas de fils, pas de fille, et pas de petit-fils mâle
         # Elle prend la moitié coranique (1/2) si elle est seule, ou les 2/3 (0.6666) si elles sont plusieurs
@@ -229,7 +247,8 @@ def determiner_quotas_fixes_de_base(dictionnaire_heritiers, doctrine_active="Mal
         else:
             # Répartition coranique des collatéraux utérins (Égalité stricte hommes/femmes)
             nb_uterins = dictionnaire_heritiers.get("frere_uterin", 0) + dictionnaire_heritiers.get("soeur_uterine", 0)
-            if nb_uterins > 0:
+            utérins_exclus = a_descendants_totaux or (dictionnaire_heritiers.get("grand_pere", 0) > 0)
+            if nb_uterins > 0 and not utérins_exclus:
                 part_uterins_globale = 0.16666666666666666 if nb_uterins == 1 else 0.3333333333333333
                 if dictionnaire_heritiers.get("frere_uterin", 0) > 0: 
                     quotas["frere_uterin"] = (part_uterins_globale / nb_uterins) * dictionnaire_heritiers["frere_uterin"]
