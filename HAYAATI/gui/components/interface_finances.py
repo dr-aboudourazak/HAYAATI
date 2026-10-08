@@ -17,10 +17,10 @@ class EcranFinances(ft.Container):
         
         # 🎯 FIX TECHNIQUE ET DOCTRINAL : Réintégration de "stock" de manière étanche dans les clés
         self.cles = [
-            "immo", "auto", "stock", "liq", "creances", "dettes",
+            "immo", "auto", "stock", "liq", "creances", "dettes", "dettes_long_terme",
             "or_refuge_poids", "or_parure_poids", "or_cours", 
             "argent_refuge_poids", "argent_parure_poids", "argent_cours",
-            "poids", "grain_cours", "ovins", "ovin_cours", "bovins", "bovin_cours"
+            "poids", "grain_cours", "ovins", "ovin_cours", "bovins", "bovin_cours", "chameaux"
         ]
         self.labels: dict[str, ft.Text] = {}
         self.entries: dict[str, ft.TextField] = {}
@@ -61,20 +61,26 @@ class EcranFinances(ft.Container):
             
             if "or" in c or "argent" in c:
                 self.grille_metaux.controls.append(cellule_formulaire)
-            elif c in ["poids", "grain_cours", "ovins", "ovin_cours", "bovins", "bovin_cours"]:
+            elif c in ["poids", "grain_cours", "ovins", "ovin_cours", "bovins", "bovin_cours", "chameaux"]:
                 self.grille_agro.controls.append(cellule_formulaire)
             else:
                 self.grille_avoirs.controls.append(cellule_formulaire)
+
+        # 🌙 Hawl : date a laquelle le nisab a ete atteint (annee lunaire ~ 354 jours). Vide = non precisee.
+        self.lbl_date_hawl = ft.Text(size=11, weight=ft.FontWeight.W_500, color="#4b5563")
+        self.en_date_hawl = ft.TextField(
+            value="", hint_text="AAAA-MM-JJ", height=40, text_size=13,
+            border_radius=6, border_color=ft.Colors.GREY_400, bgcolor=ft.Colors.WHITE
+        )
+        self.grille_avoirs.controls.append(ft.Container(
+            content=ft.Column([self.lbl_date_hawl, self.en_date_hawl], spacing=4), col={"xs": 12, "md": 6}))
 
         # 🌾 Mode d'irrigation (pluie 10 %, artificielle 5 %, mixte 7,5 %) : meme gabarit et memes couleurs
         # que les champs de saisie voisins ; l'aide est dans une cellule a part (plus de chevauchement).
         self.lbl_irrigation = ft.Text(size=11, weight=ft.FontWeight.W_500, color="#4b5563")
         self.cb_irrigation = creer_menu_irrigation(40, 13)
-        self.lbl_irrigation_aide = ft.Text(size=10, italic=True, color="#6b7280")
-        _cell_menu, _cell_aide = creer_cellule_irrigation(
-            self.lbl_irrigation, self.cb_irrigation, self.lbl_irrigation_aide, {"xs": 12, "md": 6})
+        (_cell_menu,) = creer_cellule_irrigation(self.lbl_irrigation, self.cb_irrigation, None, {"xs": 12, "md": 6})
         self.grille_agro.controls.insert(1, _cell_menu)
-        self.grille_agro.controls.insert(2, _cell_aide)
 
         # 🔄 Cours de l'or et de l'argent en ligne (la saisie manuelle reste toujours possible)
         self.btn_cours = ft.OutlinedButton(content=ft.Text("🔄", size=12), on_click=lambda _: self._lancer_actualisation_cours())
@@ -173,12 +179,14 @@ class EcranFinances(ft.Container):
         self.labels["ovins"].value = str(f.get("lbl_moutons", "Moutons :"))
         self.labels["ovin_cours"].value = str(f.get("valeur_moutons", "Cours :"))
         self.labels["bovins"].value = str(f.get("lbl_bovins", "Bovins :"))
+        self.labels["chameaux"].value = str(f.get("lbl_chameaux", "Chameaux :"))
+        self.labels["dettes_long_terme"].value = str(f.get("lbl_dettes_long_terme", "Dont dettes à long terme (> 1 an) :"))
+        self.lbl_date_hawl.value = str(f.get("lbl_date_hawl", "Date où le nisab a été atteint (AAAA-MM-JJ) :"))
         self.labels["bovin_cours"].value = str(f.get("valeur_bovins", "Cours :"))
 
         # Mode d'irrigation : libelles traduits, selection conservee
         cle_irrigation = self.cb_irrigation.value if self.cb_irrigation.value in MODES_IRRIGATION else "pluie"
         self.lbl_irrigation.value = str(f.get("lbl_irrigation", "Irrigation des cultures :"))
-        self.lbl_irrigation_aide.value = str(f.get("irrigation_aide", ""))
         self.cb_irrigation.options.clear()
         for m in MODES_IRRIGATION:
             self.cb_irrigation.options.append(ft.dropdown.Option(key=m, text=libelle_irrigation(m, f)))
@@ -209,6 +217,7 @@ class EcranFinances(ft.Container):
             # Extraction et conversion sécurisée des saisies TextField Flet
             v = {c: float(self.entries[c].value.strip() or 0) for c in self.cles}
             v["irrigation_mode"] = self.cb_irrigation.value if self.cb_irrigation.value in MODES_IRRIGATION else "pluie"
+            v["date_hawl"] = self.en_date_hawl.value.strip()
             
             v["or_poids"] = v["or_refuge_poids"] + v["or_parure_poids"]
             v["argent_poids"] = v["argent_refuge_poids"] + v["argent_parure_poids"]
@@ -273,6 +282,7 @@ class EcranFinances(ft.Container):
 
         mode_irr = data.get("irrigation_mode") or ("artificielle" if data.get("irrigation_artificielle_active") else "pluie")
         self.cb_irrigation.value = mode_irr if mode_irr in MODES_IRRIGATION else "pluie"
+        self.en_date_hawl.value = str(data.get("date_hawl", "") or "")
 
         self.text_hist.value = str(data.get("historique", ""))
         if self.page_flet:

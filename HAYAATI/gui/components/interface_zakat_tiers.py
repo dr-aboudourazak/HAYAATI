@@ -8,6 +8,7 @@ from gui.langues import DICTIONNAIRE_LANGUES
 from gui.components.zakat_affichage import (
     MODES_IRRIGATION, libelle_ovins, libelle_bovins, libelle_irrigation, suffixe_taux,
     creer_menu_irrigation, creer_cellule_irrigation, actualiser_cours_en_ligne,
+    libelle_chameaux, notes_zakat,
 )
 from core.financial_engine import FinancialEngine
 from core.certificate_engine import generer_certificat_pdf
@@ -30,10 +31,10 @@ class EcranZakatTiers(ft.Container):
 
         # 🎯 ALIGNEMENT TECHNIQUE : Le "stock" commercial est maintenu de manière étanche aux cotisations
         self.cles_champs = [
-            "liq", "stock", "creances", "dettes",
+            "liq", "stock", "creances", "dettes", "dettes_long_terme",
             "or_refuge_poids", "or_parure_poids", "or_cours",
             "argent_refuge_poids", "argent_parure_poids", "argent_cours",
-            "poids", "ovins", "bovins"
+            "poids", "ovins", "bovins", "chameaux"
         ]
         self.labels: dict[str, ft.Text] = {}
         self.entries: dict[str, ft.TextField] = {}
@@ -81,19 +82,26 @@ class EcranZakatTiers(ft.Container):
             
             if "or" in c or "argent" in c:
                 self.grille_m.controls.append(cellule_formulaire)
-            elif c in ["poids", "ovins", "bovins"]:
+            elif c in ["poids", "ovins", "bovins", "chameaux"]:
                 self.grille_a.controls.append(cellule_formulaire)
             else:
                 self.grille_f.controls.append(cellule_formulaire)
 
+        # 🌙 Hawl : date a laquelle le nisab a ete atteint (annee lunaire ~ 354 jours). Vide = non precisee.
+        self.lbl_date_hawl = ft.Text(size=11, weight=ft.FontWeight.W_500, color="#4b5563")
+        self.en_date_hawl = ft.TextField(
+            value="", hint_text="AAAA-MM-JJ", height=38, text_size=12,
+            border_radius=6, border_color=ft.Colors.GREY_400, bgcolor=ft.Colors.WHITE
+        )
+        self.grille_f.controls.append(ft.Container(
+            content=ft.Column([self.lbl_date_hawl, self.en_date_hawl], spacing=4), col={"xs": 12, "sm": 6, "md": 3}))
+
         # 🌾 03/10/2026 : mode d'irrigation (pluie 10 %, artificielle 5 %, mixte 7,5 %)
         self.lbl_irrigation = ft.Text(size=11, weight=ft.FontWeight.W_500, color="#4b5563")
         self.cb_irrigation_tiers = creer_menu_irrigation(38, 12)
-        self.lbl_irrigation_aide = ft.Text(size=10, italic=True, color="#6b7280")
-        _cell_menu, _cell_aide = creer_cellule_irrigation(
-            self.lbl_irrigation, self.cb_irrigation_tiers, self.lbl_irrigation_aide, {"xs": 12, "sm": 6, "md": 3})
+        (_cell_menu,) = creer_cellule_irrigation(
+            self.lbl_irrigation, self.cb_irrigation_tiers, None, {"xs": 12, "sm": 6, "md": 3})
         self.grille_a.controls.insert(1, _cell_menu)
-        self.grille_a.controls.insert(2, _cell_aide)
 
         # 🔄 Cours de l'or et de l'argent en ligne (la saisie manuelle reste toujours possible)
         self.btn_cours = ft.OutlinedButton(content=ft.Text("🔄", size=12), on_click=lambda _: self._lancer_actualisation_cours())
@@ -166,11 +174,13 @@ class EcranZakatTiers(ft.Container):
         self.labels["poids"].value = str(fin.get("lbl_grain", "Grains (kg) :"))
         self.labels["ovins"].value = str(fin.get("lbl_moutons", "Moutons :"))
         self.labels["bovins"].value = str(fin.get("lbl_bovins", "Bovins :"))
+        self.labels["chameaux"].value = str(fin.get("lbl_chameaux", "Chameaux :"))
+        self.labels["dettes_long_terme"].value = str(fin.get("lbl_dettes_long_terme", "Dont dettes à long terme (> 1 an) :"))
+        self.lbl_date_hawl.value = str(fin.get("lbl_date_hawl", "Date où le nisab a été atteint (AAAA-MM-JJ) :"))
 
         # Mode d'irrigation : libelles traduits, selection conservee
         cle_irrigation = self.cb_irrigation_tiers.value if self.cb_irrigation_tiers.value in MODES_IRRIGATION else "pluie"
         self.lbl_irrigation.value = str(fin.get("lbl_irrigation", "Irrigation des cultures :"))
-        self.lbl_irrigation_aide.value = str(fin.get("irrigation_aide", ""))
         self.cb_irrigation_tiers.options.clear()
         for m in MODES_IRRIGATION:
             self.cb_irrigation_tiers.options.append(ft.dropdown.Option(key=m, text=libelle_irrigation(m, fin)))
@@ -227,6 +237,8 @@ class EcranZakatTiers(ft.Container):
             intrants = {c: float(self.entries[c].value.strip() or 0) for c in self.cles_champs}
             intrants["ovins"] = int(intrants["ovins"])
             intrants["bovins"] = int(intrants["bovins"])
+            intrants["chameaux"] = int(intrants["chameaux"])
+            intrants["date_hawl"] = self.en_date_hawl.value.strip()
             
             intrants["arbitrage_nisab"] = self._cle_nisab_reglages()
             intrants["irrigation_mode"] = self.cb_irrigation_tiers.value if self.cb_irrigation_tiers.value in MODES_IRRIGATION else "pluie"
@@ -310,6 +322,11 @@ class EcranZakatTiers(ft.Container):
                 f"   • {self.lignes_mem[4][0]}",
             ]
             
+            if int(res.get("brut_chameaux", 0) or 0) > 0:
+                self.lignes_mem.append([f"{txt_zk.get('zakat_chameaux', 'Zakat Chameaux')} : {libelle_chameaux(res, txt_zk)}"])
+                lignes_visuelles_ecran.append(f"   • {self.lignes_mem[-1][0]}")
+            for _note in notes_zakat(res, txt_zk, dev):
+                lignes_visuelles_ecran.append(f"   {_note}")
             if res.get("cours_manquants"):
                 lignes_visuelles_ecran.insert(2, "   " + str(txt_zk.get("cours_manquants", "⚠️ Cours de l'or ou de l'argent non renseigné.")))
             elif res.get("cours_par_defaut_utilises"):

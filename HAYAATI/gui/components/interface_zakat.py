@@ -6,7 +6,9 @@ from __future__ import annotations
 import flet as ft
 from datetime import datetime
 from gui.langues import DICTIONNAIRE_LANGUES
-from gui.components.zakat_affichage import libelle_ovins, libelle_bovins, libelle_irrigation, suffixe_taux
+from gui.components.zakat_affichage import (
+    libelle_ovins, libelle_bovins, libelle_irrigation, suffixe_taux, libelle_chameaux, notes_zakat,
+)
 from core.financial_engine import FinancialEngine
 from core.certificate_engine import generer_certificat_pdf
 
@@ -203,7 +205,10 @@ class EcranZakat(ft.Container):
 
             self.pastoral_calcule = {
                 "o": txt_ovins, 
-                "b": txt_bovins, 
+                "b": txt_bovins,
+                "c": libelle_chameaux(res, txt_zk),
+                "chameaux": res.get("brut_chameaux", 0),
+                "notes": notes_zakat(res, txt_zk, dev),
                 "ovins": res.get("brut_ovins", 0), 
                 "bovins": res.get("brut_bovins", 0)
             }
@@ -260,6 +265,10 @@ class EcranZakat(ft.Container):
             v += f"   ▶ {txt_zk.get('zakat_grain', 'Agricole')}          : {self.agri_calcule['due']:.2f} kg{suffixe_taux(self.agri_calcule['taux'])}\n"
             v += f"   ▶ {txt_zk.get('zakat_moutons', 'Ovins')}   -> {self.pastoral_calcule['o']}\n"
             v += f"   ▶ {txt_zk.get('zakat_bovins', 'Bovins')}  -> {self.pastoral_calcule['b']}\n"
+            if self.pastoral_calcule.get("chameaux"):
+                v += f"   ▶ {txt_zk.get('zakat_chameaux', 'Chameaux')} -> {self.pastoral_calcule['c']}\n"
+            for _note in self.pastoral_calcule.get("notes", []):
+                v += f"   {_note}\n"
             v += " ==================================================\n"
             
             self.text_rapport.value = v
@@ -297,6 +306,10 @@ class EcranZakat(ft.Container):
             [f"{txt_zk.get('zakat_moutons', 'Zakat Ovins')} : {self.pastoral_calcule['o']}"],
             [f"{txt_zk.get('zakat_bovins', 'Zakat Bovins')} : {self.pastoral_calcule['b']}"]
         ]
+        if self.pastoral_calcule.get("chameaux"):
+            self.lignes_mem.append([f"{txt_zk.get('zakat_chameaux', 'Zakat Chameaux')} : {self.pastoral_calcule['c']}"])
+        for _note in self.pastoral_calcule.get("notes", []):
+            self.lignes_mem.append([_note])
         
         nisab_live_texte = getattr(self, "nisab_affiche_ecran", txt_zk.get("options_nisab", {}).get("nisab_plus_bas", "Baromètre Prudent"))
 

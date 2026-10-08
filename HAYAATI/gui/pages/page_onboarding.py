@@ -19,6 +19,7 @@ from gui.langues import DICTIONNAIRE_LANGUES
 from gui.pages.page_onboarding_alerts import compiler_alertes_espace_prive
 from gui.pages.page_onboarding_calendrier import construire_grille_calendrier
 from gui.pages.page_onboarding_vivant import construire_badge_kaaba, construire_bandeau_versets
+from gui.pages.onboarding_rythme import duree_lecture_bandeau
 from core.hayaati_task_registry import HayaatiTaskRegistry
 
 
@@ -138,14 +139,35 @@ class PageOnboarding(ft.Container):
                 break
             await asyncio.sleep(30)
 
+    def _texte_bandeau_actuel(self):
+        """Texte actuellement affiche dans le bandeau verset / hadith (sert a regler la duree d'affichage)."""
+        morceaux = []
+
+        def _parcourir(c, profondeur=0):
+            if c is None or profondeur > 6:
+                return
+            v = getattr(c, "value", None)
+            if isinstance(v, str):
+                morceaux.append(v)
+            for attr in ("content", "controls"):
+                enfant = getattr(c, attr, None)
+                if isinstance(enfant, (list, tuple)):
+                    for e in enfant:
+                        _parcourir(e, profondeur + 1)
+                elif enfant is not None:
+                    _parcourir(enfant, profondeur + 1)
+
+        _parcourir(self.bandeau_versets)
+        return " ".join(morceaux)
+
     async def _boucle_bandeau_versets(self, generation):
-        """Fondu sortant, changement de texte, fondu entrant — toutes les
-        9 secondes."""
+        """Fondu sortant, changement de texte, fondu entrant. La duree d'affichage
+        depend de la longueur du texte (16 a 40 secondes)."""
         canal = "onboarding.bandeau_versets"
         while HayaatiTaskRegistry.generation_active(canal, generation):
             if getattr(self.app, "ecran_courant", None) != "ONBOARDING":
                 break
-            await asyncio.sleep(9)
+            await asyncio.sleep(duree_lecture_bandeau(self._texte_bandeau_actuel()))
             if not HayaatiTaskRegistry.generation_active(canal, generation):
                 break
             if getattr(self.app, "ecran_courant", None) != "ONBOARDING":

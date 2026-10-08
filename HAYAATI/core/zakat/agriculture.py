@@ -28,22 +28,26 @@ def normaliser_mode_irrigation(mode):
     return "artificielle"
 
 
-def evaluer_recolte_agricole(poids_kg, methode_irrigation="pluie"):
+def evaluer_recolte_agricole(poids_kg, methode_irrigation="pluie", madhhab=None):
     """
     Determine l'exigibilite de la Zakat sur les cereales et denrees stockables.
     - Pluie / source naturelle : 10 %
     - Irrigation artificielle (motopompe, cout financier) : 5 %
     - Mixte, a parts egales : 7,5 %
+    Nisab : 653 kg (5 awsuq), sauf dans l'ecole hanafite ou la dime est due des le premier kilogramme.
     """
     poids = float(poids_kg or 0.0)
     mode = normaliser_mode_irrigation(methode_irrigation)
+    sans_nisab = str(madhhab or "").strip().capitalize() == "Hanafite"
+    nisab = 0.0 if sans_nisab else NISSAB_AGRICULTURE_KG
 
-    if poids < NISSAB_AGRICULTURE_KG:
+    if poids <= 0 or poids < nisab:
         return {
             "est_imposable": False,
             "zakat_kg": 0.0,
             "taux_pourcentage": 0.0,
             "mode_irrigation": mode,
+            "nisab_kg": nisab,
         }
 
     taux = {"pluie": TAUX_PLUIE, "artificielle": TAUX_ARTIFICIEL, "mixte": TAUX_MIXTE}[mode]
@@ -52,8 +56,8 @@ def evaluer_recolte_agricole(poids_kg, methode_irrigation="pluie"):
         "zakat_kg": poids * taux,
         "taux_pourcentage": taux * 100,
         "mode_irrigation": mode,
+        "nisab_kg": nisab,
     }
-
 
 def nombre_brebis_dues(nombre_ovins):
     """Bareme des ovins : 40-120 : 1 ; 121-200 : 2 ; 201-399 : 3 ; a partir de 400 : 1 par centaine."""

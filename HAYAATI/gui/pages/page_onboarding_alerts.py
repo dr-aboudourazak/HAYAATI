@@ -24,6 +24,7 @@ from core.time_engine import gregorien_vers_hegiri, obtenir_evenement_hegiri
 from core.notification_engine import notifier_via_scheduler, _is_android
 from core.hayaati_task_registry import HayaatiTaskRegistry
 from gui.langues import DICTIONNAIRE_LANGUES
+from gui.pages.onboarding_rythme import duree_lecture
 
 
 # ============================================================================
@@ -521,7 +522,7 @@ def compiler_et_dessiner_les_3_carrousels(instance_onboarding, txt_cal_complet, 
         items = getattr(instance_onboarding, f"items_{cle}", [])
         if len(items) <= 1:
             return  # rien à faire tourner
-        await asyncio.sleep(2.0 + 0.8 * ("chrono", "patrimoine", "spirit").index(cle))  # décalage pour ne pas faire clignoter les 3 blocs en même temps
+        await asyncio.sleep(duree_lecture(str(items[0])) + 0.8 * ("chrono", "patrimoine", "spirit").index(cle))  # décalage pour ne pas faire clignoter les 3 blocs en même temps
         i = 0
         while HayaatiTaskRegistry.generation_active(canal, generation):
             zone = getattr(instance_onboarding, f"zone_message_{cle}", None)
@@ -548,7 +549,8 @@ def compiler_et_dessiner_les_3_carrousels(instance_onboarding, txt_cal_complet, 
             except Exception as exc:
                 print(f"[ALERTES][ROTATION] '{cle}' interrompu : {exc}")
                 return
-            await asyncio.sleep(4.0)
+            # 05/10/2026 : duree d'affichage proportionnelle a la longueur du message (avant : 4 s fixes)
+            await asyncio.sleep(duree_lecture(str(items[i])))
 
     if instance_onboarding.page_flet:
         for cle in ("chrono", "patrimoine", "spirit"):

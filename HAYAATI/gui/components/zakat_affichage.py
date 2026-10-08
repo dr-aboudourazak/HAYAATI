@@ -1,6 +1,6 @@
 """
 AFFICHAGE PARTAGÉ DES RÉSULTATS ZAKAT (GUI/COMPONENTS/ZAKAT_AFFICHAGE.PY)
-Version 2.0 - 04/10/2026
+Version 3.0 - 05/10/2026
 
 Fonctions communes aux écrans Finances, Zakat Live et Zakat Tiers : libellés de l'élevage,
 taux agricole, mode d'irrigation (liste déroulante au style des champs de saisie) et
@@ -40,13 +40,13 @@ def creer_menu_irrigation(hauteur: int = 40, taille_texte: int = 13) -> ft.Dropd
     )
 
 
-def creer_cellule_irrigation(label: ft.Text, menu: ft.Dropdown, aide: ft.Text, col: dict) -> list:
-    """Retourne [cellule du menu, cellule d'aide pleine largeur] à insérer dans la grille.
-    L'aide est dans une cellule à part : elle ne peut plus être recouverte par la liste."""
-    return [
-        ft.Container(content=ft.Column([label, menu], spacing=4), col=col),
-        ft.Container(content=aide, col={"xs": 12}, padding=ft.Padding(left=2, top=0, right=2, bottom=2)),
-    ]
+def creer_cellule_irrigation(label: ft.Text, menu: ft.Dropdown, aide, col: dict) -> list:
+    """Retourne la liste des cellules à insérer dans la grille : [cellule du menu], ou
+    [cellule du menu, cellule d'aide] si un texte d'aide est fourni (plus utilisé : aide=None)."""
+    cellules = [ft.Container(content=ft.Column([label, menu], spacing=4), col=col)]
+    if aide is not None:
+        cellules.append(ft.Container(content=aide, col={"xs": 12}, padding=ft.Padding(left=2, top=0, right=2, bottom=2)))
+    return cellules
 
 
 def suffixe_taux(taux_pct) -> str:
@@ -76,9 +76,38 @@ def libelle_ovins(res: dict, txt_zk: dict) -> str:
     return str(txt_zk.get("exempt", "Exempté"))
 
 
+def _modele(txt_zk: dict, cle: str, defaut: str, n: int) -> str:
+    return str(txt_zk.get(cle, defaut)).replace("{n}", str(n))
+
+
+def _assembler(parties: list[str]) -> str:
+    return " + ".join(parties)
+
+
+def _texte_bovins(b: dict, txt_zk: dict) -> str:
+    parties = []
+    if b.get("tabi"):
+        parties.append(_modele(txt_zk, "bovins_tabi_n", "{n} Tabi' (veau d'un an)", b["tabi"]))
+    if b.get("musinna"):
+        parties.append(_modele(txt_zk, "bovins_musinna_n", "{n} Musinna (vache de 2 ans)", b["musinna"]))
+    return _assembler(parties)
+
+
 def libelle_bovins(res: dict, txt_zk: dict) -> str:
-    """Obligation sur les bovins, traduite (codes calculés par FinancialEngine)."""
-    code = res.get("code_obligation_bovins", 0)
+    """Obligation sur les bovins, traduite. Barème complet (30-39, 40-59, puis une tabi' par 30 et une
+    musinna par 40) ; une autre combinaison valable est indiquée avec « ou »."""
+    b = res.get("bovins_dus")
+    if isinstance(b, dict):
+        texte = _texte_bovins(b, txt_zk)
+        if not texte:
+            return str(txt_zk.get("exempt", "Exempté"))
+        alt = [(t, m) for t, m in b.get("alternatives", [])]
+        if alt:
+            ou = str(txt_zk.get("ou_alternative", "ou"))
+            autres = " ; ".join(_texte_bovins({"tabi": t, "musinna": m}, txt_zk) for t, m in alt)
+            texte += f" ({ou} {autres})"
+        return texte
+    code = res.get("code_obligation_bovins", 0)       # repli : ancien format
     if code == 1:
         return str(txt_zk.get("bovins_1", "1 Tabi (1 an)"))
     if code == 2:
@@ -86,6 +115,79 @@ def libelle_bovins(res: dict, txt_zk: dict) -> str:
     if code == 3:
         return str(txt_zk.get("bovins_3", "2 Tabis"))
     return str(txt_zk.get("exempt", "Exempté"))
+
+
+_CHAMEAUX = (
+    ("brebis", "chameau_brebis_n", "{n} brebis"),
+    ("bint_makhad", "chameau_bint_makhad_n", "{n} bint makhad (chamelle d'1 an)"),
+    ("bint_labun", "chameau_bint_labun_n", "{n} bint labun (chamelle de 2 ans)"),
+    ("hiqqa", "chameau_hiqqa_n", "{n} hiqqa (chamelle de 3 ans)"),
+    ("jadha", "chameau_jadha_n", "{n} jadha'a (chamelle de 4 ans)"),
+)
+
+
+def _texte_chameaux(c: dict, txt_zk: dict) -> str:
+    return _assembler([_modele(txt_zk, cle, defaut, c[k]) for k, cle, defaut in _CHAMEAUX if c.get(k)])
+
+
+def libelle_chameaux(res: dict, txt_zk: dict) -> str:
+    """Obligation sur les chameaux, traduite (barème des quatre écoles)."""
+    c = res.get("chameaux_dus")
+    if not isinstance(c, dict):
+        return str(txt_zk.get("exempt", "Exempté"))
+    texte = _texte_chameaux(c, txt_zk)
+    if not texte:
+        return str(txt_zk.get("exempt", "Exempté"))
+    alt = c.get("alternatives") or []
+    if alt:
+        ou = str(txt_zk.get("ou_alternative", "ou"))
+        texte += f" ({ou} " + " ; ".join(_texte_chameaux(a, txt_zk) for a in alt) + ")"
+    return texte
+
+
+def notes_zakat(res: dict, txt_zk: dict, dev: str) -> list[str]:
+    """Rappels propres au cas calculé : hawl, déduction des dettes selon l'école, nisab agricole hanafite,
+    conditions de l'élevage. Une note n'apparaît que si elle concerne la situation saisie."""
+    t = txt_zk or {}
+    notes: list[str] = []
+
+    statut = res.get("hawl_statut")
+    if statut == "en_cours":
+        notes.append(str(t.get("hawl_en_cours",
+                               "⏳ Année lunaire non accomplie : zakat monétaire de {montant} exigible à partir du {date}."))
+                     .replace("{montant}", f"{float(res.get('zakat_monetaire_a_terme', 0.0)):.2f} {dev}")
+                     .replace("{date}", str(res.get("hawl_echeance", ""))))
+    elif statut == "date_invalide":
+        notes.append(str(t.get("hawl_date_invalide",
+                               "⚠️ Date du hawl invalide (format AAAA-MM-JJ, date passée) : une année lunaire complète est supposée.")))
+    elif statut == "non_precise" and res.get("est_imposable_monetaire"):
+        notes.append(str(t.get("hawl_non_precise",
+                               "ℹ️ Date du hawl non renseignée : une année lunaire complète est supposée.")))
+
+    if float(res.get("dettes_saisies", 0.0) or 0.0) > 0 or float(res.get("dettes_long_terme_exclues", 0.0) or 0.0) > 0:
+        regime = res.get("regime_deduction_dettes")
+        if regime == "aucune":
+            notes.append(str(t.get("note_dettes_aucune",
+                                   "ℹ️ Selon votre école (chafi'ite), les dettes ne sont pas déduites de l'assiette de la Zakat.")))
+        elif regime == "gens_et_dieu":
+            notes.append(str(t.get("note_dettes_gens_dieu",
+                                   "ℹ️ Selon votre école (hanbalite), les dettes exigibles dans l'année sont déduites, y compris les dettes envers Dieu (kaffara, zakat impayée...). Les dettes à long terme saisies sont exclues.")))
+        elif regime == "gens":
+            notes.append(str(t.get("note_dettes_gens",
+                                   "ℹ️ Seules les dettes exigibles dans l'année sont déduites ; les dettes à long terme saisies sont exclues.")))
+
+    if res.get("madhhab_applique") == "Hanafite" and float(res.get("poids_recolte_kg", 0.0) or 0.0) > 0:
+        notes.append(str(t.get("note_agri_hanafite",
+                               "ℹ️ Selon l'école hanafite, la dîme agricole est due dès le premier kilogramme (pas de nisab de 653 kg).")))
+
+    elevage = sum(int(res.get(k, 0) or 0) for k in ("brut_ovins", "brut_bovins", "brut_chameaux"))
+    if elevage > 0:
+        notes.append(str(t.get("note_elevage",
+                               "ℹ️ Cheptel : la Zakat est due si l'animal est possédé depuis une année lunaire et pâture librement la majeure partie de l'année (sâ'ima).")))
+    if res.get("madhhab_applique") == "Hanafite" and int(res.get("brut_chameaux", 0) or 0) > 120:
+        notes.append(str(t.get("note_chameaux_hanafite",
+                               "ℹ️ Au-delà de 120 chameaux, l'école hanafite reprend le barème depuis le début.")))
+    return notes
 
 
 # ----------------------------------------------------------------------------
