@@ -185,8 +185,9 @@
   "cours_maj_ok": "✓ Cours mis à jour : or {or}, argent {argent} {devise}/g ({date})",
   "cours_en_cours": "⏳ Récupération des cours...",
   "btn_cours_en_ligne": "🔄 Cours en ligne",
-  "valeur_moutons": "Valeur Troupeau Ovins :",
-  "valeur_bovins": "Valeur Troupeau Bovins :",
+  "valeur_moutons": "Valeur d'un mouton (par tête) :",
+  "valeur_bovins": "Valeur d'un bovin (par tête) :",
+  "valeur_chameaux": "Valeur d'un chameau (par tête) :",
   "status_sauvegarde": "✓ Bilan patrimonial mémorisé avec succès."
  },
  "zakat": {
@@ -5210,6 +5211,11 @@
   "titre": "🕋 Prière",
   "info_distance": "Cap {cap}° — à {distance} km de la Kaaba",
   "note_pc": "Boussole en direct indisponible sur cet appareil — le disque reste orienté nord en haut.",
+  "loc_bouton_reglages": "Réglages",
+  "loc_refusee": "Localisation non autorisée : qibla et horaires sont approximatifs.",
+  "loc_service_off": "La localisation du téléphone est désactivée. Activez-la pour une qibla et des horaires précis.",
+  "loc_voyage": "Vous avez changé de lieu : qibla, horaires de prière et alarmes recalculés pour votre nouvelle position.",
+  "loc_ok": "Position GPS obtenue : qibla, horaires et alarmes mis à jour.",
   "priere_fajr": "Fajr",
   "priere_sunrise": "Lever",
   "priere_dhuhr": "Dhuhr",

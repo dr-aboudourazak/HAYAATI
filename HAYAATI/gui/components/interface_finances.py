@@ -20,7 +20,7 @@ class EcranFinances(ft.Container):
             "immo", "auto", "stock", "liq", "creances", "dettes", "dettes_long_terme",
             "or_refuge_poids", "or_parure_poids", "or_cours", 
             "argent_refuge_poids", "argent_parure_poids", "argent_cours",
-            "poids", "grain_cours", "ovins", "ovin_cours", "bovins", "bovin_cours", "chameaux"
+            "poids", "grain_cours", "ovins", "ovin_cours", "bovins", "bovin_cours", "chameaux", "chameau_cours"
         ]
         self.labels: dict[str, ft.Text] = {}
         self.entries: dict[str, ft.TextField] = {}
@@ -61,7 +61,7 @@ class EcranFinances(ft.Container):
             
             if "or" in c or "argent" in c:
                 self.grille_metaux.controls.append(cellule_formulaire)
-            elif c in ["poids", "grain_cours", "ovins", "ovin_cours", "bovins", "bovin_cours", "chameaux"]:
+            elif c in ["poids", "grain_cours", "ovins", "ovin_cours", "bovins", "bovin_cours", "chameaux", "chameau_cours"]:
                 self.grille_agro.controls.append(cellule_formulaire)
             else:
                 self.grille_avoirs.controls.append(cellule_formulaire)
@@ -183,6 +183,7 @@ class EcranFinances(ft.Container):
         self.labels["dettes_long_terme"].value = str(f.get("lbl_dettes_long_terme", "Dont dettes à long terme (> 1 an) :"))
         self.lbl_date_hawl.value = str(f.get("lbl_date_hawl", "Date où le nisab a été atteint (AAAA-MM-JJ) :"))
         self.labels["bovin_cours"].value = str(f.get("valeur_bovins", "Cours :"))
+        self.labels["chameau_cours"].value = str(f.get("valeur_chameaux", "Valeur d'un chameau (par tête) :"))
 
         # Mode d'irrigation : libelles traduits, selection conservee
         cle_irrigation = self.cb_irrigation.value if self.cb_irrigation.value in MODES_IRRIGATION else "pluie"
@@ -229,7 +230,11 @@ class EcranFinances(ft.Container):
             val_grain = v["poids"] * v["grain_cours"]
             val_ovin = v["ovins"] * v["ovin_cours"]
             val_bovin = v["bovins"] * v["bovin_cours"]
-            total_agro = val_grain + val_ovin + val_bovin
+            # 08/10/2026 : valeur monétaire des chameaux. Sans effet sur la zakat
+            # (qui se calcule sur le nombre de têtes), mais nécessaire au patrimoine
+            # net et donc à la masse successorale.
+            val_chameau = v["chameaux"] * v["chameau_cours"]
+            total_agro = val_grain + val_ovin + val_bovin + val_chameau
             
             # 🎯 CALCUL DU PATRIMOINE GLOBAL SUCCESSORAL (HERITAGE) INCLUANT TOUT : IMMO + AUTO + STOCK
             brut = v["immo"] + v["auto"] + v["stock"] + v["liq"] + val_or + val_arg + v["creances"] + total_agro

@@ -860,6 +860,7 @@ class PagePriere(ft.Container):
                 pass
 
     def actualiser_donnees_affichage(self):
+        self._planifier_verification_localisation()  # 08/10/2026
         # 🔧 17/09/2026 : lu à chaque rafraîchissement (pas seulement à la
         # construction) pour que le curseur +/-2 jours de page_reglages.py
         # s'applique immédiatement au retour sur cette page, comme il
@@ -979,6 +980,84 @@ class PagePriere(ft.Container):
         x_k, y_k = _position_polaire(self._cap_qibla, RAYON_ORBITE_KAABA, cx, cy)
         self.kaaba_container.left = x_k - 12
         self.kaaba_container.top = y_k - 14
+
+    # ------------------------------------------------------------------
+    # 08/10/2026 : position manquante ou périmée (premier lancement, voyage)
+    # ------------------------------------------------------------------
+    def _planifier_verification_localisation(self):
+        """À chaque arrivée sur la page : si la position GPS manque ou date de
+        plus de 4 h, la redemande. Tâche ponctuelle, pas une boucle : elle ne
+        passe donc pas par HayaatiTaskRegistry. Le module limite la fréquence
+        (90 s) et ignore le PC."""
+        if not self.page_flet:
+            return
+        try:
+            self.page_flet.run_task(self._verifier_localisation_manquee)
+        except Exception as exc:
+            print(f"[PRIERE] Vérification de localisation non lancée : {exc}")
+
+    async def _verifier_localisation_manquee(self):
+        try:
+            from core import geolocation_natif as geo_natif
+            resultat = await geo_natif.rafraichir_position_si_necessaire(self.page_flet)
+        except Exception as exc:
+            print(f"[PRIERE] Vérification de localisation échouée : {exc}")
+            return
+
+        if resultat == "ok":
+            etat = geo_natif.etat_dernier_suivi()
+            await self._appliquer_nouvelle_position(forcer=bool(etat["voyage"] or etat["premiere_position"]))
+            if etat["voyage"]:
+                self._afficher_message_localisation("loc_voyage", None)
+            elif etat["premiere_position"]:
+                self._afficher_message_localisation("loc_ok", None)
+        elif resultat in ("service_desactive", "refuse_definitif", "refuse"):
+            if geo_natif.signaler_une_fois(resultat):
+                if resultat == "service_desactive":
+                    self._afficher_message_localisation("loc_service_off", False)
+                else:
+                    self._afficher_message_localisation("loc_refusee", resultat == "refuse_definitif")
+
+    async def _appliquer_nouvelle_position(self, forcer: bool = False):
+        """Une position GPS tardive ou nouvelle doit aussi corriger les alarmes et
+        les horaires du jour : le planificateur ne relisait la position qu'au
+        démarrage."""
+        try:
+            from core.suivi_position import synchroniser_avec_la_position
+            await synchroniser_avec_la_position(self.app, forcer=forcer)
+        except Exception as exc:
+            print(f"[PRIERE] Synchronisation après nouvelle position échouée : {exc}")
+        self.actualiser_donnees_affichage()
+
+    def _afficher_message_localisation(self, cle: str, ouvrir_reglages_definitif):
+        """Message en bas d'écran. ouvrir_reglages_definitif : None = pas de
+        bouton ; False = réglages de localisation ; True = réglages de l'app."""
+        if not self.page_flet:
+            return
+        try:
+            q = DICTIONNAIRE_LANGUES.actif.get("qiblah", {}) if hasattr(DICTIONNAIRE_LANGUES, "actif") else {}
+            texte = str(q.get(cle, cle))
+            action = None
+            if ouvrir_reglages_definitif is not None:
+                from core import geolocation_natif as geo_natif
+                definitif = bool(ouvrir_reglages_definitif)
+
+                def _ouvrir(_e):
+                    self.page_flet.run_task(geo_natif.ouvrir_reglages_localisation, definitif)
+
+                action = ft.SnackBarAction(label=str(q.get("loc_bouton_reglages", "Réglages")), on_click=_ouvrir)
+            snack = ft.SnackBar(
+                content=ft.Text(texte, size=13),
+                bgcolor="#064e3b",
+                duration=8000,
+                behavior=ft.SnackBarBehavior.FLOATING,
+                action=action,
+            )
+            self.page_flet.overlay.append(snack)
+            snack.open = True
+            self.page_flet.update()
+        except Exception as exc:
+            print(f"[PRIERE] Message de localisation non affiché : {exc}")
 
     def actualiser_contexte(self):
         """Alias pour le routeur central (OrganisateurLayout)."""

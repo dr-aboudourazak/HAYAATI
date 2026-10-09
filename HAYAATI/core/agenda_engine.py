@@ -134,6 +134,39 @@ def _sauvegarder_position_sur_disque(position: dict):
         print(f"[AgendaEngine] Cache position non sauvegardé (sans conséquence) : {exc}")
 
 
+# ===========================================================================
+# 08/10/2026 : suivi de position (voyages)
+# ===========================================================================
+import math as _math
+import time as _t
+
+# Un GPS plus récent que ça est jugé frais : inutile de le redemander.
+DUREE_FRAICHEUR_GPS_SECONDES = 4 * 3600
+# Un GPS plus vieux que ça peut être remplacé par une position IP lointaine.
+DUREE_GPS_PERIME_POUR_IP_SECONDES = 24 * 3600
+# Écart au-delà duquel la position IP remplace un GPS ancien (voyage probable).
+SEUIL_IP_REMPLACE_GPS_KM = 100.0
+# Écart au-delà duquel on replanifie alarmes et horaires.
+SEUIL_DEPLACEMENT_KM = 25.0
+
+
+def distance_entre_points_km(lat1, lon1, lat2, lon2) -> float:
+    """Distance à vol d'oiseau (haversine), en kilomètres."""
+    r = 6371.0
+    p1, p2 = _math.radians(float(lat1)), _math.radians(float(lat2))
+    dp = p2 - p1
+    dl = _math.radians(float(lon2) - float(lon1))
+    a = _math.sin(dp / 2) ** 2 + _math.cos(p1) * _math.cos(p2) * _math.sin(dl / 2) ** 2
+    return 2 * r * _math.asin(min(1.0, _math.sqrt(a)))
+
+
+def age_position_secondes(position: dict):
+    """Âge d'une position en secondes, ou None si elle n'est pas datée
+    (anciens fichiers de cache d'avant le 08/10/2026 : traités comme périmés)."""
+    h = position.get("horodatage") if isinstance(position, dict) else None
+    return (_t.time() - h) if isinstance(h, (int, float)) else None
+
+
 class AgendaEngine:
     # ⏱ 09/09/2026 : ramenée de 12 à 5 minutes après test terrain — 12
     # minutes avant la prière donnait l'impression de sonner trop tôt.
@@ -214,6 +247,30 @@ class AgendaEngine:
                 import time
                 time.sleep(AgendaEngine.DELAI_ENTRE_TENTATIVES_SECONDES)
 
+    _rafraichissement_ip_en_cours = False
+
+    @classmethod
+    def lancer_rafraichissement_ip(cls) -> bool:
+        """08/10/2026 : relance une détection par IP en arrière-plan (fil séparé,
+        jamais plusieurs à la fois). Utile quand le GPS n'est pas utilisable (GPS
+        éteint, permission refusée, PC) pour suivre un voyage. Les règles de
+        _appliquer_position_ip protègent un GPS récent. Retourne False si un
+        rafraîchissement est déjà en cours."""
+        if cls._rafraichissement_ip_en_cours:
+            return False
+        cls._rafraichissement_ip_en_cours = True
+
+        def _travail():
+            try:
+                cls()._tenter_geolocalisation_ip()
+            except Exception as exc:
+                print(f"[AgendaEngine] Rafraîchissement IP échoué : {exc}")
+            finally:
+                cls._rafraichissement_ip_en_cours = False
+
+        threading.Thread(target=_travail, daemon=True).start()
+        return True
+
     def _tenter_geolocalisation_ip(self):
         """Essaie chaque fournisseur de FOURNISSEURS_IP jusqu'à obtenir une
         position valide. Estimation grossière (ville) : la position précise
@@ -240,10 +297,21 @@ class AgendaEngine:
             print(f"[AgendaEngine] {nom_fournisseur} : coordonnées invalides ignorées ({lat:.3f}, {lon:.3f})")
             return False
 
-        # Le GPS natif, plus précis, ne doit jamais être écrasé par l'IP.
-        if AgendaEngine._position_commune_cache.get("source") == "gps":
-            print("[AgendaEngine] Position GPS déjà confirmée — position IP ignorée.")
-            return True
+        # Le GPS natif, plus précis, n'est jamais écrasé par l'IP tant qu'il est
+        # récent. 08/10/2026 : un GPS ancien (> 24 h ou non daté) peut être
+        # remplacé si l'IP indique un lieu à plus de 100 km (voyage), sinon on
+        # le garde (même région : le GPS reste plus précis).
+        cache_actuel = AgendaEngine._position_commune_cache
+        if cache_actuel.get("source") == "gps":
+            age = age_position_secondes(cache_actuel)
+            if age is not None and age < DUREE_GPS_PERIME_POUR_IP_SECONDES:
+                print("[AgendaEngine] Position GPS récente — position IP ignorée.")
+                return True
+            ecart = distance_entre_points_km(cache_actuel["lat"], cache_actuel["lon"], lat, lon)
+            if ecart < SEUIL_IP_REMPLACE_GPS_KM:
+                print(f"[AgendaEngine] GPS ancien mais même région ({ecart:.0f} km) — position IP ignorée.")
+                return True
+            print(f"[AgendaEngine] GPS ancien et IP à {ecart:.0f} km : voyage probable, l'IP prend le relais.")
 
         # Offset gardé en heures fractionnaires (Inde +5:30, Népal +5:45...).
         # Si le fournisseur n'en donne pas, estimation par la longitude (au
@@ -259,6 +327,7 @@ class AgendaEngine:
             "offset": offset,
             "city": resultat["city"],
             "source": "ip",
+            "horodatage": _t.time(),
         }
         AgendaEngine._position_commune_cache = nouvelle_position
         _sauvegarder_position_sur_disque(nouvelle_position)

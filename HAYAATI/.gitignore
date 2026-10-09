@@ -33,6 +33,8 @@ venv/
 build/
 dist/
 core/config_privee.py
+preparer_build_propre.py
+verifier_apk.py
 
 # Build Flet / Android
 *.apk
@@ -56,6 +58,7 @@ core/config_privee.py
 *.iml
 build_android.ps1
 build_config.local.ps1
+build_android.ps1.avant_lot5
 logs_build/
 
 # Caches et outils Flutter / Dart

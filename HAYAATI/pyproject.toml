@@ -39,8 +39,7 @@ assets = "assets"
 icon = "assets/icon.png"
 adaptive_icon_background = "#FFFFFF"
 target_sdk_version = 36
-split_per_abi = false
-target_arch = ["arm64-v8a"]
+split_per_abi = true
 
 [tool.flet.android.permission]
 "android.permission.INTERNET" = true
@@ -80,3 +79,27 @@ Homepage = "https://amadoufitter.pages.dev/"
 Documentation = "https://github.com/dr-aboudourazak/HAYAATI"
 Repository = "https://github.com/dr-aboudourazak/HAYAATI"
 Issues = "https://github.com/dr-aboudourazak/HAYAATI"
+
+# >>> HAYAATI-EXCLUSIONS-BUILD (généré par preparer_build_propre.py — ne pas éditer à la main) >>>
+[tool.flet.app]
+exclude = [
+    '.gitignore',
+    'build',
+    'build_android.ps1',
+    'build_android.ps1.avant_lot5',
+    'build_config.local.ps1',
+    'core\.gitignore',
+    'core\heritage\.gitignore',
+    'core\zakat\.gitignore',
+    'gui\.gitignore',
+    'gui\components\.gitignore',
+    'gui\pages\.gitignore',
+    'hayaati_donnees_privees',
+    'logs_build',
+    'preparer_build_propre.py',
+    'pyproject.toml',
+    'requirements.txt',
+    'specifications.md',
+    'verifier_apk.py',
+]
+# <<< HAYAATI-EXCLUSIONS-BUILD <<<

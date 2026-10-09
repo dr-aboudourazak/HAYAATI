@@ -32,6 +32,7 @@ class FinancialEngine:
         
         or_ref, or_par, arg_ref, arg_par = 0.0, 0.0, 0.0, 0.0
         c_grain, c_ovin, c_bovin = 0.0, 0.0, 0.0
+        c_chameau = 0.0
         arbitrage_pref = "PLUS_BAS"
         irrigation_artificielle = False
         dettes_spirituelles = 0.0
@@ -52,6 +53,7 @@ class FinancialEngine:
                 or_ref = float(cf.get("or_refuge_poids", 0.0)); or_par = float(cf.get("or_parure_poids", 0.0))
                 arg_ref = float(cf.get("argent_refuge_poids", 0.0)); arg_par = float(cf.get("argent_parure_poids", 0.0))
                 c_grain = float(cf.get("grain_cours", 0.0)); c_ovin = float(cf.get("ovin_cours", 0.0)); c_bovin = float(cf.get("bovin_cours", 0.0))
+                c_chameau = float(cf.get("chameau_cours", 0.0))
                 
                 # Extraction étanche du correctif agro-pastoral et du passif rituel
                 # irrigation_mode : "pluie" | "artificielle" | "mixte" (ancien booleen conserve en repli)
@@ -59,7 +61,8 @@ class FinancialEngine:
                 dettes_spirituelles = float(cf.get("dettes_spirituelles", 0.0))
 
             return self._calculer_metriques_zakat_atomiq(liq, stock, or_ref, or_par, arg_ref, arg_par, dettes, creances, poids, ovins, bovins, c_or, c_arg, doc, "LIVE_PERSISTANT", c_grain, c_ovin, c_bovin, arbitrage_pref, irrigation_artificielle, dettes_spirituelles,
-                                                   chameaux=chameaux, dettes_long_terme=dettes_long_terme, date_hawl=date_hawl)
+                                                   chameaux=chameaux, dettes_long_terme=dettes_long_terme, date_hawl=date_hawl,
+                                                   c_chameau=c_chameau)
         else:
             intrants = donnees_manuelles_tiers if donnees_manuelles_tiers else {}
             arbitrage_pref = str(intrants.get("arbitrage_nisab", "PLUS_BAS")).upper()
@@ -77,7 +80,8 @@ class FinancialEngine:
             dettes_spirituelles = float(intrants.get("dettes_spirituelles", 0.0))
 
             return self._calculer_metriques_zakat_atomiq(liq, stock, or_ref, or_par, arg_ref, arg_par, dettes, creances, poids, ovins, bovins, c_or, c_arg, doc, "DIAGNOSTIC_TIERS", c_grain, c_ovin, c_bovin, arbitrage_pref, irrigation_artificielle, dettes_spirituelles,
-                                                   chameaux=chameaux, dettes_long_terme=dettes_long_terme, date_hawl=date_hawl)
+                                                   chameaux=chameaux, dettes_long_terme=dettes_long_terme, date_hawl=date_hawl,
+                                                   c_chameau=c_chameau)
 
     DUREE_HAWL_JOURS = 354   # annee lunaire (12 mois de 29,5 jours en moyenne)
 
@@ -108,7 +112,8 @@ class FinancialEngine:
                                          arbitrage_nisab="PLUS_BAS",
                                          irrigation_artificielle=False,
                                          dettes_spirituelles=0.0,
-                                         chameaux=0, dettes_long_terme=0.0, date_hawl=""):
+                                         chameaux=0, dettes_long_terme=0.0, date_hawl="",
+                                         c_chameau=0.0):
         cours_manquants = (not c_or or float(c_or) <= 0) or (not c_arg or float(c_arg) <= 0)
         if getattr(self, "cours_par_defaut_actif", True):
             c_or = float(c_or or self.cours_or_par_defaut)
@@ -153,7 +158,11 @@ class FinancialEngine:
         valeur_ovins_monetaire = float(ovins or 0) * float(c_ovin or 0.0)
         valeur_bovins_monetaire = float(bovins or 0) * float(c_bovin or 0.0)
         valeur_grains_monetaire = float(poids or 0.0) * float(c_grain or 0.0)
-        total_agro_pastoral_monetaire = valeur_ovins_monetaire + valeur_bovins_monetaire + valeur_grains_monetaire
+        # 08/10/2026 : les chameaux comptent dans la valeur du patrimoine (succession),
+        # pas dans l'assiette de la zakat.
+        valeur_chameaux_monetaire = float(chameaux or 0) * float(c_chameau or 0.0)
+        total_agro_pastoral_monetaire = (valeur_ovins_monetaire + valeur_bovins_monetaire
+                                         + valeur_grains_monetaire + valeur_chameaux_monetaire)
         
         ass_brute = float(liq or 0.0) + float(stock or 0.0) + val_or_z + val_arg_z + float(creances or 0.0)
         
@@ -210,6 +219,7 @@ class FinancialEngine:
             "valeur_or_retenue_zakat": val_or_z,     
             "valeur_argent_retenue_zakat": val_arg_z, 
             "valeur_agro_pastorale_monetaire": total_agro_pastoral_monetaire,
+            "valeur_chameaux_monetaire": valeur_chameaux_monetaire,
             "assiette_financiere_nette": ass_nette,
             "zakat_monetaire_due": zk_due,
             "est_imposable_monetaire": imp,

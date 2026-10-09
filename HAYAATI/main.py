@@ -334,6 +334,12 @@ def initialiser_application_flet(page: ft.Page):
             # NotificationScheduler.boucle_topup_automatique pour le cas
             # où l'app reste ouverte plus longtemps que FENETRE_PLANIFICATION_JOURS.
             app.notification_scheduler.demarrer_topup_automatique()
+            # 🆕 08/10/2026 : suivi de position (voyages) — voir core/suivi_position.py.
+            try:
+                from core.suivi_position import demarrer_suivi_position
+                demarrer_suivi_position(app, page)
+            except Exception as exc:
+                print(f"[SUIVI-POSITION] Non démarré : {exc}")
             # 🆕 24/09/2026 : même principe que le top-up ci-dessus, pour
             # que la RAZ Mouhasabah ait lieu au bon moment (Fajr - 1h)
             # même si l'écran n'est pas ouvert à cet instant précis —

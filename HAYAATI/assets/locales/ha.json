@@ -185,8 +185,9 @@
   "cours_maj_ok": "✓ An sabunta farashi: zinariya {or}, azurfa {argent} {devise}/g ({date})",
   "cours_en_cours": "⏳ Ana neman farashi...",
   "btn_cours_en_ligne": "🔄 Farashin yanzu",
-  "valeur_moutons": "Kudin Tumakin :",
-  "valeur_bovins": "Kudin Shanu :",
+  "valeur_moutons": "Kudin tunkiya ɗaya :",
+  "valeur_bovins": "Kudin saniya ɗaya :",
+  "valeur_chameaux": "Kudin raƙumi ɗaya :",
   "status_sauvegarde": "✓ An yi nasarar adana rahoton dukiya."
  },
  "zakat": {
@@ -5206,6 +5207,11 @@
   "titre": "🕋 Sallah",
   "info_distance": "Alkibla {cap}° — nisa da Kaaba kilomita {distance}",
   "note_pc": "Ba a samun kamfas kai-tsaye a wannan na'urar — faifai zai kasance arewa a sama.",
+  "loc_bouton_reglages": "Saituna",
+  "loc_refusee": "Ba a ba da izinin wuri ba: alƙibla da lokutan salla kusan ne kawai.",
+  "loc_service_off": "An kashe wuri (location) a wayarka. Kunna shi domin samun daidai alƙibla da lokutan salla.",
+  "loc_voyage": "Ka canza wuri: an sake lissafa alƙibla, lokutan salla da ƙararrawa bisa sabon wurinka.",
+  "loc_ok": "An samu wurinka ta GPS: an sabunta alƙibla, lokutan salla da ƙararrawa.",
   "priere_fajr": "Asuba",
   "priere_sunrise": "Fitowar Rana",
   "priere_dhuhr": "Azahar",
