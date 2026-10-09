@@ -1,4 +1,4 @@
-# Ajouté le 23/09/2026, suite à l'incident où core/hayaati_private.db
+# Modifié le 23/09/2026, suite à l'incident où core/hayaati_private.db
 # (compte utilisateur en clair + modules chiffrés) a été committé et
 # rendu public faute d'un .gitignore. Défense en profondeur : ce fichier
 # est la première ligne (rien ne doit même être proposé à `git add`),
@@ -56,6 +56,8 @@ verifier_apk.py
 .flutter-plugins-dependencies
 .packages
 *.iml
+pyproject.toml
+requirements.txt
 build_android.ps1
 build_config.local.ps1
 build_android.ps1.avant_lot5
