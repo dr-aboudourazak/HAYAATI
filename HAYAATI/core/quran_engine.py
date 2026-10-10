@@ -10,6 +10,9 @@ Médine, annotations de tajweed. Le texte de chaque verset est stocké VERBATIM 
 (que Tanzil place au début du verset 1 de chaque sourate sauf 1 et 9) est mise à part dans
 le champ "basmalah" de la sourate.
 
+v3 (lot 7) : lecture « page de mushaf » : une page (1-604) peut contenir la fin d'une sourate et le
+début de la suivante ; pages.json donne, pour chaque page, ses segments [sourate, 1er verset, dernier].
+
 Format d'un fichier surah_NNN.json :
   numero, nom_arabe, basmalah (str | None), basmalah_tajweed (liste, absent pour 1 et 9),
   versets : [{numero, texte, page, tajweed: [[debut, fin, code], ...]}]
@@ -26,7 +29,9 @@ from core.quran_tajweed import indice_famille
 
 _cache_index: Optional[list] = None
 _cache_sourates: dict = {}
-_cache_juz: Optional[list] = None
+_cache_pages: Optional[dict] = None
+
+NB_PAGES = 604
 
 SOURATES_SANS_BASMALAH = {1, 9}  # 1 : la basmala y est le verset 1 ; 9 : n'en a traditionnellement pas
 
@@ -99,18 +104,94 @@ def charger_sourate(numero: int) -> Optional[dict]:
         return None
 
 
-def juz_de_page(page: int) -> Optional[int]:
-    """Numéro du juz (1-30) qui contient la page de mushaf donnée (1-604)."""
-    global _cache_juz
-    if _cache_juz is None:
+def _charger_pages() -> dict:
+    """pages.json : {"juz_par_page": [None, juz de la page 1, ...], "segments": [None, [[s, a1, a2], ...], ...]}."""
+    global _cache_pages
+    if _cache_pages is None:
         chemin = os.path.join(_chemin_dossier_quran(), "pages.json")
         try:
             with open(chemin, "r", encoding="utf-8") as f:
-                _cache_juz = json.load(f).get("juz_par_page", [])
+                _cache_pages = json.load(f)
         except Exception as exc:
             print(f"[QURAN] Échec de chargement de pages.json : {exc}")
-            _cache_juz = []
-    return _cache_juz[page] if 0 < page < len(_cache_juz) else None
+            _cache_pages = {"juz_par_page": [], "segments": []}
+    return _cache_pages
+
+
+def juz_de_page(page: int) -> Optional[int]:
+    """Numéro du juz (1-30) qui contient la page de mushaf donnée (1-604)."""
+    juz = _charger_pages().get("juz_par_page", [])
+    return juz[page] if 0 < page < len(juz) else None
+
+
+def segments_de_page(page: int) -> list:
+    """[[sourate, premier verset, dernier verset], ...] de la page de mushaf (1-604)."""
+    segments = _charger_pages().get("segments", [])
+    return segments[page] if 0 < page < len(segments) and segments[page] else []
+
+
+def _nom_sourate(numero: int) -> str:
+    for entree in charger_index_sourates():
+        if entree.get("numero") == numero:
+            return entree.get("nom_arabe", "")
+    return ""
+
+
+def versets_de_page(page: int) -> list:
+    """Contenu d'une page de mushaf, dans l'ordre de lecture, un élément par sourate présente :
+    {"sourate", "nom_arabe", "debut" (la sourate commence sur cette page), "basmalah",
+     "basmalah_tajweed", "versets": [...]}. Liste vide si la page est inconnue ou si les données
+    sont absentes."""
+    resultat = []
+    for sourate, premier, dernier in segments_de_page(page):
+        donnees = charger_sourate(sourate)
+        if not donnees:
+            continue
+        versets = [v for v in donnees["versets"] if premier <= v["numero"] <= dernier]
+        resultat.append({
+            "sourate": sourate,
+            "nom_arabe": _nom_sourate(sourate),
+            "debut": premier == 1,
+            "basmalah": donnees.get("basmalah") if premier == 1 else None,
+            "basmalah_tajweed": donnees.get("basmalah_tajweed") if premier == 1 else None,
+            "versets": versets,
+        })
+    return resultat
+
+
+def page_de_verset(sourate: int, verset: int) -> Optional[int]:
+    """Page de mushaf (1-604) qui contient le verset donné, ou None s'il n'existe pas."""
+    donnees = charger_sourate(sourate)
+    if not donnees:
+        return None
+    for v in donnees["versets"]:
+        if v["numero"] == verset:
+            return v.get("page")
+    return None
+
+
+def premiere_page_sourate(sourate: int) -> Optional[int]:
+    """Page de mushaf où commence la sourate."""
+    return page_de_verset(sourate, 1)
+
+
+def pages_de_sourate(sourate: int) -> list:
+    """Pages de mushaf (distinctes, dans l'ordre) que couvre la sourate."""
+    donnees = charger_sourate(sourate)
+    if not donnees:
+        return []
+    pages: list = []
+    for v in donnees["versets"]:
+        p = v.get("page")
+        if not pages or pages[-1] != p:
+            pages.append(p)
+    return pages
+
+
+def sourate_de_page(page: int) -> Optional[int]:
+    """Sourate du premier verset de la page (celle que le mushaf imprime en en-tête)."""
+    segments = segments_de_page(page)
+    return segments[0][0] if segments else None
 
 
 def regrouper_par_page(versets: list) -> list:
