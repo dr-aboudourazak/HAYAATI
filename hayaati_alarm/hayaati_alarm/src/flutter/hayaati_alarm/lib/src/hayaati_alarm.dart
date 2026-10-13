@@ -52,12 +52,81 @@
 // (niveau info, pas une erreur) qu'il est redondant : package:flet/flet.dart
 // réexporte déjà File, seule classe de dart:io utilisée dans ce fichier
 // (_ensureAudioFileExtracted). Aucun changement de comportement.
+import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flet/flet.dart';
 import 'package:alarm/alarm.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
+
+// ---------------------------------------------------------------------------
+// 10/10/2026 : « N sonneries ».
+//
+// Le paquet 'alarm' sait seulement jouer un son UNE fois ou EN BOUCLE SANS FIN. Une alarme non
+// bouclée (loopAudio: false) s'arrête d'elle-même quand son audio se termine : le paquet coupe
+// alors le son, la vibration et la notification, comme le bouton « Arrêter ». Pour obtenir « 3
+// sonneries puis silence », même si l'application est tuée, on joue donc UN fichier qui contient
+// le son répété N fois : tout est géré par le service natif, sans minuteur Dart (qui ne survivrait
+// pas à l'arrêt de l'application).
+//
+// Pour que les raccords soient propres, l'étiquette ID3v2 du début n'est conservée qu'une seule
+// fois et l'étiquette ID3v1 de fin n'est pas recopiée. Testé : adhan.mp3 x3 et adhan_fajr.mp3 x3
+// se décodent en entier, sans erreur, avec exactement 3 fois la durée d'origine.
+int _debutAudioMp3(Uint8List b) {
+  if (b.length > 10 && b[0] == 0x49 && b[1] == 0x44 && b[2] == 0x33) {
+    final int taille = ((b[6] & 0x7f) << 21) |
+        ((b[7] & 0x7f) << 14) |
+        ((b[8] & 0x7f) << 7) |
+        (b[9] & 0x7f);
+    final bool pied = (b[5] & 0x10) != 0;
+    final int fin = 10 + taille + (pied ? 10 : 0);
+    if (fin < b.length) {
+      return fin;
+    }
+  }
+  return 0;
+}
+
+int _finAudioMp3(Uint8List b) {
+  if (b.length > 128 &&
+      b[b.length - 128] == 0x54 &&
+      b[b.length - 127] == 0x41 &&
+      b[b.length - 126] == 0x47) {
+    return b.length - 128;
+  }
+  return b.length;
+}
+
+Uint8List _repeterMp3(Uint8List original, int fois) {
+  if (fois <= 1) {
+    return original;
+  }
+  final int debut = _debutAudioMp3(original);
+  final int fin = _finAudioMp3(original);
+  final int longueur = fin - debut;
+  final Uint8List sortie = Uint8List(debut + longueur * fois);
+  sortie.setRange(0, debut, original, 0);
+  for (int i = 0; i < fois; i++) {
+    sortie.setRange(
+      debut + i * longueur,
+      debut + (i + 1) * longueur,
+      original,
+      debut,
+    );
+  }
+  return sortie;
+}
+
+int _borner(int valeur, int minimum, int maximum) {
+  if (valeur < minimum) {
+    return minimum;
+  }
+  if (valeur > maximum) {
+    return maximum;
+  }
+  return valeur;
+}
 
 class HayaatiAlarmService extends FletService {
   HayaatiAlarmService({required super.control});
@@ -106,21 +175,38 @@ class HayaatiAlarmService extends FletService {
   /// Le fichier est mis en cache dans le dossier de support de l'app.
   /// Au démarrage suivant, s'il existe déjà et n'est pas vide, on le
   /// réutilise directement sans relire le bundle.
-  Future<String> _ensureAudioFileExtracted(String assetKey) async {
+  Future<String> _ensureAudioFileExtracted(
+    String assetKey, {
+    int repeat = 1,
+  }) async {
     final dir = await getApplicationSupportDirectory();
     final fileName = assetKey.split('/').last;
-    final file = File('${dir.path}/$fileName');
+    // 10/10/2026 : repeat > 1 => on écrit un fichier qui contient le son répété `repeat` fois
+    // (adhan_x3_v1.mp3 pour 3). Le nom change avec le nombre de répétitions, donc un ancien fichier
+    // d'un seul passage n'est jamais réutilisé par erreur.
+    String targetName = fileName;
+    if (repeat > 1) {
+      final int point = fileName.lastIndexOf('.');
+      final String base = point > 0 ? fileName.substring(0, point) : fileName;
+      final String ext = point > 0 ? fileName.substring(point) : '';
+      targetName = '${base}_x${repeat}_v1$ext';
+    }
+    final file = File('${dir.path}/$targetName');
 
     if (await file.exists() && await file.length() > 0) {
       return file.path;
     }
 
     final byteData = await rootBundle.load(assetKey);
+    Uint8List bytes = byteData.buffer.asUint8List(
+      byteData.offsetInBytes,
+      byteData.lengthInBytes,
+    );
+    if (repeat > 1) {
+      bytes = _repeterMp3(bytes, repeat);
+    }
     await file.writeAsBytes(
-      byteData.buffer.asUint8List(
-        byteData.offsetInBytes,
-        byteData.lengthInBytes,
-      ),
+      bytes,
       flush: true,
     );
     debugPrint(
@@ -160,15 +246,23 @@ class HayaatiAlarmService extends FletService {
         // réel. On extrait le fichier nous-mêmes avant de le transmettre
         // à AlarmSettings, plutôt que de laisser le paquet 'alarm' tenter
         // (et rater) cette extraction de son côté.
+        // 10/10/2026 : nombre de sonneries (1 = une seule). Au-delà de 1, le son est répété dans
+        // le fichier et loopAudio est forcé à false : l'alarme s'arrête seule à la fin.
+        final int repeatCount = _borner(
+          (args["repeatCount"] as num?)?.toInt() ?? 1,
+          1,
+          10,
+        );
         final resolvedAudioPath = await _ensureAudioFileExtracted(
           args["assetAudioPath"] as String,
+          repeat: repeatCount,
         );
 
         final settings = AlarmSettings(
           id: args["id"] as int,
           dateTime: DateTime.parse(args["dateTime"] as String),
           assetAudioPath: resolvedAudioPath,
-          loopAudio: args["loopAudio"] as bool? ?? true,
+          loopAudio: repeatCount > 1 ? false : (args["loopAudio"] as bool? ?? true),
           vibrate: args["vibrate"] as bool? ?? true,
           androidFullScreenIntent:
               args["androidFullScreenIntent"] as bool? ?? true,

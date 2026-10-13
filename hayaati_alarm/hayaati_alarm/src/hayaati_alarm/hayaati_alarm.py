@@ -86,8 +86,13 @@ class HayaatiAlarm(ft.Service):
         fade_duration: float | None = None,
         warning_notification_on_kill: bool = False,
         stop_button: str = "Arrêter",
+        repeat_count: int = 1,
     ) -> None:
         """Programme une alarme native.
+
+        repeat_count : nombre de sonneries (10/10/2026). 1 = le son une seule fois ; N > 1 = le son
+        joué N fois d'affilée puis arrêt automatique (loop_audio est alors ignoré). Voir
+        hayaati_alarm.dart, _repeterMp3().
 
         asset_audio_path est la clé d'asset Flutter COMPLÈTE, avec le
         préfixe du package (ex. 'packages/hayaati_alarm/assets/sounds/adhan.mp3'),
@@ -123,6 +128,7 @@ class HayaatiAlarm(ft.Service):
                 "title": title,
                 "body": body,
                 "stopButton": stop_button,
+                "repeatCount": repeat_count,
             },
         )
 
