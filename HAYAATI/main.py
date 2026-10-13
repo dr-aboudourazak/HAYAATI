@@ -164,6 +164,8 @@ def initialiser_application_flet(page: ft.Page):
     page.fonts = {
         "NotoSansArabic": "fonts/NotoSansArabic-Regular.ttf",
         "AmiriQuran": "fonts/AmiriQuran-Regular.ttf",
+        "HayaatiSignes": "fonts/HayaatiSignes-Regular.ttf",
+        "NotoNaskhArabic": "fonts/NotoNaskhArabic-Quran-Regular.ttf",
         "NotoSansSC": "fonts/NotoSansSC-Regular.ttf"
     }
 

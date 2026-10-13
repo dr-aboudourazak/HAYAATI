@@ -40,6 +40,11 @@ SIGNE_HIZB = "\u06de"       # ۞
 SIGNES_PAUSE = "\u06d6\u06d7\u06d8\u06d9\u06da\u06db"   # ۖ ۗ ۘ ۙ ۚ ۛ
 ESPACE_INSECABLE = "\u00a0"
 
+# Signes dessinés avec une police dédiée (HayaatiSignes) : la police du texte (Amiri Quran) dessine ۩
+# comme une fleur, alors que le signe connu des lecteurs est l'arche (niche) ; ۞ y est un astérisque
+# au lieu de l'octogramme à cercle du mushaf.
+SIGNES_ORNEMENTAUX = "\u06e9\u06de"
+
 # Parenthèses ornées du numéro de verset. ORDRE LOGIQUE, tel qu'il est écrit dans la chaîne : dans un
 # paragraphe de droite à gauche, le premier caractère s'affiche à DROITE. Avec ces valeurs on voit,
 # de gauche à droite, « ( ١٢ ) » : la parenthèse ouvrante à gauche, la fermante à droite, comme dans
@@ -223,6 +228,32 @@ def preparer_texte_affichage(texte: str) -> str:
             elif precedent == SIGNE_HIZB:
                 chars[i] = ESPACE_INSECABLE
     return "".join(chars)
+
+
+def decouper_signes(texte: str) -> list:
+    """Sépare les signes ornementaux du reste : [(morceau, est_signe), ...]. Sans signe : un seul
+    morceau. Le texte n'est pas modifié, seulement découpé (la concaténation redonne l'original)."""
+    morceaux, debut = [], 0
+    for i, c in enumerate(texte):
+        if c in SIGNES_ORNEMENTAUX:
+            if i > debut:
+                morceaux.append((texte[debut:i], False))
+            morceaux.append((c, True))
+            debut = i + 1
+    if debut < len(texte):
+        morceaux.append((texte[debut:], False))
+    return morceaux or [(texte, False)]
+
+
+def texte_verset(sourate: int, verset: int) -> Optional[str]:
+    """Texte arabe d'un verset, tel que stocké (verbatim)."""
+    donnees = charger_sourate(sourate)
+    if not donnees:
+        return None
+    for v in donnees["versets"]:
+        if v["numero"] == verset:
+            return v["texte"]
+    return None
 
 
 def segments_verset(texte: str, annotations: Optional[list], avec_tajweed: bool) -> list:

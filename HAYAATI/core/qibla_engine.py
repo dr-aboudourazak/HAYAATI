@@ -289,6 +289,15 @@ class FiltreBoussole:
     téléphone) et n'est pas utilisée pour recaler le cap — le gyroscope
     continue seul jusqu'à la prochaine lecture plausible."""
 
+    LECTURES_STABLES_POUR_NOUVELLE_REFERENCE = 25
+    """Nombre de lectures magnétomètre écartées d'affilée (~5 s à 5 Hz) qui doivent former un palier
+    stable pour être adoptées comme nouvelle référence (voir calculer_cap)."""
+    DISPERSION_MAX_NOUVELLE_REFERENCE = 0.10
+    """Écart relatif max (max - min) / médiane de ces lectures pour parler de palier stable."""
+    NORME_TERRESTRE_MIN_UT = 15.0
+    NORME_TERRESTRE_MAX_UT = 90.0
+    """Plage plausible (µT) d'un champ terrestre mesuré ; au-delà, on ne se cale pas dessus."""
+
     def __init__(self, alpha_accel: float = 0.12, alpha_cap: float = 0.25):
         self.alpha_accel = alpha_accel
         self.alpha_cap = alpha_cap
@@ -296,6 +305,7 @@ class FiltreBoussole:
         self._norme_mag_ref: Optional[float] = None
         self._cap_fusion: Optional[float] = None
         self._gyro_horodatage = None
+        self._normes_rejetees: list = []   # normes des lectures écartées d'affilée
 
     def _lisser_accel(self, ax: float, ay: float, az: float) -> tuple[float, float, float]:
         if self._accel_lisse is None:
@@ -357,6 +367,34 @@ class FiltreBoussole:
         ratio = (norme_mag / self._norme_mag_ref) if self._norme_mag_ref > 1e-6 else 1.0
         fiable = (1.0 / self.SEUIL_ANOMALIE_MAGNETIQUE_RATIO) <= ratio <= self.SEUIL_ANOMALIE_MAGNETIQUE_RATIO
 
+        # --- 10/10/2026 : sortie de l'impasse « référence magnétique bloquée » -----------
+        # BUG CORRIGÉ. La référence de norme (_norme_mag_ref) n'était mise à jour QUE par des
+        # lectures jugées fiables, c'est-à-dire déjà proches d'elle. Si l'intensité mesurée
+        # changeait durablement de plus de 35 % (voyage : le champ terrestre vaut ~33 µT près de
+        # l'équateur et ~48 µT en Europe, soit 1,45 ; ou nouvel étalonnage du magnétomètre après
+        # le geste en huit ; ou toute première lecture faussée), TOUTES les lectures suivantes
+        # étaient écartées pour toujours : le cap ne reposait plus que sur le gyroscope, qui
+        # dérive, et seul un redémarrage de l'application remettait la référence à zéro. Le geste
+        # en huit « corrigeait » ou « aggravait » selon qu'il laissait l'intensité dans la
+        # fenêtre des 35 % ou la faisait sortir.
+        # Règle ajoutée : si les lectures écartées forment pendant ~5 s un NOUVEAU palier STABLE
+        # (dispersion <= 10 %) et plausible comme champ terrestre, c'est un changement durable
+        # (lieu, étalonnage) et non une perturbation passagère (véhicule, haut-parleur : leurs
+        # valeurs fluctuent). La référence est alors reprise et le cap est recalé franchement sur
+        # le magnétomètre, puisque le gyroscope seul a dérivé depuis.
+        if fiable:
+            self._normes_rejetees.clear()
+        else:
+            self._normes_rejetees.append(norme_mag)
+            if len(self._normes_rejetees) > self.LECTURES_STABLES_POUR_NOUVELLE_REFERENCE:
+                del self._normes_rejetees[0]
+            nouvelle_reference = self._nouvelle_reference_si_stable()
+            if nouvelle_reference is not None:
+                self._norme_mag_ref = nouvelle_reference
+                self._normes_rejetees.clear()
+                self._cap_fusion = cap_brut
+                return self._cap_fusion
+
         if self._cap_fusion is None:
             # Tout premier recalage : rien à fusionner encore, on démarre
             # directement sur la lecture magnétomètre.
@@ -364,15 +402,27 @@ class FiltreBoussole:
         elif fiable:
             ecart = ((cap_brut - self._cap_fusion + 540.0) % 360.0) - 180.0
             self._cap_fusion = (self._cap_fusion + self.alpha_cap * ecart) % 360.0
-        # sinon (anomalie détectée) : _cap_fusion n'est PAS touché ici —
-        # il continue d'avancer via integrer_gyroscope() jusqu'au prochain
-        # recalage magnétomètre jugé plausible.
+        # sinon (anomalie passagère) : _cap_fusion n'est PAS touché ici, il continue d'avancer
+        # via integrer_gyroscope() jusqu'au prochain recalage magnétomètre jugé plausible.
 
         if fiable:
-            # Référence mise à jour lentement, et seulement sur des
-            # lectures jugées fiables, pour suivre une dérive légitime
-            # (latitude différente, etc.) sans se faire polluer par une
-            # perturbation ponctuelle qu'on vient justement d'écarter.
+            # Référence mise à jour lentement, et seulement sur des lectures jugées fiables,
+            # pour suivre une dérive légitime sans se faire polluer par une perturbation
+            # ponctuelle ; les changements brusques et durables passent par la règle ci-dessus.
             self._norme_mag_ref = 0.98 * self._norme_mag_ref + 0.02 * norme_mag
 
         return self._cap_fusion
+
+    def _nouvelle_reference_si_stable(self) -> Optional[float]:
+        """Médiane des dernières normes écartées si elles forment un palier stable et plausible
+        comme champ terrestre ; None sinon (perturbation passagère : on continue sur le gyroscope)."""
+        n = self.LECTURES_STABLES_POUR_NOUVELLE_REFERENCE
+        if len(self._normes_rejetees) < n:
+            return None
+        valeurs = sorted(self._normes_rejetees)
+        mediane = valeurs[len(valeurs) // 2]
+        if not (self.NORME_TERRESTRE_MIN_UT <= mediane <= self.NORME_TERRESTRE_MAX_UT):
+            return None
+        if (valeurs[-1] - valeurs[0]) / mediane > self.DISPERSION_MAX_NOUVELLE_REFERENCE:
+            return None
+        return mediane

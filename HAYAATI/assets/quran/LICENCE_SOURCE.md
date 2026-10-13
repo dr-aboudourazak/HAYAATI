@@ -55,3 +55,12 @@ Amiri Quran, Copyright 2010-2022 The Amiri Quran Project Authors
 assets/fonts/OFL_AmiriQuran.txt.
 
 Données régénérées le 08/10/2026 (lot 6).
+
+
+## Polices supplémentaires (lots 8 et 9)
+- HayaatiSignes : sous-ensemble de 2 glyphes (U+06E9 place de la sajda, U+06DE signe de hizb) extrait de
+  Noto Naskh Arabic, utilisé uniquement pour ces deux signes (Amiri Quran dessine U+06E9 comme une
+  fleur). Copyright 2022 The Noto Project Authors, licence SIL Open Font License 1.1
+  (assets/fonts/OFL_HayaatiSignes_NotoNaskh.txt).
+- Noto Naskh Arabic : sous-ensemble limité aux caractères du texte coranique (31 Ko), proposé comme
+  seconde police de lecture. Même licence (assets/fonts/OFL_NotoNaskhArabic.txt).

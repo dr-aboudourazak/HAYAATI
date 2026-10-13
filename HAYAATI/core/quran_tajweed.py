@@ -49,5 +49,24 @@ def indice_famille(code: int) -> int:
     return -1
 
 
-def couleur_famille(indice: int) -> str | None:
-    return FAMILLES[indice][1] if 0 <= indice < len(FAMILLES) else None
+# Variantes plus foncées, utilisées sur le fond jaune d'un verset surligné : l'orange et le gris
+# n'y atteignent pas un contraste lisible (2,4 et 2,1 pour 1), leurs variantes y atteignent ~4,5.
+VARIANTE_SUR_SURLIGNAGE = {"#EF6C00": "#BF360C", "#9E9E9E": "#616161"}
+_VARIANTE_INVERSE = {v: k for k, v in VARIANTE_SUR_SURLIGNAGE.items()}
+
+
+def couleur_famille(indice: int, sur_surlignage: bool = False) -> str | None:
+    if not (0 <= indice < len(FAMILLES)):
+        return None
+    couleur = FAMILLES[indice][1]
+    return VARIANTE_SUR_SURLIGNAGE.get(couleur, couleur) if sur_surlignage else couleur
+
+
+def avec_surlignage(couleur: str) -> str:
+    """Couleur à utiliser pour un texte de cette couleur lorsqu'il passe sur le surlignage."""
+    return VARIANTE_SUR_SURLIGNAGE.get(couleur, couleur)
+
+
+def sans_surlignage(couleur: str) -> str:
+    """Opération inverse : retrouve la couleur d'origine quand le surlignage disparaît."""
+    return _VARIANTE_INVERSE.get(couleur, couleur)

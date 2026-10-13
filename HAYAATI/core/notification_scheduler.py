@@ -101,6 +101,21 @@ class NotificationScheduler:
     # exposés au système d'assets natif que consulte le paquet 'alarm'.
     # Preuve : le fichier compilé faisait 77 Mo avec ou sans les mp3, et
     # adhan.mp3 était absent de build/flutter/assets/sounds/ après build.
+    # 🆕 10/10/2026 : l'alarme NE BOUCLE PLUS indéfiniment. Elle joue le fichier audio NB_SONNERIES_MAX
+    # fois d'affilée (répétition faite par l'extension hayaati_alarm) puis s'arrête seule : audio,
+    # vibration et notification. Durées totales : adhan.mp3 (1 min 28) x 3 = 4 min 25 ;
+    # adhan_fajr.mp3 (4 min 52) x 3 = 14 min 36. Pour réduire un son précis, par exemple le Fajr :
+    #     NB_SONNERIES_PAR_SON = {"adhan_fajr.mp3": 2}
+    NB_SONNERIES_MAX = 3
+    NB_SONNERIES_PAR_SON: dict = {}
+
+    def _nb_sonneries(self, son) -> int:
+        nom = str(son).replace("\\", "/").split("/")[-1]
+        try:
+            return max(1, int(self.NB_SONNERIES_PAR_SON.get(nom, self.NB_SONNERIES_MAX)))
+        except (TypeError, ValueError):
+            return 3
+
     DEFAULT_PRAYER_PREFS = {
         "fajr":    {"enabled": True,  "sound": "packages/hayaati_alarm/assets/sounds/adhan_fajr.mp3", "volume": 1.0, "vibrate": True},
         "sunrise": {"enabled": False, "sound": "packages/hayaati_alarm/assets/sounds/adhan.mp3",      "volume": 0.5, "vibrate": False},
@@ -451,7 +466,8 @@ class NotificationScheduler:
                 asset_audio_path=son,
                 title=str(title),
                 body=str(body),
-                loop_audio=True,
+                loop_audio=False,   # 10/10/2026 : plus de boucle sans fin
+                repeat_count=self._nb_sonneries(son),
                 vibrate=vib,
                 full_screen_intent=True,
                 volume=vol,

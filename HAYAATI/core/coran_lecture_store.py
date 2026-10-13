@@ -8,9 +8,11 @@ lit aussi sans être connecté.
 Contenu :
   mode          "page" (feuilletage latéral, un écran = une page de mushaf) ou "liste" (défilement continu)
   taille        taille du texte coranique
+  police        "amiri" (Amiri Quran) ou "naskh" (Noto Naskh Arabic) : police du texte coranique
+  entete_replie en-tête de lecture replié (plus de place pour la page) ou déployé
   tajweed       couleurs du tajweed allumées ou non
   derniere_page dernière page de mushaf affichée (pour « Reprendre la lecture »)
-  signets       pages marquées
+  signets       signets : une page (marqueur de page) ou un VERSET précis (sourate + verset + page)
   pages_lues    pages comptées comme lues (voir marquer_page_lue)
 
 Ce module ne dépend pas de Flet (testable seul). Toute erreur de lecture ou d'écriture est
@@ -28,9 +30,11 @@ _DEFAUTS = {
     "version": 1,
     "mode": "page",
     "taille": 20,
+    "police": "amiri",
+    "entete_replie": False,
     "tajweed": False,
     "derniere_page": None,
-    "signets": [],
+    "signets": [],          # [{"p": page}, {"p": page, "s": sourate, "v": verset}, ...]
     "pages_lues": [],
 }
 
@@ -60,14 +64,39 @@ def _nettoyer(brut: dict) -> dict:
         etat["mode"] = brut["mode"]
     if brut.get("taille") in TAILLES_VALIDES:
         etat["taille"] = brut["taille"]
+    if brut.get("police") in ("amiri", "naskh"):
+        etat["police"] = brut["police"]
+    etat["entete_replie"] = bool(brut.get("entete_replie", False))
     etat["tajweed"] = bool(brut.get("tajweed", False))
     if _page_valide(brut.get("derniere_page")):
         etat["derniere_page"] = brut["derniere_page"]
     if isinstance(brut.get("signets"), list):
-        etat["signets"] = sorted({p for p in brut["signets"] if _page_valide(p)})
+        etat["signets"] = _nettoyer_signets(brut["signets"])
     if isinstance(brut.get("pages_lues"), list):
         etat["pages_lues"] = sorted({p for p in brut["pages_lues"] if _page_valide(p)})
     return etat
+
+
+def _nettoyer_signets(liste: list) -> list:
+    """Accepte l'ancien format (liste de numéros de page) et le nouveau (dictionnaires)."""
+    propres, vus = [], set()
+    for brut in liste:
+        if _page_valide(brut):                       # ancien format : un signet de page
+            entree = {"p": brut}
+        elif isinstance(brut, dict) and _page_valide(brut.get("p")):
+            entree = {"p": brut["p"]}
+            s_, v_ = brut.get("s"), brut.get("v")
+            if isinstance(s_, int) and isinstance(v_, int) and not isinstance(s_, bool) \
+                    and not isinstance(v_, bool) and 1 <= s_ <= 114 and 1 <= v_ <= 286:
+                entree["s"], entree["v"] = s_, v_
+        else:
+            continue
+        cle = (entree["p"], entree.get("s"), entree.get("v"))
+        if cle not in vus:
+            vus.add(cle)
+            propres.append(entree)
+    propres.sort(key=lambda e: (e["p"], e.get("v", 0)))
+    return propres
 
 
 def charger() -> dict:
@@ -111,6 +140,10 @@ def definir(cle: str, valeur) -> None:
         return
     if cle == "taille" and valeur not in TAILLES_VALIDES:
         return
+    if cle == "police" and valeur not in ("amiri", "naskh"):
+        return
+    if cle in ("entete_replie", "tajweed"):
+        valeur = bool(valeur)
     if etat.get(cle) == valeur:
         return
     etat[cle] = valeur
@@ -118,28 +151,59 @@ def definir(cle: str, valeur) -> None:
 
 
 # ---------------------------------------------------------------- signets
+def _trouver(etat: dict, page: int, sourate=None, verset=None):
+    for e in etat["signets"]:
+        if e["p"] == page and e.get("s") == sourate and e.get("v") == verset:
+            return e
+    return None
+
+
 def est_signet(page: int) -> bool:
-    return page in charger()["signets"]
+    """Signet de PAGE (marqueur de page entière)."""
+    return _trouver(charger(), page) is not None
+
+
+def est_signet_verset(sourate: int, verset: int) -> bool:
+    return any(e.get("s") == sourate and e.get("v") == verset for e in charger()["signets"])
 
 
 def basculer_signet(page: int) -> bool:
-    """Ajoute ou retire le signet de la page. Retourne True si le signet existe après l'appel."""
+    """Ajoute ou retire le signet de PAGE. Retourne True si le signet existe après l'appel."""
     if not _page_valide(page):
         return False
     etat = charger()
-    if page in etat["signets"]:
-        etat["signets"].remove(page)
+    existant = _trouver(etat, page)
+    if existant is not None:
+        etat["signets"].remove(existant)
         ajoute = False
     else:
-        etat["signets"].append(page)
-        etat["signets"].sort()
+        etat["signets"].append({"p": page})
+        etat["signets"].sort(key=lambda e: (e["p"], e.get("v", 0)))
+        ajoute = True
+    sauvegarder()
+    return ajoute
+
+
+def basculer_signet_verset(sourate: int, verset: int, page: int) -> bool:
+    """Ajoute ou retire le signet d'un VERSET précis. Retourne True s'il existe après l'appel."""
+    if not _page_valide(page):
+        return False
+    etat = charger()
+    existant = _trouver(etat, page, sourate, verset)
+    if existant is not None:
+        etat["signets"].remove(existant)
+        ajoute = False
+    else:
+        etat["signets"].append({"p": page, "s": sourate, "v": verset})
+        etat["signets"].sort(key=lambda e: (e["p"], e.get("v", 0)))
         ajoute = True
     sauvegarder()
     return ajoute
 
 
 def signets() -> list:
-    return list(charger()["signets"])
+    """Copie de tous les signets, triés par page puis par verset."""
+    return [dict(e) for e in charger()["signets"]]
 
 
 # ---------------------------------------------------------------- progression

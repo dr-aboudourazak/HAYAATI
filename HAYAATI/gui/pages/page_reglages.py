@@ -408,7 +408,8 @@ class PageReglages(ft.Container):
                     asset_audio_path="packages/hayaati_alarm/assets/sounds/adhan.mp3",
                     title="🔔 Test HAYAATI",
                     body="Ceci est une alarme de test (10 secondes).",
-                    loop_audio=True,
+                    loop_audio=False,   # 10/10/2026 : le test joue l'adhan une seule fois
+                    repeat_count=1,
                     vibrate=True,
                     full_screen_intent=True,
                     volume=1.0,
