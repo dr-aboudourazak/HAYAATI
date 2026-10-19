@@ -10,6 +10,8 @@ from __future__ import annotations
 import flet as ft
 from gui.langues import DICTIONNAIRE_LANGUES
 from core import feedback_service
+from core import pays_devises
+from gui.components.selecteur_recherche import SelecteurRecherche
 
 
 class PageReglages(ft.Container):
@@ -65,11 +67,15 @@ class PageReglages(ft.Container):
 
         devise_init = getattr(self.app, "devise_active", "XOF")
         self.lbl_guide_devise = ft.Text(size=11, color="#4b5563")
-        self.cb_devise = ft.Dropdown(
-            options=[ft.dropdown.Option(d) for d in ["XOF", "GHS", "NGN", "USD", "EUR", "GNF", "MAD", "DZD", "TND", "MRU", "LYD", "SAR", "AED", "QAR", "ILS", "JOD", "INR"]],
-            height=44, text_size=13, bgcolor=ft.Colors.WHITE, value=str(devise_init),
-            content_padding=ft.Padding(left=10, top=6, right=10, bottom=6)
+        # 15/10/2026 : toutes les devises du monde, avec suggestions pendant la saisie (noms dans la langue
+        # de l'application) ; .value renvoie toujours le code ISO, comme l'ancien menu déroulant.
+        self.cb_devise = SelecteurRecherche(
+            rechercher=lambda q: pays_devises.chercher_devises(q, self._lang_ihm()),
+            libelle_de=lambda code: pays_devises.libelle_devise(code, self._lang_ihm()),
+            exact=lambda t: (str(t).strip().upper() if pays_devises.devise_valide(str(t).strip().upper()) else None),
+            rtl=(self._lang_ihm() == "ar"),
         )
+        self.cb_devise.definir(str(devise_init))
 
         self.lbl_guide_langue = ft.Text(size=11, color="#4b5563")
         m_index = DICTIONNAIRE_LANGUES.moteur_i18n.langues_disponibles_index if hasattr(DICTIONNAIRE_LANGUES, "moteur_i18n") else {}
@@ -553,7 +559,7 @@ class PageReglages(ft.Container):
         est_co = getattr(self.app, "est_mode_connecte", False)
         u = self.app.user_id_connecte if est_co else "INVITE"
 
-        d = self.cb_devise.value
+        d = self.cb_devise.value or getattr(self.app, "devise_active", "XOF")
         nom_langue_choisi = self.cb_langue.value
         m_index = DICTIONNAIRE_LANGUES.moteur_i18n.langues_disponibles_index
 
@@ -577,6 +583,19 @@ class PageReglages(ft.Container):
             pref["fiqh_defaut"] = f
             pref["arbitrage_nisab"] = cle_nisab
             pref["ajustement_hegiri"] = ajust
+
+            # 15/10/2026 : une devise DIFFÉRENTE de celle du pays du profil est un choix manuel, que
+            # l'enregistrement d'un profil (changement de pays) n'écrase plus.
+            if est_co:
+                try:
+                    profil_reg = self.app.sync_engine.charger_donnees_module(u, "PROFIL") or {}
+                    defaut_pays = pays_devises.devise_du_pays(profil_reg.get("pays_code"))
+                    manuelle = bool(defaut_pays) and d != defaut_pays
+                    if bool(profil_reg.get("devise_manuelle")) != manuelle:
+                        profil_reg["devise_manuelle"] = manuelle
+                        self.app.sync_engine.executer_sauvegarde_module(u, "PROFIL", profil_reg)
+                except Exception as exc:
+                    print(f"[REGLAGES] Mémorisation du choix manuel de devise impossible : {exc}")
 
             if est_co:
                 self.app.sync_engine.executer_sauvegarde_module("INVITE", "PREFERENCES", pref)
@@ -695,11 +714,17 @@ class PageReglages(ft.Container):
                 self.lbl_status.color = "#b91c1c"
                 self.update()
 
+    def _lang_ihm(self) -> str:
+        return str(getattr(self.app, "langue_actuelle", "FR")).lower()
+
     def changer_langue(self, n_lang: str):
         self.traduire_page(DICTIONNAIRE_LANGUES.actif)
 
     def actualiser_donnees_affichage(self):
-        self.cb_devise.value = self.app.devise_active
+        self.cb_devise.definir(self.app.devise_active)
+        self.cb_devise.actualiser_langue(
+            hint=str(DICTIONNAIRE_LANGUES.actif.get("reglages", {}).get("devise_recherche", "Tapez le nom ou le code de la devise…")),
+            rtl=(self._lang_ihm() == "ar"))
 
         m_index = DICTIONNAIRE_LANGUES.moteur_i18n.langues_disponibles_index
         code_courant = getattr(self.app, "langue_actuelle", "FR").upper()

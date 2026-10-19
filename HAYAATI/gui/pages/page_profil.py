@@ -5,6 +5,8 @@ Version Finale Intégrale Statique - Totalement compatible Flet 0.86.2, Python 3
 from __future__ import annotations
 import flet as ft
 from gui.langues import DICTIONNAIRE_LANGUES
+from core import pays_devises
+from gui.components.selecteur_recherche import SelecteurRecherche
 
 class PageProfil(ft.Container):
     def __init__(self, app_reference):
@@ -82,6 +84,24 @@ class PageProfil(ft.Container):
                 
                 cellule_formulaire = ft.Container(
                     content=ft.Column([self.labels[c], self.c_date_triple], spacing=6), col={"xs": 12, "md": 6}
+                )
+                self.grille_profil.controls.append(cellule_formulaire)
+            elif c == "pays":
+                # 15/10/2026 : sélecteur avec suggestions pendant la saisie (tous les pays du monde).
+                # entries["pays"] reste le TextField du sélecteur : le reste du code lit toujours .value.
+                self.selecteur_pays = SelecteurRecherche(
+                    rechercher=lambda q: [p["c"] for p in pays_devises.chercher_pays(q, self._lang())],
+                    libelle_de=lambda code: pays_devises.nom_pays(code, self._lang()),
+                    exact=pays_devises.deviner_pays,
+                    on_select=lambda code: self._maj_devise_associee(),
+                    rtl=(self._lang() == "ar"),
+                )
+                self.entries[c] = self.selecteur_pays.champ
+                setattr(self, f"en_{c}", self.entries[c])
+                self.lbl_devise_pays = ft.Text("", size=11, color="#4b5563", italic=True)
+                cellule_formulaire = ft.Container(
+                    content=ft.Column([self.labels[c], self.selecteur_pays, self.lbl_devise_pays], spacing=6),
+                    col={"xs": 12, "md": 6},
                 )
                 self.grille_profil.controls.append(cellule_formulaire)
             else:
@@ -165,6 +185,7 @@ class PageProfil(ft.Container):
         if not dic:
             return
         p = dic.get("profil", {})
+        self._actualiser_selecteur_pays(p)
         
         self.lbl_cadre_status.value = str(p.get("titre_vue", "Profil"))
         self.lbl_info_id.value = f"{p.get('lbl_identifiant', 'ID :')} {getattr(self.app, 'user_id_connecte', '-')}"
@@ -199,6 +220,80 @@ class PageProfil(ft.Container):
             try: self.update()
             except Exception: pass
 
+    # ------------------------------------------------------------------
+    # 15/10/2026 : PAYS (sélecteur avec suggestions) et DEVISE automatique
+    # ------------------------------------------------------------------
+    def _lang(self) -> str:
+        return str(getattr(self.app, "langue_actuelle", "FR")).lower()
+
+    def _maj_ctrl(self, *controles):
+        for c in controles:
+            try:
+                c.update()
+            except Exception:
+                pass
+
+    def _actualiser_selecteur_pays(self, p: dict):
+        """Changement de langue : réécrit le nom du pays choisi et l'invite de saisie."""
+        sel = getattr(self, "selecteur_pays", None)
+        if sel is None:
+            return
+        sel.actualiser_langue(hint=str(p.get("pays_recherche", "Tapez le nom du pays…")), rtl=(self._lang() == "ar"))
+        self._maj_devise_associee()
+
+    def _maj_devise_associee(self):
+        """« Devise associée : XOF - franc CFA » sous le champ (information ; appliquée à l'enregistrement)."""
+        if not hasattr(self, "lbl_devise_pays"):
+            return
+        devise = pays_devises.devise_du_pays(self.selecteur_pays.value)
+        modele = DICTIONNAIRE_LANGUES.actif.get("profil", {}).get("pays_devise_associee", "Devise associée : {devise}")
+        self.lbl_devise_pays.value = (
+            modele.replace("{devise}", pays_devises.libelle_devise(devise, self._lang())) if devise else "")
+        self._maj_ctrl(self.lbl_devise_pays)
+
+    def _charger_pays(self, donnees_profil: dict):
+        brut = str(donnees_profil.get("pays", "") or "")
+        texte = "" if brut.strip() in ("", "-") else brut
+        code = donnees_profil.get("pays_code") or pays_devises.deviner_pays(texte)
+        if code:
+            self.selecteur_pays.definir(code)
+        else:
+            self.selecteur_pays.definir_texte_libre(texte)
+        self._maj_devise_associee()
+
+    def _appliquer_devise_pays(self, u_id, code_pays):
+        """Applique la devise du pays (réglage, application et base). Retourne le code de la devise
+        appliquée, ou None : pas de pays, devise choisie à la main dans les Réglages (conservée), ou
+        déjà à jour."""
+        devise = pays_devises.devise_du_pays(code_pays)
+        sync = getattr(self.app, "sync_engine", None)
+        if not devise or not sync:
+            return None
+        try:
+            profil = sync.charger_donnees_module(u_id, "PROFIL") or {}
+            if profil.get("devise_manuelle"):
+                return None
+            pref = sync.charger_donnees_module(u_id, "PREFERENCES") or {}
+            if str(pref.get("devise_defaut", "")).upper() == devise and getattr(self.app, "devise_active", None) == devise:
+                return None
+            pref["devise_defaut"] = devise
+            sync.executer_sauvegarde_module("INVITE", "PREFERENCES", pref)
+            sync.executer_sauvegarde_module(u_id, "PREFERENCES", pref)
+            self.app.devise_active = devise
+            try:
+                import sqlite3
+                from gui.pages.page_onboarding_alerts import obtenir_chemin_base_donnees
+                conn = sqlite3.connect(obtenir_chemin_base_donnees())
+                conn.execute("UPDATE comptes_utilisateurs SET devise_defaut = ? WHERE user_id = ?", (devise, str(u_id)))
+                conn.commit()
+                conn.close()
+            except Exception as exc:
+                print(f"[PROFIL] Devise du pays non enregistrée en base : {exc}")
+            return devise
+        except Exception as exc:
+            print(f"[PROFIL] Application de la devise du pays impossible : {exc}")
+            return None
+
     def sauvegarder_profil_disque(self):
         """Enregistre l'ensemble des données d'identité dans l'espace chiffré et synchronise l'âge."""
         if not getattr(self.app, "est_mode_connecte", False):
@@ -214,6 +309,17 @@ class PageProfil(ft.Container):
             
             # 1. Compilation des champs textes standard depuis les TextField Flet
             profil_dict = {c: self.entries[c].value.strip() for c in self.cles_champs if c in self.entries}
+            # 15/10/2026 : le pays est mémorisé par son CODE ISO ; le nom est écrit dans la langue courante
+            # (il sert aux certificats PDF). devise_manuelle (posée par la page Réglages) est conservée.
+            code_pays = self.selecteur_pays.value or pays_devises.deviner_pays(profil_dict.get("pays", ""))
+            profil_dict["pays_code"] = code_pays or ""
+            if code_pays:
+                profil_dict["pays"] = pays_devises.nom_pays(code_pays, self._lang())
+            try:
+                ancien_profil = self.app.sync_engine.charger_donnees_module(u_id, "PROFIL") or {}
+                profil_dict["devise_manuelle"] = bool(ancien_profil.get("devise_manuelle", False))
+            except Exception:
+                profil_dict["devise_manuelle"] = False
             
             # 2. Reconstitution de la date sécurisée depuis les 3 Dropdowns (Format AAAA-MM-DD)
             date_formatee = f"{self.cb_annee.value}-{self.cb_mois.value}-{self.cb_jour.value}"
@@ -242,7 +348,11 @@ class PageProfil(ft.Container):
             conn.close()
             # =====================================================================
                 
+            devise_appliquee = self._appliquer_devise_pays(u_id, profil_dict.get("pays_code"))
             self.lbl_status.value = str(p.get("status_ok_profil", "✓ Profil mis à jour."))
+            if devise_appliquee:
+                self.lbl_status.value += "  " + str(p.get("pays_devise_appliquee", "Devise ajustée : {devise}")).replace(
+                    "{devise}", pays_devises.libelle_devise(devise_appliquee, self._lang()))
             self.c_notif.bgcolor = "#d1fae5"
             self.lbl_status.color = "#064e3b"
             
@@ -286,6 +396,7 @@ class PageProfil(ft.Container):
                 if c != "birth" and c in donnees_profil and c in self.entries:
                     self.entries[c].value = str(donnees_profil.get(c, "-"))
             
+            self._charger_pays(donnees_profil)      # 15/10/2026 : pays = sélecteur (code ISO)
             # Découpage et réinjection de la date mémorisée dans les Dropdowns Flet
             date_sauvegardee = donnees_profil.get("birth", "2000-01-01")
             if "-" in date_sauvegardee and len(date_sauvegardee.split("-")) == 3:
