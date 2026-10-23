@@ -19,7 +19,10 @@
   "encyclopedie": "📚 الموسوعة",
   "madrassa_hub": "🏫 المدرسة الشرعية",
   "qiblah": "🕋 الصلاة",
-  "coran": "📖 القرآن"
+  "coran": "📖 القرآن",
+  "alansar_hub": "🤝 الأنصار",
+  "calculs_hub": "🧮 الحسابات",
+  "mon_espace_hub": "👤 مساحتي"
  },
  "barre_outils": {
   "titre_app": "🕌 حَيَاتِي",
@@ -5332,5 +5335,23 @@
   "mot_versets": "آية",
   "revelation_meccane": "مكية",
   "revelation_medinoise": "مدنية"
+ },
+ "al_ansar": {
+  "titre": "الأنصار",
+  "apprendre": "تعلّم",
+  "boutique": "المتجر",
+  "accompagnement": "المرافقة",
+  "mosquees": "المساجد القريبة",
+  "chercher_ailleurs": "ابحث في مكان آخر",
+  "changer": "تغيير",
+  "contacter": "تواصل عبر واتساب",
+  "itineraire": "الاتجاهات",
+  "jumua": "الجمعة",
+  "autour_de_moi": "بالقرب مني",
+  "hadj_omra": "الحج والعمرة",
+  "hadj": "الحج",
+  "omra": "العمرة",
+  "proposer_mosquee": "اقتراح مسجد",
+  "corriger_position": "تصحيح الموقع"
  }
 }

@@ -39,6 +39,8 @@ from gui.pages.page_encyclopedie import PageEncyclopedie
 from gui.pages.page_langue_arabe import PageLangueArabe
 from gui.pages.page_sciences_islamiques import PageSciencesIslamiques
 from gui.pages.page_madrassa import PageMadrassa
+from gui.pages.page_alansar import PageAlAnsar
+from gui.pages.page_hub_simple import PageCalculs, PageMonEspace
 from gui.pages.page_priere import PagePriere
 from gui.pages.page_coran import EcranCoran
 
@@ -71,6 +73,9 @@ class OrganisateurLayout(ft.Container):
             "LANGUE_ARABE": PageLangueArabe,
             "SCIENCES_ISLAMIQUES": PageSciencesIslamiques,
             "MADRASSA": PageMadrassa,
+            "ALANSAR": PageAlAnsar,
+            "CALCULS": PageCalculs,
+            "MON_ESPACE": PageMonEspace,
             "PRIERE": PagePriere,
             "CORAN": EcranCoran,
         }

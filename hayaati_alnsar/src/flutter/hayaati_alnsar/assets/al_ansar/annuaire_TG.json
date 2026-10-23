@@ -1,0 +1,515 @@
+{
+  "version_schema": 1,
+  "version_donnees": 4,
+  "genere_le": "2026-10-19T12:00:00Z",
+  "pays": "TG",
+  "modules_actifs": [
+    "apprendre",
+    "boutique",
+    "accompagnement",
+    "hadj_omra"
+  ],
+  "fiches": [
+    {
+      "id": "tg-dapaong-mad-001",
+      "exemple": true,
+      "type": "madrassa",
+      "nature": "personne_morale",
+      "nom": "Madrassa d'exemple de Dapaong",
+      "nom_ar": "مدرسة المثال بدابونغ",
+      "description": {
+        "fr": "Cours de Coran, de fiqh et d'arabe pour enfants et adultes, en soirée et le week-end.",
+        "en": "Quran, fiqh and Arabic classes for children and adults, evenings and weekends."
+      },
+      "langues_parlees": [
+        "fr",
+        "ha",
+        "ar"
+      ],
+      "lieu": {
+        "ville_id": "tg-dapaong",
+        "quartier": "Centre",
+        "precision_adresse": "approximative",
+        "gps": {
+          "lat": 10.8627,
+          "lon": 0.2076
+        }
+      },
+      "contacts": {
+        "whatsapp": "+22890000001"
+      },
+      "verification": {
+        "niveau": 1,
+        "verifie_par": "pf-dapaong-01",
+        "date": "2026-10-20",
+        "details": [
+          "contact_teste"
+        ]
+      },
+      "formule": "gratuite",
+      "membre_fondateur": true,
+      "statut": "brouillon",
+      "consentement_publication": {
+        "date": "2026-10-18",
+        "par": "Responsable d'exemple"
+      },
+      "madrassa": {
+        "publics": [
+          "enfants",
+          "adultes"
+        ],
+        "disciplines": [
+          "coran_tajweed",
+          "fiqh",
+          "arabe"
+        ],
+        "ecole_juridique": "maliki",
+        "langue_enseignement": [
+          "fr",
+          "ha"
+        ],
+        "modalite": "presentiel",
+        "places_disponibles": 40,
+        "enseignants": [
+          {
+            "nom": "Enseignant d'exemple",
+            "qualification": "Licence en sciences islamiques"
+          }
+        ]
+      },
+      "maj_le": "2026-10-19T12:00:00Z"
+    },
+    {
+      "id": "tg-cinkasse-lib-001",
+      "exemple": true,
+      "type": "librairie",
+      "nature": "personne_physique",
+      "nom": "Librairie d'exemple de Cinkassé",
+      "description": {
+        "fr": "Livres islamiques, tapis de prière et produits naturels.",
+        "en": "Islamic books, prayer mats and natural products."
+      },
+      "langues_parlees": [
+        "fr",
+        "ha"
+      ],
+      "lieu": {
+        "ville_id": "tg-cinkasse",
+        "precision_adresse": "approximative"
+      },
+      "contacts": {
+        "whatsapp": "+22890000002",
+        "telephone": "+22890000002"
+      },
+      "verification": {
+        "niveau": 0
+      },
+      "formule": "gratuite",
+      "membre_fondateur": true,
+      "statut": "brouillon",
+      "consentement_publication": {
+        "date": "2026-10-18",
+        "par": "Vendeur d'exemple"
+      },
+      "maj_le": "2026-10-19T12:00:00Z",
+      "zone_service": {
+        "villes": [
+          "tg-dapaong"
+        ]
+      }
+    },
+    {
+      "id": "tg-lome-spe-001",
+      "exemple": true,
+      "type": "specialiste",
+      "nature": "personne_morale",
+      "nom": "Cabinet d'exemple, succession et héritage",
+      "description": {
+        "fr": "Accompagnement pour le partage d'une succession selon le droit civil et les règles du droit musulman.",
+        "en": "Support for estate sharing under civil law and Islamic law rules."
+      },
+      "langues_parlees": [
+        "fr",
+        "en",
+        "ha"
+      ],
+      "lieu": {
+        "ville_id": "tg-lome",
+        "quartier": "Tokoin",
+        "precision_adresse": "approximative"
+      },
+      "contacts": {
+        "whatsapp": "+22890000003",
+        "email": "contact@exemple.invalid"
+      },
+      "verification": {
+        "niveau": 2,
+        "verifie_par": "admin-01",
+        "date": "2026-10-21",
+        "details": [
+          "contact_teste",
+          "existence_controlee"
+        ]
+      },
+      "formule": "gratuite",
+      "membre_fondateur": true,
+      "statut": "brouillon",
+      "consentement_publication": {
+        "date": "2026-10-18",
+        "par": "Gérant d'exemple"
+      },
+      "specialiste": {
+        "ecoles_juridiques": [
+          "maliki"
+        ],
+        "delai_reponse_jours": 3,
+        "diplomes_agrements": [
+          {
+            "intitule": "Agrément d'exemple",
+            "verifie": true
+          }
+        ]
+      },
+      "maj_le": "2026-10-19T12:00:00Z",
+      "zone_service": {
+        "pays_entier": true,
+        "international": true
+      }
+    },
+    {
+      "id": "tg-lome-agc-001",
+      "exemple": true,
+      "type": "agence",
+      "nature": "personne_morale",
+      "nom": "Agence d'exemple Al Hidaya Voyages",
+      "description": {
+        "fr": "Agence fictive pour la démonstration du comparateur Hadj et Omra.",
+        "en": "Fictional agency used to demonstrate the Hajj and Umrah comparison."
+      },
+      "langues_parlees": [
+        "fr",
+        "ha",
+        "ar"
+      ],
+      "lieu": {
+        "ville_id": "tg-lome",
+        "quartier": "Bè",
+        "precision_adresse": "approximative"
+      },
+      "contacts": {
+        "whatsapp": "+22890000004"
+      },
+      "verification": {
+        "niveau": 2,
+        "verifie_par": "admin-01",
+        "date": "2026-10-21",
+        "details": [
+          "contact_teste",
+          "existence_controlee",
+          "agrement_controle"
+        ]
+      },
+      "formule": "gratuite",
+      "statut": "brouillon",
+      "consentement_publication": {
+        "date": "2026-10-18",
+        "par": "Directeur d'exemple"
+      },
+      "agence": {
+        "agrement": {
+          "numero": "EXEMPLE-0000",
+          "autorite": "Autorité d'exemple",
+          "valide_jusqua": "2028-12-31"
+        },
+        "services": [
+          "hadj",
+          "omra",
+          "visa"
+        ]
+      },
+      "zone_service": {
+        "pays_entier": true
+      },
+      "maj_le": "2026-10-21T12:00:00Z"
+    }
+  ],
+  "cours": [
+    {
+      "id": "tg-dapaong-crs-001",
+      "fiche_id": "tg-dapaong-mad-001",
+      "sujet": {
+        "fr": "Fiqh de la purification et de la prière",
+        "en": "Fiqh of purification and prayer"
+      },
+      "publics": [
+        "adultes"
+      ],
+      "modalite": "presentiel",
+      "jours": [
+        "mar",
+        "jeu"
+      ],
+      "horaire": {
+        "debut": "19:30",
+        "fin": "20:30"
+      },
+      "tarif": {
+        "periodicite": "mois",
+        "montant": 2000,
+        "devise": "XOF"
+      },
+      "seuil_min": 12,
+      "capacite_max": 25,
+      "date_limite": "2026-11-30",
+      "debut_prevu": "2026-12-07",
+      "preinscrits": {
+        "nombre": 7,
+        "maj_le": "2026-10-19"
+      },
+      "statut": "ouvert_preinscriptions"
+    },
+    {
+      "id": "tg-dapaong-crs-002",
+      "fiche_id": "tg-dapaong-mad-001",
+      "sujet": {
+        "fr": "Coran et tajwîd pour enfants",
+        "en": "Quran and tajwid for children"
+      },
+      "publics": [
+        "enfants"
+      ],
+      "modalite": "presentiel",
+      "jours": [
+        "sam",
+        "dim"
+      ],
+      "horaire": {
+        "debut": "08:00",
+        "fin": "10:00"
+      },
+      "note_horaire": {
+        "fr": "Horaires modifiés pendant le Ramadan."
+      },
+      "tarif": {
+        "periodicite": "mois",
+        "montant": 1500,
+        "devise": "XOF"
+      },
+      "statut": "confirme"
+    }
+  ],
+  "articles": [
+    {
+      "id": "tg-cinkasse-art-001",
+      "fiche_id": "tg-cinkasse-lib-001",
+      "nom": {
+        "fr": "Tapis de prière",
+        "en": "Prayer mat"
+      },
+      "categorie": "tapis_priere",
+      "prix": {
+        "montant": 4500,
+        "devise": "XOF"
+      },
+      "disponibilite": "en_stock",
+      "livraison": [
+        "retrait_boutique",
+        "retrait_mosquee"
+      ]
+    },
+    {
+      "id": "tg-cinkasse-art-002",
+      "fiche_id": "tg-cinkasse-lib-001",
+      "nom": {
+        "fr": "Miel naturel (pot)",
+        "en": "Natural honey (jar)"
+      },
+      "categorie": "produit_naturel",
+      "prix": {
+        "montant": 3000,
+        "devise": "XOF"
+      },
+      "disponibilite": "sur_commande",
+      "avertissement_sante": true,
+      "livraison": [
+        "retrait_boutique",
+        "livraison"
+      ]
+    }
+  ],
+  "prestations": [
+    {
+      "id": "tg-lome-prs-001",
+      "fiche_id": "tg-lome-spe-001",
+      "besoin": "heritage",
+      "description": {
+        "fr": "Établissement du partage et accompagnement des démarches de succession."
+      },
+      "modalites": [
+        "presentiel",
+        "telephone"
+      ],
+      "juridictions": [
+        "droit_civil",
+        "droit_musulman"
+      ],
+      "tarif": {
+        "type": "fourchette",
+        "min": 25000,
+        "max": 75000,
+        "devise": "XOF"
+      },
+      "delai_reponse_jours": 3
+    }
+  ],
+  "villes": [
+    {
+      "id": "tg-dapaong",
+      "nom": {
+        "fr": "Dapaong"
+      },
+      "region": "Savanes",
+      "gps": {
+        "lat": 10.8627,
+        "lon": 0.2076
+      }
+    },
+    {
+      "id": "tg-cinkasse",
+      "nom": {
+        "fr": "Cinkassé"
+      },
+      "region": "Savanes",
+      "gps": {
+        "lat": 11.0,
+        "lon": 0.0
+      }
+    },
+    {
+      "id": "tg-kara",
+      "nom": {
+        "fr": "Kara"
+      },
+      "region": "Kara",
+      "gps": {
+        "lat": 9.5511,
+        "lon": 1.1861
+      }
+    },
+    {
+      "id": "tg-lome",
+      "nom": {
+        "fr": "Lomé",
+        "ar": "لومي"
+      },
+      "region": "Maritime",
+      "gps": {
+        "lat": 6.1319,
+        "lon": 1.2228
+      }
+    }
+  ],
+  "forfaits_hadj_omra": [
+    {
+      "id": "tg-lome-fft-001",
+      "fiche_id": "tg-lome-agc-001",
+      "type": "omra",
+      "intitule": {
+        "fr": "Omra de 14 jours, départ de Lomé",
+        "en": "14-day Umrah, departing from Lomé"
+      },
+      "date_depart": "2027-03-10",
+      "date_retour": "2027-03-23",
+      "ville_depart_id": "tg-lome",
+      "prix": {
+        "montant": 1450000,
+        "devise": "XOF"
+      },
+      "acompte": {
+        "montant": 500000,
+        "devise": "XOF"
+      },
+      "vol": {
+        "inclus": true,
+        "detail": "Vol aller-retour avec une escale"
+      },
+      "hebergement": {
+        "makkah": {
+          "hotel": "Hôtel d'exemple Makkah",
+          "etoiles": 4,
+          "distance_haram_m": 350
+        },
+        "madina": {
+          "hotel": "Hôtel d'exemple Madina",
+          "etoiles": 3,
+          "distance_masjid_m": 250
+        }
+      },
+      "repas": "demi_pension",
+      "visa_inclus": true,
+      "transport_inclus": true,
+      "guide": {
+        "present": true,
+        "langues": [
+          "fr",
+          "ha"
+        ],
+        "encadrement_medical": true
+      },
+      "taille_groupe": {
+        "min": 20,
+        "max": 45
+      },
+      "assurance": {
+        "incluse": true,
+        "detail": "Assurance voyage de base"
+      },
+      "politique_annulation": {
+        "fr": "Remboursement de l'acompte moins 10 % jusqu'à 60 jours avant le départ.",
+        "en": "Deposit refunded minus 10% up to 60 days before departure."
+      },
+      "frais_non_inclus": [
+        {
+          "fr": "Dépenses personnelles",
+          "en": "Personal expenses"
+        },
+        {
+          "fr": "Excédent de bagages",
+          "en": "Excess baggage"
+        }
+      ],
+      "places_restantes": 12,
+      "date_limite_inscription": "2027-01-15",
+      "statut": "ouvert"
+    },
+    {
+      "id": "tg-lome-fft-002",
+      "fiche_id": "tg-lome-agc-001",
+      "type": "hadj",
+      "intitule": {
+        "fr": "Hadj, groupe accompagné",
+        "en": "Hajj, guided group"
+      },
+      "date_depart": "2027-05-08",
+      "date_retour": "2027-05-30",
+      "ville_depart_id": "tg-lome",
+      "prix": {
+        "montant": 4200000,
+        "devise": "XOF"
+      },
+      "vol": {
+        "inclus": true
+      },
+      "hebergement": {
+        "makkah": {
+          "hotel": "Hôtel d'exemple Makkah",
+          "etoiles": 4
+        }
+      },
+      "repas": "pension_complete",
+      "places_restantes": 6,
+      "date_limite_inscription": "2026-12-15",
+      "statut": "ouvert"
+    }
+  ]
+}

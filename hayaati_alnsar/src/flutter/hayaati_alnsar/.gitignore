@@ -1,0 +1,6 @@
+.dart_tool/
+.packages
+build/
+pubspec.lock
+packages/al_ansar/.dart_tool/
+packages/al_ansar/pubspec.lock

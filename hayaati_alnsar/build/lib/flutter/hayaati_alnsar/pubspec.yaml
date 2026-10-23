@@ -1,0 +1,27 @@
+name: hayaati_alnsar
+description: Flet HayaatiAlAnsar control
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flet: 0.86.5
+  flutter:
+    sdk: flutter
+  # Module Al Ansâr embarqué dans l'extension : le chemin reste valable quand
+  # « flet build » copie ce dossier tel quel. Copie générée par synchroniser_module.py.
+  al_ansar:
+    path: packages/al_ansar
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+# Données initiales embarquées (lues par le module via rootBundle, comme les sons de l'adhan).
+flutter:
+  assets:
+    - assets/al_ansar/

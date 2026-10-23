@@ -19,7 +19,8 @@
   "encyclopedie": "📚 Littattafan Sananne",
   "madrassa_hub": "🏫 Makaranta",
   "qiblah": "🕋 Sallah",
-  "coran": "📖 Alkur'ani"
+  "coran": "📖 Alkur'ani",
+  "alansar_hub": "🤝 Al-Ansâr"
  },
  "barre_outils": {
   "titre_app": "🕌 HAYAATI",
@@ -5279,5 +5280,30 @@
   "mot_versets": "aya",
   "revelation_meccane": "Makka",
   "revelation_medinoise": "Madina"
+ },
+ "al_ansar": {
+  "titre": "Al-Ansâr",
+  "apprendre": "Koyo",
+  "boutique": "Kasuwa",
+  "accompagnement": "Jagoranci",
+  "mosquees": "Masallatai kusa da ni",
+  "autour_de_moi": "Kusa da ni",
+  "changer": "Canja",
+  "chercher_ailleurs": "Nemi a wani wuri",
+  "pays": "Ƙasa",
+  "ville": "Birni",
+  "toutes_villes": "Dukkan birane",
+  "contacter": "Tuntuɓi ta WhatsApp",
+  "itineraire": "Hanya",
+  "aucun": "Babu sakamako",
+  "verifie": "An tabbatar",
+  "hadj_omra": "Hajji da Umra",
+  "hadj": "Hajji",
+  "omra": "Umra",
+  "prix": "Farashi",
+  "jours": "kwanaki",
+  "gratuit": "Kyauta",
+  "jumua": "Juma'a",
+  "chargement": "Ana ɗauka…"
  }
 }

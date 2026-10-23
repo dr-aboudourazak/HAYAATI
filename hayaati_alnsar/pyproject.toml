@@ -1,0 +1,30 @@
+[project]
+name = "hayaati-alnsar"
+version = "0.1.0"
+description = "Module Al Ansâr de HAYAATI (annuaire, mosquées proches, Hadj et Omra) : contrôle Flet"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Dr Aboudourazak AMADOU", email = "aboudourazak@gmail.com" }
+]
+dependencies = [
+    "flet==0.86.5",
+]
+
+[project.urls]
+Homepage = "https://amadoufitter.pages.dev/"
+Repository = "https://github.com/dr-aboudourazak/HAYAATI"
+
+[tool.setuptools.package-data]
+"flutter.hayaati_alnsar" = ["**/*"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+license-files = []
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

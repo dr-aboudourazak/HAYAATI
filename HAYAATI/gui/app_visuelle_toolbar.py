@@ -9,6 +9,14 @@ import flet as ft
 from gui.langues import DICTIONNAIRE_LANGUES
 
 
+# Un bouton de la barre reste actif dans les écrans qu'il regroupe.
+_GROUPES_NAVIGATION = {
+    "MON_ESPACE": ("MON_ESPACE", "DEVOIRS", "INVENTAIRE"),
+    "CALCULS": ("CALCULS", "ZAKAT_TIERS", "HERITAGE_TIERS"),
+    "ALANSAR": ("ALANSAR", "MADRASSA"),
+}
+
+
 def configurer_bandeau_superieur(app):
     if hasattr(app, "barre_outils") and app.barre_outils:
         # 🆕 CORRECTION : padding top pour la barre de statut sur mobile
@@ -109,18 +117,16 @@ def dessiner_boutons_navigation(app):
             (m_json.get("onboarding", "🏠 Accueil"), "ONBOARDING"),
             (m_json.get("qiblah", "🕋 Prière"), "PRIERE"),
             (m_json.get("coran", "📖 Coran"), "CORAN"),
-            (m_json.get("devoirs_hub", "⚖️ Devoirs"), "DEVOIRS"),       
-            (m_json.get("inventaire_hub", "📦 Mon Inventaire"), "INVENTAIRE"),
-            (m_json.get("madrassa_hub", "🏫 Madrassa"), "MADRASSA"),
+            (m_json.get("mon_espace_hub", "👤 Mon espace"), "MON_ESPACE"),
+            (m_json.get("alansar_hub", "🤝 Al-Ansâr"), "ALANSAR"),
         ]
     else:
         boutons = [
             (m_json.get("onboarding", "🏠 Accueil"), "ONBOARDING"),
             (m_json.get("qiblah", "🕋 Prière"), "PRIERE"),
             (m_json.get("coran", "📖 Coran"), "CORAN"),
-            (f"{m_json.get('zakat', '🏦 Zakat')} - {b_json.get('mode_tiers', 'Simulation')}", "ZAKAT_TIERS"), 
-            (f"{m_json.get('heritage', '📜 Succession')} - {b_json.get('mode_tiers', 'Simulation')}", "HERITAGE_TIERS"),
-            (m_json.get("madrassa_hub", "🏫 Madrassa"), "MADRASSA"),
+            (m_json.get("calculs_hub", "🧮 Calculs"), "CALCULS"),
+            (m_json.get("alansar_hub", "🤝 Al-Ansâr"), "ALANSAR"),
         ]
 
     # --- FORMAT SMARTPHONE ---
@@ -147,7 +153,7 @@ def dessiner_boutons_navigation(app):
             lib_de_base = lib.split(" - ")[0]
             lib_c = lib_de_base.split(" ")[-1] if " " in lib_de_base else lib_de_base
             em = lib_de_base.split(" ")[0] if " " in lib_de_base else "•"
-            est_a = (app.ecran_courant == cle)
+            est_a = (app.ecran_courant in _GROUPES_NAVIGATION.get(cle, (cle,)))
 
             btn_mob = ft.Container(
                 content=ft.Column([
@@ -167,7 +173,7 @@ def dessiner_boutons_navigation(app):
         m_vert = ft.Column(scroll=ft.ScrollMode.AUTO, spacing=2, expand=True)
         m_vert.controls.append(ft.Container(height=8, bgcolor="#f3f4f6"))
         for lib, cle in boutons:
-            est_a = (app.ecran_courant == cle)
+            est_a = (app.ecran_courant in _GROUPES_NAVIGATION.get(cle, (cle,)))
 
             def gerer_survol_bouton(e, c_cle=cle):
                 if app.ecran_courant == c_cle: 
