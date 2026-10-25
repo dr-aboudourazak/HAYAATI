@@ -64,7 +64,17 @@ class EcranAccueil extends StatelessWidget {
               if (c.indisponible && !c.chargement)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Text(t('hors_ligne')),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(t('hors_ligne')),
+                      if (c.config.modeDemo && c.diagnostic != null)
+                        Text(
+                          '${t('detail_technique')} : ${c.diagnostic}',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                    ],
+                  ),
                 ),
               const SizedBox(height: 8),
               for (final r in c.config.raccourcisHote)
@@ -112,6 +122,11 @@ class EcranAccueil extends StatelessWidget {
                 titre: t('mosquees'),
                 onTap: () => _pousser(context, (_) => EcranMosquees(c: c)),
               ),
+              if (c.config.modeDemo)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Text(c.resumeDonnees, style: Theme.of(context).textTheme.bodySmall),
+                ),
             ],
           ),
         );
@@ -287,7 +302,7 @@ class EcranListe extends StatefulWidget {
 class _EcranListeState extends State<EcranListe> {
   bool _verifies = false;
   bool _aDistance = false;
-  int? _rayonKm = 50;
+  int? _rayonKm;
 
   @override
   Widget build(BuildContext context) {
@@ -699,29 +714,38 @@ class _EcranMosqueesState extends State<EcranMosquees> {
               ? const Center(child: CircularProgressIndicator())
               : Center(child: Text(t('hors_ligne')));
         } else {
-          final res = plusProches<Fiche>(
-            base.fiches.where((f) => f.type == 'mosquee' && c.visible(f)),
+          final mosquees = base.fiches.where((f) => f.type == 'mosquee' && c.visible(f)).toList();
+          var res = plusProches<Fiche>(
+            mosquees,
             pos,
             (f) => f.gps,
             max: 30,
             rayonMaxM: _rayonKm * 1000.0,
           );
+          var elargi = false;
+          if (res.isEmpty) {
+            // Voyageur loin des mosquées connues : on montre les plus proches, avec leur distance.
+            res = plusProches<Fiche>(mosquees, pos, (f) => f.gps, max: 5);
+            elargi = res.isNotEmpty;
+          }
           corps = res.isEmpty
               ? Center(child: Text(t('aucun')))
-              : ListView.builder(
-                  itemCount: res.length + 1,
-                  itemBuilder: (context, i) {
-                    if (i == res.length) {
-                      return Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          base.attribution ?? '',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      );
-                    }
-                    return _LigneMosquee(c: c, r: res[i]);
-                  },
+              : ListView(
+                  children: [
+                    if (elargi)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+                        child: Text(t('aucune_dans_rayon')),
+                      ),
+                    for (final r in res) _LigneMosquee(c: c, r: r),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        base.attribution ?? '',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
+                  ],
                 );
         }
         return Scaffold(

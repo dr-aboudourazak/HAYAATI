@@ -85,6 +85,18 @@ class ControleurAlAnsar extends ChangeNotifier {
   /// Responsable qui reçoit les propositions (mosquées proposées ou corrigées).
   String? get numeroModeration => mosquees?.moderationWhatsapp ?? annuaire?.moderationWhatsapp;
 
+  /// Ligne technique : version du module et provenance des données (mode démo).
+  String get resumeDonnees {
+    final a = annuaire;
+    final donnees = a == null
+        ? 'aucune donnée lue'
+        : '${_depot.sourceAnnuaire ?? '?'} v${a.version} · ${a.fiches.length} fiches · ${a.forfaits.length} forfaits';
+    return 'Module $versionModuleAlAnsar · données : $donnees';
+  }
+
+  /// Cause technique si les données n'ont pas pu être lues.
+  String? get diagnostic => _depot.diagnostic;
+
   bool visible(Fiche f) => f.statut == 'publie' || _config.modeDemo;
 
   /// Point de référence des recherches « proches ».

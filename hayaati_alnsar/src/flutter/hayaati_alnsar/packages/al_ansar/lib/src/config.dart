@@ -1,3 +1,6 @@
+/// Version du module Al Ansâr (affichée en mode démo pour savoir quel code tourne vraiment).
+const String versionModuleAlAnsar = '0.3.0';
+
 /// Coordonnées géographiques en degrés décimaux.
 class Coord {
   const Coord(this.lat, this.lon);

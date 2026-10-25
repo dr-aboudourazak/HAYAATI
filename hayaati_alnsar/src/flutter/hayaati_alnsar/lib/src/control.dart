@@ -73,7 +73,7 @@ class _HayaatiAlAnsarControlState extends State<HayaatiAlAnsarControl> {
     final lon = c.get<double>("longitude");
     final config = AlAnsarConfig(
       baseUrl: c.get<String>("base_url") ?? "",
-      assetPrefix: c.get<String>("asset_prefix") ?? "assets/al_ansar/",
+      assetPrefix: c.get<String>("asset_prefix") ?? "packages/hayaati_alnsar/assets/al_ansar/",
       langue: c.get<String>("langue") ?? "fr",
       pays: c.get<String>("pays") ?? "TG",
       villeId: c.get<String>("ville_id"),

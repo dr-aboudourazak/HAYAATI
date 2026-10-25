@@ -5288,6 +5288,7 @@
   "revelation_medinoise": "Medinan"
  },
  "al_ansar": {
+  "titre": "Al Ansâr",
   "apprendre": "Learn",
   "boutique": "Shop",
   "accompagnement": "Guidance",
@@ -5311,6 +5312,7 @@
   "hors_ligne": "Data unavailable for this country. Connect once to download it.",
   "verifie": "Verified",
   "a_distance": "Remote",
+  "jumua": "Jumu'a",
   "espace_femmes": "Women's area",
   "ablutions": "Wudu facilities",
   "oui": "yes",
@@ -5342,6 +5344,10 @@
   "femmes": "Women",
   "hommes": "Men",
   "coran_tajweed": "Quran and tajwid",
+  "aqida": "Aqidah",
+  "fiqh": "Fiqh",
+  "sira": "Seerah",
+  "hadith": "Hadith",
   "arabe": "Arabic",
   "autre": "Other",
   "avert_sante": "Does not replace medical treatment.",
@@ -5423,8 +5429,12 @@
   "en_stock": "In stock",
   "sur_commande": "On order",
   "indisponible": "Unavailable",
+  "zakat": "Zakat",
   "heritage": "Inheritance",
   "testament": "Will",
+  "waqf": "Waqf",
+  "medecine_prophetique": "Prophetic medicine",
+  "roqya": "Ruqyah",
   "cap_N": "north",
   "cap_NE": "north-east",
   "cap_E": "east",
@@ -5432,6 +5442,8 @@
   "cap_S": "south",
   "cap_SO": "south-west",
   "cap_O": "west",
-  "cap_NO": "north-west"
+  "cap_NO": "north-west",
+  "detail_technique": "Technical detail",
+  "aucune_dans_rayon": "No mosque within this radius. Here are the nearest."
  }
 }

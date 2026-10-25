@@ -106,6 +106,12 @@ class DepotAnnuaire {
   final String assetPrefix;
   final http.Client _client;
 
+  /// Dernière cause d'échec de lecture des données (affichée en mode démo).
+  String? diagnostic;
+
+  /// Provenance du dernier annuaire chargé : réseau, cache ou embarqué.
+  String? sourceAnnuaire;
+
   Future<Manifeste?> manifeste() async {
     try {
       final r = await _client
@@ -129,10 +135,18 @@ class DepotAnnuaire {
 
     if (ref != null && (local == null || local.version < ref.version)) {
       final frais = await _telecharger(nom, ref);
-      if (frais != null) return frais;
+      if (frais != null) {
+        if (role == 'annuaire') sourceAnnuaire = 'réseau';
+        return frais;
+      }
     }
-    if (local != null) return local;
-    return _lireAsset(nom);
+    if (local != null) {
+      if (role == 'annuaire') sourceAnnuaire = 'cache';
+      return local;
+    }
+    final embarque = await _lireAsset(nom);
+    if (role == 'annuaire') sourceAnnuaire = embarque == null ? null : 'embarqué';
+    return embarque;
   }
 
   Future<Annuaire?> _telecharger(String nom, FichierRef ref) async {
@@ -191,6 +205,7 @@ class DepotAnnuaire {
       final texte = await rootBundle.loadString('$assetPrefix$nom');
       return Annuaire.fromJson(jsonDecode(texte) as Json);
     } catch (e) {
+      diagnostic = 'Fichier embarqué introuvable : $assetPrefix$nom ($e)';
       return null;
     }
   }

@@ -5442,6 +5442,8 @@
   "cap_S": "sud",
   "cap_SO": "sud-ouest",
   "cap_O": "ouest",
-  "cap_NO": "nord-ouest"
+  "cap_NO": "nord-ouest",
+  "detail_technique": "Détail technique",
+  "aucune_dans_rayon": "Aucune mosquée dans ce rayon. Voici les plus proches."
  }
 }

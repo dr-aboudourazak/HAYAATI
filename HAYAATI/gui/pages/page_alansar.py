@@ -19,7 +19,8 @@ import flet as ft
 from gui.langues import DICTIONNAIRE_LANGUES
 
 try:
-    from hayaati_alnsar import HayaatiAlAnsar
+    from hayaati_alnsar import HayaatiAlAnsar, __version__ as _VERSION_EXTENSION
+    print(f"[AL-ANSÂR] extension hayaati-alnsar {_VERSION_EXTENSION} chargée")
 except Exception as _exc:  # extension non installée : la page affiche un message clair
     HayaatiAlAnsar = None
     _ERREUR_IMPORT = _exc
