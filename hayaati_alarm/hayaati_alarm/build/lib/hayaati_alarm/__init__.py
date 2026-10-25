@@ -1,1 +1,0 @@
-from hayaati_alarm.hayaati_alarm import HayaatiAlarm
