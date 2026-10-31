@@ -43,11 +43,26 @@ class HayaatiAlAnsar(ft.LayoutControl):
     raccourcis_json: Optional[str] = None
     """Raccourcis vers des écrans de l'hôte, JSON [{cle, titre, icone}]."""
 
-    mode_demo: bool = False
-    """Affiche aussi les fiches en brouillon. À laisser à False en production."""
+    mode_demo: Optional[bool] = True
+    """None : suit les données (un fichier marqué `demonstration` affiche ses fiches fictives) ; True : affiche aussi les brouillons ; False : les masque."""
 
     integre: bool = True
     """Module affiché dans HAYAATI : pas de second bandeau vert, titres discrets."""
+
+    madrassa_json: Optional[str] = None
+    """Contenu pédagogique de la langue active (sections madrassa, interface_savoir, encyclopedie, langue_arabe, sciences_islamiques), en JSON."""
+
+    progres_json: Optional[str] = None
+    """Progression de l'utilisateur connecté, JSON {JEU_EDUCATIF_PROGRES, LANGUE_ARABE_PROGRES, SCIENCES_ISLAMIQUES_PROGRES}."""
+
+    visiteur: bool = False
+    """Aucun utilisateur connecté : la progression n'est pas conservée."""
+
+    ecran_initial: Optional[str] = None
+    """« madrassa » : le module s'ouvre directement sur le hub Madrassa."""
+
+    on_sauver_progres: Optional[ft.ControlEventHandler["HayaatiAlAnsar"]] = None
+    """La progression d'un module a changé : `e.data` est un JSON {module, donnees} à enregistrer."""
 
     on_ouvrir_hote: Optional[ft.ControlEventHandler["HayaatiAlAnsar"]] = None
     """L'utilisateur a touché un raccourci : `e.data` contient la clé de l'écran demandé."""

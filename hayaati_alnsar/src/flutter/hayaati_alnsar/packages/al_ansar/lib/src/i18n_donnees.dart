@@ -158,6 +158,7 @@ const Map<String, Map<String, String>> chainesGenerees = <String, Map<String, St
     'cap_NO': 'nord-ouest',
     'detail_technique': 'Détail technique',
     'aucune_dans_rayon': 'Aucune mosquée dans ce rayon. Voici les plus proches.',
+    'brouillons_masques': '{n} fiche(s) en brouillon masquée(s) : le mode démo est désactivé.',
   },
   'en': <String, String>{
     'titre': 'Al Ansâr',
@@ -317,6 +318,7 @@ const Map<String, Map<String, String>> chainesGenerees = <String, Map<String, St
     'cap_NO': 'north-west',
     'detail_technique': 'Technical detail',
     'aucune_dans_rayon': 'No mosque within this radius. Here are the nearest.',
+    'brouillons_masques': '{n} draft listing(s) hidden: demo mode is off.',
   },
   'ar': <String, String>{
     'titre': 'الأنصار',
@@ -476,6 +478,7 @@ const Map<String, Map<String, String>> chainesGenerees = <String, Map<String, St
     'cap_NO': 'شمال غرب',
     'detail_technique': 'تفاصيل تقنية',
     'aucune_dans_rayon': 'لا يوجد مسجد ضمن هذا النطاق. هذه أقرب المساجد.',
+    'brouillons_masques': '{n} بطاقة مسودة مخفية: وضع العرض التجريبي متوقف.',
   },
   'ha': <String, String>{
     'titre': 'Al-Ansâr',
@@ -635,5 +638,6 @@ const Map<String, Map<String, String>> chainesGenerees = <String, Map<String, St
     'cap_NO': 'arewa maso yamma',
     'detail_technique': 'Bayanin fasaha',
     'aucune_dans_rayon': 'Babu masallaci a cikin wannan tazara. Ga mafi kusa.',
+    'brouillons_masques': 'An ɓoye shafuka {n} na gwaji: yanayin gwaji a kashe yake.',
   },
 };

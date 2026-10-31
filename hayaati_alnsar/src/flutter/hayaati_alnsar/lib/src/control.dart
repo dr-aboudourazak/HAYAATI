@@ -17,6 +17,12 @@ class HayaatiAlAnsarControl extends StatefulWidget {
 class _HayaatiAlAnsarControlState extends State<HayaatiAlAnsarControl> {
   final GlobalKey<NavigatorState> _cleNavigateur = GlobalKey<NavigatorState>();
 
+  // Le contenu de Madrassa pèse environ 200 Ko : il n'est décodé que s'il change.
+  String? _madrassaBrut;
+  Map<String, dynamic> _madrassaContenu = const <String, dynamic>{};
+  String? _progresBrut;
+  Map<String, dynamic> _progres = const <String, dynamic>{};
+
   @override
   void initState() {
     super.initState();
@@ -50,6 +56,15 @@ class _HayaatiAlAnsarControlState extends State<HayaatiAlAnsarControl> {
     }
   }
 
+  static Map<String, dynamic> _lireMap(String? json) {
+    if (json == null || json.isEmpty) return const <String, dynamic>{};
+    try {
+      return Map<String, dynamic>.from(jsonDecode(json) as Map);
+    } catch (_) {
+      return const <String, dynamic>{};
+    }
+  }
+
   static List<RaccourciHote> _lireRaccourcis(String? json) {
     if (json == null || json.isEmpty) return const <RaccourciHote>[];
     try {
@@ -66,6 +81,29 @@ class _HayaatiAlAnsarControlState extends State<HayaatiAlAnsarControl> {
     }
   }
 
+  MadrassaHote? _madrassa(Control c) {
+    final brut = c.get<String>("madrassa_json");
+    if (brut == null || brut.isEmpty) return null;
+    if (brut != _madrassaBrut) {
+      _madrassaBrut = brut;
+      _madrassaContenu = _lireMap(brut);
+    }
+    final progresBrut = c.get<String>("progres_json");
+    if (progresBrut != _progresBrut) {
+      _progresBrut = progresBrut;
+      _progres = _lireMap(progresBrut);
+    }
+    return MadrassaHote(
+      contenu: _madrassaContenu,
+      progres: _progres,
+      visiteur: c.get<bool>("visiteur") ?? false,
+      surSauver: (module, donnees) => c.triggerEvent(
+        "sauver_progres",
+        jsonEncode(<String, dynamic>{"module": module, "donnees": donnees}),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final c = widget.control;
@@ -78,10 +116,12 @@ class _HayaatiAlAnsarControlState extends State<HayaatiAlAnsarControl> {
       pays: c.get<String>("pays") ?? "TG",
       villeId: c.get<String>("ville_id"),
       position: (lat != null && lon != null) ? Coord(lat, lon) : null,
-      modeDemo: c.get<bool>("mode_demo") ?? false,
+      modeDemo: c.get<bool>("mode_demo"),
       integre: c.get<bool>("integre") ?? true,
       textes: _lireTextes(c.get<String>("textes_json")),
       raccourcisHote: _lireRaccourcis(c.get<String>("raccourcis_json")),
+      madrassa: _madrassa(c),
+      ecranInitial: c.get<String>("ecran_initial"),
       fournisseurPosition: fluxPositionGeolocator,
       surOuvrirHote: (cle) => c.triggerEvent("ouvrir_hote", cle),
       surProfondeur: (n) => c.triggerEvent("profondeur", n),

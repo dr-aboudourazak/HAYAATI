@@ -1,5 +1,7 @@
+import 'madrassa/contenu.dart';
+
 /// Version du module Al Ansâr (affichée en mode démo pour savoir quel code tourne vraiment).
-const String versionModuleAlAnsar = '0.3.0';
+const String versionModuleAlAnsar = '0.4.0';
 
 /// Coordonnées géographiques en degrés décimaux.
 class Coord {
@@ -67,7 +69,9 @@ class AlAnsarConfig {
     this.villeId,
     this.position,
     this.assetPrefix = 'assets/al_ansar/',
-    this.modeDemo = false,
+    this.modeDemo,
+    this.madrassa,
+    this.ecranInitial,
     this.fournisseurPosition,
     this.textes = const <String, String>{},
     this.raccourcisHote = const <RaccourciHote>[],
@@ -86,8 +90,15 @@ class AlAnsarConfig {
   final Coord? position;
   final String assetPrefix;
 
-  /// Si vrai, affiche aussi les fiches « brouillon » (développement).
-  final bool modeDemo;
+  /// Fiches « brouillon » et d'exemple : true les affiche, false les masque, null suit les données
+  /// (un fichier marqué `demonstration: true` est affiché en démonstration).
+  final bool? modeDemo;
+
+  /// Contenu pédagogique et progression fournis par l'hôte (Madrassa). Absent : pas de Madrassa.
+  final MadrassaHote? madrassa;
+
+  /// « madrassa » : le module s'ouvre directement sur le hub Madrassa.
+  final String? ecranInitial;
 
   /// Sert à relever la position sur place (propositions de mosquées).
   final FournisseurPosition? fournisseurPosition;
@@ -114,6 +125,8 @@ class AlAnsarConfig {
     Coord? position,
     Map<String, String>? textes,
     List<RaccourciHote>? raccourcisHote,
+    bool? modeDemo,
+    bool definirModeDemo = false,
   }) {
     return AlAnsarConfig(
       baseUrl: baseUrl,
@@ -122,7 +135,9 @@ class AlAnsarConfig {
       villeId: effacerVille ? null : (villeId ?? this.villeId),
       position: position ?? this.position,
       assetPrefix: assetPrefix,
-      modeDemo: modeDemo,
+      modeDemo: definirModeDemo ? modeDemo : this.modeDemo,
+      madrassa: madrassa,
+      ecranInitial: ecranInitial,
       fournisseurPosition: fournisseurPosition,
       textes: textes ?? this.textes,
       raccourcisHote: raccourcisHote ?? this.raccourcisHote,

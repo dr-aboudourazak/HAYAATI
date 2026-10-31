@@ -4,6 +4,7 @@ import '../config.dart';
 import '../controleur.dart';
 import '../depot.dart';
 import '../theme/theme_hayaati.dart';
+import '../madrassa/ecrans_madrassa.dart';
 import 'ecrans.dart';
 
 /// Compte les écrans empilés dans le Navigator interne du module, pour que
@@ -68,7 +69,9 @@ class _AlAnsarModuleState extends State<AlAnsarModule> {
       key: widget.navigatorKey,
       observers: <NavigatorObserver>[_observateur],
       onGenerateRoute: (_) => MaterialPageRoute<void>(
-        builder: (_) => EcranAccueil(c: _c),
+        builder: (_) => (widget.config.ecranInitial == 'madrassa' && _c.madrassa != null)
+            ? EcranMadrassaHub(ac: _c)
+            : EcranAccueil(c: _c),
       ),
     );
   }

@@ -24,3 +24,11 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/Icone-Hayaati.png
+  # Polices du contenu de Madrassa (licence OFL, voir assets/fonts/OFL.txt) : arabe vocalisé et signe ﷺ.
+  fonts:
+    - family: NotoSansArabic
+      fonts:
+        - asset: assets/fonts/NotoSansArabic-Regular.ttf
+    - family: HayaatiSignes
+      fonts:
+        - asset: assets/fonts/HayaatiSignes-Regular.ttf

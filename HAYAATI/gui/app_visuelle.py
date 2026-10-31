@@ -129,10 +129,10 @@ class ApplicationHayaati:
         réellement qu'une fois cet historique vide — c'est-à-dire depuis
         l'écran ONBOARDING, comme demandé."""
         a_navigue = False
-        # Al-Ansâr : le module Flutter a sa propre navigation interne.
-        if getattr(self, "ecran_courant", None) == "ALANSAR" and getattr(self, "layout_central", None):
+        # Al-Ansâr et Madrassa : le module Flutter a sa propre navigation interne.
+        if getattr(self, "ecran_courant", None) in ("ALANSAR", "MADRASSA") and getattr(self, "layout_central", None):
             try:
-                page_alansar = self.layout_central.ecrans_instances.get("ALANSAR")
+                page_alansar = self.layout_central.ecrans_instances.get(self.ecran_courant)
                 if page_alansar is not None and await page_alansar.gerer_retour():
                     a_navigue = True
             except Exception as exc:

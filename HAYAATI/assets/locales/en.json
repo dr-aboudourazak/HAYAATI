@@ -5444,6 +5444,7 @@
   "cap_O": "west",
   "cap_NO": "north-west",
   "detail_technique": "Technical detail",
-  "aucune_dans_rayon": "No mosque within this radius. Here are the nearest."
+  "aucune_dans_rayon": "No mosque within this radius. Here are the nearest.",
+  "brouillons_masques": "{n} draft listing(s) hidden: demo mode is off."
  }
 }

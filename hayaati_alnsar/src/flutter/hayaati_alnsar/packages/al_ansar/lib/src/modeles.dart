@@ -524,6 +524,7 @@ class Annuaire {
     this.modulesActifs = const <String>[],
     this.attribution,
     this.moderationWhatsapp,
+    this.demonstration = false,
   });
 
   final String pays;
@@ -536,6 +537,9 @@ class Annuaire {
   final List<Forfait> forfaits;
   final List<String> modulesActifs;
   final String? attribution;
+
+  /// Vrai pour un fichier d'exemple : ses fiches fictives s'affichent en démonstration.
+  final bool demonstration;
 
   /// Numéro WhatsApp du responsable qui reçoit les propositions.
   final String? moderationWhatsapp;
@@ -558,6 +562,7 @@ class Annuaire {
       forfaits: lire('forfaits_hadj_omra', Forfait.fromJson),
       modulesActifs: _liste(j['modules_actifs']),
       attribution: j['attribution'] as String?,
+      demonstration: j['demonstration'] == true,
       moderationWhatsapp:
           j['moderation'] is Map ? (j['moderation'] as Map)['whatsapp'] as String? : null,
     );

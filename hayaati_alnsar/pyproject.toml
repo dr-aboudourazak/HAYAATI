@@ -1,6 +1,6 @@
 [project]
 name = "hayaati-alnsar"
-version = "0.3.0"
+version = "0.4.0"
 description = "Module Al Ansâr de HAYAATI (annuaire, mosquées proches, Hadj et Omra) : contrôle Flet"
 readme = "README.md"
 requires-python = ">=3.10"

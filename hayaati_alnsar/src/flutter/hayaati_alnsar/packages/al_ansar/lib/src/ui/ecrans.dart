@@ -7,6 +7,7 @@ import '../i18n.dart';
 import '../modeles.dart';
 import '../theme/palette.dart';
 import '../theme/theme_hayaati.dart';
+import '../madrassa/ecrans_madrassa.dart';
 import 'ecran_hadj_omra.dart';
 import 'ecran_proposition.dart';
 import 'outils.dart';
@@ -68,7 +69,7 @@ class EcranAccueil extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(t('hors_ligne')),
-                      if (c.config.modeDemo && c.diagnostic != null)
+                      if (c.config.modeDemo == true && c.diagnostic != null)
                         Text(
                           '${t('detail_technique')} : ${c.diagnostic}',
                           style: Theme.of(context).textTheme.bodySmall,
@@ -82,6 +83,12 @@ class EcranAccueil extends StatelessWidget {
                   icone: _icones[r.icone] ?? Icons.apps,
                   titre: r.titre,
                   onTap: () => c.config.surOuvrirHote?.call(r.cle),
+                ),
+              if (c.madrassa != null)
+                _Tuile(
+                  icone: Icons.school,
+                  titre: c.madrassa!.contenu.m('titre_hub', 'Madrassa'),
+                  onTap: () => _pousser(context, (_) => EcranMadrassaHub(ac: c)),
                 ),
               _Tuile(
                 icone: Icons.menu_book,
@@ -122,7 +129,7 @@ class EcranAccueil extends StatelessWidget {
                 titre: t('mosquees'),
                 onTap: () => _pousser(context, (_) => EcranMosquees(c: c)),
               ),
-              if (c.config.modeDemo)
+              if (c.config.modeDemo == true)
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: Text(c.resumeDonnees, style: Theme.of(context).textTheme.bodySmall),
@@ -353,7 +360,17 @@ class _EcranListeState extends State<EcranListe> {
               if (c.chargement) const LinearProgressIndicator(),
               Expanded(
                 child: entrees.isEmpty
-                    ? Center(child: Text(t('aucun')))
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: Text(
+                            c.brouillonsMasques(widget.types) > 0
+                                ? t('brouillons_masques').replaceAll('{n}', '${c.brouillonsMasques(widget.types)}')
+                                : t('aucun'),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      )
                     : ListView.builder(
                         itemCount: entrees.length,
                         itemBuilder: (context, i) => _CarteFiche(c: c, entree: entrees[i]),

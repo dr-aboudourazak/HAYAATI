@@ -5,6 +5,7 @@ import 'depot.dart';
 import 'filtres.dart';
 import 'geo.dart';
 import 'i18n.dart';
+import 'madrassa/controleur_madrassa.dart';
 import 'modeles.dart';
 
 /// Comment le lieu de recherche est défini.
@@ -32,6 +33,8 @@ class ControleurAlAnsar extends ChangeNotifier {
     _mode = p != null
         ? ModeLieu.autourDeMoi
         : (config.villeId != null ? ModeLieu.ville : ModeLieu.pays);
+    final hote = config.madrassa;
+    if (hote != null && hote.contenu.isNotEmpty) madrassa = ControleurMadrassa(hote);
   }
 
   AlAnsarConfig _config;
@@ -44,6 +47,9 @@ class ControleurAlAnsar extends ChangeNotifier {
   bool indisponible = false;
 
   late ModeLieu _mode;
+
+  /// Madrassa (apprentissage), si l'hôte en fournit le contenu.
+  ControleurMadrassa? madrassa;
   PositionPrecise? _positionGps;
   bool chargementPosition = false;
   ErreurPosition? erreurPosition;
@@ -90,14 +96,24 @@ class ControleurAlAnsar extends ChangeNotifier {
     final a = annuaire;
     final donnees = a == null
         ? 'aucune donnée lue'
-        : '${_depot.sourceAnnuaire ?? '?'} v${a.version} · ${a.fiches.length} fiches · ${a.forfaits.length} forfaits';
-    return 'Module $versionModuleAlAnsar · données : $donnees';
+        : '${_depot.sourceAnnuaire ?? '?'} v${a.version} · ${a.fiches.length} fiches (${a.fiches.where(visible).length} visibles) · ${a.forfaits.length} forfaits';
+    return 'Module $versionModuleAlAnsar · données : $donnees · démo : ${demoActif ? 'oui' : 'non'}';
   }
 
   /// Cause technique si les données n'ont pas pu être lues.
   String? get diagnostic => _depot.diagnostic;
 
-  bool visible(Fiche f) => f.statut == 'publie' || _config.modeDemo;
+  /// Mode démonstration : réglage de l'hôte s'il existe, sinon indication des données.
+  bool get demoActif =>
+      _config.modeDemo ?? ((annuaire?.demonstration ?? false) || (mosquees?.demonstration ?? false));
+
+  bool visible(Fiche f) => f.statut == 'publie' || demoActif;
+
+  /// Nombre de fiches de ces types masquées parce qu'elles ne sont pas publiées.
+  int brouillonsMasques(Set<String> types) {
+    if (demoActif) return 0;
+    return (annuaire?.fiches ?? const <Fiche>[]).where((f) => types.contains(f.type) && f.statut != 'publie').length;
+  }
 
   /// Point de référence des recherches « proches ».
   Coord? get positionEffective {
@@ -209,12 +225,15 @@ class ControleurAlAnsar extends ChangeNotifier {
   void mettreAJourHote(AlAnsarConfig nouvelle) {
     final change = nouvelle.langue != _config.langue ||
         !mapEquals(nouvelle.textes, _config.textes) ||
-        nouvelle.raccourcisHote.length != _config.raccourcisHote.length;
+        nouvelle.raccourcisHote.length != _config.raccourcisHote.length ||
+        nouvelle.modeDemo != _config.modeDemo;
     if (!change) return;
     _config = _config.copyWith(
       langue: nouvelle.langue,
       textes: nouvelle.textes,
       raccourcisHote: nouvelle.raccourcisHote,
+      modeDemo: nouvelle.modeDemo,
+      definirModeDemo: true,
     );
     notifyListeners();
   }
