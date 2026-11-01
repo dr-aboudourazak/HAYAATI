@@ -5235,6 +5235,8 @@
   "badge_kaaba_label": "Qiblah"
  },
  "coran": {
+  "retour": "Back",
+  "texte_indisponible": "The text is unavailable.",
   "titre": "📖 The Quran",
   "consigne": "Select a surah to read.",
   "source_attribution": "Source: Tanzil.net",

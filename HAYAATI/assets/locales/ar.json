@@ -5284,6 +5284,8 @@
   "badge_kaaba_label": "القبلة"
  },
  "coran": {
+  "retour": "رجوع",
+  "texte_indisponible": "النص غير متاح.",
   "titre": "📖 القرآن الكريم",
   "consigne": "اختر سورة للقراءة.",
   "source_attribution": "المصدر: Tanzil.net",

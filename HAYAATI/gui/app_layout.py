@@ -43,6 +43,10 @@ from gui.pages.page_alansar import PageAlAnsar, PageMadrassaNative
 from gui.pages.page_hub_simple import PageCalculs, PageMonEspace
 from gui.pages.page_priere import PagePriere
 from gui.pages.page_coran import EcranCoran
+from gui.pages.page_coran_native import PageCoranNative
+
+# Le Coran est un module Flutter natif (paquet hayaati_coran). False : retour à l'ancien écran Python.
+CORAN_NATIF = True
 
 
 class OrganisateurLayout(ft.Container):
@@ -77,7 +81,7 @@ class OrganisateurLayout(ft.Container):
             "CALCULS": PageCalculs,
             "MON_ESPACE": PageMonEspace,
             "PRIERE": PagePriere,
-            "CORAN": EcranCoran,
+            "CORAN": PageCoranNative if CORAN_NATIF else EcranCoran,
         }
 
         super().__init__(expand=True, bgcolor=ft.Colors.WHITE, alignment=ft.Alignment(0, -1), padding=0)

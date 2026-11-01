@@ -5231,6 +5231,8 @@
   "badge_kaaba_label": "Alkibla"
  },
  "coran": {
+  "retour": "Koma baya",
+  "texte_indisponible": "Rubutun ba ya samuwa.",
   "titre": "📖 Alkur'ani Mai Girma",
   "consigne": "Zaɓi suratu don karantawa.",
   "source_attribution": "Tushen bayani: Tanzil.net",

@@ -1,0 +1,914 @@
+[
+ {
+  "numero": 1,
+  "nom_arabe": "الفاتحة",
+  "translitteration": "Al-Faatiha",
+  "nom_anglais": "The Opening",
+  "nb_versets": 7,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 2,
+  "nom_arabe": "البقرة",
+  "translitteration": "Al-Baqara",
+  "nom_anglais": "The Cow",
+  "nb_versets": 286,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 3,
+  "nom_arabe": "آل عمران",
+  "translitteration": "Aal-i-Imraan",
+  "nom_anglais": "The Family of Imraan",
+  "nb_versets": 200,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 4,
+  "nom_arabe": "النساء",
+  "translitteration": "An-Nisaa",
+  "nom_anglais": "The Women",
+  "nb_versets": 176,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 5,
+  "nom_arabe": "المائدة",
+  "translitteration": "Al-Maaida",
+  "nom_anglais": "The Table",
+  "nb_versets": 120,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 6,
+  "nom_arabe": "الأنعام",
+  "translitteration": "Al-An'aam",
+  "nom_anglais": "The Cattle",
+  "nb_versets": 165,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 7,
+  "nom_arabe": "الأعراف",
+  "translitteration": "Al-A'raaf",
+  "nom_anglais": "The Heights",
+  "nb_versets": 206,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 8,
+  "nom_arabe": "الأنفال",
+  "translitteration": "Al-Anfaal",
+  "nom_anglais": "The Spoils of War",
+  "nb_versets": 75,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 9,
+  "nom_arabe": "التوبة",
+  "translitteration": "At-Tawba",
+  "nom_anglais": "The Repentance",
+  "nb_versets": 129,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 10,
+  "nom_arabe": "يونس",
+  "translitteration": "Yunus",
+  "nom_anglais": "Jonas",
+  "nb_versets": 109,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 11,
+  "nom_arabe": "هود",
+  "translitteration": "Hud",
+  "nom_anglais": "Hud",
+  "nb_versets": 123,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 12,
+  "nom_arabe": "يوسف",
+  "translitteration": "Yusuf",
+  "nom_anglais": "Joseph",
+  "nb_versets": 111,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 13,
+  "nom_arabe": "الرعد",
+  "translitteration": "Ar-Ra'd",
+  "nom_anglais": "The Thunder",
+  "nb_versets": 43,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 14,
+  "nom_arabe": "ابراهيم",
+  "translitteration": "Ibrahim",
+  "nom_anglais": "Abraham",
+  "nb_versets": 52,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 15,
+  "nom_arabe": "الحجر",
+  "translitteration": "Al-Hijr",
+  "nom_anglais": "The Rock",
+  "nb_versets": 99,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 16,
+  "nom_arabe": "النحل",
+  "translitteration": "An-Nahl",
+  "nom_anglais": "The Bee",
+  "nb_versets": 128,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 17,
+  "nom_arabe": "الإسراء",
+  "translitteration": "Al-Israa",
+  "nom_anglais": "The Night Journey",
+  "nb_versets": 111,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 18,
+  "nom_arabe": "الكهف",
+  "translitteration": "Al-Kahf",
+  "nom_anglais": "The Cave",
+  "nb_versets": 110,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 19,
+  "nom_arabe": "مريم",
+  "translitteration": "Maryam",
+  "nom_anglais": "Mary",
+  "nb_versets": 98,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 20,
+  "nom_arabe": "طه",
+  "translitteration": "Taa-Haa",
+  "nom_anglais": "Taa-Haa",
+  "nb_versets": 135,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 21,
+  "nom_arabe": "الأنبياء",
+  "translitteration": "Al-Anbiyaa",
+  "nom_anglais": "The Prophets",
+  "nb_versets": 112,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 22,
+  "nom_arabe": "الحج",
+  "translitteration": "Al-Hajj",
+  "nom_anglais": "The Pilgrimage",
+  "nb_versets": 78,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 23,
+  "nom_arabe": "المؤمنون",
+  "translitteration": "Al-Muminoon",
+  "nom_anglais": "The Believers",
+  "nb_versets": 118,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 24,
+  "nom_arabe": "النور",
+  "translitteration": "An-Noor",
+  "nom_anglais": "The Light",
+  "nb_versets": 64,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 25,
+  "nom_arabe": "الفرقان",
+  "translitteration": "Al-Furqaan",
+  "nom_anglais": "The Criterion",
+  "nb_versets": 77,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 26,
+  "nom_arabe": "الشعراء",
+  "translitteration": "Ash-Shu'araa",
+  "nom_anglais": "The Poets",
+  "nb_versets": 227,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 27,
+  "nom_arabe": "النمل",
+  "translitteration": "An-Naml",
+  "nom_anglais": "The Ant",
+  "nb_versets": 93,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 28,
+  "nom_arabe": "القصص",
+  "translitteration": "Al-Qasas",
+  "nom_anglais": "The Stories",
+  "nb_versets": 88,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 29,
+  "nom_arabe": "العنكبوت",
+  "translitteration": "Al-Ankaboot",
+  "nom_anglais": "The Spider",
+  "nb_versets": 69,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 30,
+  "nom_arabe": "الروم",
+  "translitteration": "Ar-Room",
+  "nom_anglais": "The Romans",
+  "nb_versets": 60,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 31,
+  "nom_arabe": "لقمان",
+  "translitteration": "Luqman",
+  "nom_anglais": "Luqman",
+  "nb_versets": 34,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 32,
+  "nom_arabe": "السجدة",
+  "translitteration": "As-Sajda",
+  "nom_anglais": "The Prostration",
+  "nb_versets": 30,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 33,
+  "nom_arabe": "الأحزاب",
+  "translitteration": "Al-Ahzaab",
+  "nom_anglais": "The Clans",
+  "nb_versets": 73,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 34,
+  "nom_arabe": "سبإ",
+  "translitteration": "Saba",
+  "nom_anglais": "Sheba",
+  "nb_versets": 54,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 35,
+  "nom_arabe": "فاطر",
+  "translitteration": "Faatir",
+  "nom_anglais": "The Originator",
+  "nb_versets": 45,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 36,
+  "nom_arabe": "يس",
+  "translitteration": "Yaseen",
+  "nom_anglais": "Yaseen",
+  "nb_versets": 83,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 37,
+  "nom_arabe": "الصافات",
+  "translitteration": "As-Saaffaat",
+  "nom_anglais": "Those drawn up in Ranks",
+  "nb_versets": 182,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 38,
+  "nom_arabe": "ص",
+  "translitteration": "Saad",
+  "nom_anglais": "The letter Saad",
+  "nb_versets": 88,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 39,
+  "nom_arabe": "الزمر",
+  "translitteration": "Az-Zumar",
+  "nom_anglais": "The Groups",
+  "nb_versets": 75,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 40,
+  "nom_arabe": "غافر",
+  "translitteration": "Al-Ghaafir",
+  "nom_anglais": "The Forgiver",
+  "nb_versets": 85,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 41,
+  "nom_arabe": "فصلت",
+  "translitteration": "Fussilat",
+  "nom_anglais": "Explained in detail",
+  "nb_versets": 54,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 42,
+  "nom_arabe": "الشورى",
+  "translitteration": "Ash-Shura",
+  "nom_anglais": "Consultation",
+  "nb_versets": 53,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 43,
+  "nom_arabe": "الزخرف",
+  "translitteration": "Az-Zukhruf",
+  "nom_anglais": "Ornaments of gold",
+  "nb_versets": 89,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 44,
+  "nom_arabe": "الدخان",
+  "translitteration": "Ad-Dukhaan",
+  "nom_anglais": "The Smoke",
+  "nb_versets": 59,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 45,
+  "nom_arabe": "الجاثية",
+  "translitteration": "Al-Jaathiya",
+  "nom_anglais": "Crouching",
+  "nb_versets": 37,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 46,
+  "nom_arabe": "الأحقاف",
+  "translitteration": "Al-Ahqaf",
+  "nom_anglais": "The Dunes",
+  "nb_versets": 35,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 47,
+  "nom_arabe": "محمد",
+  "translitteration": "Muhammad",
+  "nom_anglais": "Muhammad",
+  "nb_versets": 38,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 48,
+  "nom_arabe": "الفتح",
+  "translitteration": "Al-Fath",
+  "nom_anglais": "The Victory",
+  "nb_versets": 29,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 49,
+  "nom_arabe": "الحجرات",
+  "translitteration": "Al-Hujuraat",
+  "nom_anglais": "The Inner Apartments",
+  "nb_versets": 18,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 50,
+  "nom_arabe": "ق",
+  "translitteration": "Qaaf",
+  "nom_anglais": "The letter Qaaf",
+  "nb_versets": 45,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 51,
+  "nom_arabe": "الذاريات",
+  "translitteration": "Adh-Dhaariyat",
+  "nom_anglais": "The Winnowing Winds",
+  "nb_versets": 60,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 52,
+  "nom_arabe": "الطور",
+  "translitteration": "At-Tur",
+  "nom_anglais": "The Mount",
+  "nb_versets": 49,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 53,
+  "nom_arabe": "النجم",
+  "translitteration": "An-Najm",
+  "nom_anglais": "The Star",
+  "nb_versets": 62,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 54,
+  "nom_arabe": "القمر",
+  "translitteration": "Al-Qamar",
+  "nom_anglais": "The Moon",
+  "nb_versets": 55,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 55,
+  "nom_arabe": "الرحمن",
+  "translitteration": "Ar-Rahmaan",
+  "nom_anglais": "The Beneficent",
+  "nb_versets": 78,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 56,
+  "nom_arabe": "الواقعة",
+  "translitteration": "Al-Waaqia",
+  "nom_anglais": "The Inevitable",
+  "nb_versets": 96,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 57,
+  "nom_arabe": "الحديد",
+  "translitteration": "Al-Hadid",
+  "nom_anglais": "The Iron",
+  "nb_versets": 29,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 58,
+  "nom_arabe": "المجادلة",
+  "translitteration": "Al-Mujaadila",
+  "nom_anglais": "The Pleading Woman",
+  "nb_versets": 22,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 59,
+  "nom_arabe": "الحشر",
+  "translitteration": "Al-Hashr",
+  "nom_anglais": "The Exile",
+  "nb_versets": 24,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 60,
+  "nom_arabe": "الممتحنة",
+  "translitteration": "Al-Mumtahana",
+  "nom_anglais": "She that is to be examined",
+  "nb_versets": 13,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 61,
+  "nom_arabe": "الصف",
+  "translitteration": "As-Saff",
+  "nom_anglais": "The Ranks",
+  "nb_versets": 14,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 62,
+  "nom_arabe": "الجمعة",
+  "translitteration": "Al-Jumu'a",
+  "nom_anglais": "Friday",
+  "nb_versets": 11,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 63,
+  "nom_arabe": "المنافقون",
+  "translitteration": "Al-Munaafiqoon",
+  "nom_anglais": "The Hypocrites",
+  "nb_versets": 11,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 64,
+  "nom_arabe": "التغابن",
+  "translitteration": "At-Taghaabun",
+  "nom_anglais": "Mutual Disillusion",
+  "nb_versets": 18,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 65,
+  "nom_arabe": "الطلاق",
+  "translitteration": "At-Talaaq",
+  "nom_anglais": "Divorce",
+  "nb_versets": 12,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 66,
+  "nom_arabe": "التحريم",
+  "translitteration": "At-Tahrim",
+  "nom_anglais": "The Prohibition",
+  "nb_versets": 12,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 67,
+  "nom_arabe": "الملك",
+  "translitteration": "Al-Mulk",
+  "nom_anglais": "The Sovereignty",
+  "nb_versets": 30,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 68,
+  "nom_arabe": "القلم",
+  "translitteration": "Al-Qalam",
+  "nom_anglais": "The Pen",
+  "nb_versets": 52,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 69,
+  "nom_arabe": "الحاقة",
+  "translitteration": "Al-Haaqqa",
+  "nom_anglais": "The Reality",
+  "nb_versets": 52,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 70,
+  "nom_arabe": "المعارج",
+  "translitteration": "Al-Ma'aarij",
+  "nom_anglais": "The Ascending Stairways",
+  "nb_versets": 44,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 71,
+  "nom_arabe": "نوح",
+  "translitteration": "Nooh",
+  "nom_anglais": "Noah",
+  "nb_versets": 28,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 72,
+  "nom_arabe": "الجن",
+  "translitteration": "Al-Jinn",
+  "nom_anglais": "The Jinn",
+  "nb_versets": 28,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 73,
+  "nom_arabe": "المزمل",
+  "translitteration": "Al-Muzzammil",
+  "nom_anglais": "The Enshrouded One",
+  "nb_versets": 20,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 74,
+  "nom_arabe": "المدثر",
+  "translitteration": "Al-Muddaththir",
+  "nom_anglais": "The Cloaked One",
+  "nb_versets": 56,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 75,
+  "nom_arabe": "القيامة",
+  "translitteration": "Al-Qiyaama",
+  "nom_anglais": "The Resurrection",
+  "nb_versets": 40,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 76,
+  "nom_arabe": "الانسان",
+  "translitteration": "Al-Insaan",
+  "nom_anglais": "Man",
+  "nb_versets": 31,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 77,
+  "nom_arabe": "المرسلات",
+  "translitteration": "Al-Mursalaat",
+  "nom_anglais": "The Emissaries",
+  "nb_versets": 50,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 78,
+  "nom_arabe": "النبإ",
+  "translitteration": "An-Naba",
+  "nom_anglais": "The Announcement",
+  "nb_versets": 40,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 79,
+  "nom_arabe": "النازعات",
+  "translitteration": "An-Naazi'aat",
+  "nom_anglais": "Those who drag forth",
+  "nb_versets": 46,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 80,
+  "nom_arabe": "عبس",
+  "translitteration": "Abasa",
+  "nom_anglais": "He frowned",
+  "nb_versets": 42,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 81,
+  "nom_arabe": "التكوير",
+  "translitteration": "At-Takwir",
+  "nom_anglais": "The Overthrowing",
+  "nb_versets": 29,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 82,
+  "nom_arabe": "الإنفطار",
+  "translitteration": "Al-Infitaar",
+  "nom_anglais": "The Cleaving",
+  "nb_versets": 19,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 83,
+  "nom_arabe": "المطففين",
+  "translitteration": "Al-Mutaffifin",
+  "nom_anglais": "Defrauding",
+  "nb_versets": 36,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 84,
+  "nom_arabe": "الإنشقاق",
+  "translitteration": "Al-Inshiqaaq",
+  "nom_anglais": "The Splitting Open",
+  "nb_versets": 25,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 85,
+  "nom_arabe": "البروج",
+  "translitteration": "Al-Burooj",
+  "nom_anglais": "The Constellations",
+  "nb_versets": 22,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 86,
+  "nom_arabe": "الطارق",
+  "translitteration": "At-Taariq",
+  "nom_anglais": "The Morning Star",
+  "nb_versets": 17,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 87,
+  "nom_arabe": "الأعلى",
+  "translitteration": "Al-A'laa",
+  "nom_anglais": "The Most High",
+  "nb_versets": 19,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 88,
+  "nom_arabe": "الغاشية",
+  "translitteration": "Al-Ghaashiya",
+  "nom_anglais": "The Overwhelming",
+  "nb_versets": 26,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 89,
+  "nom_arabe": "الفجر",
+  "translitteration": "Al-Fajr",
+  "nom_anglais": "The Dawn",
+  "nb_versets": 30,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 90,
+  "nom_arabe": "البلد",
+  "translitteration": "Al-Balad",
+  "nom_anglais": "The City",
+  "nb_versets": 20,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 91,
+  "nom_arabe": "الشمس",
+  "translitteration": "Ash-Shams",
+  "nom_anglais": "The Sun",
+  "nb_versets": 15,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 92,
+  "nom_arabe": "الليل",
+  "translitteration": "Al-Lail",
+  "nom_anglais": "The Night",
+  "nb_versets": 21,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 93,
+  "nom_arabe": "الضحى",
+  "translitteration": "Ad-Dhuhaa",
+  "nom_anglais": "The Morning Hours",
+  "nb_versets": 11,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 94,
+  "nom_arabe": "الشرح",
+  "translitteration": "Ash-Sharh",
+  "nom_anglais": "The Consolation",
+  "nb_versets": 8,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 95,
+  "nom_arabe": "التين",
+  "translitteration": "At-Tin",
+  "nom_anglais": "The Fig",
+  "nb_versets": 8,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 96,
+  "nom_arabe": "العلق",
+  "translitteration": "Al-Alaq",
+  "nom_anglais": "The Clot",
+  "nb_versets": 19,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 97,
+  "nom_arabe": "القدر",
+  "translitteration": "Al-Qadr",
+  "nom_anglais": "The Power, Fate",
+  "nb_versets": 5,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 98,
+  "nom_arabe": "البينة",
+  "translitteration": "Al-Bayyina",
+  "nom_anglais": "The Evidence",
+  "nb_versets": 8,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 99,
+  "nom_arabe": "الزلزلة",
+  "translitteration": "Az-Zalzala",
+  "nom_anglais": "The Earthquake",
+  "nb_versets": 8,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 100,
+  "nom_arabe": "العاديات",
+  "translitteration": "Al-Aadiyaat",
+  "nom_anglais": "The Chargers",
+  "nb_versets": 11,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 101,
+  "nom_arabe": "القارعة",
+  "translitteration": "Al-Qaari'a",
+  "nom_anglais": "The Calamity",
+  "nb_versets": 11,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 102,
+  "nom_arabe": "التكاثر",
+  "translitteration": "At-Takaathur",
+  "nom_anglais": "Competition",
+  "nb_versets": 8,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 103,
+  "nom_arabe": "العصر",
+  "translitteration": "Al-Asr",
+  "nom_anglais": "The Declining Day, Epoch",
+  "nb_versets": 3,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 104,
+  "nom_arabe": "الهمزة",
+  "translitteration": "Al-Humaza",
+  "nom_anglais": "The Traducer",
+  "nb_versets": 9,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 105,
+  "nom_arabe": "الفيل",
+  "translitteration": "Al-Fil",
+  "nom_anglais": "The Elephant",
+  "nb_versets": 5,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 106,
+  "nom_arabe": "قريش",
+  "translitteration": "Quraish",
+  "nom_anglais": "Quraysh",
+  "nb_versets": 4,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 107,
+  "nom_arabe": "الماعون",
+  "translitteration": "Al-Maa'un",
+  "nom_anglais": "Almsgiving",
+  "nb_versets": 7,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 108,
+  "nom_arabe": "الكوثر",
+  "translitteration": "Al-Kawthar",
+  "nom_anglais": "Abundance",
+  "nb_versets": 3,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 109,
+  "nom_arabe": "الكافرون",
+  "translitteration": "Al-Kaafiroon",
+  "nom_anglais": "The Disbelievers",
+  "nb_versets": 6,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 110,
+  "nom_arabe": "النصر",
+  "translitteration": "An-Nasr",
+  "nom_anglais": "Divine Support",
+  "nb_versets": 3,
+  "revelation": "medinoise"
+ },
+ {
+  "numero": 111,
+  "nom_arabe": "المسد",
+  "translitteration": "Al-Masad",
+  "nom_anglais": "The Palm Fibre",
+  "nb_versets": 5,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 112,
+  "nom_arabe": "الإخلاص",
+  "translitteration": "Al-Ikhlaas",
+  "nom_anglais": "Sincerity",
+  "nb_versets": 4,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 113,
+  "nom_arabe": "الفلق",
+  "translitteration": "Al-Falaq",
+  "nom_anglais": "The Dawn",
+  "nb_versets": 5,
+  "revelation": "meccane"
+ },
+ {
+  "numero": 114,
+  "nom_arabe": "الناس",
+  "translitteration": "An-Naas",
+  "nom_anglais": "Mankind",
+  "nb_versets": 6,
+  "revelation": "meccane"
+ }
+]

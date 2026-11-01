@@ -6,6 +6,7 @@ import 'package:flet/flet.dart';
 import 'package:flutter/widgets.dart';
 
 import 'control.dart';
+import 'control_coran.dart';
 
 class Extension extends FletExtension {
   @override
@@ -13,6 +14,8 @@ class Extension extends FletExtension {
     switch (control.type) {
       case "HayaatiAlAnsar":
         return HayaatiAlAnsarControl(key: key, control: control);
+      case "HayaatiCoran":
+        return HayaatiCoranControl(key: key, control: control);
       default:
         return null;
     }

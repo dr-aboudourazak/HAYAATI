@@ -376,7 +376,7 @@ class _MotVocabulaire extends StatelessWidget {
     return CarteHayaati(
       margin: const EdgeInsets.symmetric(vertical: 3),
       child: ListTile(
-        leading: Text(texteDe(mot['icone']), style: const TextStyle(fontSize: 24)),
+        leading: _IconeMot(mot),
         title: Align(alignment: AlignmentDirectional.centerStart, child: TexteArabe(texteDe(mot['arabe']), taille: 24)),
         subtitle: Text('${texteDe(mot['translitteration'])} · ${texteDe(mot['sens'])}'),
         trailing: BoutonsMarquage(
@@ -388,6 +388,28 @@ class _MotVocabulaire extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _IconeMot extends StatelessWidget {
+  const _IconeMot(this.mot);
+  final Map<String, dynamic> mot;
+
+  @override
+  Widget build(BuildContext context) {
+    final couleur = couleurDepuisHex(mot['couleur_hex']);
+    if (couleur != null) {
+      return Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(
+          color: couleur,
+          shape: BoxShape.circle,
+          border: Border.all(color: PaletteHayaati.texteFonce),
+        ),
+      );
+    }
+    return Text(texteDe(mot['icone']), style: const TextStyle(fontSize: 24));
   }
 }
 

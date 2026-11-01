@@ -1,0 +1,32 @@
+name: hayaati_coran
+description: Module Coran de HAYAATI (lecture par pages du mushaf, tajweed, signets, progression), léger et hors ligne.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hayaati_ui:
+    path: ../hayaati_ui
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  # Texte de Tanzil.net (voir assets/coran/LICENCE_SOURCE.md et TANZIL_COPYRIGHT.txt) : fichiers en lecture seule.
+  assets:
+    - assets/coran/
+  # Polices du texte coranique (licence OFL, voir assets/fonts/OFL_*.txt).
+  fonts:
+    - family: AmiriQuran
+      fonts:
+        - asset: assets/fonts/AmiriQuran-Regular.ttf
+    - family: NotoNaskhArabic
+      fonts:
+        - asset: assets/fonts/NotoNaskhArabic-Quran-Regular.ttf

@@ -229,3 +229,15 @@ def reinitialiser_progression() -> None:
     etat["pages_lues"] = []
     etat["derniere_page"] = None
     sauvegarder()
+
+
+# ---------------------------------------------------------------- remplacement complet (module Flutter natif)
+def remplacer_etat(brut) -> None:
+    """Remplace tout l'état de lecture par celui que renvoie le module Flutter du Coran. Le contenu est nettoyé
+    comme à la lecture du fichier (valeurs invalides ramenées à des valeurs sûres) puis enregistré dans le même
+    fichier, au même format : les signets et la progression restent compatibles avec l'ancien écran Python."""
+    global _etat
+    if not isinstance(brut, dict):
+        return
+    _etat = _nettoyer(brut)
+    sauvegarder()

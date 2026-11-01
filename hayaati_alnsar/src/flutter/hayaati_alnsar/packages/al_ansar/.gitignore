@@ -1,0 +1,10 @@
+.dart_tool/
+.packages
+build/
+pubspec.lock
+packages/al_ansar/.dart_tool/
+packages/al_ansar/pubspec.lock
+packages/hayaati_ui/.dart_tool/
+packages/hayaati_ui/pubspec.lock
+packages/hayaati_coran/.dart_tool/
+packages/hayaati_coran/pubspec.lock

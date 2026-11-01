@@ -32,3 +32,11 @@ class PaletteHayaati {
   static const Color rougeErreur = Color(0xFF791F1F);
   static const Color ambreAttente = Color(0xFFD97706);
 }
+
+/// Couleur transmise par les données (ex. « #dc2626 »), ou null si absente ou invalide.
+Color? couleurDepuisHex(Object? v) {
+  final s = v?.toString().trim().replaceFirst('#', '') ?? '';
+  if (s.length != 6) return null;
+  final n = int.tryParse(s, radix: 16);
+  return n == null ? null : Color(0xFF000000 | n);
+}

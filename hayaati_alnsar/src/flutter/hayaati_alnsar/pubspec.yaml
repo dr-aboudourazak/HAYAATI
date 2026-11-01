@@ -1,6 +1,6 @@
 name: hayaati_alnsar
 description: Flet HayaatiAlAnsar control
-version: 0.4.0
+version: 0.5.0
 publish_to: none
 
 environment:
@@ -15,6 +15,9 @@ dependencies:
   # « flet build » copie ce dossier tel quel. Copie générée par synchroniser_module.py.
   al_ansar:
     path: packages/al_ansar
+  # Module Coran : le paquet hayaati_ui (charte commune) est trouvé par son chemin relatif ../hayaati_ui.
+  hayaati_coran:
+    path: packages/hayaati_coran
 
 dev_dependencies:
   flutter_test:
