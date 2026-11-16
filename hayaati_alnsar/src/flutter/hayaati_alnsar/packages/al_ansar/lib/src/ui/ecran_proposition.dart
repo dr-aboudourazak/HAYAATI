@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:hayaati_ui/hayaati_ui.dart' show CharteHayaati;
 import '../config.dart';
 import '../controleur.dart';
 import '../modeles.dart';
@@ -26,6 +27,8 @@ class EcranProposition extends StatefulWidget {
 }
 
 class _EcranPropositionState extends State<EcranProposition> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   final TextEditingController _nom = TextEditingController();
   final TextEditingController _commentaire = TextEditingController();
   StreamSubscription<ResultatPosition>? _abonnement;
@@ -174,7 +177,7 @@ class _EcranPropositionState extends State<EcranProposition> {
                         padding: const EdgeInsets.only(top: 4),
                         child: Text(
                           t('precision_faible'),
-                          style: const TextStyle(color: PaletteHayaati.ambreAttente),
+                          style: TextStyle(color: ch.ambreAttente),
                         ),
                       ),
                   ],
@@ -195,7 +198,7 @@ class _EcranPropositionState extends State<EcranProposition> {
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(
                         messageErreurPosition(t, _erreur!),
-                        style: const TextStyle(color: PaletteHayaati.rougeErreur),
+                        style: TextStyle(color: ch.rougeErreur),
                       ),
                     ),
                 ],

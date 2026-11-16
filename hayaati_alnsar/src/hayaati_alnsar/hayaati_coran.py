@@ -29,6 +29,9 @@ class HayaatiCoran(ft.LayoutControl):
     integre: bool = True
     """Module affiché dans HAYAATI : pas de second bandeau vert."""
 
+    apparence_json: Optional[str] = None
+    """Apparence choisie (arrière-plan : clair, papier, sombre ; couleur : vert, terracotta, ocre), JSON {"fond", "couleur"}."""
+
     on_sauver_etat: Optional[ft.ControlEventHandler["HayaatiCoran"]] = None
     """L'état de lecture a changé : `e.data` est le JSON complet de l'état, à enregistrer."""
 

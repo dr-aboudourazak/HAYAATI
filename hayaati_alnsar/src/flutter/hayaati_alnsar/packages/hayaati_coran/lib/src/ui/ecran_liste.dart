@@ -27,6 +27,8 @@ class EcranListeSourates extends StatefulWidget {
 }
 
 class _EcranListeSouratesState extends State<EcranListeSourates> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   String _filtre = '';
   bool _confirmerReinit = false;
   Timer? _antiRebond;
@@ -78,7 +80,7 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
                     children: [
                       Text(
                         t('consigne', 'Sélectionnez une sourate pour la lire.'),
-                        style: const TextStyle(fontSize: 11, fontStyle: FontStyle.italic, color: PaletteHayaati.grisTexte),
+                        style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic, color: ch.grisTexte),
                       ),
                       const SizedBox(height: 6),
                       ..._reprise(c),
@@ -95,7 +97,7 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
                             isDense: true,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: const BorderSide(color: PaletteHayaati.ocre),
+                              borderSide: BorderSide(color: ch.ocre),
                             ),
                           ),
                         ),
@@ -125,11 +127,11 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
       padding: const EdgeInsets.only(top: 8),
       child: Column(
         children: [
-          Text(t('source_attribution', 'Source : Tanzil.net'), style: const TextStyle(fontSize: 11, color: PaletteHayaati.grisTexte)),
+          Text(t('source_attribution', 'Source : Tanzil.net'), style: TextStyle(fontSize: 11, color: ch.grisTexte)),
           Text(
             t('source_tajweed', 'Tajweed : annotations cpfair/quran-tajweed (CC BY 4.0)'),
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 10, color: PaletteHayaati.grisTexte),
+            style: TextStyle(fontSize: 10, color: ch.grisTexte),
           ),
         ],
       ),
@@ -144,7 +146,7 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
     final t = c.textes;
     return <Widget>[
       Material(
-        color: PaletteHayaati.ocreClair,
+        color: ch.ocreClair,
         borderRadius: BorderRadius.circular(10),
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
@@ -153,7 +155,7 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             child: Row(
               children: [
-                const Icon(Icons.auto_stories_rounded, color: PaletteHayaati.vertProfond, size: 22),
+                Icon(Icons.auto_stories_rounded, color: ch.vertProfond, size: 22),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
@@ -161,16 +163,16 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
                     children: [
                       Text(
                         t('reprendre_lecture', 'Reprendre la lecture'),
-                        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: PaletteHayaati.vertProfond),
+                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: ch.vertProfond),
                       ),
                       Text(
                         '${c.moteur.nomSourate(sourate)} · ${t('mot_page', 'Page')} $page',
-                        style: const TextStyle(fontSize: 12, fontFamily: familleArabe, color: PaletteHayaati.texteFonce),
+                        style: TextStyle(fontSize: 12, fontFamily: familleArabe, color: ch.texteFonce),
                       ),
                     ],
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios_rounded, size: 12, color: PaletteHayaati.grisTexte),
+                Icon(Icons.arrow_forward_ios_rounded, size: 12, color: ch.grisTexte),
               ],
             ),
           ),
@@ -188,15 +190,15 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
         LinearProgressIndicator(
           value: total == 0 ? 0 : lues / total,
           minHeight: 5,
-          color: PaletteHayaati.vertProfond,
-          backgroundColor: PaletteHayaati.grisClair,
+          color: ch.vertProfond,
+          backgroundColor: ch.grisClair,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               t.modele('progression_pages', <String, Object>{'n': lues, 'total': total}, '{n} / {total} pages lues'),
-              style: const TextStyle(fontSize: 11, color: PaletteHayaati.grisTexte),
+              style: TextStyle(fontSize: 11, color: ch.grisTexte),
             ),
             if (lues > 0)
               TextButton(
@@ -212,7 +214,7 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
                   _confirmerReinit
                       ? t('confirmer_reinitialiser', 'Confirmer la remise à zéro')
                       : t('reinitialiser_progression', 'Remettre à zéro'),
-                  style: TextStyle(fontSize: 11, color: _confirmerReinit ? PaletteHayaati.rougeErreur : PaletteHayaati.grisTexte),
+                  style: TextStyle(fontSize: 11, color: _confirmerReinit ? ch.rougeErreur : ch.grisTexte),
                 ),
               ),
           ],
@@ -235,17 +237,17 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
           padding: const EdgeInsets.all(4),
           child: Row(
             children: [
-              const Icon(Icons.bookmark, color: PaletteHayaati.ocre, size: 16),
+              Icon(Icons.bookmark, color: ch.ocre, size: 16),
               const SizedBox(width: 6),
               Expanded(
                 child: Text(
                   '${t('signets_titre', 'Signets')} (${signets.length})',
-                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: PaletteHayaati.vertProfond),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: ch.vertProfond),
                 ),
               ),
               Icon(
                 ouvert ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded,
-                color: PaletteHayaati.grisTexte,
+                color: ch.grisTexte,
                 size: 20,
               ),
             ],
@@ -279,7 +281,7 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 3),
       child: Material(
-        color: PaletteHayaati.sable,
+        color: ch.sable,
         borderRadius: BorderRadius.circular(8),
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
@@ -294,13 +296,13 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
             padding: const EdgeInsets.only(left: 10, right: 2),
             child: Row(
               children: [
-                Icon(s.estVerset ? Icons.bookmark_added : Icons.bookmark, color: PaletteHayaati.ocre, size: 18),
+                Icon(s.estVerset ? Icons.bookmark_added : Icons.bookmark, color: ch.ocre, size: 18),
                 const SizedBox(width: 8),
-                Expanded(child: Text(libelle, style: const TextStyle(fontSize: 12, fontFamily: familleArabe, color: PaletteHayaati.texteFonce))),
+                Expanded(child: Text(libelle, style: TextStyle(fontSize: 12, fontFamily: familleArabe, color: ch.texteFonce))),
                 IconButton(
                   tooltip: t('fermer', 'Fermer'),
                   icon: const Icon(Icons.delete_outline_rounded, size: 18),
-                  color: PaletteHayaati.grisTexte,
+                  color: ch.grisTexte,
                   onPressed: () => c.retirerSignet(s),
                 ),
               ],
@@ -318,7 +320,7 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Material(
-        color: PaletteHayaati.sable,
+        color: ch.sable,
         borderRadius: BorderRadius.circular(8),
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
@@ -334,24 +336,24 @@ class _EcranListeSouratesState extends State<EcranListeSourates> {
                   width: 32,
                   height: 32,
                   alignment: Alignment.center,
-                  decoration: const BoxDecoration(color: PaletteHayaati.ocreClair, shape: BoxShape.circle),
-                  child: Text('${e.numero}', style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: PaletteHayaati.vertProfond)),
+                  decoration: BoxDecoration(color: ch.ocreClair, shape: BoxShape.circle),
+                  child: Text('${e.numero}', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: ch.vertProfond)),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(e.nomArabe, style: const TextStyle(fontFamily: familleArabe, fontSize: 16, color: PaletteHayaati.texteFonce)),
+                      Text(e.nomArabe, style: TextStyle(fontFamily: familleArabe, fontSize: 16, color: ch.texteFonce)),
                       Align(
                         alignment: AlignmentDirectional.centerStart,
-                        child: Text(sousTitre, style: const TextStyle(fontSize: 10, color: PaletteHayaati.grisTexte)),
+                        child: Text(sousTitre, style: TextStyle(fontSize: 10, color: ch.grisTexte)),
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(width: 8),
-                const Icon(Icons.arrow_forward_ios_rounded, size: 12, color: PaletteHayaati.grisTexte),
+                Icon(Icons.arrow_forward_ios_rounded, size: 12, color: ch.grisTexte),
               ],
             ),
           ),

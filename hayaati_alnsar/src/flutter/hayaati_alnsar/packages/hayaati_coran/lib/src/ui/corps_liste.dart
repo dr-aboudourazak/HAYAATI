@@ -4,6 +4,7 @@ import 'package:hayaati_ui/hayaati_ui.dart';
 import '../controleur.dart';
 import '../moteur_coran.dart';
 import '../texte.dart';
+import 'constantes_ui.dart';
 import 'constructeur_spans.dart';
 import 'texte_versets.dart';
 
@@ -30,6 +31,8 @@ class _Donnees {
 }
 
 class _CorpsListeState extends State<CorpsListe> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   late int _debut = widget.controleur.pageActive;
   Key _cle = UniqueKey();
   late Future<_Donnees> _donnees = _charger();
@@ -93,14 +96,14 @@ class _CorpsListeState extends State<CorpsListe> {
             future: _donnees,
             builder: (context, instantane) {
               if (instantane.connectionState != ConnectionState.done) {
-                return const Center(child: CircularProgressIndicator(color: PaletteHayaati.vertProfond));
+                return Center(child: CircularProgressIndicator(color: ch.vertProfond));
               }
               final donnees = instantane.data;
               if (donnees == null || donnees.pages.isEmpty) {
                 return Center(
                   child: Text(
                     t('texte_indisponible', 'Le texte est indisponible.'),
-                    style: const TextStyle(color: PaletteHayaati.rougeErreur, fontSize: 12),
+                    style: TextStyle(color: ch.rougeErreur, fontSize: 12),
                   ),
                 );
               }
@@ -137,7 +140,7 @@ class _CorpsListeState extends State<CorpsListe> {
         onPressed: () => c.ouvrirSourate(c.sourateActive),
         child: Text(
           c.textes('debut_sourate', '↑ Début de la sourate'),
-          style: const TextStyle(fontSize: 12, color: PaletteHayaati.vertProfond),
+          style: TextStyle(fontSize: 12, color: ch.vertProfond),
         ),
       );
     }
@@ -151,15 +154,16 @@ class _CorpsListeState extends State<CorpsListe> {
           padding: const EdgeInsets.fromLTRB(8, 8, 8, 6),
           child: Text.rich(
             TextSpan(children: spansTexte(
+              ch: ch,
               texte: basmalah,
               annotations: sourate?.basmalahTajweed,
-              couleurBase: PaletteHayaati.vertProfond,
+              couleurBase: ch.vertProfond,
               tajweed: c.etat.tajweed,
               taille: taille,
             )),
             textAlign: TextAlign.center,
             textDirection: TextDirection.rtl,
-            style: styleTexteCoran(c.police, taille),
+            style: styleTexteCoran(c.police, taille, ch),
           ),
         );
       },
@@ -172,7 +176,7 @@ class _CorpsListeState extends State<CorpsListe> {
       child: Text(
         attribution,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 9, color: PaletteHayaati.grisTexte),
+        style: TextStyle(fontSize: 9, color: ch.grisTexte),
       ),
     );
   }
@@ -191,6 +195,8 @@ class _BlocListe extends StatefulWidget {
 }
 
 class _BlocListeState extends State<_BlocListe> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   late final Future<List<BlocPage>> _blocs = _charger();
 
   Future<List<BlocPage>> _charger() async {
@@ -215,16 +221,16 @@ class _BlocListeState extends State<_BlocListe> {
         if (juz != null) pied += '  ·  ${t('mot_juz', 'Juz')} ${chiffresArabes(juz)}';
         return Container(
           padding: const EdgeInsets.fromLTRB(8, 10, 8, 8),
-          decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: PaletteHayaati.grisClair))),
+          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: ch.grisClair))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TexteVersets(controleur: c, blocs: blocs),
+              TexteVersets(controleur: c, blocs: blocs, justifierFin: justifierDerniereLigne),
               const SizedBox(height: 6),
               Text(
                 pied,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 10, color: PaletteHayaati.grisTexte),
+                style: TextStyle(fontSize: 10, color: ch.grisTexte),
               ),
             ],
           ),

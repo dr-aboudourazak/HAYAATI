@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:hayaati_ui/hayaati_ui.dart' show CharteHayaati;
 import '../controleur.dart';
 import '../theme/palette.dart';
 import '../theme/theme_hayaati.dart';
+import 'package:hayaati_ui/hayaati_ui.dart' show separerEmoji;
 import 'contenu.dart';
 import 'ecrans_savoir.dart';
 import 'moteurs.dart';
@@ -19,7 +21,7 @@ class EcranMadrassaHub extends StatelessWidget {
     final m = ac.madrassa!;
     final c = m.contenu;
     return Scaffold(
-      appBar: barreHayaati(c.m('titre_hub', 'Madrassa'), integre: ac.config.integre),
+      appBar: _barreHub(c, ac.config.integre),
       body: ListenableBuilder(
         listenable: m,
         builder: (context, _) {
@@ -91,6 +93,7 @@ class EcranEncyclopedie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final m = ac.madrassa!;
     final c = m.contenu;
     final categories = c.categories;
@@ -140,7 +143,7 @@ class EcranEncyclopedie extends StatelessWidget {
                       '${c.e('lbl_quiz')} : ${questionsMaitriseesCategorie(m.jeu, i).length}/${listeDe(categories[i]['quiz']).length}',
                     ),
                     trailing: m.jeu.lus.contains(i)
-                        ? const Icon(Icons.check_circle, color: PaletteHayaati.vertClair)
+                        ? Icon(Icons.check_circle, color: ch.vertClair)
                         : const Icon(Icons.chevron_right),
                     onTap: () => ouvrirEcran(context, EcranCategorie(ac: ac, index: i)),
                   ),
@@ -165,6 +168,8 @@ class EcranCategorie extends StatefulWidget {
 }
 
 class _EcranCategorieState extends State<EcranCategorie> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   bool _quizVisible = false;
   final Map<int, int> _reponses = <int, int>{};
 
@@ -237,9 +242,9 @@ class _EcranCategorieState extends State<EcranCategorie> {
               style: OutlinedButton.styleFrom(
                 alignment: AlignmentDirectional.centerStart,
                 backgroundColor: repondu && i == bonne
-                    ? PaletteHayaati.vertClair
-                    : (choisi == i ? PaletteHayaati.terracottaClair : null),
-                foregroundColor: repondu && i == bonne ? PaletteHayaati.blanc : PaletteHayaati.texteFonce,
+                    ? ch.vertClair
+                    : (choisi == i ? ch.terracottaClair : null),
+                foregroundColor: repondu && i == bonne ? ch.blanc : ch.texteFonce,
               ),
               onPressed: repondu
                   ? null
@@ -258,4 +263,15 @@ class _EcranCategorieState extends State<EcranCategorie> {
       ],
     );
   }
+}
+
+/// Barre de titre du hub Madrassa : le nom de la rubrique, précédé de son illustration (le pictogramme du titre, par
+/// exemple « 🏫 », ou l'icône d'école à défaut). Dans la liste des rubriques, le titre est affiché sans pictogramme.
+PreferredSizeWidget _barreHub(ContenuMadrassa c, bool integre) {
+  final titre = separerEmoji(c.m('titre_hub', 'Madrassa'));
+  return barreHayaati(
+    titre.titre,
+    integre: integre,
+    illustration: titre.emoji != null ? Text(titre.emoji!, style: const TextStyle(fontSize: 20)) : const Icon(Icons.school),
+  );
 }

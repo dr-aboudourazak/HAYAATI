@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  hayaati_ui:
+    path: ../hayaati_ui
   http: ^1.2.0
   crypto: ^3.0.3
   path_provider: ^2.1.0
@@ -22,13 +24,5 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
 flutter:
-  assets:
-    - assets/images/Icone-Hayaati.png
-  # Polices du contenu de Madrassa (licence OFL, voir assets/fonts/OFL.txt) : arabe vocalisé et signe ﷺ.
-  fonts:
-    - family: NotoSansArabic
-      fonts:
-        - asset: assets/fonts/NotoSansArabic-Regular.ttf
-    - family: HayaatiSignes
-      fonts:
-        - asset: assets/fonts/HayaatiSignes-Regular.ttf
+  # Polices (Noto Sans Arabic, signes) et icône de marque : voir le paquet hayaati_ui.
+  uses-material-design: true

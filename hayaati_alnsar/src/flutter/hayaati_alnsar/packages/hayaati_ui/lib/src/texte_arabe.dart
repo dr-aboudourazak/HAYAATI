@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'palette.dart';
-
 /// Polices embarquées dans ce paquet : Noto Sans Arabic (interface, arabe vocalisé) et HayaatiSignes
 /// (signes ۩ ۞ ﷺ). Les familles d'un paquet sont désignées par « packages/<paquet>/<famille> ».
 const String familleArabe = 'packages/hayaati_ui/NotoSansArabic';
@@ -22,7 +20,7 @@ TextStyle styleArabe({double taille = 26, Color? couleur}) => TextStyle(
       fontFamilyFallback: reserveArabe,
       fontSize: taille,
       height: 1.7,
-      color: couleur ?? PaletteHayaati.texteFonce,
+      color: couleur, // sans couleur : celle du thème (texte de corps de l'apparence en cours)
     );
 
 class TexteArabe extends StatelessWidget {

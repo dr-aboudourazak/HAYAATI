@@ -21,6 +21,8 @@ class EcranLecture extends StatefulWidget {
 }
 
 class _EcranLectureState extends State<EcranLecture> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   @override
   void initState() {
     super.initState();
@@ -45,7 +47,7 @@ class _EcranLectureState extends State<EcranLecture> {
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(
         content: Text(m.texte, style: const TextStyle(fontSize: 13)),
-        backgroundColor: PaletteHayaati.vertProfond,
+        backgroundColor: ch.vertProfond,
         duration: const Duration(milliseconds: 2500),
         behavior: SnackBarBehavior.floating,
       ));
@@ -71,7 +73,7 @@ class _EcranLectureState extends State<EcranLecture> {
       builder: (context, _) {
         final barre = BarreVerset(controleur: c, surCopier: _copier);
         return Scaffold(
-          backgroundColor: PaletteHayaati.blanc,
+          backgroundColor: ch.blanc,
           body: SafeArea(
             child: Column(
               children: [

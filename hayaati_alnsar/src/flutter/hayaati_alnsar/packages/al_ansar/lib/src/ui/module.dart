@@ -94,7 +94,7 @@ class _AlAnsarModuleState extends State<AlAnsarModule> {
     return ListenableBuilder(
       listenable: _c,
       builder: (context, navigateur) => Theme(
-        data: themeHayaati(arabe: _c.t.rtl),
+        data: themeHayaati(arabe: _c.t.rtl, apparence: widget.config.apparence),
         child: Directionality(
           textDirection: _c.t.rtl ? TextDirection.rtl : TextDirection.ltr,
           child: navigateur!,

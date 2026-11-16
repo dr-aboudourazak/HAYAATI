@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'package:hayaati_ui/hayaati_ui.dart' show CharteHayaati;
 import '../controleur.dart';
 import '../theme/palette.dart';
 import '../theme/theme_hayaati.dart';
@@ -171,6 +172,7 @@ class EcranAlphabet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final m = ac.madrassa!;
     final c = m.contenu;
     final lettres = listeDe(etape['lettres']).map(mapDe).toList();
@@ -197,9 +199,9 @@ class EcranAlphabet extends StatelessWidget {
                 itemBuilder: (context, i) {
                   final etat = m.etatLangue('alphabet', i);
                   final fond = etat == 'connu'
-                      ? PaletteHayaati.vertClair
-                      : (etat == 'a_revoir' ? PaletteHayaati.ocreClair : PaletteHayaati.blanc);
-                  final encre = etat == 'connu' ? PaletteHayaati.blanc : PaletteHayaati.texteFonce;
+                      ? ch.vertClair
+                      : (etat == 'a_revoir' ? ch.ocreClair : ch.blanc);
+                  final encre = etat == 'connu' ? ch.blanc : ch.texteFonce;
                   return InkWell(
                     borderRadius: BorderRadius.circular(10),
                     onTap: () => ouvrirEcran(context, EcranLettre(ac: ac, lettres: lettres, index: i)),
@@ -207,7 +209,7 @@ class EcranAlphabet extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: fond,
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: const Color(0xFFE5E7EB)),
+                        border: Border.all(color: ch.bordure),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -397,6 +399,7 @@ class _IconeMot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final couleur = couleurDepuisHex(mot['couleur_hex']);
     if (couleur != null) {
       return Container(
@@ -405,7 +408,7 @@ class _IconeMot extends StatelessWidget {
         decoration: BoxDecoration(
           color: couleur,
           shape: BoxShape.circle,
-          border: Border.all(color: PaletteHayaati.texteFonce),
+          border: Border.all(color: ch.texteFonce),
         ),
       );
     }
@@ -655,6 +658,8 @@ class EcranLecons extends StatefulWidget {
 }
 
 class _EcranLeconsState extends State<EcranLecons> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   int _i = 0;
 
   @override
@@ -701,7 +706,7 @@ class _EcranLeconsState extends State<EcranLecons> {
                             children: [
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                decoration: BoxDecoration(color: PaletteHayaati.ocreClair, borderRadius: BorderRadius.circular(8)),
+                                decoration: BoxDecoration(color: ch.ocreClair, borderRadius: BorderRadius.circular(8)),
                                 child: Text(texteDe(e['date']), style: const TextStyle(fontWeight: FontWeight.w600)),
                               ),
                               const SizedBox(width: 8),
@@ -752,6 +757,7 @@ class EcranLecture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final m = ac.madrassa!;
     final c = m.contenu;
     final textes = listeDe(etape['textes']).map(mapDe).toList();
@@ -773,7 +779,7 @@ class EcranLecture extends StatelessWidget {
                   subtitle: Text('${c.s('label_niveau')} : ${texteDe(textes[i]['niveau'])}'),
                   trailing: Icon(
                     m.etatLangue('lecture', i) == 'connu' ? Icons.check_circle : Icons.chevron_right,
-                    color: m.etatLangue('lecture', i) == 'connu' ? PaletteHayaati.vertClair : null,
+                    color: m.etatLangue('lecture', i) == 'connu' ? ch.vertClair : null,
                   ),
                   onTap: () => ouvrirEcran(context, EcranTexte(ac: ac, texte: textes[i], index: i)),
                 ),
@@ -928,6 +934,8 @@ class EcranCaravane extends StatefulWidget {
 }
 
 class _EcranCaravaneState extends State<EcranCaravane> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   late final List<ItemCaravane> _session;
   int _i = 0;
   bool _revele = false;
@@ -990,7 +998,7 @@ class _EcranCaravaneState extends State<EcranCaravane> {
               const SizedBox(height: 8),
               Chip(
                 label: Text(item.complement ? c.s('badge_deja_connu') : c.s('badge_a_consolider')),
-                backgroundColor: item.complement ? PaletteHayaati.ocreClair : PaletteHayaati.terracottaClair,
+                backgroundColor: item.complement ? ch.ocreClair : ch.terracottaClair,
               ),
               CarteHayaati(
                 child: InkWell(
@@ -1009,7 +1017,7 @@ class _EcranCaravaneState extends State<EcranCaravane> {
                           const SizedBox(height: 6),
                           Text(item.module, style: theme.textTheme.bodySmall),
                         ] else
-                          const Padding(padding: EdgeInsets.only(top: 16), child: Icon(Icons.touch_app, color: PaletteHayaati.grisTexte)),
+                          Padding(padding: EdgeInsets.only(top: 16), child: Icon(Icons.touch_app, color: ch.grisTexte)),
                       ],
                     ),
                   ),

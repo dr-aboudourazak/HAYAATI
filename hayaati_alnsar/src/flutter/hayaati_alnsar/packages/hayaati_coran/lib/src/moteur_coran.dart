@@ -189,6 +189,14 @@ class MoteurCoran {
     return s.isEmpty ? null : s.first.sourate;
   }
 
+  /// Nombre de versets de la sourate (0 si elle est inconnue).
+  int nbVersets(int numero) {
+    for (final e in index) {
+      if (e.numero == numero) return e.nbVersets;
+    }
+    return 0;
+  }
+
   String nomSourate(int numero) {
     for (final e in index) {
       if (e.numero == numero) return e.nomArabe;

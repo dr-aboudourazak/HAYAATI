@@ -7,6 +7,8 @@ library;
 
 export 'src/controleur.dart';
 export 'src/etat_lecture.dart';
+export 'src/justification_calcul.dart';
+export 'src/mise_en_lignes.dart';
 export 'src/moteur_coran.dart';
 export 'src/polices.dart';
 export 'src/tajweed.dart';

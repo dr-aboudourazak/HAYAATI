@@ -24,6 +24,8 @@ class PageMushaf extends StatefulWidget {
 }
 
 class _PageMushafState extends State<PageMushaf> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   late final Future<List<BlocPage>> _blocs = widget.controleur.moteur.versetsDePage(widget.page);
 
   @override
@@ -32,14 +34,14 @@ class _PageMushafState extends State<PageMushaf> {
       future: _blocs,
       builder: (context, instantane) {
         if (instantane.connectionState != ConnectionState.done) {
-          return const Center(child: CircularProgressIndicator(color: PaletteHayaati.vertProfond));
+          return Center(child: CircularProgressIndicator(color: ch.vertProfond));
         }
         final blocs = instantane.data ?? const <BlocPage>[];
         if (blocs.isEmpty) {
           return Center(
             child: Text(
               widget.controleur.textes('texte_indisponible', 'Le texte est indisponible.'),
-              style: const TextStyle(color: PaletteHayaati.rougeErreur, fontSize: 12),
+              style: TextStyle(color: ch.rougeErreur, fontSize: 12),
             ),
           );
         }
@@ -55,7 +57,7 @@ class _PageMushafState extends State<PageMushaf> {
     final c = widget.controleur;
     final police = c.police;
     final taille = c.etat.taille * police.rapport;
-    final styleCoran = styleTexteCoran(police, taille);
+    final styleCoran = styleTexteCoran(police, taille, ch);
 
     final corps = <Widget>[];
     for (final bloc in blocs) {
@@ -66,9 +68,10 @@ class _PageMushafState extends State<PageMushaf> {
             padding: const EdgeInsets.only(top: 2, bottom: 6),
             child: Text.rich(
               TextSpan(children: spansTexte(
+                ch: ch,
                 texte: bloc.basmalah!,
                 annotations: bloc.basmalahTajweed,
-                couleurBase: PaletteHayaati.vertProfond,
+                couleurBase: ch.vertProfond,
                 tajweed: c.etat.tajweed,
                 taille: taille,
               )),
@@ -79,20 +82,22 @@ class _PageMushafState extends State<PageMushaf> {
           ));
         }
       }
-      corps.add(TexteVersets(controleur: c, blocs: <BlocPage>[bloc]));
+      // Chaque bloc (une sourate, ou la partie d'une sourate présente sur la page) a toutes ses lignes justifiées, y
+      // compris la dernière : fin de sourate au milieu de la page comme fin de page.
+      corps.add(TexteVersets(controleur: c, blocs: <BlocPage>[bloc], justifierFin: justifierDerniereLigne));
     }
 
     final juz = c.moteur.juzDePage(widget.page);
     final motJuz = c.textes('mot_juz', 'Juz');
-    const styleEntete = TextStyle(fontFamily: familleArabe, fontSize: 11, color: PaletteHayaati.grisTexte);
+    final styleEntete = TextStyle(fontFamily: familleArabe, fontSize: 11, color: ch.grisTexte);
     // Page lue de droite à gauche : le premier enfant d'une Row s'affiche à droite (nom de la sourate), le juz à gauche.
     final entete = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           blocs.first.nomArabe,
-          style: const TextStyle(
-            fontFamily: familleArabe, fontSize: 12, fontWeight: FontWeight.bold, color: PaletteHayaati.vertProfond,
+          style: TextStyle(
+            fontFamily: familleArabe, fontSize: 12, fontWeight: FontWeight.bold, color: ch.vertProfond,
           ),
         ),
         Text(juz == null ? '' : '$motJuz ${chiffresArabes(juz)}', style: styleEntete),
@@ -104,19 +109,19 @@ class _PageMushafState extends State<PageMushaf> {
         child: Text(
           chiffresArabes(widget.page),
           style: TextStyle(
-            fontFamily: police.famille, fontSize: 12, fontWeight: FontWeight.bold, color: PaletteHayaati.vertProfond,
+            fontFamily: police.famille, fontSize: 12, fontWeight: FontWeight.bold, color: ch.vertProfond,
           ),
         ),
       ),
     );
 
     final interieur = Container(
-      decoration: BoxDecoration(border: Border.all(color: PaletteHayaati.ocre), borderRadius: BorderRadius.circular(6)),
+      decoration: BoxDecoration(border: Border.all(color: ch.ocre), borderRadius: BorderRadius.circular(6)),
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 4),
       child: Column(
         children: [
           entete,
-          const Divider(height: 6, color: PaletteHayaati.ocre),
+          Divider(height: 6, color: ch.ocre),
           Expanded(child: SingleChildScrollView(child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: corps))),
           pied,
         ],
@@ -124,8 +129,8 @@ class _PageMushafState extends State<PageMushaf> {
     );
     final exterieur = Container(
       decoration: BoxDecoration(
-        color: fondPage,
-        border: Border.all(color: PaletteHayaati.vertProfond, width: 3),
+        color: ch.fondPage,
+        border: Border.all(color: ch.vertProfond, width: 3),
         borderRadius: BorderRadius.circular(10),
       ),
       padding: const EdgeInsets.all(3),
@@ -147,13 +152,13 @@ class _PageMushafState extends State<PageMushaf> {
   }
 
   Widget _banniere(String nom, TextStyle styleCoran, double taille) {
-    const rosette = Text('۞', style: TextStyle(fontFamily: familleSignes, fontSize: 18, color: PaletteHayaati.ocre));
+    final rosette = Text('۞', style: TextStyle(fontFamily: familleSignes, fontSize: 18, color: ch.ocre));
     return Container(
       margin: const EdgeInsets.only(top: 4, bottom: 6),
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        color: PaletteHayaati.ocreClair,
-        border: Border.all(color: PaletteHayaati.ocre),
+        color: ch.ocreClair,
+        border: Border.all(color: ch.ocre),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Row(
@@ -163,7 +168,7 @@ class _PageMushafState extends State<PageMushaf> {
           const SizedBox(width: 10),
           Text(
             'سورة $nom',
-            style: styleCoran.copyWith(fontSize: taille * 0.9, fontWeight: FontWeight.bold, color: PaletteHayaati.vertProfond),
+            style: styleCoran.copyWith(fontSize: taille * 0.9, fontWeight: FontWeight.bold, color: ch.vertProfond),
           ),
           const SizedBox(width: 10),
           rosette,
@@ -183,11 +188,11 @@ class _PageMushafState extends State<PageMushaf> {
         height: 24,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: PaletteHayaati.blanc,
+          color: ch.blanc,
           shape: BoxShape.circle,
-          border: Border.all(color: PaletteHayaati.ocre, width: 1.5),
+          border: Border.all(color: ch.ocre, width: 1.5),
         ),
-        child: const Text('۞', style: TextStyle(fontFamily: familleSignes, fontSize: 17, color: PaletteHayaati.ocre)),
+        child: Text('۞', style: TextStyle(fontFamily: familleSignes, fontSize: 17, color: ch.ocre)),
       ),
     );
   }

@@ -20,6 +20,7 @@ import json
 import flet as ft
 
 from gui.langues import DICTIONNAIRE_LANGUES
+from core import apparence_store
 
 try:
     from hayaati_alnsar import HayaatiAlAnsar, __version__ as _VERSION_EXTENSION
@@ -98,6 +99,7 @@ class PageAlAnsar(ft.Container):
             on_sauver_progres=self._sauver_progres,
         )
         self.module.definir_textes(dic.get("al_ansar", {}))
+        self.module.apparence_json = apparence_store.json_texte()
         self.module.definir_raccourcis([])  # Madrassa est désormais dans le module lui-même
         self._preparer_madrassa(dic)
         return self.module

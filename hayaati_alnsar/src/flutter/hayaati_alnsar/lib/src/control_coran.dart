@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flet/flet.dart';
 import 'package:flutter/material.dart';
 import 'package:hayaati_coran/hayaati_coran.dart';
+import 'package:hayaati_ui/hayaati_ui.dart' show ApparenceHayaati;
 
 /// Pont entre le contrôle Python HayaatiCoran et le module Flutter hayaati_coran.
 ///
@@ -82,6 +83,7 @@ class _HayaatiCoranControlState extends State<HayaatiCoranControl> {
     }
     final config = ConfigCoran(
       textes: _textes,
+      apparence: _lireApparence(c.get<String>("apparence_json")),
       etatBrut: _etat,
       surSauverEtat: (etat) => c.triggerEvent("sauver_etat", jsonEncode(etat)),
       surProfondeur: (n) => c.triggerEvent("profondeur", n),
@@ -90,5 +92,15 @@ class _HayaatiCoranControlState extends State<HayaatiCoranControl> {
       control: c,
       child: ModuleCoran(config: config, navigatorKey: _cleNavigateur),
     );
+  }
+}
+
+/// Apparence transmise par l'hôte (JSON {"fond", "couleur"}) ; la charte officielle si absente ou illisible.
+ApparenceHayaati _lireApparence(String? json) {
+  if (json == null || json.isEmpty) return ApparenceHayaati.defaut;
+  try {
+    return ApparenceHayaati.depuisJson(jsonDecode(json));
+  } catch (_) {
+    return ApparenceHayaati.defaut;
   }
 }

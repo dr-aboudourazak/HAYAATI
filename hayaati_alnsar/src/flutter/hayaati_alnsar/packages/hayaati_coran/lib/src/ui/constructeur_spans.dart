@@ -5,17 +5,16 @@ import 'package:hayaati_ui/hayaati_ui.dart';
 import '../etat_lecture.dart';
 import '../moteur_coran.dart';
 import '../polices.dart';
-import '../tajweed.dart';
 import '../texte.dart';
 import 'constantes_ui.dart';
 
 /// Style du texte coranique : police choisie, taille effective, interligne propre à la police.
-TextStyle styleTexteCoran(ConfigPolice police, double taille) => TextStyle(
+TextStyle styleTexteCoran(ConfigPolice police, double taille, CharteHayaati ch) => TextStyle(
       fontFamily: police.famille,
       fontFamilyFallback: reserveArabe,
       fontSize: taille,
       height: police.hauteur,
-      color: PaletteHayaati.texteFonce,
+      color: ch.texteFonce,
     );
 
 /// Morceaux de texte d'un passage : tajweed (si actif) par segments de couleur, sinon un seul morceau. Les signes
@@ -23,8 +22,10 @@ TextStyle styleTexteCoran(ConfigPolice police, double taille) => TextStyle(
 ///
 /// [taille] est la taille effective du texte (taille choisie x facteur de la police). [fond] : surlignage du verset
 /// sélectionné ; le texte orange et gris du tajweed y prend alors sa variante plus foncée, lisible sur le jaune.
-/// [geste] : reconnaisseur de toucher partagé par tous les morceaux du verset.
+/// [geste] : reconnaisseur de toucher partagé par tous les morceaux du verset. [ch] : charte de l'apparence en cours
+/// (couleurs du tajweed et du texte).
 List<InlineSpan> spansTexte({
+  required CharteHayaati ch,
   required String texte,
   required List<List<int>>? annotations,
   required Color couleurBase,
@@ -37,8 +38,7 @@ List<InlineSpan> spansTexte({
   final surSurlignage = fond != null;
   final spans = <InlineSpan>[];
   for (final segment in segmentsVerset(prepare, annotations, tajweed)) {
-    final hex = couleurFamille(segment.famille, surSurlignage: surSurlignage);
-    final couleur = (hex != null ? couleurDepuisHex(hex) : null) ?? couleurBase;
+    final couleur = ch.tajweed(segment.famille, surSurlignage: surSurlignage) ?? couleurBase;
     for (final morceau in decouperSignes(segment.texte)) {
       if (morceau.estSigne) {
         spans.add(TextSpan(
@@ -62,6 +62,7 @@ List<InlineSpan> spansTexte({
 /// Vert alterné (pairs plus foncés) quand le tajweed est éteint ; texte foncé uni quand il est allumé, pour que
 /// ses couleurs ressortent. Toucher n'importe quelle partie d'un verset (texte, signe ou numéro) le sélectionne.
 List<InlineSpan> spansVersets({
+  required CharteHayaati ch,
   required int sourate,
   required List<VersetCoran> versets,
   required EtatLecture etat,
@@ -72,12 +73,13 @@ List<InlineSpan> spansVersets({
   final spans = <InlineSpan>[];
   for (final v in versets) {
     final base = etat.tajweed
-        ? PaletteHayaati.texteFonce
-        : (v.numero.isEven ? PaletteHayaati.vertProfond : PaletteHayaati.vertClair);
+        ? ch.texteFonce
+        : (v.numero.isEven ? ch.vertProfond : ch.vertClair);
     final selectionne = selection != null && selection.sourate == sourate && selection.verset == v.numero;
-    final fond = selectionne ? surlignage : null;
+    final fond = selectionne ? ch.surlignage : null;
     final g = geste?.call(sourate, v.numero);
     spans.addAll(spansTexte(
+      ch: ch,
       texte: v.texte,
       annotations: v.tajweed,
       couleurBase: base,
@@ -90,7 +92,7 @@ List<InlineSpan> spansVersets({
       text: marqueurVerset(v.numero),
       recognizer: g,
       style: TextStyle(
-        color: etat.estSignetVerset(sourate, v.numero) ? couleurNumeroSignet : couleurNumero,
+        color: etat.estSignetVerset(sourate, v.numero) ? ch.numeroSignet : ch.numeroVerset,
         backgroundColor: fond,
         fontSize: taille * rapportNumero,
       ),

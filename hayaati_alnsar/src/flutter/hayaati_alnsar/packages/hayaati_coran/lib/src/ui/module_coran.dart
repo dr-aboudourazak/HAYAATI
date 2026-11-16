@@ -15,7 +15,11 @@ class ConfigCoran {
     this.etatBrut,
     this.surSauverEtat,
     this.surProfondeur,
+    this.apparence = ApparenceHayaati.defaut,
   });
+
+  /// Apparence choisie par l'utilisateur (arrière-plan et couleur principale), transmise par l'hôte.
+  final ApparenceHayaati apparence;
 
   /// Textes traduits et sens d'écriture de l'interface.
   final TextesCoran textes;
@@ -136,20 +140,20 @@ class _ModuleCoranState extends State<ModuleCoran> {
     final navigateur = _navigateur;
     if (_erreur != null) {
       return Theme(
-        data: themeHayaati(),
+        data: themeHayaati(apparence: widget.config.apparence),
         child: Center(child: Text('Le Coran n\'est pas disponible : $_erreur', textAlign: TextAlign.center)),
       );
     }
     if (c == null || navigateur == null) {
       return Theme(
-        data: themeHayaati(),
-        child: const Center(child: CircularProgressIndicator(color: PaletteHayaati.vertProfond)),
+        data: themeHayaati(apparence: widget.config.apparence),
+        child: const Center(child: CircularProgressIndicator()),
       );
     }
     return ListenableBuilder(
       listenable: c,
       builder: (context, nav) => Theme(
-        data: themeHayaati(arabe: c.textes.rtl),
+        data: themeHayaati(arabe: c.textes.rtl, apparence: widget.config.apparence),
         child: Directionality(textDirection: c.textes.rtl ? TextDirection.rtl : TextDirection.ltr, child: nav!),
       ),
       child: navigateur,

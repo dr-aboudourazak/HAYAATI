@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:hayaati_ui/hayaati_ui.dart' show CharteHayaati;
 import '../controleur.dart';
 import '../filtres.dart';
 import '../geo.dart';
@@ -7,6 +8,7 @@ import '../i18n.dart';
 import '../modeles.dart';
 import '../theme/palette.dart';
 import '../theme/theme_hayaati.dart';
+import 'package:hayaati_ui/hayaati_ui.dart' show separerEmoji;
 import '../madrassa/ecrans_madrassa.dart';
 import 'ecran_hadj_omra.dart';
 import 'ecran_proposition.dart';
@@ -39,6 +41,7 @@ class EcranAccueil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     return ListenableBuilder(
       listenable: c,
       builder: (context, _) {
@@ -55,7 +58,7 @@ class EcranAccueil extends StatelessWidget {
                 child: Text(
                   t('titre'),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: PaletteHayaati.vertProfond,
+                        color: ch.vertProfond,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -87,7 +90,7 @@ class EcranAccueil extends StatelessWidget {
               if (c.madrassa != null)
                 _Tuile(
                   icone: Icons.school,
-                  titre: c.madrassa!.contenu.m('titre_hub', 'Madrassa'),
+                  titre: separerEmoji(c.madrassa!.contenu.m('titre_hub', 'Madrassa')).titre,
                   onTap: () => _pousser(context, (_) => EcranMadrassaHub(ac: c)),
                 ),
               _Tuile(
@@ -95,7 +98,7 @@ class EcranAccueil extends StatelessWidget {
                 titre: t('apprendre'),
                 onTap: () => _pousser(
                   context,
-                  (_) => EcranListe(c: c, titre: t('apprendre'), types: const {'madrassa'}),
+                  (_) => EcranListe(c: c, titre: t('apprendre'), types: const {'madrassa'}, icone: Icons.menu_book),
                 ),
               ),
               _Tuile(
@@ -107,6 +110,7 @@ class EcranAccueil extends StatelessWidget {
                     c: c,
                     titre: t('boutique'),
                     types: const {'librairie', 'boutique', 'artisan'},
+                    icone: Icons.storefront,
                   ),
                 ),
               ),
@@ -115,7 +119,7 @@ class EcranAccueil extends StatelessWidget {
                 titre: t('accompagnement'),
                 onTap: () => _pousser(
                   context,
-                  (_) => EcranListe(c: c, titre: t('accompagnement'), types: const {'specialiste'}),
+                  (_) => EcranListe(c: c, titre: t('accompagnement'), types: const {'specialiste'}, icone: Icons.support_agent),
                 ),
               ),
               if (hadjActif)
@@ -151,10 +155,11 @@ class _Tuile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     return CarteHayaati(
       child: ListTile(
         minVerticalPadding: 20,
-        leading: Icon(icone, size: 32, color: PaletteHayaati.vertProfond),
+        leading: Icon(icone, size: 32, color: ch.vertProfond),
         title: Text(titre, style: Theme.of(context).textTheme.titleMedium),
         trailing: const Icon(Icons.chevron_right),
         onTap: onTap,
@@ -173,6 +178,7 @@ class BandeauLieu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final t = c.t;
     final String lieu;
     if (c.mode == ModeLieu.autourDeMoi) {
@@ -196,7 +202,7 @@ class BandeauLieu extends StatelessWidget {
       child: ListTile(
         leading: Icon(
           c.mode == ModeLieu.autourDeMoi ? Icons.my_location : Icons.place,
-          color: PaletteHayaati.vertProfond,
+          color: ch.vertProfond,
         ),
         title: Text('$lieu · ${c.nomPays(c.config.pays)}'),
         subtitle: sousTitre == null ? null : Text(sousTitre),
@@ -221,6 +227,7 @@ class SelecteurLieu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     return ListenableBuilder(
       listenable: c,
       builder: (context, _) {
@@ -255,7 +262,7 @@ class SelecteurLieu extends StatelessWidget {
                     shrinkWrap: true,
                     children: [
                       ListTile(
-                        leading: const Icon(Icons.my_location, color: PaletteHayaati.vertProfond),
+                        leading: Icon(Icons.my_location, color: ch.vertProfond),
                         title: Text(t('autour_de_moi')),
                         selected: c.mode == ModeLieu.autourDeMoi,
                         onTap: () {
@@ -296,11 +303,14 @@ class SelecteurLieu extends StatelessWidget {
 // ------------------------------------------------------------------ Listes
 
 class EcranListe extends StatefulWidget {
-  const EcranListe({super.key, required this.c, required this.titre, required this.types});
+  const EcranListe({super.key, required this.c, required this.titre, required this.types, this.icone});
 
   final ControleurAlAnsar c;
   final String titre;
   final Set<String> types;
+
+  /// Illustration affichée à côté du titre quand la page est ouverte (jamais dans la liste des rubriques).
+  final IconData? icone;
 
   @override
   State<EcranListe> createState() => _EcranListeState();
@@ -325,7 +335,11 @@ class _EcranListeState extends State<EcranListe> {
           rayonKm: autour ? _rayonKm?.toDouble() : null,
         );
         return Scaffold(
-          appBar: barreHayaati(widget.titre, integre: c.config.integre),
+          appBar: barreHayaati(
+          widget.titre,
+          integre: c.config.integre,
+          illustration: widget.icone == null ? null : Icon(widget.icone),
+        ),
           body: Column(
             children: [
               Padding(
@@ -392,6 +406,7 @@ class _CarteFiche extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final t = c.t;
     final fiche = entree.fiche;
     final d = entree.distanceM;
@@ -408,7 +423,7 @@ class _CarteFiche extends StatelessWidget {
         trailing: fiche.niveau >= 1
             ? Tooltip(
                 message: t('verifie'),
-                child: const Icon(Icons.verified, size: 20, color: PaletteHayaati.vertClair),
+                child: Icon(Icons.verified, size: 20, color: ch.vertClair),
               )
             : null,
         onTap: () => _pousser(
@@ -435,6 +450,8 @@ class EcranFicheMadrassa extends StatefulWidget {
 }
 
 class _EcranFicheMadrassaState extends State<EcranFicheMadrassa> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   GroupeCours _groupe = GroupeCours.parPublic;
 
   @override
@@ -491,8 +508,8 @@ class _EcranFicheMadrassaState extends State<EcranFicheMadrassa> {
                 const SizedBox(height: 16),
                 FilledButton.icon(
                   style: FilledButton.styleFrom(
-                    backgroundColor: PaletteHayaati.terracotta,
-                    foregroundColor: PaletteHayaati.blanc,
+                    backgroundColor: ch.terracotta,
+                    foregroundColor: ch.blanc,
                   ),
                   icon: const Icon(Icons.chat),
                   label: Text(t('contacter')),
@@ -551,6 +568,7 @@ class CarteCours extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final t = c.t;
     final theme = Theme.of(context);
     final langue = c.config.langue;
@@ -575,8 +593,8 @@ class CarteCours extends StatelessWidget {
               LinearProgressIndicator(
                 value: (pre / seuil).clamp(0.0, 1.0).toDouble(),
                 minHeight: 8,
-                color: PaletteHayaati.ocre,
-                backgroundColor: PaletteHayaati.ocreClair,
+                color: ch.ocre,
+                backgroundColor: ch.ocreClair,
               ),
               const SizedBox(height: 4),
               Text('$pre / $seuil ${t('preinscrits')}'),
@@ -599,6 +617,7 @@ class EcranFicheGenerique extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final t = c.t;
     final langue = c.config.langue;
     final articles =
@@ -635,8 +654,8 @@ class EcranFicheGenerique extends StatelessWidget {
             const SizedBox(height: 16),
             FilledButton.icon(
                   style: FilledButton.styleFrom(
-                    backgroundColor: PaletteHayaati.terracotta,
-                    foregroundColor: PaletteHayaati.blanc,
+                    backgroundColor: ch.terracotta,
+                    foregroundColor: ch.blanc,
                   ),
               icon: const Icon(Icons.chat),
               label: Text(t('contacter')),
@@ -769,6 +788,7 @@ class _EcranMosqueesState extends State<EcranMosquees> {
           appBar: barreHayaati(
             t('mosquees'),
             integre: c.config.integre,
+            illustration: const Icon(Icons.mosque),
             actions: [
               IconButton(
                 icon: const Icon(Icons.add_location_alt),
@@ -816,6 +836,7 @@ class _LigneMosquee extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final t = c.t;
     final f = r.item;
     final m = f.mosquee;
@@ -833,7 +854,7 @@ class _LigneMosquee extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: ListTile(
         isThreeLine: ligne2.isNotEmpty,
-        leading: const Icon(Icons.mosque, color: PaletteHayaati.vertProfond),
+        leading: Icon(Icons.mosque, color: ch.vertProfond),
         title: Text(f.nom),
         subtitle: Text(ligne2.isEmpty ? ligne1 : '$ligne1\n$ligne2'),
         trailing: Row(

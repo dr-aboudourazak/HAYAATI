@@ -21,6 +21,8 @@ class CorpsPage extends StatefulWidget {
 }
 
 class _CorpsPageState extends State<CorpsPage> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   late final PageController _pages = PageController(initialPage: widget.controleur.pageActive - 1);
 
   @override
@@ -77,20 +79,20 @@ class _CorpsPageState extends State<CorpsPage> {
               IconButton(
                 tooltip: t('page_suivante', 'Page suivante'),
                 icon: const Icon(Icons.chevron_left_rounded, size: 26),
-                color: PaletteHayaati.vertProfond,
+                color: ch.vertProfond,
                 onPressed: () => _aller(1),
               ),
               Expanded(
                 child: Text(
                   '${chiffresArabes(c.pageActive)} / ${chiffresArabes(nbPages)}  ·  Tanzil.net',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 11, color: PaletteHayaati.grisTexte),
+                  style: TextStyle(fontSize: 11, color: ch.grisTexte),
                 ),
               ),
               IconButton(
                 tooltip: t('page_precedente', 'Page précédente'),
                 icon: const Icon(Icons.chevron_right_rounded, size: 26),
-                color: PaletteHayaati.vertProfond,
+                color: ch.vertProfond,
                 onPressed: () => _aller(-1),
               ),
             ],

@@ -13,14 +13,15 @@ class BarreVerset extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final c = controleur;
     final sel = c.selection;
     if (sel == null) return const SizedBox.shrink();
     final t = c.textes;
     return Container(
-      decoration: const BoxDecoration(
-        color: PaletteHayaati.sable,
-        border: Border(top: BorderSide(color: PaletteHayaati.ocre)),
+      decoration: BoxDecoration(
+        color: ch.sable,
+        border: Border(top: BorderSide(color: ch.ocre)),
       ),
       padding: const EdgeInsets.only(left: 6, right: 10),
       child: Row(
@@ -28,19 +29,19 @@ class BarreVerset extends StatelessWidget {
           IconButton(
             tooltip: t('fermer', 'Fermer'),
             icon: const Icon(Icons.close_rounded, size: 18),
-            color: PaletteHayaati.grisTexte,
+            color: ch.grisTexte,
             onPressed: c.effacerSelection,
           ),
           IconButton(
             tooltip: t('signet_verset', 'Signet sur ce verset'),
             icon: Icon(c.selectionEstSignet ? Icons.bookmark_added : Icons.bookmark_add_outlined, size: 22),
-            color: PaletteHayaati.ocre,
+            color: ch.ocre,
             onPressed: c.basculerSignetVerset,
           ),
           IconButton(
             tooltip: t('copier_verset', 'Copier le verset'),
             icon: const Icon(Icons.content_copy_rounded, size: 20),
-            color: PaletteHayaati.vertProfond,
+            color: ch.vertProfond,
             onPressed: surCopier,
           ),
           Expanded(
@@ -48,7 +49,7 @@ class BarreVerset extends StatelessWidget {
               '${c.moteur.nomSourate(sel.sourate)} · ${t('mot_verset', 'verset')} ${sel.verset}',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontFamily: familleArabe, fontSize: 12, color: PaletteHayaati.texteFonce),
+              style: TextStyle(fontFamily: familleArabe, fontSize: 12, color: ch.texteFonce),
             ),
           ),
         ],

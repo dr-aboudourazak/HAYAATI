@@ -14,27 +14,28 @@ class PoigneeLecture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final c = controleur;
     final t = c.textes;
     final replie = c.etat.enteteReplie;
     final titre = '${c.moteur.nomSourate(c.sourateActive)}  ·  ${t('mot_page', 'Page')} ${chiffresArabes(c.pageActive)}';
     return Container(
-      decoration: const BoxDecoration(
-        color: PaletteHayaati.blanc,
-        border: Border(bottom: BorderSide(color: PaletteHayaati.grisClair)),
+      decoration: BoxDecoration(
+        color: ch.blanc,
+        border: Border(bottom: BorderSide(color: ch.grisClair)),
       ),
       child: Row(
         children: [
           IconButton(
             tooltip: t('retour', 'Retour'),
             icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 16),
-            color: PaletteHayaati.vertProfond,
+            color: ch.vertProfond,
             onPressed: () => Navigator.of(context).maybePop(),
           ),
           IconButton(
             tooltip: t('signet_bascule', 'Signet'),
             icon: Icon(c.pageEstSignet ? Icons.bookmark : Icons.bookmark_border_rounded, size: 20),
-            color: PaletteHayaati.ocre,
+            color: ch.ocre,
             onPressed: c.basculerSignetPage,
           ),
           Expanded(
@@ -47,11 +48,11 @@ class PoigneeLecture extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: familleArabe,
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: PaletteHayaati.vertProfond,
+                    color: ch.vertProfond,
                   ),
                 ),
               ),
@@ -60,7 +61,7 @@ class PoigneeLecture extends StatelessWidget {
           IconButton(
             tooltip: replie ? t('entete_afficher', "Afficher l'en-tête") : t('entete_replier', "Replier l'en-tête"),
             icon: Icon(replie ? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_up_rounded, size: 22),
-            color: PaletteHayaati.vertProfond,
+            color: ch.vertProfond,
             onPressed: c.basculerEntete,
           ),
         ],
@@ -81,6 +82,8 @@ class EnteteLecture extends StatefulWidget {
 }
 
 class _EnteteLectureState extends State<EnteteLecture> {
+  CharteHayaati get ch => CharteHayaati.of(context);
+
   final TextEditingController _champ = TextEditingController();
 
   @override
@@ -104,7 +107,7 @@ class _EnteteLectureState extends State<EnteteLecture> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          color: PaletteHayaati.blanc,
+          color: ch.blanc,
           padding: const EdgeInsets.fromLTRB(4, 4, 4, 6),
           // Sens de lecture arabe : « suivante » (avancer dans le livre) à GAUCHE du titre, « précédente » à DROITE.
           child: Directionality(
@@ -126,7 +129,7 @@ class _EnteteLectureState extends State<EnteteLecture> {
                       contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
-                        borderSide: const BorderSide(color: PaletteHayaati.ocre),
+                        borderSide: BorderSide(color: ch.ocre),
                       ),
                     ),
                   ),
@@ -134,7 +137,7 @@ class _EnteteLectureState extends State<EnteteLecture> {
                 IconButton(
                   tooltip: t('sourate_suivante', 'Sourate suivante'),
                   icon: const Icon(Icons.chevron_left_rounded, size: 24),
-                  color: PaletteHayaati.vertProfond,
+                  color: ch.vertProfond,
                   onPressed: sourate >= 114 ? null : () => c.ouvrirSourate(sourate + 1),
                 ),
                 Expanded(
@@ -145,10 +148,10 @@ class _EnteteLectureState extends State<EnteteLecture> {
                         width: 26,
                         height: 26,
                         alignment: Alignment.center,
-                        decoration: const BoxDecoration(color: PaletteHayaati.ocreClair, shape: BoxShape.circle),
+                        decoration: BoxDecoration(color: ch.ocreClair, shape: BoxShape.circle),
                         child: Text(
                           '$sourate',
-                          style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: PaletteHayaati.vertProfond),
+                          style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: ch.vertProfond),
                         ),
                       ),
                       const SizedBox(width: 6),
@@ -157,11 +160,11 @@ class _EnteteLectureState extends State<EnteteLecture> {
                           c.moteur.nomSourate(sourate),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: familleArabe,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: PaletteHayaati.vertProfond,
+                            color: ch.vertProfond,
                           ),
                         ),
                       ),
@@ -171,7 +174,7 @@ class _EnteteLectureState extends State<EnteteLecture> {
                 IconButton(
                   tooltip: t('sourate_precedente', 'Sourate précédente'),
                   icon: const Icon(Icons.chevron_right_rounded, size: 24),
-                  color: PaletteHayaati.vertProfond,
+                  color: ch.vertProfond,
                   onPressed: sourate <= 1 ? null : () => c.ouvrirSourate(sourate - 1),
                 ),
               ],
@@ -179,7 +182,7 @@ class _EnteteLectureState extends State<EnteteLecture> {
           ),
         ),
         Container(
-          decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: PaletteHayaati.grisClair))),
+          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: ch.grisClair))),
           padding: const EdgeInsets.only(left: 8, right: 4, bottom: 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -188,7 +191,7 @@ class _EnteteLectureState extends State<EnteteLecture> {
                 children: [
                   Switch(
                     value: c.etat.tajweed,
-                    activeTrackColor: PaletteHayaati.vertProfond,
+                    activeTrackColor: ch.vertProfond,
                     onChanged: (_) => c.basculerTajweed(),
                   ),
                   Text(t('tajweed', 'Tajweed'), style: const TextStyle(fontSize: 13)),
@@ -199,18 +202,18 @@ class _EnteteLectureState extends State<EnteteLecture> {
                   IconButton(
                     tooltip: t('texte_plus_petit', 'Texte plus petit'),
                     icon: const Icon(Icons.text_decrease_rounded, size: 20),
-                    color: PaletteHayaati.vertProfond,
+                    color: ch.vertProfond,
                     onPressed: c.peutReduire ? () => c.changerTaille(-1) : null,
                   ),
                   IconButton(
                     tooltip: t('texte_plus_grand', 'Texte plus grand'),
                     icon: const Icon(Icons.text_increase_rounded, size: 20),
-                    color: PaletteHayaati.vertProfond,
+                    color: ch.vertProfond,
                     onPressed: c.peutAgrandir ? () => c.changerTaille(1) : null,
                   ),
                   PopupMenuButton<String>(
                     tooltip: t('police_titre', 'Police du texte'),
-                    icon: const Icon(Icons.tune_rounded, size: 20, color: PaletteHayaati.vertProfond),
+                    icon: Icon(Icons.tune_rounded, size: 20, color: ch.vertProfond),
                     onSelected: c.changerPolice,
                     itemBuilder: (_) => [
                       for (final p in polices.values)
@@ -230,7 +233,7 @@ class _EnteteLectureState extends State<EnteteLecture> {
             child: Text(
               c.messageRecherche!,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 11, fontStyle: FontStyle.italic, color: PaletteHayaati.grisTexte),
+              style: TextStyle(fontSize: 11, fontStyle: FontStyle.italic, color: ch.grisTexte),
             ),
           ),
       ],
@@ -242,8 +245,8 @@ class _EnteteLectureState extends State<EnteteLecture> {
     return IconButton(
       tooltip: info,
       icon: Icon(icone, size: 20),
-      color: actif ? PaletteHayaati.blanc : PaletteHayaati.vertProfond,
-      style: IconButton.styleFrom(backgroundColor: actif ? PaletteHayaati.vertProfond : null),
+      color: actif ? ch.blanc : ch.vertProfond,
+      style: IconButton.styleFrom(backgroundColor: actif ? ch.vertProfond : null),
       onPressed: () => c.changerMode(mode),
     );
   }

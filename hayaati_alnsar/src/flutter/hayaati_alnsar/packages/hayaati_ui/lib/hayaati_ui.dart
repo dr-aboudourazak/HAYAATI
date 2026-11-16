@@ -3,6 +3,10 @@
 /// et ne définissent jamais leurs propres couleurs ni leurs propres polices de base.
 library;
 
+export 'src/apparence.dart';
+export 'src/charte_hayaati.dart';
 export 'src/palette.dart';
+export 'src/selecteur_apparence.dart';
 export 'src/theme_hayaati.dart';
 export 'src/texte_arabe.dart';
+export 'src/titre.dart';

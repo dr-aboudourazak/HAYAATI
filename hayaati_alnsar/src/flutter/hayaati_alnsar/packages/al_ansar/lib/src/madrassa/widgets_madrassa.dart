@@ -1,48 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hayaati_ui/hayaati_ui.dart' show familleArabe, reserveArabe, styleCorps, styleArabe, TexteArabe;
 
+import 'package:hayaati_ui/hayaati_ui.dart' show CharteHayaati;
 import '../theme/palette.dart';
 import '../theme/theme_hayaati.dart';
 import 'moteurs.dart';
 
-/// Police arabe embarquée dans le module (Noto Sans Arabic) et police du signe ﷺ (HayaatiSignes).
-const String familleArabe = 'packages/al_ansar/NotoSansArabic';
-const List<String> reserveArabe = <String>['packages/al_ansar/NotoSansArabic', 'packages/al_ansar/HayaatiSignes'];
-
-/// Texte de lecture courant ; les passages arabes retombent sur les polices du module.
-TextStyle styleCorps(BuildContext context, {double taille = 15}) =>
-    (Theme.of(context).textTheme.bodyMedium ?? const TextStyle()).copyWith(
-      fontSize: taille,
-      height: 1.5,
-      fontFamilyFallback: reserveArabe,
-    );
-
-/// Ligne purement arabe (lettre, mot, forme conjuguée, exemple) : grande, vocalisée, de droite à gauche.
-TextStyle styleArabe({double taille = 26, Color? couleur}) => TextStyle(
-      fontFamily: familleArabe,
-      fontFamilyFallback: reserveArabe,
-      fontSize: taille,
-      height: 1.7,
-      color: couleur ?? PaletteHayaati.texteFonce,
-    );
-
-class TexteArabe extends StatelessWidget {
-  const TexteArabe(this.texte, {super.key, this.taille = 26, this.centre = false, this.couleur});
-
-  final String texte;
-  final double taille;
-  final bool centre;
-  final Color? couleur;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      texte,
-      textDirection: TextDirection.rtl,
-      textAlign: centre ? TextAlign.center : TextAlign.start,
-      style: styleArabe(taille: taille, couleur: couleur),
-    );
-  }
-}
+// La police arabe et les composants de texte arabe vivent dans le paquet commun hayaati_ui ; ils restent
+// accessibles d'ici pour les écrans de Madrassa.
+export 'package:hayaati_ui/hayaati_ui.dart' show familleArabe, reserveArabe, styleCorps, styleArabe, TexteArabe;
 
 void ouvrirEcran(BuildContext context, Widget ecran) {
   Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ecran));
@@ -67,6 +33,7 @@ class TuileMadrassa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final theme = Theme.of(context);
     return CarteHayaati(
       margin: const EdgeInsets.symmetric(vertical: 4),
@@ -77,7 +44,7 @@ class TuileMadrassa extends StatelessWidget {
           padding: const EdgeInsets.all(14),
           child: Row(
             children: [
-              Icon(icone, size: 30, color: PaletteHayaati.vertProfond),
+              Icon(icone, size: 30, color: ch.vertProfond),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(
@@ -91,7 +58,7 @@ class TuileMadrassa extends StatelessWidget {
                         child: Text(
                           info,
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: PaletteHayaati.ocreFonce,
+                            color: ch.ocreFonce,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -128,6 +95,7 @@ class BoutonsMarquage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final connu = etat == 'connu';
     final aRevoir = etat == 'a_revoir';
     return Row(
@@ -138,7 +106,7 @@ class BoutonsMarquage extends StatelessWidget {
           onPressed: surOui,
           icon: Icon(
             connu ? Icons.check_circle : Icons.check_circle_outline,
-            color: connu ? PaletteHayaati.vertClair : PaletteHayaati.grisTexte,
+            color: connu ? ch.vertClair : ch.grisTexte,
           ),
         ),
         IconButton(
@@ -146,7 +114,7 @@ class BoutonsMarquage extends StatelessWidget {
           onPressed: surNon,
           icon: Icon(
             aRevoir ? Icons.help : Icons.help_outline,
-            color: aRevoir ? PaletteHayaati.ambreAttente : PaletteHayaati.grisTexte,
+            color: aRevoir ? ch.ambreAttente : ch.grisTexte,
           ),
         ),
       ],

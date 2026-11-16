@@ -1,3 +1,5 @@
+import 'package:hayaati_ui/hayaati_ui.dart' show ApparenceHayaati;
+
 import 'madrassa/contenu.dart';
 
 /// Version du module Al Ansâr (affichée en mode démo pour savoir quel code tourne vraiment).
@@ -78,6 +80,7 @@ class AlAnsarConfig {
     this.surOuvrirHote,
     this.surProfondeur,
     this.integre = false,
+    this.apparence = ApparenceHayaati.defaut,
   });
 
   /// Adresse de publication des fichiers, terminée par « / ».
@@ -117,6 +120,9 @@ class AlAnsarConfig {
   /// (l'hôte a déjà le sien), titres de page discrets.
   final bool integre;
 
+  /// Apparence choisie par l'utilisateur (arrière-plan et couleur principale), transmise par l'hôte.
+  final ApparenceHayaati apparence;
+
   AlAnsarConfig copyWith({
     String? langue,
     String? pays,
@@ -144,6 +150,7 @@ class AlAnsarConfig {
       surOuvrirHote: surOuvrirHote,
       surProfondeur: surProfondeur,
       integre: integre,
+      apparence: apparence,
     );
   }
 }

@@ -49,6 +49,9 @@ class HayaatiAlAnsar(ft.LayoutControl):
     integre: bool = True
     """Module affiché dans HAYAATI : pas de second bandeau vert, titres discrets."""
 
+    apparence_json: Optional[str] = None
+    """Apparence choisie (arrière-plan : clair, papier, sombre ; couleur : vert, terracotta, ocre), JSON {"fond", "couleur"}."""
+
     madrassa_json: Optional[str] = None
     """Contenu pédagogique de la langue active (sections madrassa, interface_savoir, encyclopedie, langue_arabe, sciences_islamiques), en JSON."""
 

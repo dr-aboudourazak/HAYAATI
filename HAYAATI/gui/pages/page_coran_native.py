@@ -20,6 +20,7 @@ import flet as ft
 
 from gui.langues import DICTIONNAIRE_LANGUES
 from core import coran_lecture_store as store
+from core import apparence_store
 
 try:
     from hayaati_alnsar import HayaatiCoran
@@ -62,6 +63,7 @@ class PageCoranNative(ft.Container):
             on_profondeur=self._maj_profondeur,
         )
         self.module.definir_textes(dic.get("coran", {}))
+        self.module.apparence_json = apparence_store.json_texte()
         self.module.definir_etat(store.charger())
         return self.module
 

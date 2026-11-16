@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:al_ansar/al_ansar.dart';
 import 'package:flet/flet.dart';
 import 'package:flutter/material.dart';
+import 'package:hayaati_ui/hayaati_ui.dart' show ApparenceHayaati;
 
 /// Pont entre le contrôle Python HayaatiAlAnsar et le module Flutter al_ansar.
 class HayaatiAlAnsarControl extends StatefulWidget {
@@ -118,6 +119,7 @@ class _HayaatiAlAnsarControlState extends State<HayaatiAlAnsarControl> {
       position: (lat != null && lon != null) ? Coord(lat, lon) : null,
       modeDemo: c.get<bool>("mode_demo"),
       integre: c.get<bool>("integre") ?? true,
+      apparence: _lireApparence(c.get<String>("apparence_json")),
       textes: _lireTextes(c.get<String>("textes_json")),
       raccourcisHote: _lireRaccourcis(c.get<String>("raccourcis_json")),
       madrassa: _madrassa(c),
@@ -130,5 +132,15 @@ class _HayaatiAlAnsarControlState extends State<HayaatiAlAnsarControl> {
       control: c,
       child: AlAnsarModule(config: config, navigatorKey: _cleNavigateur),
     );
+  }
+}
+
+/// Apparence transmise par l'hôte (JSON {"fond", "couleur"}) ; la charte officielle si absente ou illisible.
+ApparenceHayaati _lireApparence(String? json) {
+  if (json == null || json.isEmpty) return ApparenceHayaati.defaut;
+  try {
+    return ApparenceHayaati.depuisJson(jsonDecode(json));
+  } catch (_) {
+    return ApparenceHayaati.defaut;
   }
 }

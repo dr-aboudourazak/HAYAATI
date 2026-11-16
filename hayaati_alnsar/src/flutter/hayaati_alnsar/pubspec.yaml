@@ -18,6 +18,8 @@ dependencies:
   # Module Coran : le paquet hayaati_ui (charte commune) est trouvé par son chemin relatif ../hayaati_ui.
   hayaati_coran:
     path: packages/hayaati_coran
+  hayaati_ui:
+    path: packages/hayaati_ui
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:hayaati_ui/hayaati_ui.dart' show CharteHayaati;
 import '../controleur.dart';
 import '../i18n.dart';
 import '../modeles.dart';
@@ -41,9 +42,7 @@ String _groupe(Textes t, Forfait f) {
 
 String _prix(Forfait f) => '${formaterMontant(f.montant)} ${f.devise}';
 
-Color _couleurScore(int s) => s >= 80
-    ? PaletteHayaati.vertClair
-    : (s >= 50 ? PaletteHayaati.ocre : PaletteHayaati.terracotta);
+Color _couleurScore(CharteHayaati ch, int s) => s >= 80 ? ch.vertClair : (s >= 50 ? ch.ocre : ch.terracotta);
 
 Fiche? _agence(ControleurAlAnsar c, String id) {
   for (final f in c.annuaire?.fiches ?? const <Fiche>[]) {
@@ -80,7 +79,11 @@ class _EcranHadjOmraState extends State<EcranHadjOmra> {
           ..sort((a, b) => a.dateDepart.compareTo(b.dateDepart));
         final choisis = forfaits.where((f) => _selection.contains(f.id)).toList();
         return Scaffold(
-          appBar: barreHayaati(t('hadj_omra'), integre: c.config.integre),
+          appBar: barreHayaati(
+          t('hadj_omra'),
+          integre: c.config.integre,
+          illustration: const Icon(Icons.flight_takeoff),
+        ),
           floatingActionButton: choisis.length >= 2
               ? FloatingActionButton.extended(
                   onPressed: () => Navigator.of(context).push(
@@ -160,6 +163,7 @@ class _CarteForfait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final t = c.t;
     final langue = c.config.langue;
     final f = forfait;
@@ -191,9 +195,9 @@ class _CarteForfait extends StatelessWidget {
                   children: [
                     Flexible(child: Text(agence.nom)),
                     if (agence.niveau >= 2)
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 4),
-                        child: Icon(Icons.verified, size: 18, color: PaletteHayaati.vertClair),
+                        child: Icon(Icons.verified, size: 18, color: ch.vertClair),
                       ),
                   ],
                 ),
@@ -213,8 +217,8 @@ class _CarteForfait extends StatelessWidget {
                 children: [
                   Chip(
                     label: Text('${t('transparence')} ${f.scoreTransparence} %'),
-                    backgroundColor: _couleurScore(f.scoreTransparence),
-                    labelStyle: const TextStyle(color: PaletteHayaati.blanc),
+                    backgroundColor: _couleurScore(ch, f.scoreTransparence),
+                    labelStyle: TextStyle(color: ch.blanc),
                     visualDensity: VisualDensity.compact,
                   ),
                   Chip(label: Text(t(f.statut)), visualDensity: VisualDensity.compact),
@@ -263,6 +267,7 @@ class EcranForfait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ch = CharteHayaati.of(context);
     final t = c.t;
     final langue = c.config.langue;
     final f = forfait;
@@ -285,8 +290,8 @@ class EcranForfait extends StatelessWidget {
           const SizedBox(height: 8),
           Chip(
             label: Text('${t('transparence')} ${f.scoreTransparence} %'),
-            backgroundColor: _couleurScore(f.scoreTransparence),
-            labelStyle: const TextStyle(color: PaletteHayaati.blanc),
+            backgroundColor: _couleurScore(ch, f.scoreTransparence),
+            labelStyle: TextStyle(color: ch.blanc),
           ),
           const Divider(),
           _Ligne(t('prix'), _prix(f)),
@@ -322,8 +327,8 @@ class EcranForfait extends StatelessWidget {
             const SizedBox(height: 16),
             FilledButton.icon(
               style: FilledButton.styleFrom(
-                backgroundColor: PaletteHayaati.terracotta,
-                foregroundColor: PaletteHayaati.blanc,
+                backgroundColor: ch.terracotta,
+                foregroundColor: ch.blanc,
               ),
               icon: const Icon(Icons.chat),
               label: Text(t('contacter')),
