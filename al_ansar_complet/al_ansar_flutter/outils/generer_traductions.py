@@ -5,7 +5,7 @@
     python outils/generer_traductions.py --controle contrôle seulement
 
 Sorties :
-  lib/src/i18n_donnees.dart                          textes intégrés au module (toutes les langues)
+  lib/src/commun/core/i18n_donnees.dart                          textes intégrés au module (toutes les langues)
   ../integration_flet/HAYAATI_patch/ajouts_locales.json  section « al_ansar » des fichiers de langue de HAYAATI
 
 Règle « zéro dette de traduction » : chaque clé doit avoir un texte non vide dans CHAQUE langue de `_langues`,
@@ -20,7 +20,7 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
 SOURCE = RACINE / "traductions" / "al_ansar.json"
-DART = RACINE / "lib" / "src" / "i18n_donnees.dart"
+DART = RACINE / "lib" / "src" / "commun" / "core" / "i18n_donnees.dart"
 LOCALES = RACINE.parent / "integration_flet" / "HAYAATI_patch" / "ajouts_locales.json"
 
 MENU = {
@@ -29,7 +29,7 @@ MENU = {
     "ar": {"alansar_hub": "🤝 الأنصار", "calculs_hub": "🧮 الحسابات", "mon_espace_hub": "👤 مساحتي"},
     "ha": {"alansar_hub": "🤝 Al-Ansâr", "calculs_hub": "🧮 Lissafi", "mon_espace_hub": "👤 Wurina"},
 }
-CLES_DYNAMIQUES = re.compile(r"^(repas_|cap_)")  # clés construites dans le code : t('repas_$r'), t('cap_$c')
+CLES_DYNAMIQUES = re.compile(r"^(repas_|cap_|pub_)")  # clés construites dans le code : t('repas_$r'), t('cap_$c') ; pub_* : i18n_publications.dart (lot E)
 
 
 def dart_chaine(s: str) -> str:

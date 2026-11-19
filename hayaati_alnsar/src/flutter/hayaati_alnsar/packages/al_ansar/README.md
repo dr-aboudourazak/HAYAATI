@@ -6,7 +6,7 @@ propositions de nouvelles mosquées et corrections de position.
 
 ## Charte graphique HAYAATI
 
-- Palette : `lib/src/theme/palette.dart`, copie exacte de `gui/palette_hayaati.py` (test `charte_test.dart`).
+- Palette : `lib/src/commun/gui/theme/palette.dart`, copie exacte de `gui/palette_hayaati.py` (test `charte_test.dart`).
 - Thème : `themeHayaati()`, appliqué par le module lui-même, donc identique en essai autonome et dans HAYAATI.
   Bandeau vert profond (`#064E3B`) comme la barre d'outils, fond sable, cartes blanches, texte `#2B1607`,
   accents terracotta (actions) et ocre (progression, filtres).
@@ -65,7 +65,7 @@ Hub Madrassa, Encyclopédie avec quiz et badges, Langue arabe (alphabet, vocabul
 (91 leçons, chronologies) et Caravane du Savoir. Le contenu et la progression viennent de l'hôte (`MadrassaHote`) : dans HAYAATI, des fichiers de langue
 et du SyncEngine ; dans l'exemple, `assets/al_ansar/madrassa_demo.json` (copie française). Aucune traduction n'est dupliquée.
 
-Les moteurs Python (`jeu_educatif_engine`, `langue_arabe_engine`, `caravane_savoir_engine`) sont portés à l'identique dans `lib/src/madrassa/moteurs.dart`.
+Les moteurs Python (`jeu_educatif_engine`, `langue_arabe_engine`, `caravane_savoir_engine`) sont portés à l'identique dans `lib/src/fonctionnalites/madrassa/core/moteurs.dart`.
 `test/madrassa_moteurs_test.dart` rejoue des cas générés par les moteurs Python (`test/fixtures/madrassa_vecteurs.json`) : si un moteur Python évolue,
 régénérez les vecteurs et mettez le port à jour. Pour ouvrir l'exemple sur Madrassa : `flutter run -d <identifiant> --dart-define=ECRAN=madrassa`.
 

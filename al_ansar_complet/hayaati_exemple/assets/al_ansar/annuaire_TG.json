@@ -78,7 +78,27 @@
           }
         ]
       },
-      "maj_le": "2026-10-19T12:00:00Z"
+      "maj_le": "2026-10-19T12:00:00Z",
+      "medias": {
+        "image": {
+          "url": "asset:assets/al_ansar/medias/affiche_demo.png",
+          "largeur": 864,
+          "hauteur": 1080,
+          "genre": "affiche",
+          "credit": "Atelier de démonstration",
+          "legende": {
+            "fr": "Affiche de démonstration",
+            "en": "Demo poster"
+          }
+        },
+        "video": {
+          "youtube": "jNQXAC9IVRw",
+          "titre": {
+            "fr": "Vidéo de démonstration",
+            "en": "Demo video"
+          }
+        }
+      }
     },
     {
       "id": "tg-cinkasse-lib-001",
@@ -117,6 +137,18 @@
         "villes": [
           "tg-dapaong"
         ]
+      },
+      "medias": {
+        "image": {
+          "url": "asset:assets/al_ansar/medias/photo_demo.png",
+          "largeur": 1024,
+          "hauteur": 768,
+          "genre": "photo",
+          "legende": {
+            "fr": "Photo du lieu (démonstration)",
+            "en": "Photo of the place (demo)"
+          }
+        }
       }
     },
     {
@@ -175,6 +207,11 @@
       "zone_service": {
         "pays_entier": true,
         "international": true
+      },
+      "medias": {
+        "video": {
+          "youtube": "https://youtu.be/jNQXAC9IVRw"
+        }
       }
     },
     {
@@ -481,7 +518,27 @@
       ],
       "places_restantes": 12,
       "date_limite_inscription": "2027-01-15",
-      "statut": "ouvert"
+      "statut": "ouvert",
+      "medias": {
+        "image": {
+          "url": "asset:assets/al_ansar/medias/affiche_demo.png",
+          "largeur": 864,
+          "hauteur": 1080,
+          "genre": "affiche",
+          "credit": "Atelier de démonstration",
+          "legende": {
+            "fr": "Affiche de l'offre (démonstration)",
+            "en": "Offer poster (demo)"
+          }
+        },
+        "video": {
+          "youtube": "jNQXAC9IVRw",
+          "titre": {
+            "fr": "Présentation du forfait (démonstration)",
+            "en": "Package presentation (demo)"
+          }
+        }
+      }
     },
     {
       "id": "tg-lome-fft-002",
@@ -510,7 +567,19 @@
       "repas": "pension_complete",
       "places_restantes": 6,
       "date_limite_inscription": "2026-12-15",
-      "statut": "ouvert"
+      "statut": "ouvert",
+      "medias": {
+        "image": {
+          "url": "asset:assets/al_ansar/medias/photo_demo.png",
+          "largeur": 1024,
+          "hauteur": 768,
+          "genre": "photo",
+          "legende": {
+            "fr": "Photo de l'hébergement (démonstration)",
+            "en": "Photo of the accommodation (demo)"
+          }
+        }
+      }
     }
   ]
 }

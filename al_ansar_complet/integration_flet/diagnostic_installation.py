@@ -30,10 +30,10 @@ FICHIERS_CLES = [
     str(FLUTTER / "lib/src/control.dart"),
     str(FLUTTER / "assets/al_ansar/annuaire_TG.json"),
     str(FLUTTER / "assets/al_ansar/mosquees_TG.json"),
-    str(FLUTTER / "packages/al_ansar/lib/src/config.dart"),
-    str(FLUTTER / "packages/al_ansar/lib/src/controleur.dart"),
-    str(FLUTTER / "packages/al_ansar/lib/src/i18n_donnees.dart"),
-    str(FLUTTER / "packages/al_ansar/lib/src/ui/ecrans.dart"),
+    str(FLUTTER / "packages/al_ansar/lib/src/commun/core/config.dart"),
+    str(FLUTTER / "packages/al_ansar/lib/src/fonctionnalites/annuaire/core/controleur.dart"),
+    str(FLUTTER / "packages/al_ansar/lib/src/commun/core/i18n_donnees.dart"),
+    str(FLUTTER / "packages/al_ansar/lib/src/fonctionnalites/annuaire/gui/ecrans.dart"),
 ]
 
 
