@@ -22,3 +22,14 @@ export 'src/fonctionnalites/priere/core/precautions.dart' show ArrondiHoraires, 
 export 'src/fonctionnalites/priere/core/horaires.dart' show CalculateurHoraires, HorairesJour, SituationSolaire, formaterHeure;
 export 'src/fonctionnalites/priere/core/qibla.dart'
     show angleRelatifAiguille, calculerDirectionQibla, calculerDistanceKaabaKm, kaabaLatitude, kaabaLongitude, rayonTerreKm;
+export 'src/fonctionnalites/priere/core/calendrier_hegirien.dart'
+    show
+        DateHegirienne,
+        EvenementHegirien,
+        calculerAgeIslamique,
+        calculerAgeIslamiqueDepuisTexte,
+        evenementHegirien,
+        evenementsDuMois,
+        gregorienVersHegirien,
+        hegirienDe,
+        moisHegiriens;
